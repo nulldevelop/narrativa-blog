@@ -1,29 +1,130 @@
+import { HeroHome } from "@/components/hero-home";
+import { ArticleCard } from "@/components/article-card";
+import { SectionTitle } from "@/components/section-title";
+import { SeparatorSection } from "@/components/separator-section";
+import { SidebarHome } from "@/components/sidebar-home";
+import { Pagination } from "@/components/pagination-nav";
+
+const analisesRecentes = [
+  {
+    tag: "Paraná",
+    title: "Entre o discurso e o movimento silencioso do poder",
+    subtitle:
+      "Enquanto o discurso projeta continuidade, os sinais indicam reorganização. Lideranças recalibram posições. Interlocutores mudam.",
+    date: "30 mar 2025",
+    readTime: "7 min de leitura",
+    slug: "entre-o-discurso-e-o-movimento-silencioso",
+    imageIndex: 1,
+  },
+  {
+    tag: "Nacional",
+    title:
+      "A antecipação como estratégia: o movimento que não aparece em coletivas",
+    subtitle:
+      "A política raramente reage apenas ao agora — ela se antecipa ao que pode vir. E é nesse intervalo que os arranjos se formam.",
+    date: "22 mar 2025",
+    readTime: "9 min de leitura",
+    slug: "a-antecipacao-como-estrategia",
+    imageIndex: 2,
+  },
+  {
+    tag: "Bastidores",
+    title:
+      "O discurso como ferramenta: quando estabilidade é a mensagem, não o estado",
+    subtitle:
+      "Ao afirmar estabilidade, busca-se produzi-la. Ao evitar conflitos, tenta-se contê-los antes que se tornem visíveis.",
+    date: "14 mar 2025",
+    readTime: "5 min de leitura",
+    slug: "o-discurso-como-ferramenta",
+    imageIndex: 3,
+  },
+  {
+    tag: "Poder",
+    title:
+      "Alianças sob novas condições: o que não é rompido, mas opera diferente",
+    subtitle:
+      "Alianças que não foram rompidas, mas que passaram a operar sob novas condições. O descompasso entre o que se anuncia e o que se articula.",
+    date: "05 mar 2025",
+    readTime: "6 min de leitura",
+    slug: "aliancas-sob-novas-condicoes",
+    imageIndex: 4,
+  },
+];
+
+const bastidores = [
+  {
+    tag: "Versão",
+    title: "Proteção narrativa: os termos que explicam sem explicar",
+    subtitle:
+      '"Ajustes", "diálogo permanente", "reavaliação de cenário" — termos que funcionam mais como proteção do que como explicação.',
+    date: "28 fev 2025",
+    readTime: "4 min de leitura",
+    slug: "protecao-narrativa",
+    imageIndex: 2,
+  },
+  {
+    tag: "Cenário",
+    title: "O cenário duplo: narrativa pública e reorganização silenciosa",
+    subtitle:
+      "De um lado, a narrativa pública de equilíbrio. De outro, a reorganização silenciosa que antecipa novos arranjos.",
+    date: "20 fev 2025",
+    readTime: "8 min de leitura",
+    slug: "o-cenario-duplo",
+    imageIndex: 3,
+  },
+];
+
 export default function Home() {
   return (
-    <div className="space-y-12">
-      <section className="text-center py-20 space-y-6">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900">
-          Bem-vindo ao Narrativa
-        </h1>
-        <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-          Um espaço dedicado ao pensamento crítico sobre política e sociedade brasileira.
-        </p>
-      </section>
+    <>
+      <HeroHome />
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div className="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-          <h2 className="text-xl font-semibold mb-2">Artigos Recentes</h2>
-          <p className="text-slate-600">Confira nossas últimas análises sobre o cenário nacional.</p>
+      <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+        <div className="grid grid-cols-[1fr_340px] gap-16 py-[clamp(3rem,6vw,5rem)] max-md:grid-cols-1 max-md:gap-12">
+          {/* Main column */}
+          <div>
+            <section id="analises" aria-labelledby="titulo-recentes">
+              <SectionTitle
+                id="titulo-recentes"
+                title="Análises recentes"
+                showViewAll
+              />
+              <ol className="flex flex-col" reversed>
+                {analisesRecentes.map((article, i) => (
+                  <ArticleCard
+                    key={article.slug}
+                    {...article}
+                    delay={i * 0.08}
+                  />
+                ))}
+              </ol>
+              <Pagination current={1} total={3} />
+            </section>
+
+            <SeparatorSection text="Bastidores do poder" />
+
+            <section id="bastidores" aria-labelledby="titulo-bastidores">
+              <SectionTitle
+                id="titulo-bastidores"
+                title="Bastidores & Versão"
+                showViewAll
+              />
+              <ol className="flex flex-col">
+                {bastidores.map((article, i) => (
+                  <ArticleCard
+                    key={article.slug}
+                    {...article}
+                    delay={i * 0.08}
+                  />
+                ))}
+              </ol>
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <SidebarHome />
         </div>
-        <div className="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-          <h2 className="text-xl font-semibold mb-2">Opinião</h2>
-          <p className="text-slate-600">Espaço para colunistas e debates de ideias.</p>
-        </div>
-        <div className="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-          <h2 className="text-xl font-semibold mb-2">Análise Política</h2>
-          <p className="text-slate-600">Desvendando os bastidores do poder em Brasília.</p>
-        </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 }
