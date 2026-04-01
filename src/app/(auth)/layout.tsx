@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export default function AuthLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <div className="flex min-h-screen">
@@ -25,7 +25,8 @@ export default function AuthLayout({
           <p className="font-heading text-[clamp(1.8rem,3vw,2.4rem)] font-black text-narrativa-branco leading-[1.1] mb-6">
             O que não é dito
             <br />
-            também é <em className="italic text-narrativa-dourado">narrativa</em>.
+            também é{' '}
+            <em className="italic text-narrativa-dourado">narrativa</em>.
           </p>
           <p className="text-[0.95rem] text-white/40 leading-[1.7] font-light">
             Análise política com profundidade. O que está por trás do discurso
@@ -41,10 +42,13 @@ export default function AuthLayout({
 
       {/* Right panel - form */}
       <div className="flex w-full lg:w-1/2 items-center justify-center p-8 bg-narrativa-branco">
-        <div className="w-full max-w-[400px]">
+        <div className="w-full max-w-100">
           {/* Mobile logo */}
           <div className="lg:hidden flex flex-col items-center mb-10">
-            <Link href="/" className="flex flex-col items-center gap-[0.1rem] leading-none">
+            <Link
+              href="/"
+              className="flex flex-col items-center gap-[0.1rem] leading-none"
+            >
               <span className="font-heading text-[1.5rem] font-black tracking-[0.08em] text-narrativa-preto uppercase">
                 NARRATIVA<span className="text-narrativa-vermelho">.</span>
               </span>
@@ -57,5 +61,5 @@ export default function AuthLayout({
         </div>
       </div>
     </div>
-  );
+  )
 }
