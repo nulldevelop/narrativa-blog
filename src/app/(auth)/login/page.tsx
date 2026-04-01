@@ -1,42 +1,68 @@
+import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+
+
 export default function LoginPage() {
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h1 className="text-xl font-semibold">Faça seu login</h1>
-        <p className="text-sm text-slate-500">Acesse sua conta para continuar</p>
-      </div>
-      <form className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-slate-700">Email</label>
-          <input
-            type="email"
-            className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder="seu@email.com"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-700">Senha</label>
-          <input
-            type="password"
-            className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder="••••••••"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition-colors"
-        >
+    <div className="space-y-8">
+      <div>
+        <h1 className="font-heading text-[1.8rem] font-black tracking-[-0.02em] text-narrativa-preto mb-2">
           Entrar
-        </button>
-      </form>
-      <div className="text-center text-sm">
-        <p className="text-slate-500">
-          Não tem uma conta?{" "}
-          <a href="/register" className="text-blue-600 hover:underline">
-            Cadastre-se
-          </a>
+        </h1>
+        <p className="text-[0.9rem] text-narrativa-cinza-texto font-light">
+          Acesse sua conta para acompanhar análises e receber conteúdo exclusivo.
         </p>
       </div>
+
+      <form className="space-y-5">
+        <div className="space-y-2">
+          <Label
+            htmlFor="email"
+            className="text-[0.7rem] tracking-[0.12em] uppercase font-bold text-narrativa-cinza-texto"
+          >
+            E-mail
+          </Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="seu@email.com"
+            className="rounded-none border-narrativa-cinza-linha px-4 py-5 text-[0.9rem] focus:border-narrativa-preto transition-colors"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label
+              htmlFor="password"
+              className="text-[0.7rem] tracking-[0.12em] uppercase font-bold text-narrativa-cinza-texto"
+            >
+              Senha
+            </Label>
+            <Link
+              href="#"
+              className="text-[0.68rem] tracking-[0.08em] text-narrativa-vermelho hover:text-narrativa-preto transition-colors font-semibold"
+            >
+              Esqueceu a senha?
+            </Link>
+          </div>
+          <Input
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            className="rounded-none border-narrativa-cinza-linha px-4 py-5 text-[0.9rem] focus:border-narrativa-preto transition-colors"
+          />
+        </div>
+
+        <Button
+          type="submit"
+          className="w-full rounded-none bg-narrativa-preto hover:bg-narrativa-vermelho text-narrativa-branco text-[0.72rem] font-bold tracking-[0.14em] uppercase py-6 transition-colors"
+        >
+          Entrar
+        </Button>
+      </form>
+
     </div>
   );
 }
