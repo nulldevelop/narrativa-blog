@@ -4,15 +4,15 @@ import { SectionTitle } from '@/components/section-title'
 
 const colunista = {
   nome: 'Nome do Colunista',
-  cargo: 'Analista e Colunista',
-  bio: 'Breve descrição sobre a trajetória do colunista, sua área de atuação e os temas principais abordados em suas análises e publicações semanais no site.',
+  cargo: 'Colunista',
+  bio: 'Breve descrição sobre a trajetória do colunista, sua área de atuação e os temas principais abordados em suas matérias e publicações semanais no site.',
   imagem: '/placeholder-colunista.jpg', // Placeholder path
 }
 
 const noticiasColunista = [
   {
     tag: 'Categoria',
-    title: 'Título de uma notícia ou análise do colunista',
+    title: 'Título de uma notícia ou matéria do colunista',
     subtitle:
       'Uma breve descrição sobre o conteúdo abordado neste artigo, resumindo os pontos principais de forma clara e objetiva.',
     date: '10 abr 2026',
@@ -22,7 +22,7 @@ const noticiasColunista = [
   },
   {
     tag: 'Categoria',
-    title: 'Título de uma notícia ou análise do colunista',
+    title: 'Título de uma notícia ou matéria do colunista',
     subtitle:
       'Uma breve descrição sobre o conteúdo abordado neste artigo, resumindo os pontos principais de forma clara e objetiva.',
     date: '08 abr 2026',
@@ -32,7 +32,7 @@ const noticiasColunista = [
   },
   {
     tag: 'Categoria',
-    title: 'Título de uma notícia ou análise do colunista',
+    title: 'Título de uma notícia ou matéria do colunista',
     subtitle:
       'Uma breve descrição sobre o conteúdo abordado neste artigo, resumindo os pontos principais de forma clara e objetiva.',
     date: '05 abr 2026',
@@ -42,7 +42,7 @@ const noticiasColunista = [
   },
   {
     tag: 'Categoria',
-    title: 'Título de uma notícia ou análise do colunista',
+    title: 'Título de uma notícia ou matéria do colunista',
     subtitle:
       'Uma breve descrição sobre o conteúdo abordado neste artigo, resumindo os pontos principais de forma clara e objetiva.',
     date: '02 abr 2026',
@@ -52,7 +52,7 @@ const noticiasColunista = [
   },
   {
     tag: 'Categoria',
-    title: 'Título de uma notícia ou análise do colunista',
+    title: 'Título de uma notícia ou matéria do colunista',
     subtitle:
       'Uma breve descrição sobre o conteúdo abordado neste artigo, resumindo os pontos principais de forma clara e objetiva.',
     date: '28 mar 2026',
@@ -62,7 +62,7 @@ const noticiasColunista = [
   },
   {
     tag: 'Categoria',
-    title: 'Título de uma notícia ou análise do colunista',
+    title: 'Título de uma notícia ou matéria do colunista',
     subtitle:
       'Uma breve descrição sobre o conteúdo abordado neste artigo, resumindo os pontos principais de forma clara e objetiva.',
     date: '25 mar 2026',

@@ -29,14 +29,14 @@ export default function AuthLayout({
             <em className="italic text-narrativa-dourado">narrativa</em>.
           </p>
           <p className="text-[0.95rem] text-white/40 leading-[1.7] font-light">
-            Análise política com profundidade. O que está por trás do discurso
+            Matéria política com profundidade. O que está por trás do discurso
             público — o que é dito, o que é evitado e o que se constrói em
             silêncio.
           </p>
         </div>
 
         <p className="relative z-10 text-[0.65rem] tracking-[0.15em] uppercase text-white/20">
-          narrativa.blog.br · análise política · paraná · brasil
+          narrativa.blog.br · matéria política · paraná · brasil
         </p>
       </div>
 

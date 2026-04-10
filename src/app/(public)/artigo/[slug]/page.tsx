@@ -51,7 +51,7 @@ export default async function ArtigoPage({
               </Link>
               <span className="text-white/15">|</span>
               <span className="text-[0.65rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold">
-                Análise Política · Paraná
+                Matéria Política · Paraná
               </span>
             </div>
 
@@ -124,7 +124,7 @@ export default async function ArtigoPage({
                 posicionamento.
               </p>
 
-              <QuoteBlock cite="Narrativa · Análise Política">
+              <QuoteBlock cite="Narrativa · Matéria Política">
                 A política se organiza justamente nesse espaço: entre o que é
                 anunciado e o que é articulado.
               </QuoteBlock>
@@ -274,7 +274,7 @@ export default async function ArtigoPage({
                   Sobre o projeto
                 </p>
                 <p className="text-[0.85rem] text-narrativa-cinza-texto leading-[1.65]">
-                  Narrativa é um blog de análise política com foco no que está
+                  Narrativa é um blog de matéria política com foco no que está
                   por trás do discurso público. Sem agenda, sem espetáculo.
                 </p>
                 <Link

@@ -12,7 +12,7 @@ export default function LoginPage() {
           Entrar
         </h1>
         <p className="text-[0.9rem] text-narrativa-cinza-texto font-light">
-          Acesse sua conta para acompanhar análises e receber conteúdo exclusivo.
+          Acesse sua conta para acompanhar matérias e receber conteúdo exclusivo.
         </p>
       </div>
 

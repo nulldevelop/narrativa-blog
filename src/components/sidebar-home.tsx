@@ -21,7 +21,7 @@ export function SidebarHome() {
           Sobre a Narrativa
         </h3>
         <p className="text-[0.88rem] text-white/60 leading-[1.7] font-light">
-          Análise política com profundidade. O que está por trás do discurso
+          Matéria política com profundidade. O que está por trás do discurso
           público — o que é dito, o que é evitado e o que se constrói em
           silêncio.
         </p>
@@ -31,12 +31,12 @@ export function SidebarHome() {
         >
           Conheça o projeto →
         </Link>
-      </div>
+        </div>
 
-      {/* Newsletter */}
-      <div className="border border-narrativa-cinza-linha p-8">
+        {/* Newsletter */}
+        <div className="border border-narrativa-cinza-linha p-8">
         <h3 className="text-[1.1rem] font-bold mb-4 pb-3 border-b border-narrativa-cinza-linha">
-          Receba as análises
+          Receba as matérias
         </h3>
         <p className="text-[0.88rem] text-narrativa-cinza-texto leading-[1.7] font-light mb-5">
           Novas publicações diretamente no seu e-mail, sem algoritmo.

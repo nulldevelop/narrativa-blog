@@ -19,9 +19,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Narrativa — política, poder e versão',
   description:
-    'Análise política com profundidade. O que está por trás do discurso público.',
+    'Matéria política com profundidade. O que está por trás do discurso público.',
   icons: {
-    icon: '/favicon.svg',
+    icon: '/imgs/N.png',
   },
 }
 

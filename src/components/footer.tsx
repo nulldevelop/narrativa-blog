@@ -15,7 +15,7 @@ export function Footer() {
             </span>
           </div>
           <p className="text-[0.85rem] text-white/35 leading-[1.7] mt-4 font-light">
-            Análise política com profundidade.
+            Matéria política com profundidade.
             <br />
             O que está por trás do discurso público.
           </p>
@@ -29,7 +29,7 @@ export function Footer() {
           <ul className="flex flex-col gap-2">
             {[
               { href: "/", label: "Início" },
-              { href: "/#analises", label: "Análises" },
+              { href: "/#posts", label: "Matérias" },
               { href: "/#bastidores", label: "Bastidores" },
               { href: "/sobre", label: "Sobre" },
             ].map((l) => (

@@ -6,12 +6,12 @@ const pilares = [
   {
     num: "01",
     title: "Profundidade",
-    text: "Análise que vai além do fato imediato. Contexto histórico, mapa de atores e consequências possíveis — não apenas o que aconteceu, mas por que aconteceu e o que pode vir.",
+    text: "Matéria que vai além do fato imediato. Contexto histórico, mapa de atores e consequências possíveis — não apenas o que aconteceu, mas por que aconteceu e o que pode vir.",
   },
   {
     num: "02",
     title: "Rigor",
-    text: "Sem espetáculo, sem sensacionalismo. A análise política séria exige cuidado com as fontes, precisão nas afirmações e honestidade intelectual sobre o que se sabe e o que se especula.",
+    text: "Sem espetáculo, sem sensacionalismo. A matéria política séria exige cuidado com as fontes, precisão nas afirmações e honestidade intelectual sobre o que se sabe e o que se especula.",
   },
   {
     num: "03",
@@ -21,7 +21,7 @@ const pilares = [
   {
     num: "04",
     title: "Independência",
-    text: "Sem vínculo com partidos, candidatos ou governos. A Narrativa não tem agenda partidária — tem compromisso com a análise honesta e a informação qualificada.",
+    text: "Sem vínculo com partidos, candidatos ou governos. A Narrativa não tem agenda partidária — tem compromisso com a matéria honesta e a informação qualificada.",
   },
   {
     num: "05",
@@ -31,7 +31,7 @@ const pilares = [
   {
     num: "06",
     title: "Linguagem",
-    text: "Análise política não precisa ser árida. O texto da Narrativa busca combinar precisão analítica com clareza narrativa — legível, mas sem abrir mão da profundidade.",
+    text: "Matéria política não precisa ser árida. O texto da Narrativa busca combinar precisão analítica com clareza narrativa — legível, mas sem abrir mão da profundidade.",
   },
 ];
 
@@ -66,7 +66,7 @@ export default function SobrePage() {
             <div>
               <p className="text-[1.25rem] leading-[1.65] text-narrativa-preto font-light mb-5">
                 <strong className="font-bold">Narrativa</strong> é um blog de
-                análise política dedicado a entender o que está por trás do
+                matéria política dedicado a entender o que está por trás do
                 discurso público — o que é dito, o que é evitado e, sobretudo, o
                 que se constrói em silêncio.
               </p>
@@ -130,7 +130,7 @@ export default function SobrePage() {
                 </div>
                 <div className="bg-narrativa-cinza-claro aspect-[2/1] col-span-2 flex items-end p-6">
                   <p className="text-[0.68rem] tracking-[0.15em] uppercase text-[#aaa]">
-                    narrativa.blog.br · análise política · paraná · brasil
+                    narrativa.blog.br · matéria política · paraná · brasil
                   </p>
                 </div>
               </div>
@@ -168,8 +168,8 @@ export default function SobrePage() {
                 Acompanhe a Narrativa
               </h2>
               <p className="text-[0.95rem] text-narrativa-cinza-texto leading-[1.7]">
-                Receba novas análises diretamente no seu e-mail. Sem algoritmo,
-                sem agenda — só análise política séria.
+                Receba novas matérias diretamente no seu e-mail. Sem algoritmo,
+                sem agenda — só matéria política séria.
               </p>
             </div>
             <div>

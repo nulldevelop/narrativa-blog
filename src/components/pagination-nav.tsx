@@ -8,6 +8,18 @@ interface PaginationProps {
 export function Pagination({ current, total }: PaginationProps) {
   return (
     <nav className="flex justify-center items-center gap-1.5 py-12" aria-label="Paginação">
+      {/* Previous page link */}
+      {current > 1 && (
+        <Link
+          href={`?page=${current - 1}#posts`}
+          aria-label="Página anterior"
+          className="flex items-center justify-center w-10 h-10 text-[0.8rem] font-bold border border-narrativa-cinza-linha hover:bg-narrativa-preto hover:text-narrativa-branco hover:border-narrativa-preto transition-all"
+        >
+          ‹
+        </Link>
+      )}
+
+      {/* Page number links */}
       {Array.from({ length: total }, (_, i) => i + 1).map((page) =>
         page === current ? (
           <span
@@ -19,20 +31,24 @@ export function Pagination({ current, total }: PaginationProps) {
         ) : (
           <Link
             key={page}
-            href="#"
+            href={`?page=${page}#posts`}
             className="flex items-center justify-center w-10 h-10 text-[0.8rem] font-bold border border-narrativa-cinza-linha hover:bg-narrativa-preto hover:text-narrativa-branco hover:border-narrativa-preto transition-all"
           >
             {page}
           </Link>
         )
       )}
-      <Link
-        href="#"
-        aria-label="Próxima página"
-        className="flex items-center justify-center w-10 h-10 text-[0.8rem] font-bold border border-narrativa-cinza-linha hover:bg-narrativa-preto hover:text-narrativa-branco hover:border-narrativa-preto transition-all"
-      >
-        ›
-      </Link>
+
+      {/* Next page link */}
+      {current < total && (
+        <Link
+          href={`?page=${current + 1}#posts`}
+          aria-label="Próxima página"
+          className="flex items-center justify-center w-10 h-10 text-[0.8rem] font-bold border border-narrativa-cinza-linha hover:bg-narrativa-preto hover:text-narrativa-branco hover:border-narrativa-preto transition-all"
+        >
+          ›
+        </Link>
+      )}
     </nav>
   );
 }
