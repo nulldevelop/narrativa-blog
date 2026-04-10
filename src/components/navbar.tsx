@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/", label: "Início" },
   { href: "/#analises", label: "Análises" },
   { href: "/#bastidores", label: "Bastidores" },
+  { href: "/colunistas", label: "Colunistas" },
   { href: "/sobre", label: "Sobre" },
 ];
 
@@ -77,6 +78,7 @@ export function Navbar() {
         {/* Mobile toggle */}
         <button
           ref={btnRef}
+          type="button"
           className="md:hidden flex flex-col gap-[5px] cursor-pointer p-1 bg-transparent border-none"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
