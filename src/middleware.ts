@@ -1,16 +1,21 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { auth } from '@/lib/auth'
 import { ROLES } from './lib/permissions/enum'
 import { hasRoutePermission } from './lib/permissions/route-matcher'
 
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // 1. Obtém a sessão do Better Auth usando a API direta
-  // Passamos os headers para que a biblioteca consiga ler os cookies de sessão
-  const session = await auth.api.getSession({
-    headers: request.headers,
-  })
+  // 1. Obtém a sessão do Better Auth via Fetch para evitar importar o Prisma no Edge Runtime
+  const response = await fetch(
+    `${process.env.BETTER_AUTH_URL}/api/auth/get-session`,
+    {
+      headers: {
+        cookie: request.headers.get('cookie') || '',
+      },
+    },
+  )
+
+  const session = response.ok ? await response.json() : null
 
   // 2. Se o usuário já está logado e tenta ir para o login, manda para a Home
   if (session && pathname === '/login') {
@@ -27,15 +32,15 @@ export default async function middleware(request: NextRequest) {
     }
 
     // Validação de Roles
-    // Tipagem local para evitar 'any' enquanto o TS sincroniza
     interface SessionUser {
       role?: string
+      email?: string
     }
     const sessionUser = session.user as unknown as SessionUser
     const userRole = (sessionUser.role?.toUpperCase() as ROLES) ?? ROLES.AUTHOR
     if (!hasRoutePermission(pathname, userRole)) {
       console.warn(
-        `Acesso negado: ${session.user.email} (${userRole}) tentou acessar ${pathname}`,
+        `Acesso negado: ${sessionUser.email} (${userRole}) tentou acessar ${pathname}`,
       )
       return NextResponse.redirect(new URL('/', request.url))
     }

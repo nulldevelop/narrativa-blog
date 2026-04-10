@@ -2,6 +2,8 @@ import { AlertCircle, Settings2 } from 'lucide-react'
 import { SettingsPanel } from './_components/settings-panel'
 import { getSettingsData } from './_data-access/get-settings-data'
 
+export const dynamic = 'force-dynamic'
+
 export default async function SettingsPage() {
 	const result = await getSettingsData()
 
