@@ -156,7 +156,7 @@ export default async function Home({
         <div className="grid grid-cols-[1fr_340px] gap-16 py-[clamp(3rem,6vw,5rem)] max-md:grid-cols-1 max-md:gap-12">
           {/* Main column */}
           <div>
-            <section id="posts" aria-labelledby="titulo-recentes">
+            <section id="posts" aria-labelledby="titulo-recentes" className="scroll-mt-32">
               {/* Featured two large articles - only on first page */}
               {currentPage === 1 && (
                 <div className="grid grid-cols-2 gap-10 mb-12 max-sm:grid-cols-1">
@@ -191,7 +191,7 @@ export default async function Home({
 
             <SeparatorSection text="Bastidores do poder" />
 
-            <section id="bastidores" aria-labelledby="titulo-bastidores">
+            <section id="bastidores" aria-labelledby="titulo-bastidores" className="scroll-mt-32">
               <SectionTitle
                 id="titulo-bastidores"
                 title="Bastidores & Versão"

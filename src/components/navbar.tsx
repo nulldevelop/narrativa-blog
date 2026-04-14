@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
@@ -36,15 +37,17 @@ export function Navbar() {
 
   return (
     <header className="bg-narrativa-preto border-b-[3px] border-narrativa-vermelho sticky top-0 z-100">
-      <div className="flex items-center justify-between px-[clamp(1.5rem,5vw,4rem)] py-[1.1rem] max-w-[1200px] mx-auto">
+      <div className="flex items-center justify-between px-[clamp(1.5rem,5vw,4rem)] py-[0.8rem] max-w-[1400px] mx-auto">
         {/* Logo */}
-        <Link href="/" className="flex flex-col gap-[0.1rem] leading-none">
-          <span className="font-heading text-[clamp(1.6rem,3vw,2.2rem)] font-black tracking-[0.08em] text-narrativa-branco uppercase">
-            NARRATIVA<span className="text-narrativa-vermelho">.</span>
-          </span>
-          <span className="text-[0.72rem] tracking-[0.2em] uppercase text-white/70 font-sans font-light">
-            política, poder e versão
-          </span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/imgs/logo.png"
+            alt="Narrativa — política, poder e versão"
+            width={320}
+            height={80}
+            className="h-20 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
