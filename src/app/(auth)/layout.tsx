@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function AuthLayout({
   children,
@@ -10,13 +11,15 @@ export default function AuthLayout({
       {/* Left panel - branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-narrativa-preto relative overflow-hidden flex-col justify-between p-12 hero-grid-lines">
         <div className="relative z-10">
-          <Link href="/" className="flex flex-col gap-[0.1rem] leading-none">
-            <span className="font-heading text-[1.75rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
-              NARRATIVA<span className="text-narrativa-vermelho">.</span>
-            </span>
-            <span className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 font-light">
-              política, poder e versão
-            </span>
+          <Link href="/">
+            <Image
+              src="/imgs/logo.png"
+              alt="Narrativa — política, poder e versão"
+              width={280}
+              height={70}
+              className="h-16 w-auto"
+              priority
+            />
           </Link>
         </div>
 
@@ -45,16 +48,14 @@ export default function AuthLayout({
         <div className="w-full max-w-100">
           {/* Mobile logo */}
           <div className="lg:hidden flex flex-col items-center mb-10">
-            <Link
-              href="/"
-              className="flex flex-col items-center gap-[0.1rem] leading-none"
-            >
-              <span className="font-heading text-[1.5rem] font-black tracking-[0.08em] text-narrativa-preto uppercase">
-                NARRATIVA<span className="text-narrativa-vermelho">.</span>
-              </span>
-              <span className="text-[0.55rem] tracking-[0.2em] uppercase text-narrativa-cinza-texto/50 font-light">
-                política, poder e versão
-              </span>
+            <Link href="/">
+              <Image
+                src="/imgs/logo.png"
+                alt="Narrativa — política, poder e versão"
+                width={220}
+                height={55}
+                className="h-12 w-auto"
+              />
             </Link>
           </div>
           {children}
