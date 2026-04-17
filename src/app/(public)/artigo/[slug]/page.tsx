@@ -26,6 +26,14 @@ const relatedArticles = [
 
 const articleTags = ["Paraná", "Poder", "Discurso", "Bastidores", "Alianças"];
 
+const post = {
+  category: "Paraná",
+  title: "Entre o discurso e o movimento silencioso",
+  date: "30 de março de 2025",
+  readTime: "7 min de leitura",
+  author: "Redação Narrativa"
+};
+
 export default async function ArtigoPage({
   params,
 }: {
@@ -54,17 +62,13 @@ export default async function ArtigoPage({
               </Link>
               <span className="text-white/15">|</span>
               <span className="text-[0.65rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold">
-                Matéria Política · Paraná
+                Política · {post.category}
               </span>
             </div>
 
             <FadeUp>
               <h1 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-black text-narrativa-branco leading-[1.08] mb-6 tracking-[-0.02em]">
-                Entre o discurso
-                <br />
-                e o movimento
-                <br />
-                silencioso
+                {post.title}
               </h1>
             </FadeUp>
 
@@ -85,15 +89,15 @@ export default async function ArtigoPage({
                   </div>
                   <div className="flex flex-col gap-0.5">
                     <span className="text-[0.78rem] font-bold text-narrativa-branco tracking-[0.04em]">
-                      Redação Narrativa
+                      {post.author}
                     </span>
                     <span className="text-[0.65rem] text-white/35 tracking-[0.08em] uppercase">
-                      30 de março de 2025
+                      {post.date}
                     </span>
                   </div>
                 </div>
                 <span className="text-[0.65rem] tracking-[0.1em] uppercase text-white/30">
-                  7 min de leitura
+                  {post.readTime}
                 </span>
               </div>
             </FadeUp>
