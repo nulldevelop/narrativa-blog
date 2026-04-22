@@ -52,6 +52,14 @@ export function ArticleCard({
             <div className="absolute inset-0 bg-narrativa-vermelho/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </Link>
           <div className="flex flex-col gap-3">
+            {tag && (
+              <Badge
+                variant="outline"
+                className="w-fit rounded-none border-none px-0 text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho"
+              >
+                {tag}
+              </Badge>
+            )}
             <Link href={`/artigo/${slug}`}>
               <h3 className="text-[clamp(1.4rem,3vw,1.75rem)] font-black leading-[1.1] transition-colors group-hover:text-narrativa-vermelho tracking-tight">
                 {title}

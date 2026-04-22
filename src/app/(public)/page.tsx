@@ -169,10 +169,12 @@ export default async function Home({
           {/* Main column */}
           <div>
             <section id="posts" aria-labelledby="titulo-recentes" className="scroll-mt-32">
-              <SectionTitle 
-                title={category ? `Matérias: ${displayCategory}` : "Matérias Recentes"} 
-                id="titulo-recentes" 
-              />
+              {category && (
+                <SectionTitle 
+                  title={`Matérias: ${displayCategory}`} 
+                  id="titulo-recentes" 
+                />
+              )}
               
               {/* Featured two large articles - only on first page and when not filtering */}
               {currentPage === 1 && !category && (

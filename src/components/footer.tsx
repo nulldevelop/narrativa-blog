@@ -16,7 +16,7 @@ export function Footer() {
             </span>
           </Link>
           <p className="text-[0.85rem] text-white/35 leading-[1.7] mt-4 font-light">
-            Matéria política com profundidade.
+            Política com profundidade.
             <br />
             O que está por trás do discurso público.
           </p>

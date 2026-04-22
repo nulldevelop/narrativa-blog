@@ -12,26 +12,43 @@ const tags = [
   "Nacional",
 ];
 
+const curtasEDiretas = [
+  "A eleição no Paraná está sendo tratada como disputa de nomes. Mas, na prática, é uma disputa de capacidade.",
+  "De um lado, um grupo que governou e tem entrega concreta. Do outro, uma candidatura com força simbólica — mas pouca experiência de gestão estadual.",
+  "Isso muda tudo. Porque governar não é discursar. É executar.",
+  "Sérgio Moro construiu carreira fora do Executivo. Respeitável — mas distante da rotina real de um governo estadual.",
+  "E aqui surge o ponto central: Onde está a experiência de gestão direta?",
+  "Enquanto isso, o candidato apoiado pelo governo vem de dentro da máquina. Participou de decisões, execução e articulação.",
+  "Não é sobre carisma. É sobre capacidade.",
+  "A eleição começa a se organizar assim: quem já fez vs quem ainda precisa provar.",
+  "E quando a política chega nesse ponto, o eleitor tende a simplificar: Escolhe segurança ou aposta no desconhecido.",
+  "No fim, a pergunta não é quem tem melhor discurso. É quem sabe governar.",
+];
+
 export function SidebarHome() {
   return (
     <aside className="flex flex-col gap-8" aria-label="Coluna lateral">
-      {/* Sobre o blog */}
-      <div className="bg-narrativa-preto p-8 text-narrativa-branco">
-        <h3 className="text-[1.1rem] font-bold mb-4 pb-3 border-b border-white/15">
-          Narrativa
+      {/* Curtas & Diretas */}
+      <div className="bg-[#0b0b0b] p-6 shadow-xl">
+        <h3 className="text-[0.85rem] font-bold tracking-[0.2em] uppercase text-white mb-2">
+          CURTAS & DIRETAS
         </h3>
-        <p className="text-[0.88rem] text-white/60 leading-[1.7] font-light">
-          Política com profundidade. O que está por trás do discurso
-          público — o que é dito, o que é evitado e o que se constrói em
-          silêncio.
-        </p>
-        <Link
-          href="/sobre"
-          className="inline-block mt-4 text-[0.68rem] tracking-[0.14em] uppercase font-bold text-narrativa-vermelho border-b border-narrativa-vermelho pb-px"
-        >
-          Conheça o projeto →
-        </Link>
+        <div className="w-10 h-[2px] bg-[#e63030] mb-6" />
+        
+        <div className="max-height-sidebar-scroll overflow-y-auto pr-1 flex flex-col gap-3 max-h-[480px] custom-scrollbar">
+          {curtasEDiretas.map((frase, i) => (
+            <div 
+              key={i} 
+              className="bg-white/5 p-[12px_14px] border-l-[3px] border-[#e63030] border-b border-white/[0.08] last:mb-0"
+            >
+              <p className="italic text-[0.92rem] text-white/90 leading-[1.5] font-serif">
+                <span className="text-[#e63030] mr-2 not-italic">◆</span>
+                {frase}
+              </p>
+            </div>
+          ))}
         </div>
+      </div>
 
         {/* Newsletter */}
         <div className="border border-narrativa-cinza-linha p-8">

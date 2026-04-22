@@ -5,10 +5,18 @@ import { Button } from "@/components/ui/button";
 import { FadeUp } from "@/components/fade-up";
 
 export function HeroHome() {
+  const mainPost = {
+    slug: "entre-o-discurso-e-o-movimento-silencioso",
+    title: "Entre o discurso e o movimento silencioso",
+    tag: "Paraná",
+    date: "31 de março de 2025",
+    subtitle: "A versão oficial é de normalidade. Mas como quase sempre na política, o que se diz em público não revela completamente o que se constrói nos bastidores."
+  };
+
   const secondaryItems = [
-    { slug: "a-antecipacao-como-estrategia", title: "A antecipação como estratégia política", image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop" },
-    { slug: "o-discurso-como-ferramenta", title: "O discurso como ferramenta de poder", image: "https://images.unsplash.com/photo-1555848962-6e79363ec58f?q=80&w=800&auto=format&fit=crop" },
-    { slug: "aliancas-sob-novas-condicoes", title: "Alianças sob novas condições", image: "https://images.unsplash.com/photo-1447069387593-a5de0862481e?q=80&w=800&auto=format&fit=crop" },
+    { slug: "a-antecipacao-como-estrategia", title: "A antecipação como estratégia política", tag: "Brasil", image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop" },
+    { slug: "o-discurso-como-ferramenta", title: "O discurso como ferramenta de poder", tag: "Curitiba", image: "https://images.unsplash.com/photo-1555848962-6e79363ec58f?q=80&w=800&auto=format&fit=crop" },
+    { slug: "aliancas-sob-novas-condicoes", title: "Alianças sob novas condições", tag: "Alianças", image: "https://images.unsplash.com/photo-1447069387593-a5de0862481e?q=80&w=800&auto=format&fit=crop" },
   ];
 
   return (
@@ -23,20 +31,21 @@ export function HeroHome() {
           {/* Coluna 1: Bloco de Texto (Esquerda) */}
           <div className="flex flex-col justify-center text-left lg:pr-[2rem] align-self-stretch">
             <FadeUp>
+              <span className="text-[0.65rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-4 block">
+                {mainPost.tag}
+              </span>
               <h1 className="font-heading text-[2rem] font-black text-narrativa-branco leading-[1.1] mb-5 tracking-[-0.02em]">
-                Entre o discurso e o
+                {mainPost.title.split('movimento')[0]}
                 <br />
                 <em className="italic text-narrativa-dourado">
-                  movimento silencioso
+                  movimento {mainPost.title.split('movimento')[1]}
                 </em>
               </h1>
             </FadeUp>
 
             <FadeUp delay={0.1}>
               <p className="text-[1rem] text-white/50 max-w-[440px] leading-[1.7] font-light">
-                A versão oficial é de normalidade. Mas como quase sempre na
-                política, o que se diz em público não revela completamente o que se
-                constrói nos bastidores.
+                {mainPost.subtitle}
               </p>
             </FadeUp>
 
@@ -46,13 +55,13 @@ export function HeroHome() {
                   asChild
                   className="w-fit bg-narrativa-vermelho hover:bg-[#8c0d1c] text-narrativa-branco text-[0.95rem] font-bold tracking-[0.14em] uppercase px-[1.4rem] py-[0.7rem] h-auto rounded-none"
                 >
-                  <Link href="/artigo/entre-o-discurso-e-o-movimento-silencioso">
+                  <Link href={`/artigo/${mainPost.slug}`}>
                     Leia mais
                     <ArrowRight className="w-3.5 h-3.5 ml-2" />
                   </Link>
                 </Button>
                 <span className="text-[0.85rem] tracking-[0.1em] text-white/25 uppercase font-medium">
-                  31 de março de 2025
+                  {mainPost.date}
                 </span>
               </div>
             </FadeUp>
@@ -93,7 +102,7 @@ export function HeroHome() {
                       {item.title}
                     </h4>
                     <span className="text-[0.7rem] tracking-[0.05em] uppercase text-white/20 font-medium">
-                      Matéria Política
+                      {item.tag}
                     </span>
                   </div>
                 </Link>
