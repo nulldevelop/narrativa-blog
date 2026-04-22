@@ -1,23 +1,45 @@
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeUp } from "@/components/fade-up";
 
-export function HeroHome() {
-  const mainPost = {
+export interface ArticleHero {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string | null;
+  category: { name: string } | null;
+  createdAt: Date;
+  publishedAt: Date | null;
+  coverImage: string | null;
+}
+
+export interface HeroHomeProps {
+  mainArticle: ArticleHero | null;
+  secondaryArticles: ArticleHero[];
+}
+
+export default function HeroHome({ mainArticle, secondaryArticles }: HeroHomeProps) {
+  // Fallbacks para quando não houver nada marcado como destaque
+  const defaultMain = {
     slug: "entre-o-discurso-e-o-movimento-silencioso",
     title: "Entre o discurso e o movimento silencioso",
     tag: "Paraná",
     date: "31 de março de 2025",
-    subtitle: "A versão oficial é de normalidade. Mas como quase sempre na política, o que se diz em público não revela completamente o que se constrói nos bastidores."
+    subtitle: "A versão oficial é de normalidade. But como quase sempre na política, o que se diz em público não revela completamente o que se constrói nos bastidores.",
+    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1200&auto=format&fit=crop"
   };
 
-  const secondaryItems = [
-    { slug: "a-antecipacao-como-estrategia", title: "A antecipação como estratégia política", tag: "Brasil", image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop" },
-    { slug: "o-discurso-como-ferramenta", title: "O discurso como ferramenta de poder", tag: "Curitiba", image: "https://images.unsplash.com/photo-1555848962-6e79363ec58f?q=80&w=800&auto=format&fit=crop" },
-    { slug: "aliancas-sob-novas-condicoes", title: "Alianças sob novas condições", tag: "Alianças", image: "https://images.unsplash.com/photo-1447069387593-a5de0862481e?q=80&w=800&auto=format&fit=crop" },
-  ];
+  const currentMain = mainArticle ? {
+    slug: mainArticle.slug,
+    title: mainArticle.title,
+    tag: mainArticle.category?.name || "Política",
+    date: new Date(mainArticle.publishedAt || mainArticle.createdAt).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }),
+    subtitle: mainArticle.subtitle,
+    image: mainArticle.coverImage || defaultMain.image
+  } : defaultMain;
 
   return (
     <section
@@ -25,29 +47,23 @@ export function HeroHome() {
       aria-label="Artigo em destaque"
     >
       <div className="max-w-[1440px] mx-auto relative z-10 w-full">
-        {/* Container Grid: align-items: stretch garante que todas as colunas comecem no mesmo topo */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr_1.2fr] gap-[2.5rem] items-stretch w-full">
           
-          {/* Coluna 1: Bloco de Texto (Esquerda) */}
+          {/* Coluna 1: Texto Principal */}
           <div className="flex flex-col justify-center text-left lg:pr-[2rem] align-self-stretch">
             <FadeUp>
-              <span className="text-[0.65rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-4 block">
-                {mainPost.tag}
-              </span>
-              <h1 className="font-heading text-[2rem] font-black text-narrativa-branco leading-[1.1] mb-5 tracking-[-0.02em]">
-                {mainPost.title.split('movimento')[0]}
-                <br />
-                <em className="italic text-narrativa-dourado">
-                  movimento {mainPost.title.split('movimento')[1]}
-                </em>
+              <h1 className="font-heading text-[2.2rem] font-black text-narrativa-branco leading-[1.1] mb-5 tracking-[-0.02em] uppercase">
+                {currentMain.title}
               </h1>
             </FadeUp>
 
-            <FadeUp delay={0.1}>
-              <p className="text-[1rem] text-white/50 max-w-[440px] leading-[1.7] font-light">
-                {mainPost.subtitle}
-              </p>
-            </FadeUp>
+            {currentMain.subtitle && (
+              <FadeUp delay={0.1}>
+                <p className="text-[1rem] text-white/50 max-w-[440px] leading-[1.7] font-light italic">
+                  {currentMain.subtitle}
+                </p>
+              </FadeUp>
+            )}
 
             <FadeUp delay={0.2}>
               <div className="mt-[1.5rem] flex flex-col gap-3">
@@ -55,61 +71,62 @@ export function HeroHome() {
                   asChild
                   className="w-fit bg-narrativa-vermelho hover:bg-[#8c0d1c] text-narrativa-branco text-[0.95rem] font-bold tracking-[0.14em] uppercase px-[1.4rem] py-[0.7rem] h-auto rounded-none"
                 >
-                  <Link href={`/artigo/${mainPost.slug}`}>
+                  <Link href={`/artigo/${currentMain.slug}`}>
                     Leia mais
                     <ArrowRight className="w-3.5 h-3.5 ml-2" />
                   </Link>
                 </Button>
                 <span className="text-[0.85rem] tracking-[0.1em] text-white/25 uppercase font-medium">
-                  {mainPost.date}
+                  {currentMain.date}
                 </span>
               </div>
             </FadeUp>
           </div>
 
-          {/* Coluna 2: Imagem Principal (Centro) */}
-          <FadeUp delay={0.3} className="w-full max-h-[320px] overflow-hidden align-self-stretch">
+          {/* Coluna 2: Imagem Central */}
+          <FadeUp delay={0.3} className="w-full max-h-[350px] overflow-hidden align-self-stretch">
             <Link 
-              href="/artigo/entre-o-discurso-e-o-movimento-silencioso" 
-              className="relative block w-full h-[320px] overflow-hidden group rounded-[6px]"
+              href={`/artigo/${currentMain.slug}`}
+              className="relative block w-full h-[350px] overflow-hidden group rounded-[4px]"
             >
               <Image
-                src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1200&auto=format&fit=crop"
-                alt="Matéria em destaque"
+                src={currentMain.image}
+                alt={currentMain.title}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-all duration-1000 group-hover:scale-105"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
             </Link>
           </FadeUp>
 
-          {/* Coluna 3: Matérias Secundárias (Direita) */}
-          <div className="flex flex-col justify-between align-self-stretch lg:pl-4">
-            {secondaryItems.map((item, i) => (
+          {/* Coluna 3: Destaques Secundários (1, 2, 3) */}
+          <div className="flex flex-col justify-between align-self-stretch lg:pl-4 gap-6">
+            {secondaryArticles.length > 0 ? secondaryArticles.map((item, i) => (
               <FadeUp key={item.slug} delay={0.4 + (i * 0.1)} className="flex-1 flex items-center">
                 <Link href={`/artigo/${item.slug}`} className="flex items-center gap-[1.2rem] group w-full">
-                  <div className="relative w-[95px] h-[95px] flex-shrink-0 overflow-hidden rounded-[4px] bg-narrativa-cinza-claro">
+                  <div className="relative w-[100px] h-[100px] flex-shrink-0 overflow-hidden rounded-[2px] bg-white/5 border border-white/10">
                     <Image 
-                      src={item.image}
+                      src={item.coverImage || "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop"}
                       alt={item.title}
                       fill
-                      sizes="95px"
-                      className="object-cover transition-all duration-500"
+                      sizes="100px"
+                      className="object-cover transition-all duration-500 grayscale group-hover:grayscale-0"
                     />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h4 className="text-[0.95rem] font-bold text-white/90 leading-[1.3] group-hover:text-narrativa-vermelho transition-colors line-clamp-2">
+                    <h4 className="text-[0.9rem] font-bold text-white/90 leading-[1.3] group-hover:text-narrativa-vermelho transition-colors line-clamp-2 uppercase tracking-tight">
                       {item.title}
                     </h4>
-                    <span className="text-[0.7rem] tracking-[0.05em] uppercase text-white/20 font-medium">
-                      {item.tag}
-                    </span>
                   </div>
                 </Link>
               </FadeUp>
-            ))}
+            )) : (
+              <div className="flex flex-col justify-center h-full border border-white/5 p-6 bg-white/[0.02]">
+                <p className="text-[0.7rem] text-white/20 uppercase tracking-widest font-black italic">Aguardando pauta...</p>
+              </div>
+            )}
           </div>
 
         </div>

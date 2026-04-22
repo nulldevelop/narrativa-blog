@@ -20,18 +20,8 @@ export type OrganizationModel = runtime.Types.Result.DefaultSelection<Prisma.$Or
 
 export type AggregateOrganization = {
   _count: OrganizationCountAggregateOutputType | null
-  _avg: OrganizationAvgAggregateOutputType | null
-  _sum: OrganizationSumAggregateOutputType | null
   _min: OrganizationMinAggregateOutputType | null
   _max: OrganizationMaxAggregateOutputType | null
-}
-
-export type OrganizationAvgAggregateOutputType = {
-  smtpPort: number | null
-}
-
-export type OrganizationSumAggregateOutputType = {
-  smtpPort: number | null
 }
 
 export type OrganizationMinAggregateOutputType = {
@@ -45,20 +35,6 @@ export type OrganizationMinAggregateOutputType = {
   status: string | null
   createdAt: Date | null
   metadata: string | null
-  apiUrlContratos: string | null
-  apiUrlLicitacoes: string | null
-  apiUrlFiscais: string | null
-  apiUrlAditivos: string | null
-  autoLinkFiscais: boolean | null
-  smtpHost: string | null
-  smtpPort: number | null
-  smtpUser: string | null
-  smtpPass: string | null
-  smtpFrom: string | null
-  notifyEmail: string | null
-  lastSyncAt: Date | null
-  lastSyncStatus: string | null
-  lastSyncMessage: string | null
 }
 
 export type OrganizationMaxAggregateOutputType = {
@@ -72,20 +48,6 @@ export type OrganizationMaxAggregateOutputType = {
   status: string | null
   createdAt: Date | null
   metadata: string | null
-  apiUrlContratos: string | null
-  apiUrlLicitacoes: string | null
-  apiUrlFiscais: string | null
-  apiUrlAditivos: string | null
-  autoLinkFiscais: boolean | null
-  smtpHost: string | null
-  smtpPort: number | null
-  smtpUser: string | null
-  smtpPass: string | null
-  smtpFrom: string | null
-  notifyEmail: string | null
-  lastSyncAt: Date | null
-  lastSyncStatus: string | null
-  lastSyncMessage: string | null
 }
 
 export type OrganizationCountAggregateOutputType = {
@@ -99,31 +61,9 @@ export type OrganizationCountAggregateOutputType = {
   status: number
   createdAt: number
   metadata: number
-  apiUrlContratos: number
-  apiUrlLicitacoes: number
-  apiUrlFiscais: number
-  apiUrlAditivos: number
-  autoLinkFiscais: number
-  smtpHost: number
-  smtpPort: number
-  smtpUser: number
-  smtpPass: number
-  smtpFrom: number
-  notifyEmail: number
-  lastSyncAt: number
-  lastSyncStatus: number
-  lastSyncMessage: number
   _all: number
 }
 
-
-export type OrganizationAvgAggregateInputType = {
-  smtpPort?: true
-}
-
-export type OrganizationSumAggregateInputType = {
-  smtpPort?: true
-}
 
 export type OrganizationMinAggregateInputType = {
   id?: true
@@ -136,20 +76,6 @@ export type OrganizationMinAggregateInputType = {
   status?: true
   createdAt?: true
   metadata?: true
-  apiUrlContratos?: true
-  apiUrlLicitacoes?: true
-  apiUrlFiscais?: true
-  apiUrlAditivos?: true
-  autoLinkFiscais?: true
-  smtpHost?: true
-  smtpPort?: true
-  smtpUser?: true
-  smtpPass?: true
-  smtpFrom?: true
-  notifyEmail?: true
-  lastSyncAt?: true
-  lastSyncStatus?: true
-  lastSyncMessage?: true
 }
 
 export type OrganizationMaxAggregateInputType = {
@@ -163,20 +89,6 @@ export type OrganizationMaxAggregateInputType = {
   status?: true
   createdAt?: true
   metadata?: true
-  apiUrlContratos?: true
-  apiUrlLicitacoes?: true
-  apiUrlFiscais?: true
-  apiUrlAditivos?: true
-  autoLinkFiscais?: true
-  smtpHost?: true
-  smtpPort?: true
-  smtpUser?: true
-  smtpPass?: true
-  smtpFrom?: true
-  notifyEmail?: true
-  lastSyncAt?: true
-  lastSyncStatus?: true
-  lastSyncMessage?: true
 }
 
 export type OrganizationCountAggregateInputType = {
@@ -190,20 +102,6 @@ export type OrganizationCountAggregateInputType = {
   status?: true
   createdAt?: true
   metadata?: true
-  apiUrlContratos?: true
-  apiUrlLicitacoes?: true
-  apiUrlFiscais?: true
-  apiUrlAditivos?: true
-  autoLinkFiscais?: true
-  smtpHost?: true
-  smtpPort?: true
-  smtpUser?: true
-  smtpPass?: true
-  smtpFrom?: true
-  notifyEmail?: true
-  lastSyncAt?: true
-  lastSyncStatus?: true
-  lastSyncMessage?: true
   _all?: true
 }
 
@@ -245,18 +143,6 @@ export type OrganizationAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: OrganizationAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: OrganizationSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: OrganizationMinAggregateInputType
@@ -287,8 +173,6 @@ export type OrganizationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: OrganizationCountAggregateInputType | true
-  _avg?: OrganizationAvgAggregateInputType
-  _sum?: OrganizationSumAggregateInputType
   _min?: OrganizationMinAggregateInputType
   _max?: OrganizationMaxAggregateInputType
 }
@@ -304,23 +188,7 @@ export type OrganizationGroupByOutputType = {
   status: string
   createdAt: Date
   metadata: string | null
-  apiUrlContratos: string | null
-  apiUrlLicitacoes: string | null
-  apiUrlFiscais: string | null
-  apiUrlAditivos: string | null
-  autoLinkFiscais: boolean
-  smtpHost: string | null
-  smtpPort: number | null
-  smtpUser: string | null
-  smtpPass: string | null
-  smtpFrom: string | null
-  notifyEmail: string | null
-  lastSyncAt: Date | null
-  lastSyncStatus: string | null
-  lastSyncMessage: string | null
   _count: OrganizationCountAggregateOutputType | null
-  _avg: OrganizationAvgAggregateOutputType | null
-  _sum: OrganizationSumAggregateOutputType | null
   _min: OrganizationMinAggregateOutputType | null
   _max: OrganizationMaxAggregateOutputType | null
 }
@@ -354,27 +222,17 @@ export type OrganizationWhereInput = {
   status?: Prisma.StringFilter<"Organization"> | string
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   metadata?: Prisma.StringNullableFilter<"Organization"> | string | null
-  apiUrlContratos?: Prisma.StringNullableFilter<"Organization"> | string | null
-  apiUrlLicitacoes?: Prisma.StringNullableFilter<"Organization"> | string | null
-  apiUrlFiscais?: Prisma.StringNullableFilter<"Organization"> | string | null
-  apiUrlAditivos?: Prisma.StringNullableFilter<"Organization"> | string | null
-  autoLinkFiscais?: Prisma.BoolFilter<"Organization"> | boolean
-  smtpHost?: Prisma.StringNullableFilter<"Organization"> | string | null
-  smtpPort?: Prisma.IntNullableFilter<"Organization"> | number | null
-  smtpUser?: Prisma.StringNullableFilter<"Organization"> | string | null
-  smtpPass?: Prisma.StringNullableFilter<"Organization"> | string | null
-  smtpFrom?: Prisma.StringNullableFilter<"Organization"> | string | null
-  notifyEmail?: Prisma.StringNullableFilter<"Organization"> | string | null
-  lastSyncAt?: Prisma.DateTimeNullableFilter<"Organization"> | Date | string | null
-  lastSyncStatus?: Prisma.StringNullableFilter<"Organization"> | string | null
-  lastSyncMessage?: Prisma.StringNullableFilter<"Organization"> | string | null
-  members?: Prisma.MemberListRelationFilter
-  invitations?: Prisma.InvitationListRelationFilter
+  articles?: Prisma.ArticleListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
-  modulos?: Prisma.ModuloListRelationFilter
+  categories?: Prisma.CategoryListRelationFilter
+  invitations?: Prisma.InvitationListRelationFilter
+  members?: Prisma.MemberListRelationFilter
   memberPermissions?: Prisma.MemberPermissionListRelationFilter
-  lotacoes?: Prisma.LotacaoListRelationFilter
-  apiSyncLogs?: Prisma.ApiSyncLogListRelationFilter
+  modulos?: Prisma.ModuloListRelationFilter
+  pages?: Prisma.PageListRelationFilter
+  siteConfigs?: Prisma.SiteConfigListRelationFilter
+  subscribers?: Prisma.SubscriberListRelationFilter
+  tags?: Prisma.TagListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -388,27 +246,17 @@ export type OrganizationOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
-  apiUrlContratos?: Prisma.SortOrderInput | Prisma.SortOrder
-  apiUrlLicitacoes?: Prisma.SortOrderInput | Prisma.SortOrder
-  apiUrlFiscais?: Prisma.SortOrderInput | Prisma.SortOrder
-  apiUrlAditivos?: Prisma.SortOrderInput | Prisma.SortOrder
-  autoLinkFiscais?: Prisma.SortOrder
-  smtpHost?: Prisma.SortOrderInput | Prisma.SortOrder
-  smtpPort?: Prisma.SortOrderInput | Prisma.SortOrder
-  smtpUser?: Prisma.SortOrderInput | Prisma.SortOrder
-  smtpPass?: Prisma.SortOrderInput | Prisma.SortOrder
-  smtpFrom?: Prisma.SortOrderInput | Prisma.SortOrder
-  notifyEmail?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastSyncAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastSyncStatus?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastSyncMessage?: Prisma.SortOrderInput | Prisma.SortOrder
-  members?: Prisma.MemberOrderByRelationAggregateInput
-  invitations?: Prisma.InvitationOrderByRelationAggregateInput
+  articles?: Prisma.ArticleOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
-  modulos?: Prisma.ModuloOrderByRelationAggregateInput
+  categories?: Prisma.CategoryOrderByRelationAggregateInput
+  invitations?: Prisma.InvitationOrderByRelationAggregateInput
+  members?: Prisma.MemberOrderByRelationAggregateInput
   memberPermissions?: Prisma.MemberPermissionOrderByRelationAggregateInput
-  lotacoes?: Prisma.LotacaoOrderByRelationAggregateInput
-  apiSyncLogs?: Prisma.ApiSyncLogOrderByRelationAggregateInput
+  modulos?: Prisma.ModuloOrderByRelationAggregateInput
+  pages?: Prisma.PageOrderByRelationAggregateInput
+  siteConfigs?: Prisma.SiteConfigOrderByRelationAggregateInput
+  subscribers?: Prisma.SubscriberOrderByRelationAggregateInput
+  tags?: Prisma.TagOrderByRelationAggregateInput
   _relevance?: Prisma.OrganizationOrderByRelevanceInput
 }
 
@@ -426,27 +274,17 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.StringFilter<"Organization"> | string
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   metadata?: Prisma.StringNullableFilter<"Organization"> | string | null
-  apiUrlContratos?: Prisma.StringNullableFilter<"Organization"> | string | null
-  apiUrlLicitacoes?: Prisma.StringNullableFilter<"Organization"> | string | null
-  apiUrlFiscais?: Prisma.StringNullableFilter<"Organization"> | string | null
-  apiUrlAditivos?: Prisma.StringNullableFilter<"Organization"> | string | null
-  autoLinkFiscais?: Prisma.BoolFilter<"Organization"> | boolean
-  smtpHost?: Prisma.StringNullableFilter<"Organization"> | string | null
-  smtpPort?: Prisma.IntNullableFilter<"Organization"> | number | null
-  smtpUser?: Prisma.StringNullableFilter<"Organization"> | string | null
-  smtpPass?: Prisma.StringNullableFilter<"Organization"> | string | null
-  smtpFrom?: Prisma.StringNullableFilter<"Organization"> | string | null
-  notifyEmail?: Prisma.StringNullableFilter<"Organization"> | string | null
-  lastSyncAt?: Prisma.DateTimeNullableFilter<"Organization"> | Date | string | null
-  lastSyncStatus?: Prisma.StringNullableFilter<"Organization"> | string | null
-  lastSyncMessage?: Prisma.StringNullableFilter<"Organization"> | string | null
-  members?: Prisma.MemberListRelationFilter
-  invitations?: Prisma.InvitationListRelationFilter
+  articles?: Prisma.ArticleListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
-  modulos?: Prisma.ModuloListRelationFilter
+  categories?: Prisma.CategoryListRelationFilter
+  invitations?: Prisma.InvitationListRelationFilter
+  members?: Prisma.MemberListRelationFilter
   memberPermissions?: Prisma.MemberPermissionListRelationFilter
-  lotacoes?: Prisma.LotacaoListRelationFilter
-  apiSyncLogs?: Prisma.ApiSyncLogListRelationFilter
+  modulos?: Prisma.ModuloListRelationFilter
+  pages?: Prisma.PageListRelationFilter
+  siteConfigs?: Prisma.SiteConfigListRelationFilter
+  subscribers?: Prisma.SubscriberListRelationFilter
+  tags?: Prisma.TagListRelationFilter
 }, "id" | "slug">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -460,25 +298,9 @@ export type OrganizationOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
-  apiUrlContratos?: Prisma.SortOrderInput | Prisma.SortOrder
-  apiUrlLicitacoes?: Prisma.SortOrderInput | Prisma.SortOrder
-  apiUrlFiscais?: Prisma.SortOrderInput | Prisma.SortOrder
-  apiUrlAditivos?: Prisma.SortOrderInput | Prisma.SortOrder
-  autoLinkFiscais?: Prisma.SortOrder
-  smtpHost?: Prisma.SortOrderInput | Prisma.SortOrder
-  smtpPort?: Prisma.SortOrderInput | Prisma.SortOrder
-  smtpUser?: Prisma.SortOrderInput | Prisma.SortOrder
-  smtpPass?: Prisma.SortOrderInput | Prisma.SortOrder
-  smtpFrom?: Prisma.SortOrderInput | Prisma.SortOrder
-  notifyEmail?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastSyncAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastSyncStatus?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastSyncMessage?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.OrganizationCountOrderByAggregateInput
-  _avg?: Prisma.OrganizationAvgOrderByAggregateInput
   _max?: Prisma.OrganizationMaxOrderByAggregateInput
   _min?: Prisma.OrganizationMinOrderByAggregateInput
-  _sum?: Prisma.OrganizationSumOrderByAggregateInput
 }
 
 export type OrganizationScalarWhereWithAggregatesInput = {
@@ -495,20 +317,6 @@ export type OrganizationScalarWhereWithAggregatesInput = {
   status?: Prisma.StringWithAggregatesFilter<"Organization"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Organization"> | Date | string
   metadata?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  apiUrlContratos?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  apiUrlLicitacoes?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  apiUrlFiscais?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  apiUrlAditivos?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  autoLinkFiscais?: Prisma.BoolWithAggregatesFilter<"Organization"> | boolean
-  smtpHost?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  smtpPort?: Prisma.IntNullableWithAggregatesFilter<"Organization"> | number | null
-  smtpUser?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  smtpPass?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  smtpFrom?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  notifyEmail?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  lastSyncAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Organization"> | Date | string | null
-  lastSyncStatus?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  lastSyncMessage?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
 }
 
 export type OrganizationCreateInput = {
@@ -522,27 +330,17 @@ export type OrganizationCreateInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -556,27 +354,17 @@ export type OrganizationUncheckedCreateInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoUncheckedCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -590,27 +378,17 @@ export type OrganizationUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -624,27 +402,17 @@ export type OrganizationUncheckedUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -658,20 +426,6 @@ export type OrganizationCreateManyInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
 }
 
 export type OrganizationUpdateManyMutationInput = {
@@ -685,20 +439,6 @@ export type OrganizationUpdateManyMutationInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrganizationUncheckedUpdateManyInput = {
@@ -712,20 +452,11 @@ export type OrganizationUncheckedUpdateManyInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type OrganizationNullableScalarRelationFilter = {
+  is?: Prisma.OrganizationWhereInput | null
+  isNot?: Prisma.OrganizationWhereInput | null
 }
 
 export type OrganizationOrderByRelevanceInput = {
@@ -745,24 +476,6 @@ export type OrganizationCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
-  apiUrlContratos?: Prisma.SortOrder
-  apiUrlLicitacoes?: Prisma.SortOrder
-  apiUrlFiscais?: Prisma.SortOrder
-  apiUrlAditivos?: Prisma.SortOrder
-  autoLinkFiscais?: Prisma.SortOrder
-  smtpHost?: Prisma.SortOrder
-  smtpPort?: Prisma.SortOrder
-  smtpUser?: Prisma.SortOrder
-  smtpPass?: Prisma.SortOrder
-  smtpFrom?: Prisma.SortOrder
-  notifyEmail?: Prisma.SortOrder
-  lastSyncAt?: Prisma.SortOrder
-  lastSyncStatus?: Prisma.SortOrder
-  lastSyncMessage?: Prisma.SortOrder
-}
-
-export type OrganizationAvgOrderByAggregateInput = {
-  smtpPort?: Prisma.SortOrder
 }
 
 export type OrganizationMaxOrderByAggregateInput = {
@@ -776,20 +489,6 @@ export type OrganizationMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
-  apiUrlContratos?: Prisma.SortOrder
-  apiUrlLicitacoes?: Prisma.SortOrder
-  apiUrlFiscais?: Prisma.SortOrder
-  apiUrlAditivos?: Prisma.SortOrder
-  autoLinkFiscais?: Prisma.SortOrder
-  smtpHost?: Prisma.SortOrder
-  smtpPort?: Prisma.SortOrder
-  smtpUser?: Prisma.SortOrder
-  smtpPass?: Prisma.SortOrder
-  smtpFrom?: Prisma.SortOrder
-  notifyEmail?: Prisma.SortOrder
-  lastSyncAt?: Prisma.SortOrder
-  lastSyncStatus?: Prisma.SortOrder
-  lastSyncMessage?: Prisma.SortOrder
 }
 
 export type OrganizationMinOrderByAggregateInput = {
@@ -803,24 +502,6 @@ export type OrganizationMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
-  apiUrlContratos?: Prisma.SortOrder
-  apiUrlLicitacoes?: Prisma.SortOrder
-  apiUrlFiscais?: Prisma.SortOrder
-  apiUrlAditivos?: Prisma.SortOrder
-  autoLinkFiscais?: Prisma.SortOrder
-  smtpHost?: Prisma.SortOrder
-  smtpPort?: Prisma.SortOrder
-  smtpUser?: Prisma.SortOrder
-  smtpPass?: Prisma.SortOrder
-  smtpFrom?: Prisma.SortOrder
-  notifyEmail?: Prisma.SortOrder
-  lastSyncAt?: Prisma.SortOrder
-  lastSyncStatus?: Prisma.SortOrder
-  lastSyncMessage?: Prisma.SortOrder
-}
-
-export type OrganizationSumOrderByAggregateInput = {
-  smtpPort?: Prisma.SortOrder
 }
 
 export type OrganizationScalarRelationFilter = {
@@ -828,18 +509,100 @@ export type OrganizationScalarRelationFilter = {
   isNot?: Prisma.OrganizationWhereInput
 }
 
-export type OrganizationCreateNestedOneWithoutApiSyncLogsInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutApiSyncLogsInput, Prisma.OrganizationUncheckedCreateWithoutApiSyncLogsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutApiSyncLogsInput
+export type OrganizationCreateNestedOneWithoutArticlesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutArticlesInput, Prisma.OrganizationUncheckedCreateWithoutArticlesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutArticlesInput
   connect?: Prisma.OrganizationWhereUniqueInput
 }
 
-export type OrganizationUpdateOneRequiredWithoutApiSyncLogsNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutApiSyncLogsInput, Prisma.OrganizationUncheckedCreateWithoutApiSyncLogsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutApiSyncLogsInput
-  upsert?: Prisma.OrganizationUpsertWithoutApiSyncLogsInput
+export type OrganizationUpdateOneWithoutArticlesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutArticlesInput, Prisma.OrganizationUncheckedCreateWithoutArticlesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutArticlesInput
+  upsert?: Prisma.OrganizationUpsertWithoutArticlesInput
+  disconnect?: Prisma.OrganizationWhereInput | boolean
+  delete?: Prisma.OrganizationWhereInput | boolean
   connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutApiSyncLogsInput, Prisma.OrganizationUpdateWithoutApiSyncLogsInput>, Prisma.OrganizationUncheckedUpdateWithoutApiSyncLogsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutArticlesInput, Prisma.OrganizationUpdateWithoutArticlesInput>, Prisma.OrganizationUncheckedUpdateWithoutArticlesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutCategoriesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCategoriesInput, Prisma.OrganizationUncheckedCreateWithoutCategoriesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCategoriesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneWithoutCategoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCategoriesInput, Prisma.OrganizationUncheckedCreateWithoutCategoriesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCategoriesInput
+  upsert?: Prisma.OrganizationUpsertWithoutCategoriesInput
+  disconnect?: Prisma.OrganizationWhereInput | boolean
+  delete?: Prisma.OrganizationWhereInput | boolean
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCategoriesInput, Prisma.OrganizationUpdateWithoutCategoriesInput>, Prisma.OrganizationUncheckedUpdateWithoutCategoriesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutTagsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutTagsInput, Prisma.OrganizationUncheckedCreateWithoutTagsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutTagsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneWithoutTagsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutTagsInput, Prisma.OrganizationUncheckedCreateWithoutTagsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutTagsInput
+  upsert?: Prisma.OrganizationUpsertWithoutTagsInput
+  disconnect?: Prisma.OrganizationWhereInput | boolean
+  delete?: Prisma.OrganizationWhereInput | boolean
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutTagsInput, Prisma.OrganizationUpdateWithoutTagsInput>, Prisma.OrganizationUncheckedUpdateWithoutTagsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutSubscribersInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSubscribersInput, Prisma.OrganizationUncheckedCreateWithoutSubscribersInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSubscribersInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneWithoutSubscribersNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSubscribersInput, Prisma.OrganizationUncheckedCreateWithoutSubscribersInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSubscribersInput
+  upsert?: Prisma.OrganizationUpsertWithoutSubscribersInput
+  disconnect?: Prisma.OrganizationWhereInput | boolean
+  delete?: Prisma.OrganizationWhereInput | boolean
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSubscribersInput, Prisma.OrganizationUpdateWithoutSubscribersInput>, Prisma.OrganizationUncheckedUpdateWithoutSubscribersInput>
+}
+
+export type OrganizationCreateNestedOneWithoutSiteConfigsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSiteConfigsInput, Prisma.OrganizationUncheckedCreateWithoutSiteConfigsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSiteConfigsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneWithoutSiteConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSiteConfigsInput, Prisma.OrganizationUncheckedCreateWithoutSiteConfigsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSiteConfigsInput
+  upsert?: Prisma.OrganizationUpsertWithoutSiteConfigsInput
+  disconnect?: Prisma.OrganizationWhereInput | boolean
+  delete?: Prisma.OrganizationWhereInput | boolean
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSiteConfigsInput, Prisma.OrganizationUpdateWithoutSiteConfigsInput>, Prisma.OrganizationUncheckedUpdateWithoutSiteConfigsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutPagesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPagesInput, Prisma.OrganizationUncheckedCreateWithoutPagesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPagesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneWithoutPagesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPagesInput, Prisma.OrganizationUncheckedCreateWithoutPagesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPagesInput
+  upsert?: Prisma.OrganizationUpsertWithoutPagesInput
+  disconnect?: Prisma.OrganizationWhereInput | boolean
+  delete?: Prisma.OrganizationWhereInput | boolean
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPagesInput, Prisma.OrganizationUpdateWithoutPagesInput>, Prisma.OrganizationUncheckedUpdateWithoutPagesInput>
 }
 
 export type OrganizationCreateNestedOneWithoutMembersInput = {
@@ -854,20 +617,6 @@ export type OrganizationUpdateOneRequiredWithoutMembersNestedInput = {
   upsert?: Prisma.OrganizationUpsertWithoutMembersInput
   connect?: Prisma.OrganizationWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutMembersInput, Prisma.OrganizationUpdateWithoutMembersInput>, Prisma.OrganizationUncheckedUpdateWithoutMembersInput>
-}
-
-export type OrganizationCreateNestedOneWithoutLotacoesInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLotacoesInput, Prisma.OrganizationUncheckedCreateWithoutLotacoesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLotacoesInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneRequiredWithoutLotacoesNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLotacoesInput, Prisma.OrganizationUncheckedCreateWithoutLotacoesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLotacoesInput
-  upsert?: Prisma.OrganizationUpsertWithoutLotacoesInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutLotacoesInput, Prisma.OrganizationUpdateWithoutLotacoesInput>, Prisma.OrganizationUncheckedUpdateWithoutLotacoesInput>
 }
 
 export type OrganizationCreateNestedOneWithoutModulosInput = {
@@ -926,7 +675,7 @@ export type OrganizationUpdateOneRequiredWithoutAuditLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.OrganizationUpdateWithoutAuditLogsInput>, Prisma.OrganizationUncheckedUpdateWithoutAuditLogsInput>
 }
 
-export type OrganizationCreateWithoutApiSyncLogsInput = {
+export type OrganizationCreateWithoutArticlesInput = {
   id?: string
   name: string
   slug: string
@@ -937,29 +686,19 @@ export type OrganizationCreateWithoutApiSyncLogsInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
 }
 
-export type OrganizationUncheckedCreateWithoutApiSyncLogsInput = {
+export type OrganizationUncheckedCreateWithoutArticlesInput = {
   id?: string
   name: string
   slug: string
@@ -970,45 +709,35 @@ export type OrganizationUncheckedCreateWithoutApiSyncLogsInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
-export type OrganizationCreateOrConnectWithoutApiSyncLogsInput = {
+export type OrganizationCreateOrConnectWithoutArticlesInput = {
   where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutApiSyncLogsInput, Prisma.OrganizationUncheckedCreateWithoutApiSyncLogsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutArticlesInput, Prisma.OrganizationUncheckedCreateWithoutArticlesInput>
 }
 
-export type OrganizationUpsertWithoutApiSyncLogsInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutApiSyncLogsInput, Prisma.OrganizationUncheckedUpdateWithoutApiSyncLogsInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutApiSyncLogsInput, Prisma.OrganizationUncheckedCreateWithoutApiSyncLogsInput>
+export type OrganizationUpsertWithoutArticlesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutArticlesInput, Prisma.OrganizationUncheckedUpdateWithoutArticlesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutArticlesInput, Prisma.OrganizationUncheckedCreateWithoutArticlesInput>
   where?: Prisma.OrganizationWhereInput
 }
 
-export type OrganizationUpdateToOneWithWhereWithoutApiSyncLogsInput = {
+export type OrganizationUpdateToOneWithWhereWithoutArticlesInput = {
   where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutApiSyncLogsInput, Prisma.OrganizationUncheckedUpdateWithoutApiSyncLogsInput>
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutArticlesInput, Prisma.OrganizationUncheckedUpdateWithoutArticlesInput>
 }
 
-export type OrganizationUpdateWithoutApiSyncLogsInput = {
+export type OrganizationUpdateWithoutArticlesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1019,29 +748,19 @@ export type OrganizationUpdateWithoutApiSyncLogsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationUncheckedUpdateWithoutApiSyncLogsInput = {
+export type OrganizationUncheckedUpdateWithoutArticlesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1052,26 +771,556 @@ export type OrganizationUncheckedUpdateWithoutApiSyncLogsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutCategoriesInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutCategoriesInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutCategoriesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCategoriesInput, Prisma.OrganizationUncheckedCreateWithoutCategoriesInput>
+}
+
+export type OrganizationUpsertWithoutCategoriesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCategoriesInput, Prisma.OrganizationUncheckedUpdateWithoutCategoriesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCategoriesInput, Prisma.OrganizationUncheckedCreateWithoutCategoriesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutCategoriesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCategoriesInput, Prisma.OrganizationUncheckedUpdateWithoutCategoriesInput>
+}
+
+export type OrganizationUpdateWithoutCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutTagsInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutTagsInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutTagsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutTagsInput, Prisma.OrganizationUncheckedCreateWithoutTagsInput>
+}
+
+export type OrganizationUpsertWithoutTagsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutTagsInput, Prisma.OrganizationUncheckedUpdateWithoutTagsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutTagsInput, Prisma.OrganizationUncheckedCreateWithoutTagsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutTagsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutTagsInput, Prisma.OrganizationUncheckedUpdateWithoutTagsInput>
+}
+
+export type OrganizationUpdateWithoutTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutSubscribersInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutSubscribersInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutSubscribersInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSubscribersInput, Prisma.OrganizationUncheckedCreateWithoutSubscribersInput>
+}
+
+export type OrganizationUpsertWithoutSubscribersInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutSubscribersInput, Prisma.OrganizationUncheckedUpdateWithoutSubscribersInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSubscribersInput, Prisma.OrganizationUncheckedCreateWithoutSubscribersInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutSubscribersInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutSubscribersInput, Prisma.OrganizationUncheckedUpdateWithoutSubscribersInput>
+}
+
+export type OrganizationUpdateWithoutSubscribersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutSubscribersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutSiteConfigsInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutSiteConfigsInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutSiteConfigsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSiteConfigsInput, Prisma.OrganizationUncheckedCreateWithoutSiteConfigsInput>
+}
+
+export type OrganizationUpsertWithoutSiteConfigsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutSiteConfigsInput, Prisma.OrganizationUncheckedUpdateWithoutSiteConfigsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSiteConfigsInput, Prisma.OrganizationUncheckedCreateWithoutSiteConfigsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutSiteConfigsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutSiteConfigsInput, Prisma.OrganizationUncheckedUpdateWithoutSiteConfigsInput>
+}
+
+export type OrganizationUpdateWithoutSiteConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutSiteConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutPagesInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutPagesInput = {
+  id?: string
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string
+  telefone?: string | null
+  cnpj?: string | null
+  status?: string
+  createdAt?: Date | string
+  metadata?: string | null
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutPagesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPagesInput, Prisma.OrganizationUncheckedCreateWithoutPagesInput>
+}
+
+export type OrganizationUpsertWithoutPagesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPagesInput, Prisma.OrganizationUncheckedUpdateWithoutPagesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPagesInput, Prisma.OrganizationUncheckedCreateWithoutPagesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutPagesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPagesInput, Prisma.OrganizationUncheckedUpdateWithoutPagesInput>
+}
+
+export type OrganizationUpdateWithoutPagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutPagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutMembersInput = {
@@ -1085,26 +1334,16 @@ export type OrganizationCreateWithoutMembersInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -1118,26 +1357,16 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoUncheckedCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -1167,26 +1396,16 @@ export type OrganizationUpdateWithoutMembersInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -1200,174 +1419,16 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
-  memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutLotacoesInput = {
-  id?: string
-  name: string
-  slug: string
-  logo?: string | null
-  email?: string
-  telefone?: string | null
-  cnpj?: string | null
-  status?: string
-  createdAt?: Date | string
-  metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
-  memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutLotacoesInput = {
-  id?: string
-  name: string
-  slug: string
-  logo?: string | null
-  email?: string
-  telefone?: string | null
-  cnpj?: string | null
-  status?: string
-  createdAt?: Date | string
-  metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
-  memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutLotacoesInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLotacoesInput, Prisma.OrganizationUncheckedCreateWithoutLotacoesInput>
-}
-
-export type OrganizationUpsertWithoutLotacoesInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutLotacoesInput, Prisma.OrganizationUncheckedUpdateWithoutLotacoesInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLotacoesInput, Prisma.OrganizationUncheckedCreateWithoutLotacoesInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutLotacoesInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutLotacoesInput, Prisma.OrganizationUncheckedUpdateWithoutLotacoesInput>
-}
-
-export type OrganizationUpdateWithoutLotacoesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
-  memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutLotacoesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutModulosInput = {
@@ -1381,26 +1442,16 @@ export type OrganizationCreateWithoutModulosInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutModulosInput = {
@@ -1414,26 +1465,16 @@ export type OrganizationUncheckedCreateWithoutModulosInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoUncheckedCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutModulosInput = {
@@ -1463,26 +1504,16 @@ export type OrganizationUpdateWithoutModulosInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutModulosInput = {
@@ -1496,26 +1527,16 @@ export type OrganizationUncheckedUpdateWithoutModulosInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutMemberPermissionsInput = {
@@ -1529,26 +1550,16 @@ export type OrganizationCreateWithoutMemberPermissionsInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMemberPermissionsInput = {
@@ -1562,26 +1573,16 @@ export type OrganizationUncheckedCreateWithoutMemberPermissionsInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoUncheckedCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMemberPermissionsInput = {
@@ -1611,26 +1612,16 @@ export type OrganizationUpdateWithoutMemberPermissionsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMemberPermissionsInput = {
@@ -1644,26 +1635,16 @@ export type OrganizationUncheckedUpdateWithoutMemberPermissionsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutInvitationsInput = {
@@ -1677,26 +1658,16 @@ export type OrganizationCreateWithoutInvitationsInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutInvitationsInput = {
@@ -1710,26 +1681,16 @@ export type OrganizationUncheckedCreateWithoutInvitationsInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoUncheckedCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutInvitationsInput = {
@@ -1759,26 +1720,16 @@ export type OrganizationUpdateWithoutInvitationsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutInvitationsInput = {
@@ -1792,26 +1743,16 @@ export type OrganizationUncheckedUpdateWithoutInvitationsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutAuditLogsInput = {
@@ -1825,26 +1766,16 @@ export type OrganizationCreateWithoutAuditLogsInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutAuditLogsInput = {
@@ -1858,26 +1789,16 @@ export type OrganizationUncheckedCreateWithoutAuditLogsInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  apiUrlContratos?: string | null
-  apiUrlLicitacoes?: string | null
-  apiUrlFiscais?: string | null
-  apiUrlAditivos?: string | null
-  autoLinkFiscais?: boolean
-  smtpHost?: string | null
-  smtpPort?: number | null
-  smtpUser?: string | null
-  smtpPass?: string | null
-  smtpFrom?: string | null
-  notifyEmail?: string | null
-  lastSyncAt?: Date | string | null
-  lastSyncStatus?: string | null
-  lastSyncMessage?: string | null
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
-  lotacoes?: Prisma.LotacaoUncheckedCreateNestedManyWithoutOrganizationInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedCreateNestedManyWithoutOrganizationInput
+  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
+  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
+  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutAuditLogsInput = {
@@ -1907,26 +1828,16 @@ export type OrganizationUpdateWithoutAuditLogsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutAuditLogsInput = {
@@ -1940,26 +1851,16 @@ export type OrganizationUncheckedUpdateWithoutAuditLogsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlContratos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlLicitacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlFiscais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  apiUrlAditivos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  autoLinkFiscais?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smtpUser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpPass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smtpFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notifyEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastSyncStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastSyncMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
-  lotacoes?: Prisma.LotacaoUncheckedUpdateManyWithoutOrganizationNestedInput
-  apiSyncLogs?: Prisma.ApiSyncLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
+  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
+  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -1968,23 +1869,31 @@ export type OrganizationUncheckedUpdateWithoutAuditLogsInput = {
  */
 
 export type OrganizationCountOutputType = {
-  members: number
-  invitations: number
+  articles: number
   auditLogs: number
-  modulos: number
+  categories: number
+  invitations: number
+  members: number
   memberPermissions: number
-  lotacoes: number
-  apiSyncLogs: number
+  modulos: number
+  pages: number
+  siteConfigs: number
+  subscribers: number
+  tags: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  members?: boolean | OrganizationCountOutputTypeCountMembersArgs
-  invitations?: boolean | OrganizationCountOutputTypeCountInvitationsArgs
+  articles?: boolean | OrganizationCountOutputTypeCountArticlesArgs
   auditLogs?: boolean | OrganizationCountOutputTypeCountAuditLogsArgs
-  modulos?: boolean | OrganizationCountOutputTypeCountModulosArgs
+  categories?: boolean | OrganizationCountOutputTypeCountCategoriesArgs
+  invitations?: boolean | OrganizationCountOutputTypeCountInvitationsArgs
+  members?: boolean | OrganizationCountOutputTypeCountMembersArgs
   memberPermissions?: boolean | OrganizationCountOutputTypeCountMemberPermissionsArgs
-  lotacoes?: boolean | OrganizationCountOutputTypeCountLotacoesArgs
-  apiSyncLogs?: boolean | OrganizationCountOutputTypeCountApiSyncLogsArgs
+  modulos?: boolean | OrganizationCountOutputTypeCountModulosArgs
+  pages?: boolean | OrganizationCountOutputTypeCountPagesArgs
+  siteConfigs?: boolean | OrganizationCountOutputTypeCountSiteConfigsArgs
+  subscribers?: boolean | OrganizationCountOutputTypeCountSubscribersArgs
+  tags?: boolean | OrganizationCountOutputTypeCountTagsArgs
 }
 
 /**
@@ -2000,15 +1909,8 @@ export type OrganizationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
 /**
  * OrganizationCountOutputType without action
  */
-export type OrganizationCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MemberWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InvitationWhereInput
+export type OrganizationCountOutputTypeCountArticlesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ArticleWhereInput
 }
 
 /**
@@ -2021,8 +1923,22 @@ export type OrganizationCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtim
 /**
  * OrganizationCountOutputType without action
  */
-export type OrganizationCountOutputTypeCountModulosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ModuloWhereInput
+export type OrganizationCountOutputTypeCountCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CategoryWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvitationWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MemberWhereInput
 }
 
 /**
@@ -2035,15 +1951,36 @@ export type OrganizationCountOutputTypeCountMemberPermissionsArgs<ExtArgs extend
 /**
  * OrganizationCountOutputType without action
  */
-export type OrganizationCountOutputTypeCountLotacoesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LotacaoWhereInput
+export type OrganizationCountOutputTypeCountModulosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ModuloWhereInput
 }
 
 /**
  * OrganizationCountOutputType without action
  */
-export type OrganizationCountOutputTypeCountApiSyncLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ApiSyncLogWhereInput
+export type OrganizationCountOutputTypeCountPagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PageWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountSiteConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SiteConfigWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountSubscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriberWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountTagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TagWhereInput
 }
 
 
@@ -2058,27 +1995,17 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   status?: boolean
   createdAt?: boolean
   metadata?: boolean
-  apiUrlContratos?: boolean
-  apiUrlLicitacoes?: boolean
-  apiUrlFiscais?: boolean
-  apiUrlAditivos?: boolean
-  autoLinkFiscais?: boolean
-  smtpHost?: boolean
-  smtpPort?: boolean
-  smtpUser?: boolean
-  smtpPass?: boolean
-  smtpFrom?: boolean
-  notifyEmail?: boolean
-  lastSyncAt?: boolean
-  lastSyncStatus?: boolean
-  lastSyncMessage?: boolean
-  members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
-  invitations?: boolean | Prisma.Organization$invitationsArgs<ExtArgs>
+  articles?: boolean | Prisma.Organization$articlesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.Organization$auditLogsArgs<ExtArgs>
-  modulos?: boolean | Prisma.Organization$modulosArgs<ExtArgs>
+  categories?: boolean | Prisma.Organization$categoriesArgs<ExtArgs>
+  invitations?: boolean | Prisma.Organization$invitationsArgs<ExtArgs>
+  members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   memberPermissions?: boolean | Prisma.Organization$memberPermissionsArgs<ExtArgs>
-  lotacoes?: boolean | Prisma.Organization$lotacoesArgs<ExtArgs>
-  apiSyncLogs?: boolean | Prisma.Organization$apiSyncLogsArgs<ExtArgs>
+  modulos?: boolean | Prisma.Organization$modulosArgs<ExtArgs>
+  pages?: boolean | Prisma.Organization$pagesArgs<ExtArgs>
+  siteConfigs?: boolean | Prisma.Organization$siteConfigsArgs<ExtArgs>
+  subscribers?: boolean | Prisma.Organization$subscribersArgs<ExtArgs>
+  tags?: boolean | Prisma.Organization$tagsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -2095,44 +2022,38 @@ export type OrganizationSelectScalar = {
   status?: boolean
   createdAt?: boolean
   metadata?: boolean
-  apiUrlContratos?: boolean
-  apiUrlLicitacoes?: boolean
-  apiUrlFiscais?: boolean
-  apiUrlAditivos?: boolean
-  autoLinkFiscais?: boolean
-  smtpHost?: boolean
-  smtpPort?: boolean
-  smtpUser?: boolean
-  smtpPass?: boolean
-  smtpFrom?: boolean
-  notifyEmail?: boolean
-  lastSyncAt?: boolean
-  lastSyncStatus?: boolean
-  lastSyncMessage?: boolean
 }
 
-export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "logo" | "email" | "telefone" | "cnpj" | "status" | "createdAt" | "metadata" | "apiUrlContratos" | "apiUrlLicitacoes" | "apiUrlFiscais" | "apiUrlAditivos" | "autoLinkFiscais" | "smtpHost" | "smtpPort" | "smtpUser" | "smtpPass" | "smtpFrom" | "notifyEmail" | "lastSyncAt" | "lastSyncStatus" | "lastSyncMessage", ExtArgs["result"]["organization"]>
+export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "logo" | "email" | "telefone" | "cnpj" | "status" | "createdAt" | "metadata", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
-  invitations?: boolean | Prisma.Organization$invitationsArgs<ExtArgs>
+  articles?: boolean | Prisma.Organization$articlesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.Organization$auditLogsArgs<ExtArgs>
-  modulos?: boolean | Prisma.Organization$modulosArgs<ExtArgs>
+  categories?: boolean | Prisma.Organization$categoriesArgs<ExtArgs>
+  invitations?: boolean | Prisma.Organization$invitationsArgs<ExtArgs>
+  members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   memberPermissions?: boolean | Prisma.Organization$memberPermissionsArgs<ExtArgs>
-  lotacoes?: boolean | Prisma.Organization$lotacoesArgs<ExtArgs>
-  apiSyncLogs?: boolean | Prisma.Organization$apiSyncLogsArgs<ExtArgs>
+  modulos?: boolean | Prisma.Organization$modulosArgs<ExtArgs>
+  pages?: boolean | Prisma.Organization$pagesArgs<ExtArgs>
+  siteConfigs?: boolean | Prisma.Organization$siteConfigsArgs<ExtArgs>
+  subscribers?: boolean | Prisma.Organization$subscribersArgs<ExtArgs>
+  tags?: boolean | Prisma.Organization$tagsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Organization"
   objects: {
-    members: Prisma.$MemberPayload<ExtArgs>[]
-    invitations: Prisma.$InvitationPayload<ExtArgs>[]
+    articles: Prisma.$ArticlePayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
-    modulos: Prisma.$ModuloPayload<ExtArgs>[]
+    categories: Prisma.$CategoryPayload<ExtArgs>[]
+    invitations: Prisma.$InvitationPayload<ExtArgs>[]
+    members: Prisma.$MemberPayload<ExtArgs>[]
     memberPermissions: Prisma.$MemberPermissionPayload<ExtArgs>[]
-    lotacoes: Prisma.$LotacaoPayload<ExtArgs>[]
-    apiSyncLogs: Prisma.$ApiSyncLogPayload<ExtArgs>[]
+    modulos: Prisma.$ModuloPayload<ExtArgs>[]
+    pages: Prisma.$PagePayload<ExtArgs>[]
+    siteConfigs: Prisma.$SiteConfigPayload<ExtArgs>[]
+    subscribers: Prisma.$SubscriberPayload<ExtArgs>[]
+    tags: Prisma.$TagPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2145,20 +2066,6 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     status: string
     createdAt: Date
     metadata: string | null
-    apiUrlContratos: string | null
-    apiUrlLicitacoes: string | null
-    apiUrlFiscais: string | null
-    apiUrlAditivos: string | null
-    autoLinkFiscais: boolean
-    smtpHost: string | null
-    smtpPort: number | null
-    smtpUser: string | null
-    smtpPass: string | null
-    smtpFrom: string | null
-    notifyEmail: string | null
-    lastSyncAt: Date | null
-    lastSyncStatus: string | null
-    lastSyncMessage: string | null
   }, ExtArgs["result"]["organization"]>
   composites: {}
 }
@@ -2499,13 +2406,17 @@ readonly fields: OrganizationFieldRefs;
  */
 export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  members<T extends Prisma.Organization$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  invitations<T extends Prisma.Organization$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  articles<T extends Prisma.Organization$articlesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$articlesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ArticlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.Organization$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  modulos<T extends Prisma.Organization$modulosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$modulosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModuloPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  categories<T extends Prisma.Organization$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitations<T extends Prisma.Organization$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  members<T extends Prisma.Organization$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberPermissions<T extends Prisma.Organization$memberPermissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$memberPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  lotacoes<T extends Prisma.Organization$lotacoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$lotacoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LotacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  apiSyncLogs<T extends Prisma.Organization$apiSyncLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$apiSyncLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiSyncLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  modulos<T extends Prisma.Organization$modulosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$modulosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModuloPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pages<T extends Prisma.Organization$pagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$pagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  siteConfigs<T extends Prisma.Organization$siteConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$siteConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SiteConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscribers<T extends Prisma.Organization$subscribersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$subscribersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tags<T extends Prisma.Organization$tagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2545,20 +2456,6 @@ export interface OrganizationFieldRefs {
   readonly status: Prisma.FieldRef<"Organization", 'String'>
   readonly createdAt: Prisma.FieldRef<"Organization", 'DateTime'>
   readonly metadata: Prisma.FieldRef<"Organization", 'String'>
-  readonly apiUrlContratos: Prisma.FieldRef<"Organization", 'String'>
-  readonly apiUrlLicitacoes: Prisma.FieldRef<"Organization", 'String'>
-  readonly apiUrlFiscais: Prisma.FieldRef<"Organization", 'String'>
-  readonly apiUrlAditivos: Prisma.FieldRef<"Organization", 'String'>
-  readonly autoLinkFiscais: Prisma.FieldRef<"Organization", 'Boolean'>
-  readonly smtpHost: Prisma.FieldRef<"Organization", 'String'>
-  readonly smtpPort: Prisma.FieldRef<"Organization", 'Int'>
-  readonly smtpUser: Prisma.FieldRef<"Organization", 'String'>
-  readonly smtpPass: Prisma.FieldRef<"Organization", 'String'>
-  readonly smtpFrom: Prisma.FieldRef<"Organization", 'String'>
-  readonly notifyEmail: Prisma.FieldRef<"Organization", 'String'>
-  readonly lastSyncAt: Prisma.FieldRef<"Organization", 'DateTime'>
-  readonly lastSyncStatus: Prisma.FieldRef<"Organization", 'String'>
-  readonly lastSyncMessage: Prisma.FieldRef<"Organization", 'String'>
 }
     
 
@@ -2907,51 +2804,27 @@ export type OrganizationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * Organization.members
+ * Organization.articles
  */
-export type Organization$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Organization$articlesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Member
+   * Select specific fields to fetch from the Article
    */
-  select?: Prisma.MemberSelect<ExtArgs> | null
+  select?: Prisma.ArticleSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Member
+   * Omit specific fields from the Article
    */
-  omit?: Prisma.MemberOmit<ExtArgs> | null
+  omit?: Prisma.ArticleOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.MemberInclude<ExtArgs> | null
-  where?: Prisma.MemberWhereInput
-  orderBy?: Prisma.MemberOrderByWithRelationInput | Prisma.MemberOrderByWithRelationInput[]
-  cursor?: Prisma.MemberWhereUniqueInput
+  include?: Prisma.ArticleInclude<ExtArgs> | null
+  where?: Prisma.ArticleWhereInput
+  orderBy?: Prisma.ArticleOrderByWithRelationInput | Prisma.ArticleOrderByWithRelationInput[]
+  cursor?: Prisma.ArticleWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.MemberScalarFieldEnum | Prisma.MemberScalarFieldEnum[]
-}
-
-/**
- * Organization.invitations
- */
-export type Organization$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Invitation
-   */
-  select?: Prisma.InvitationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Invitation
-   */
-  omit?: Prisma.InvitationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.InvitationInclude<ExtArgs> | null
-  where?: Prisma.InvitationWhereInput
-  orderBy?: Prisma.InvitationOrderByWithRelationInput | Prisma.InvitationOrderByWithRelationInput[]
-  cursor?: Prisma.InvitationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.InvitationScalarFieldEnum | Prisma.InvitationScalarFieldEnum[]
+  distinct?: Prisma.ArticleScalarFieldEnum | Prisma.ArticleScalarFieldEnum[]
 }
 
 /**
@@ -2979,27 +2852,75 @@ export type Organization$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * Organization.modulos
+ * Organization.categories
  */
-export type Organization$modulosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Organization$categoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Modulo
+   * Select specific fields to fetch from the Category
    */
-  select?: Prisma.ModuloSelect<ExtArgs> | null
+  select?: Prisma.CategorySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Modulo
+   * Omit specific fields from the Category
    */
-  omit?: Prisma.ModuloOmit<ExtArgs> | null
+  omit?: Prisma.CategoryOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ModuloInclude<ExtArgs> | null
-  where?: Prisma.ModuloWhereInput
-  orderBy?: Prisma.ModuloOrderByWithRelationInput | Prisma.ModuloOrderByWithRelationInput[]
-  cursor?: Prisma.ModuloWhereUniqueInput
+  include?: Prisma.CategoryInclude<ExtArgs> | null
+  where?: Prisma.CategoryWhereInput
+  orderBy?: Prisma.CategoryOrderByWithRelationInput | Prisma.CategoryOrderByWithRelationInput[]
+  cursor?: Prisma.CategoryWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ModuloScalarFieldEnum | Prisma.ModuloScalarFieldEnum[]
+  distinct?: Prisma.CategoryScalarFieldEnum | Prisma.CategoryScalarFieldEnum[]
+}
+
+/**
+ * Organization.invitations
+ */
+export type Organization$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invitation
+   */
+  select?: Prisma.InvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invitation
+   */
+  omit?: Prisma.InvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvitationInclude<ExtArgs> | null
+  where?: Prisma.InvitationWhereInput
+  orderBy?: Prisma.InvitationOrderByWithRelationInput | Prisma.InvitationOrderByWithRelationInput[]
+  cursor?: Prisma.InvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvitationScalarFieldEnum | Prisma.InvitationScalarFieldEnum[]
+}
+
+/**
+ * Organization.members
+ */
+export type Organization$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Member
+   */
+  select?: Prisma.MemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Member
+   */
+  omit?: Prisma.MemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
+  where?: Prisma.MemberWhereInput
+  orderBy?: Prisma.MemberOrderByWithRelationInput | Prisma.MemberOrderByWithRelationInput[]
+  cursor?: Prisma.MemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MemberScalarFieldEnum | Prisma.MemberScalarFieldEnum[]
 }
 
 /**
@@ -3027,51 +2948,123 @@ export type Organization$memberPermissionsArgs<ExtArgs extends runtime.Types.Ext
 }
 
 /**
- * Organization.lotacoes
+ * Organization.modulos
  */
-export type Organization$lotacoesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Organization$modulosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Lotacao
+   * Select specific fields to fetch from the Modulo
    */
-  select?: Prisma.LotacaoSelect<ExtArgs> | null
+  select?: Prisma.ModuloSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Lotacao
+   * Omit specific fields from the Modulo
    */
-  omit?: Prisma.LotacaoOmit<ExtArgs> | null
+  omit?: Prisma.ModuloOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LotacaoInclude<ExtArgs> | null
-  where?: Prisma.LotacaoWhereInput
-  orderBy?: Prisma.LotacaoOrderByWithRelationInput | Prisma.LotacaoOrderByWithRelationInput[]
-  cursor?: Prisma.LotacaoWhereUniqueInput
+  include?: Prisma.ModuloInclude<ExtArgs> | null
+  where?: Prisma.ModuloWhereInput
+  orderBy?: Prisma.ModuloOrderByWithRelationInput | Prisma.ModuloOrderByWithRelationInput[]
+  cursor?: Prisma.ModuloWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.LotacaoScalarFieldEnum | Prisma.LotacaoScalarFieldEnum[]
+  distinct?: Prisma.ModuloScalarFieldEnum | Prisma.ModuloScalarFieldEnum[]
 }
 
 /**
- * Organization.apiSyncLogs
+ * Organization.pages
  */
-export type Organization$apiSyncLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Organization$pagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ApiSyncLog
+   * Select specific fields to fetch from the Page
    */
-  select?: Prisma.ApiSyncLogSelect<ExtArgs> | null
+  select?: Prisma.PageSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ApiSyncLog
+   * Omit specific fields from the Page
    */
-  omit?: Prisma.ApiSyncLogOmit<ExtArgs> | null
+  omit?: Prisma.PageOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ApiSyncLogInclude<ExtArgs> | null
-  where?: Prisma.ApiSyncLogWhereInput
-  orderBy?: Prisma.ApiSyncLogOrderByWithRelationInput | Prisma.ApiSyncLogOrderByWithRelationInput[]
-  cursor?: Prisma.ApiSyncLogWhereUniqueInput
+  include?: Prisma.PageInclude<ExtArgs> | null
+  where?: Prisma.PageWhereInput
+  orderBy?: Prisma.PageOrderByWithRelationInput | Prisma.PageOrderByWithRelationInput[]
+  cursor?: Prisma.PageWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ApiSyncLogScalarFieldEnum | Prisma.ApiSyncLogScalarFieldEnum[]
+  distinct?: Prisma.PageScalarFieldEnum | Prisma.PageScalarFieldEnum[]
+}
+
+/**
+ * Organization.siteConfigs
+ */
+export type Organization$siteConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SiteConfig
+   */
+  select?: Prisma.SiteConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SiteConfig
+   */
+  omit?: Prisma.SiteConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
+  where?: Prisma.SiteConfigWhereInput
+  orderBy?: Prisma.SiteConfigOrderByWithRelationInput | Prisma.SiteConfigOrderByWithRelationInput[]
+  cursor?: Prisma.SiteConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SiteConfigScalarFieldEnum | Prisma.SiteConfigScalarFieldEnum[]
+}
+
+/**
+ * Organization.subscribers
+ */
+export type Organization$subscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscriber
+   */
+  select?: Prisma.SubscriberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscriber
+   */
+  omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  where?: Prisma.SubscriberWhereInput
+  orderBy?: Prisma.SubscriberOrderByWithRelationInput | Prisma.SubscriberOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriberScalarFieldEnum | Prisma.SubscriberScalarFieldEnum[]
+}
+
+/**
+ * Organization.tags
+ */
+export type Organization$tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Tag
+   */
+  select?: Prisma.TagSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Tag
+   */
+  omit?: Prisma.TagOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TagInclude<ExtArgs> | null
+  where?: Prisma.TagWhereInput
+  orderBy?: Prisma.TagOrderByWithRelationInput | Prisma.TagOrderByWithRelationInput[]
+  cursor?: Prisma.TagWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TagScalarFieldEnum | Prisma.TagScalarFieldEnum[]
 }
 
 /**

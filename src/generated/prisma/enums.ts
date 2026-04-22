@@ -19,23 +19,6 @@ export const ROLES = {
 export type ROLES = (typeof ROLES)[keyof typeof ROLES]
 
 
-export const STATUSPUBLISH = {
-  DRAFT: 'DRAFT',
-  PUBLISHED: 'PUBLISHED',
-  ARCHIVED: 'ARCHIVED'
-} as const
-
-export type STATUSPUBLISH = (typeof STATUSPUBLISH)[keyof typeof STATUSPUBLISH]
-
-
-export const STATUS = {
-  ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE'
-} as const
-
-export type STATUS = (typeof STATUS)[keyof typeof STATUS]
-
-
 export const LogAction = {
   CREATE: 'CREATE',
   UPDATE: 'UPDATE',

@@ -1,16 +1,9 @@
 import Link from "next/link";
 import { NewsletterWidget } from "@/components/newsletter-widget";
 
-const tags = [
-  "Paraná",
-  "Poder",
-  "Discurso",
-  "Bastidores",
-  "Alianças",
-  "Eleições",
-  "Versão",
-  "Nacional",
-];
+interface SidebarHomeProps {
+  tags: { id: string; name: string; slug: string }[];
+}
 
 const curtasEDiretas = [
   "A eleição no Paraná está sendo tratada como disputa de nomes. Mas, na prática, é uma disputa de capacidade.",
@@ -25,7 +18,7 @@ const curtasEDiretas = [
   "No fim, a pergunta não é quem tem melhor discurso. É quem sabe governar.",
 ];
 
-export function SidebarHome() {
+export function SidebarHome({ tags }: SidebarHomeProps) {
   return (
     <aside className="flex flex-col gap-8" aria-label="Coluna lateral">
       {/* Curtas & Diretas */}
@@ -69,23 +62,25 @@ export function SidebarHome() {
         </p>
       </div>
 
-      {/* Tags */}
-      <div>
-        <p className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho mb-3">
-          Temas
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {tags.map((tag) => (
-            <Link
-              key={tag}
-              href="#"
-              className="inline-block border border-narrativa-cinza-linha px-3 py-1.5 text-[0.65rem] tracking-[0.1em] uppercase text-narrativa-cinza-texto hover:border-narrativa-preto hover:bg-narrativa-preto hover:text-narrativa-branco transition-all"
-            >
-              {tag}
-            </Link>
-          ))}
+      {/* Tags dinâmicas */}
+      {tags.length > 0 && (
+        <div>
+          <p className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho mb-3">
+            Temas
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <Link
+                key={tag.id}
+                href={`/?tag=${tag.slug}`}
+                className="inline-block border border-narrativa-cinza-linha px-3 py-1.5 text-[0.65rem] tracking-[0.1em] uppercase text-narrativa-cinza-texto hover:border-narrativa-preto hover:bg-narrativa-preto hover:text-narrativa-branco transition-all"
+              >
+                {tag.name}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </aside>
   );
 }

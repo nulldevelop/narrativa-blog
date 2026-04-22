@@ -396,9 +396,7 @@ export const ModelName = {
   SiteConfig: 'SiteConfig',
   Page: 'Page',
   Organization: 'Organization',
-  ApiSyncLog: 'ApiSyncLog',
   Member: 'Member',
-  Lotacao: 'Lotacao',
   Modulo: 'Modulo',
   MemberPermission: 'MemberPermission',
   Invitation: 'Invitation',
@@ -418,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "article" | "category" | "tag" | "articleTag" | "subscriber" | "siteConfig" | "page" | "organization" | "apiSyncLog" | "member" | "lotacao" | "modulo" | "memberPermission" | "invitation" | "auditLog"
+    modelProps: "user" | "session" | "account" | "verification" | "article" | "category" | "tag" | "articleTag" | "subscriber" | "siteConfig" | "page" | "organization" | "member" | "modulo" | "memberPermission" | "invitation" | "auditLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1214,72 +1212,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    ApiSyncLog: {
-      payload: Prisma.$ApiSyncLogPayload<ExtArgs>
-      fields: Prisma.ApiSyncLogFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.ApiSyncLogFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.ApiSyncLogFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload>
-        }
-        findFirst: {
-          args: Prisma.ApiSyncLogFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.ApiSyncLogFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload>
-        }
-        findMany: {
-          args: Prisma.ApiSyncLogFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload>[]
-        }
-        create: {
-          args: Prisma.ApiSyncLogCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload>
-        }
-        createMany: {
-          args: Prisma.ApiSyncLogCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        delete: {
-          args: Prisma.ApiSyncLogDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload>
-        }
-        update: {
-          args: Prisma.ApiSyncLogUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload>
-        }
-        deleteMany: {
-          args: Prisma.ApiSyncLogDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.ApiSyncLogUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        upsert: {
-          args: Prisma.ApiSyncLogUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiSyncLogPayload>
-        }
-        aggregate: {
-          args: Prisma.ApiSyncLogAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateApiSyncLog>
-        }
-        groupBy: {
-          args: Prisma.ApiSyncLogGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ApiSyncLogGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.ApiSyncLogCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ApiSyncLogCountAggregateOutputType> | number
-        }
-      }
-    }
     Member: {
       payload: Prisma.$MemberPayload<ExtArgs>
       fields: Prisma.MemberFieldRefs
@@ -1343,72 +1275,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.MemberCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.MemberCountAggregateOutputType> | number
-        }
-      }
-    }
-    Lotacao: {
-      payload: Prisma.$LotacaoPayload<ExtArgs>
-      fields: Prisma.LotacaoFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.LotacaoFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.LotacaoFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload>
-        }
-        findFirst: {
-          args: Prisma.LotacaoFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.LotacaoFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload>
-        }
-        findMany: {
-          args: Prisma.LotacaoFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload>[]
-        }
-        create: {
-          args: Prisma.LotacaoCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload>
-        }
-        createMany: {
-          args: Prisma.LotacaoCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        delete: {
-          args: Prisma.LotacaoDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload>
-        }
-        update: {
-          args: Prisma.LotacaoUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload>
-        }
-        deleteMany: {
-          args: Prisma.LotacaoDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.LotacaoUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        upsert: {
-          args: Prisma.LotacaoUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotacaoPayload>
-        }
-        aggregate: {
-          args: Prisma.LotacaoAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateLotacao>
-        }
-        groupBy: {
-          args: Prisma.LotacaoGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.LotacaoGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.LotacaoCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.LotacaoCountAggregateOutputType> | number
         }
       }
     }
@@ -1793,7 +1659,8 @@ export const ArticleScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   authorId: 'authorId',
-  categoryId: 'categoryId'
+  categoryId: 'categoryId',
+  organizationId: 'organizationId'
 } as const
 
 export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
@@ -1807,7 +1674,8 @@ export const CategoryScalarFieldEnum = {
   color: 'color',
   sortOrder: 'sortOrder',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  organizationId: 'organizationId'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -1817,7 +1685,8 @@ export const TagScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  organizationId: 'organizationId'
 } as const
 
 export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
@@ -1837,7 +1706,8 @@ export const SubscriberScalarFieldEnum = {
   confirmed: 'confirmed',
   confirmToken: 'confirmToken',
   unsubscribedAt: 'unsubscribedAt',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  organizationId: 'organizationId'
 } as const
 
 export type SubscriberScalarFieldEnum = (typeof SubscriberScalarFieldEnum)[keyof typeof SubscriberScalarFieldEnum]
@@ -1846,7 +1716,8 @@ export type SubscriberScalarFieldEnum = (typeof SubscriberScalarFieldEnum)[keyof
 export const SiteConfigScalarFieldEnum = {
   id: 'id',
   key: 'key',
-  value: 'value'
+  value: 'value',
+  organizationId: 'organizationId'
 } as const
 
 export type SiteConfigScalarFieldEnum = (typeof SiteConfigScalarFieldEnum)[keyof typeof SiteConfigScalarFieldEnum]
@@ -1858,7 +1729,8 @@ export const PageScalarFieldEnum = {
   slug: 'slug',
   content: 'content',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  organizationId: 'organizationId'
 } as const
 
 export type PageScalarFieldEnum = (typeof PageScalarFieldEnum)[keyof typeof PageScalarFieldEnum]
@@ -1874,36 +1746,10 @@ export const OrganizationScalarFieldEnum = {
   cnpj: 'cnpj',
   status: 'status',
   createdAt: 'createdAt',
-  metadata: 'metadata',
-  apiUrlContratos: 'apiUrlContratos',
-  apiUrlLicitacoes: 'apiUrlLicitacoes',
-  apiUrlFiscais: 'apiUrlFiscais',
-  apiUrlAditivos: 'apiUrlAditivos',
-  autoLinkFiscais: 'autoLinkFiscais',
-  smtpHost: 'smtpHost',
-  smtpPort: 'smtpPort',
-  smtpUser: 'smtpUser',
-  smtpPass: 'smtpPass',
-  smtpFrom: 'smtpFrom',
-  notifyEmail: 'notifyEmail',
-  lastSyncAt: 'lastSyncAt',
-  lastSyncStatus: 'lastSyncStatus',
-  lastSyncMessage: 'lastSyncMessage'
+  metadata: 'metadata'
 } as const
 
 export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
-
-
-export const ApiSyncLogScalarFieldEnum = {
-  id: 'id',
-  organizationId: 'organizationId',
-  status: 'status',
-  message: 'message',
-  details: 'details',
-  createdAt: 'createdAt'
-} as const
-
-export type ApiSyncLogScalarFieldEnum = (typeof ApiSyncLogScalarFieldEnum)[keyof typeof ApiSyncLogScalarFieldEnum]
 
 
 export const MemberScalarFieldEnum = {
@@ -1911,24 +1757,12 @@ export const MemberScalarFieldEnum = {
   organizationId: 'organizationId',
   userId: 'userId',
   role: 'role',
-  fiscalCpf: 'fiscalCpf',
-  lotacaoId: 'lotacaoId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  lotacaoId: 'lotacaoId'
 } as const
 
 export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
-
-
-export const LotacaoScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  organizationId: 'organizationId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type LotacaoScalarFieldEnum = (typeof LotacaoScalarFieldEnum)[keyof typeof LotacaoScalarFieldEnum]
 
 
 export const ModuloScalarFieldEnum = {
@@ -2066,7 +1900,8 @@ export const ArticleOrderByRelevanceFieldEnum = {
   coverImage: 'coverImage',
   status: 'status',
   authorId: 'authorId',
-  categoryId: 'categoryId'
+  categoryId: 'categoryId',
+  organizationId: 'organizationId'
 } as const
 
 export type ArticleOrderByRelevanceFieldEnum = (typeof ArticleOrderByRelevanceFieldEnum)[keyof typeof ArticleOrderByRelevanceFieldEnum]
@@ -2077,7 +1912,8 @@ export const CategoryOrderByRelevanceFieldEnum = {
   name: 'name',
   slug: 'slug',
   description: 'description',
-  color: 'color'
+  color: 'color',
+  organizationId: 'organizationId'
 } as const
 
 export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevanceFieldEnum)[keyof typeof CategoryOrderByRelevanceFieldEnum]
@@ -2086,7 +1922,8 @@ export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevance
 export const TagOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
-  slug: 'slug'
+  slug: 'slug',
+  organizationId: 'organizationId'
 } as const
 
 export type TagOrderByRelevanceFieldEnum = (typeof TagOrderByRelevanceFieldEnum)[keyof typeof TagOrderByRelevanceFieldEnum]
@@ -2103,7 +1940,8 @@ export type ArticleTagOrderByRelevanceFieldEnum = (typeof ArticleTagOrderByRelev
 export const SubscriberOrderByRelevanceFieldEnum = {
   id: 'id',
   email: 'email',
-  confirmToken: 'confirmToken'
+  confirmToken: 'confirmToken',
+  organizationId: 'organizationId'
 } as const
 
 export type SubscriberOrderByRelevanceFieldEnum = (typeof SubscriberOrderByRelevanceFieldEnum)[keyof typeof SubscriberOrderByRelevanceFieldEnum]
@@ -2112,7 +1950,8 @@ export type SubscriberOrderByRelevanceFieldEnum = (typeof SubscriberOrderByRelev
 export const SiteConfigOrderByRelevanceFieldEnum = {
   id: 'id',
   key: 'key',
-  value: 'value'
+  value: 'value',
+  organizationId: 'organizationId'
 } as const
 
 export type SiteConfigOrderByRelevanceFieldEnum = (typeof SiteConfigOrderByRelevanceFieldEnum)[keyof typeof SiteConfigOrderByRelevanceFieldEnum]
@@ -2122,7 +1961,8 @@ export const PageOrderByRelevanceFieldEnum = {
   id: 'id',
   title: 'title',
   slug: 'slug',
-  content: 'content'
+  content: 'content',
+  organizationId: 'organizationId'
 } as const
 
 export type PageOrderByRelevanceFieldEnum = (typeof PageOrderByRelevanceFieldEnum)[keyof typeof PageOrderByRelevanceFieldEnum]
@@ -2137,52 +1977,20 @@ export const OrganizationOrderByRelevanceFieldEnum = {
   telefone: 'telefone',
   cnpj: 'cnpj',
   status: 'status',
-  metadata: 'metadata',
-  apiUrlContratos: 'apiUrlContratos',
-  apiUrlLicitacoes: 'apiUrlLicitacoes',
-  apiUrlFiscais: 'apiUrlFiscais',
-  apiUrlAditivos: 'apiUrlAditivos',
-  smtpHost: 'smtpHost',
-  smtpUser: 'smtpUser',
-  smtpPass: 'smtpPass',
-  smtpFrom: 'smtpFrom',
-  notifyEmail: 'notifyEmail',
-  lastSyncStatus: 'lastSyncStatus',
-  lastSyncMessage: 'lastSyncMessage'
+  metadata: 'metadata'
 } as const
 
 export type OrganizationOrderByRelevanceFieldEnum = (typeof OrganizationOrderByRelevanceFieldEnum)[keyof typeof OrganizationOrderByRelevanceFieldEnum]
-
-
-export const ApiSyncLogOrderByRelevanceFieldEnum = {
-  id: 'id',
-  organizationId: 'organizationId',
-  status: 'status',
-  message: 'message',
-  details: 'details'
-} as const
-
-export type ApiSyncLogOrderByRelevanceFieldEnum = (typeof ApiSyncLogOrderByRelevanceFieldEnum)[keyof typeof ApiSyncLogOrderByRelevanceFieldEnum]
 
 
 export const MemberOrderByRelevanceFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
   userId: 'userId',
-  fiscalCpf: 'fiscalCpf',
   lotacaoId: 'lotacaoId'
 } as const
 
 export type MemberOrderByRelevanceFieldEnum = (typeof MemberOrderByRelevanceFieldEnum)[keyof typeof MemberOrderByRelevanceFieldEnum]
-
-
-export const LotacaoOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name',
-  organizationId: 'organizationId'
-} as const
-
-export type LotacaoOrderByRelevanceFieldEnum = (typeof LotacaoOrderByRelevanceFieldEnum)[keyof typeof LotacaoOrderByRelevanceFieldEnum]
 
 
 export const ModuloOrderByRelevanceFieldEnum = {
@@ -2394,9 +2202,7 @@ export type GlobalOmitConfig = {
   siteConfig?: Prisma.SiteConfigOmit
   page?: Prisma.PageOmit
   organization?: Prisma.OrganizationOmit
-  apiSyncLog?: Prisma.ApiSyncLogOmit
   member?: Prisma.MemberOmit
-  lotacao?: Prisma.LotacaoOmit
   modulo?: Prisma.ModuloOmit
   memberPermission?: Prisma.MemberPermissionOmit
   invitation?: Prisma.InvitationOmit

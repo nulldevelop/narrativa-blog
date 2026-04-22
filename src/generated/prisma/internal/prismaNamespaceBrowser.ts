@@ -63,9 +63,7 @@ export const ModelName = {
   SiteConfig: 'SiteConfig',
   Page: 'Page',
   Organization: 'Organization',
-  ApiSyncLog: 'ApiSyncLog',
   Member: 'Member',
-  Lotacao: 'Lotacao',
   Modulo: 'Modulo',
   MemberPermission: 'MemberPermission',
   Invitation: 'Invitation',
@@ -166,7 +164,8 @@ export const ArticleScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   authorId: 'authorId',
-  categoryId: 'categoryId'
+  categoryId: 'categoryId',
+  organizationId: 'organizationId'
 } as const
 
 export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
@@ -180,7 +179,8 @@ export const CategoryScalarFieldEnum = {
   color: 'color',
   sortOrder: 'sortOrder',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  organizationId: 'organizationId'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -190,7 +190,8 @@ export const TagScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  organizationId: 'organizationId'
 } as const
 
 export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
@@ -210,7 +211,8 @@ export const SubscriberScalarFieldEnum = {
   confirmed: 'confirmed',
   confirmToken: 'confirmToken',
   unsubscribedAt: 'unsubscribedAt',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  organizationId: 'organizationId'
 } as const
 
 export type SubscriberScalarFieldEnum = (typeof SubscriberScalarFieldEnum)[keyof typeof SubscriberScalarFieldEnum]
@@ -219,7 +221,8 @@ export type SubscriberScalarFieldEnum = (typeof SubscriberScalarFieldEnum)[keyof
 export const SiteConfigScalarFieldEnum = {
   id: 'id',
   key: 'key',
-  value: 'value'
+  value: 'value',
+  organizationId: 'organizationId'
 } as const
 
 export type SiteConfigScalarFieldEnum = (typeof SiteConfigScalarFieldEnum)[keyof typeof SiteConfigScalarFieldEnum]
@@ -231,7 +234,8 @@ export const PageScalarFieldEnum = {
   slug: 'slug',
   content: 'content',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  organizationId: 'organizationId'
 } as const
 
 export type PageScalarFieldEnum = (typeof PageScalarFieldEnum)[keyof typeof PageScalarFieldEnum]
@@ -247,36 +251,10 @@ export const OrganizationScalarFieldEnum = {
   cnpj: 'cnpj',
   status: 'status',
   createdAt: 'createdAt',
-  metadata: 'metadata',
-  apiUrlContratos: 'apiUrlContratos',
-  apiUrlLicitacoes: 'apiUrlLicitacoes',
-  apiUrlFiscais: 'apiUrlFiscais',
-  apiUrlAditivos: 'apiUrlAditivos',
-  autoLinkFiscais: 'autoLinkFiscais',
-  smtpHost: 'smtpHost',
-  smtpPort: 'smtpPort',
-  smtpUser: 'smtpUser',
-  smtpPass: 'smtpPass',
-  smtpFrom: 'smtpFrom',
-  notifyEmail: 'notifyEmail',
-  lastSyncAt: 'lastSyncAt',
-  lastSyncStatus: 'lastSyncStatus',
-  lastSyncMessage: 'lastSyncMessage'
+  metadata: 'metadata'
 } as const
 
 export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
-
-
-export const ApiSyncLogScalarFieldEnum = {
-  id: 'id',
-  organizationId: 'organizationId',
-  status: 'status',
-  message: 'message',
-  details: 'details',
-  createdAt: 'createdAt'
-} as const
-
-export type ApiSyncLogScalarFieldEnum = (typeof ApiSyncLogScalarFieldEnum)[keyof typeof ApiSyncLogScalarFieldEnum]
 
 
 export const MemberScalarFieldEnum = {
@@ -284,24 +262,12 @@ export const MemberScalarFieldEnum = {
   organizationId: 'organizationId',
   userId: 'userId',
   role: 'role',
-  fiscalCpf: 'fiscalCpf',
-  lotacaoId: 'lotacaoId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  lotacaoId: 'lotacaoId'
 } as const
 
 export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
-
-
-export const LotacaoScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  organizationId: 'organizationId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type LotacaoScalarFieldEnum = (typeof LotacaoScalarFieldEnum)[keyof typeof LotacaoScalarFieldEnum]
 
 
 export const ModuloScalarFieldEnum = {
@@ -439,7 +405,8 @@ export const ArticleOrderByRelevanceFieldEnum = {
   coverImage: 'coverImage',
   status: 'status',
   authorId: 'authorId',
-  categoryId: 'categoryId'
+  categoryId: 'categoryId',
+  organizationId: 'organizationId'
 } as const
 
 export type ArticleOrderByRelevanceFieldEnum = (typeof ArticleOrderByRelevanceFieldEnum)[keyof typeof ArticleOrderByRelevanceFieldEnum]
@@ -450,7 +417,8 @@ export const CategoryOrderByRelevanceFieldEnum = {
   name: 'name',
   slug: 'slug',
   description: 'description',
-  color: 'color'
+  color: 'color',
+  organizationId: 'organizationId'
 } as const
 
 export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevanceFieldEnum)[keyof typeof CategoryOrderByRelevanceFieldEnum]
@@ -459,7 +427,8 @@ export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevance
 export const TagOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
-  slug: 'slug'
+  slug: 'slug',
+  organizationId: 'organizationId'
 } as const
 
 export type TagOrderByRelevanceFieldEnum = (typeof TagOrderByRelevanceFieldEnum)[keyof typeof TagOrderByRelevanceFieldEnum]
@@ -476,7 +445,8 @@ export type ArticleTagOrderByRelevanceFieldEnum = (typeof ArticleTagOrderByRelev
 export const SubscriberOrderByRelevanceFieldEnum = {
   id: 'id',
   email: 'email',
-  confirmToken: 'confirmToken'
+  confirmToken: 'confirmToken',
+  organizationId: 'organizationId'
 } as const
 
 export type SubscriberOrderByRelevanceFieldEnum = (typeof SubscriberOrderByRelevanceFieldEnum)[keyof typeof SubscriberOrderByRelevanceFieldEnum]
@@ -485,7 +455,8 @@ export type SubscriberOrderByRelevanceFieldEnum = (typeof SubscriberOrderByRelev
 export const SiteConfigOrderByRelevanceFieldEnum = {
   id: 'id',
   key: 'key',
-  value: 'value'
+  value: 'value',
+  organizationId: 'organizationId'
 } as const
 
 export type SiteConfigOrderByRelevanceFieldEnum = (typeof SiteConfigOrderByRelevanceFieldEnum)[keyof typeof SiteConfigOrderByRelevanceFieldEnum]
@@ -495,7 +466,8 @@ export const PageOrderByRelevanceFieldEnum = {
   id: 'id',
   title: 'title',
   slug: 'slug',
-  content: 'content'
+  content: 'content',
+  organizationId: 'organizationId'
 } as const
 
 export type PageOrderByRelevanceFieldEnum = (typeof PageOrderByRelevanceFieldEnum)[keyof typeof PageOrderByRelevanceFieldEnum]
@@ -510,52 +482,20 @@ export const OrganizationOrderByRelevanceFieldEnum = {
   telefone: 'telefone',
   cnpj: 'cnpj',
   status: 'status',
-  metadata: 'metadata',
-  apiUrlContratos: 'apiUrlContratos',
-  apiUrlLicitacoes: 'apiUrlLicitacoes',
-  apiUrlFiscais: 'apiUrlFiscais',
-  apiUrlAditivos: 'apiUrlAditivos',
-  smtpHost: 'smtpHost',
-  smtpUser: 'smtpUser',
-  smtpPass: 'smtpPass',
-  smtpFrom: 'smtpFrom',
-  notifyEmail: 'notifyEmail',
-  lastSyncStatus: 'lastSyncStatus',
-  lastSyncMessage: 'lastSyncMessage'
+  metadata: 'metadata'
 } as const
 
 export type OrganizationOrderByRelevanceFieldEnum = (typeof OrganizationOrderByRelevanceFieldEnum)[keyof typeof OrganizationOrderByRelevanceFieldEnum]
-
-
-export const ApiSyncLogOrderByRelevanceFieldEnum = {
-  id: 'id',
-  organizationId: 'organizationId',
-  status: 'status',
-  message: 'message',
-  details: 'details'
-} as const
-
-export type ApiSyncLogOrderByRelevanceFieldEnum = (typeof ApiSyncLogOrderByRelevanceFieldEnum)[keyof typeof ApiSyncLogOrderByRelevanceFieldEnum]
 
 
 export const MemberOrderByRelevanceFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
   userId: 'userId',
-  fiscalCpf: 'fiscalCpf',
   lotacaoId: 'lotacaoId'
 } as const
 
 export type MemberOrderByRelevanceFieldEnum = (typeof MemberOrderByRelevanceFieldEnum)[keyof typeof MemberOrderByRelevanceFieldEnum]
-
-
-export const LotacaoOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name',
-  organizationId: 'organizationId'
-} as const
-
-export type LotacaoOrderByRelevanceFieldEnum = (typeof LotacaoOrderByRelevanceFieldEnum)[keyof typeof LotacaoOrderByRelevanceFieldEnum]
 
 
 export const ModuloOrderByRelevanceFieldEnum = {

@@ -28,18 +28,21 @@ export type SiteConfigMinAggregateOutputType = {
   id: string | null
   key: string | null
   value: string | null
+  organizationId: string | null
 }
 
 export type SiteConfigMaxAggregateOutputType = {
   id: string | null
   key: string | null
   value: string | null
+  organizationId: string | null
 }
 
 export type SiteConfigCountAggregateOutputType = {
   id: number
   key: number
   value: number
+  organizationId: number
   _all: number
 }
 
@@ -48,18 +51,21 @@ export type SiteConfigMinAggregateInputType = {
   id?: true
   key?: true
   value?: true
+  organizationId?: true
 }
 
 export type SiteConfigMaxAggregateInputType = {
   id?: true
   key?: true
   value?: true
+  organizationId?: true
 }
 
 export type SiteConfigCountAggregateInputType = {
   id?: true
   key?: true
   value?: true
+  organizationId?: true
   _all?: true
 }
 
@@ -139,6 +145,7 @@ export type SiteConfigGroupByOutputType = {
   id: string
   key: string
   value: string
+  organizationId: string | null
   _count: SiteConfigCountAggregateOutputType | null
   _min: SiteConfigMinAggregateOutputType | null
   _max: SiteConfigMaxAggregateOutputType | null
@@ -166,28 +173,36 @@ export type SiteConfigWhereInput = {
   id?: Prisma.StringFilter<"SiteConfig"> | string
   key?: Prisma.StringFilter<"SiteConfig"> | string
   value?: Prisma.StringFilter<"SiteConfig"> | string
+  organizationId?: Prisma.StringNullableFilter<"SiteConfig"> | string | null
+  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
 }
 
 export type SiteConfigOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
   value?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  organization?: Prisma.OrganizationOrderByWithRelationInput
   _relevance?: Prisma.SiteConfigOrderByRelevanceInput
 }
 
 export type SiteConfigWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  key?: string
+  key_organizationId?: Prisma.SiteConfigKeyOrganizationIdCompoundUniqueInput
   AND?: Prisma.SiteConfigWhereInput | Prisma.SiteConfigWhereInput[]
   OR?: Prisma.SiteConfigWhereInput[]
   NOT?: Prisma.SiteConfigWhereInput | Prisma.SiteConfigWhereInput[]
+  key?: Prisma.StringFilter<"SiteConfig"> | string
   value?: Prisma.StringFilter<"SiteConfig"> | string
-}, "id" | "key">
+  organizationId?: Prisma.StringNullableFilter<"SiteConfig"> | string | null
+  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
+}, "id" | "key_organizationId">
 
 export type SiteConfigOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
   value?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SiteConfigCountOrderByAggregateInput
   _max?: Prisma.SiteConfigMaxOrderByAggregateInput
   _min?: Prisma.SiteConfigMinOrderByAggregateInput
@@ -200,36 +215,42 @@ export type SiteConfigScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"SiteConfig"> | string
   key?: Prisma.StringWithAggregatesFilter<"SiteConfig"> | string
   value?: Prisma.StringWithAggregatesFilter<"SiteConfig"> | string
+  organizationId?: Prisma.StringNullableWithAggregatesFilter<"SiteConfig"> | string | null
 }
 
 export type SiteConfigCreateInput = {
   id?: string
   key: string
   value: string
+  organization?: Prisma.OrganizationCreateNestedOneWithoutSiteConfigsInput
 }
 
 export type SiteConfigUncheckedCreateInput = {
   id?: string
   key: string
   value: string
+  organizationId?: string | null
 }
 
 export type SiteConfigUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   value?: Prisma.StringFieldUpdateOperationsInput | string
+  organization?: Prisma.OrganizationUpdateOneWithoutSiteConfigsNestedInput
 }
 
 export type SiteConfigUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   value?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SiteConfigCreateManyInput = {
   id?: string
   key: string
   value: string
+  organizationId?: string | null
 }
 
 export type SiteConfigUpdateManyMutationInput = {
@@ -242,6 +263,7 @@ export type SiteConfigUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   value?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SiteConfigOrderByRelevanceInput = {
@@ -250,22 +272,154 @@ export type SiteConfigOrderByRelevanceInput = {
   search: string
 }
 
+export type SiteConfigKeyOrganizationIdCompoundUniqueInput = {
+  key: string
+  organizationId: string
+}
+
 export type SiteConfigCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
   value?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
 }
 
 export type SiteConfigMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
   value?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
 }
 
 export type SiteConfigMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
   value?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+}
+
+export type SiteConfigListRelationFilter = {
+  every?: Prisma.SiteConfigWhereInput
+  some?: Prisma.SiteConfigWhereInput
+  none?: Prisma.SiteConfigWhereInput
+}
+
+export type SiteConfigOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type SiteConfigCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.SiteConfigCreateWithoutOrganizationInput, Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput> | Prisma.SiteConfigCreateWithoutOrganizationInput[] | Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.SiteConfigCreateOrConnectWithoutOrganizationInput | Prisma.SiteConfigCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.SiteConfigCreateManyOrganizationInputEnvelope
+  connect?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+}
+
+export type SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.SiteConfigCreateWithoutOrganizationInput, Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput> | Prisma.SiteConfigCreateWithoutOrganizationInput[] | Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.SiteConfigCreateOrConnectWithoutOrganizationInput | Prisma.SiteConfigCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.SiteConfigCreateManyOrganizationInputEnvelope
+  connect?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+}
+
+export type SiteConfigUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.SiteConfigCreateWithoutOrganizationInput, Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput> | Prisma.SiteConfigCreateWithoutOrganizationInput[] | Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.SiteConfigCreateOrConnectWithoutOrganizationInput | Prisma.SiteConfigCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.SiteConfigUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.SiteConfigUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.SiteConfigCreateManyOrganizationInputEnvelope
+  set?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+  disconnect?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+  delete?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+  connect?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+  update?: Prisma.SiteConfigUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.SiteConfigUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.SiteConfigUpdateManyWithWhereWithoutOrganizationInput | Prisma.SiteConfigUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.SiteConfigScalarWhereInput | Prisma.SiteConfigScalarWhereInput[]
+}
+
+export type SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.SiteConfigCreateWithoutOrganizationInput, Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput> | Prisma.SiteConfigCreateWithoutOrganizationInput[] | Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.SiteConfigCreateOrConnectWithoutOrganizationInput | Prisma.SiteConfigCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.SiteConfigUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.SiteConfigUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.SiteConfigCreateManyOrganizationInputEnvelope
+  set?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+  disconnect?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+  delete?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+  connect?: Prisma.SiteConfigWhereUniqueInput | Prisma.SiteConfigWhereUniqueInput[]
+  update?: Prisma.SiteConfigUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.SiteConfigUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.SiteConfigUpdateManyWithWhereWithoutOrganizationInput | Prisma.SiteConfigUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.SiteConfigScalarWhereInput | Prisma.SiteConfigScalarWhereInput[]
+}
+
+export type SiteConfigCreateWithoutOrganizationInput = {
+  id?: string
+  key: string
+  value: string
+}
+
+export type SiteConfigUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  key: string
+  value: string
+}
+
+export type SiteConfigCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.SiteConfigWhereUniqueInput
+  create: Prisma.XOR<Prisma.SiteConfigCreateWithoutOrganizationInput, Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput>
+}
+
+export type SiteConfigCreateManyOrganizationInputEnvelope = {
+  data: Prisma.SiteConfigCreateManyOrganizationInput | Prisma.SiteConfigCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type SiteConfigUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.SiteConfigWhereUniqueInput
+  update: Prisma.XOR<Prisma.SiteConfigUpdateWithoutOrganizationInput, Prisma.SiteConfigUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.SiteConfigCreateWithoutOrganizationInput, Prisma.SiteConfigUncheckedCreateWithoutOrganizationInput>
+}
+
+export type SiteConfigUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.SiteConfigWhereUniqueInput
+  data: Prisma.XOR<Prisma.SiteConfigUpdateWithoutOrganizationInput, Prisma.SiteConfigUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type SiteConfigUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.SiteConfigScalarWhereInput
+  data: Prisma.XOR<Prisma.SiteConfigUpdateManyMutationInput, Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type SiteConfigScalarWhereInput = {
+  AND?: Prisma.SiteConfigScalarWhereInput | Prisma.SiteConfigScalarWhereInput[]
+  OR?: Prisma.SiteConfigScalarWhereInput[]
+  NOT?: Prisma.SiteConfigScalarWhereInput | Prisma.SiteConfigScalarWhereInput[]
+  id?: Prisma.StringFilter<"SiteConfig"> | string
+  key?: Prisma.StringFilter<"SiteConfig"> | string
+  value?: Prisma.StringFilter<"SiteConfig"> | string
+  organizationId?: Prisma.StringNullableFilter<"SiteConfig"> | string | null
+}
+
+export type SiteConfigCreateManyOrganizationInput = {
+  id?: string
+  key: string
+  value: string
+}
+
+export type SiteConfigUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  value?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type SiteConfigUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  value?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type SiteConfigUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  value?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -274,6 +428,8 @@ export type SiteConfigSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   key?: boolean
   value?: boolean
+  organizationId?: boolean
+  organization?: boolean | Prisma.SiteConfig$organizationArgs<ExtArgs>
 }, ExtArgs["result"]["siteConfig"]>
 
 
@@ -282,17 +438,24 @@ export type SiteConfigSelectScalar = {
   id?: boolean
   key?: boolean
   value?: boolean
+  organizationId?: boolean
 }
 
-export type SiteConfigOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "value", ExtArgs["result"]["siteConfig"]>
+export type SiteConfigOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "value" | "organizationId", ExtArgs["result"]["siteConfig"]>
+export type SiteConfigInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.SiteConfig$organizationArgs<ExtArgs>
+}
 
 export type $SiteConfigPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SiteConfig"
-  objects: {}
+  objects: {
+    organization: Prisma.$OrganizationPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     key: string
     value: string
+    organizationId: string | null
   }, ExtArgs["result"]["siteConfig"]>
   composites: {}
 }
@@ -633,6 +796,7 @@ readonly fields: SiteConfigFieldRefs;
  */
 export interface Prisma__SiteConfigClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  organization<T extends Prisma.SiteConfig$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SiteConfig$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -665,6 +829,7 @@ export interface SiteConfigFieldRefs {
   readonly id: Prisma.FieldRef<"SiteConfig", 'String'>
   readonly key: Prisma.FieldRef<"SiteConfig", 'String'>
   readonly value: Prisma.FieldRef<"SiteConfig", 'String'>
+  readonly organizationId: Prisma.FieldRef<"SiteConfig", 'String'>
 }
     
 
@@ -681,6 +846,10 @@ export type SiteConfigFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the SiteConfig
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
   /**
    * Filter, which SiteConfig to fetch.
    */
@@ -700,6 +869,10 @@ export type SiteConfigFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
+  /**
    * Filter, which SiteConfig to fetch.
    */
   where: Prisma.SiteConfigWhereUniqueInput
@@ -717,6 +890,10 @@ export type SiteConfigFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the SiteConfig
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
   /**
    * Filter, which SiteConfig to fetch.
    */
@@ -766,6 +943,10 @@ export type SiteConfigFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
+  /**
    * Filter, which SiteConfig to fetch.
    */
   where?: Prisma.SiteConfigWhereInput
@@ -813,6 +994,10 @@ export type SiteConfigFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the SiteConfig
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
   /**
    * Filter, which SiteConfigs to fetch.
    */
@@ -862,6 +1047,10 @@ export type SiteConfigCreateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
+  /**
    * The data needed to create a SiteConfig.
    */
   data: Prisma.XOR<Prisma.SiteConfigCreateInput, Prisma.SiteConfigUncheckedCreateInput>
@@ -890,6 +1079,10 @@ export type SiteConfigUpdateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the SiteConfig
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
   /**
    * The data needed to update a SiteConfig.
    */
@@ -931,6 +1124,10 @@ export type SiteConfigUpsertArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
+  /**
    * The filter to search for the SiteConfig to update in case it exists.
    */
   where: Prisma.SiteConfigWhereUniqueInput
@@ -957,6 +1154,10 @@ export type SiteConfigDeleteArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
+  /**
    * Filter which SiteConfig to delete.
    */
   where: Prisma.SiteConfigWhereUniqueInput
@@ -977,6 +1178,25 @@ export type SiteConfigDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * SiteConfig.organization
+ */
+export type SiteConfig$organizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Organization
+   */
+  select?: Prisma.OrganizationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Organization
+   */
+  omit?: Prisma.OrganizationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationInclude<ExtArgs> | null
+  where?: Prisma.OrganizationWhereInput
+}
+
+/**
  * SiteConfig without action
  */
 export type SiteConfigDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -988,4 +1208,8 @@ export type SiteConfigDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the SiteConfig
    */
   omit?: Prisma.SiteConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteConfigInclude<ExtArgs> | null
 }

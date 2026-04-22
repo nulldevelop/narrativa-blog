@@ -6,7 +6,7 @@
 
 @theme inline {
   --font-heading: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-body: var(--font-body), system-ui, sans-serif;
 
   --color-narrativa-preto: #0B0B0B;
   --color-narrativa-vermelho: #B11226;
@@ -97,7 +97,7 @@
   }
   body {
     @apply bg-narrativa-branco text-narrativa-preto antialiased text-justify;
-    font-family: var(--font-body), 'Segoe UI', system-ui, sans-serif;
+    font-family: var(--font-body), system-ui, sans-serif;
     line-height: 1.7;
   }
   html {
@@ -111,13 +111,8 @@
     display: block;
     max-width: 100%;
   }
-  h1 {
-    font-family: var(--font-playfair), Georgia, serif;
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-  }
-  h2, h3, h4 {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.01em;
@@ -193,4 +188,130 @@
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.02);
+}
+
+/* Custom Prose Theme for Editorial Look */
+.prose-narrativa {
+  --tw-prose-body: #3A3A3A;
+  --tw-prose-headings: #0B0B0B;
+  --tw-prose-links: #B11226;
+  --tw-prose-bold: #0B0B0B;
+  --tw-prose-counters: #B11226;
+  --tw-prose-bullets: #D0CCC4;
+  --tw-prose-hr: #D0CCC4;
+  --tw-prose-quotes: #0B0B0B;
+  --tw-prose-quote-borders: #B11226;
+  --tw-prose-captions: #777;
+  --tw-prose-code: #0B0B0B;
+  --tw-prose-pre-code: #F5F4F0;
+  --tw-prose-pre-bg: #0B0B0B;
+  --tw-prose-th-borders: #D0CCC4;
+  --tw-prose-td-borders: #D0CCC4;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.prose-narrativa p {
+  margin-bottom: 1.75em;
+  letter-spacing: -0.003em;
+}
+
+.prose-narrativa h1, 
+.prose-narrativa h2, 
+.prose-narrativa h3, 
+.prose-narrativa h4 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.prose-narrativa h2 {
+  font-size: 2rem;
+  border-bottom: 2px solid #B11226;
+  padding-bottom: 0.2em;
+  display: inline-block;
+  margin-bottom: 1.2em;
+}
+
+.prose-narrativa blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  border-left: 4px solid #B11226;
+  padding: 2rem 2.5rem;
+  margin: 3rem 0;
+  color: #1a1a1a;
+  background-color: #F9F8F6;
+  position: relative;
+}
+
+.prose-narrativa blockquote::before {
+  content: '\201C';
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: #B11226;
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+  opacity: 0.2;
+}
+
+.prose-narrativa blockquote p:first-of-type::before {
+  content: none;
+}
+
+.prose-narrativa blockquote p:last-of-type::after {
+  content: none;
+}
+
+.prose-narrativa img {
+  border-radius: 2px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin: 3.5rem 0;
+  width: 100%;
+}
+
+.prose-narrativa hr {
+  margin: 4.5rem 0;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, #B11226, transparent);
+  opacity: 0.3;
+}
+
+.prose-narrativa strong {
+  font-weight: 800;
+  color: #000;
+}
+
+.prose-narrativa a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(177, 18, 38, 0.3);
+  transition: all 0.3s;
+}
+
+.prose-narrativa a:hover {
+  text-decoration-color: rgba(177, 18, 38, 1);
+  background-color: rgba(177, 18, 38, 0.05);
+}
+
+.prose-narrativa ul, .prose-narrativa ol {
+  margin-bottom: 2em;
+  padding-left: 1.5em;
+}
+
+.prose-narrativa li {
+  margin-bottom: 0.8em;
+}
+
+.prose-narrativa li::marker {
+  color: #B11226;
+  font-weight: bold;
 }

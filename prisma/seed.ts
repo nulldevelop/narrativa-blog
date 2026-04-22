@@ -51,22 +51,28 @@ async function main() {
 
   console.log('✅ Módulos do sistema criados.')
 
-  // 3. Criar Lotação Padrão
-  await prisma.lotacao.upsert({
-    where: {
-      organizationId_name: {
-        organizationId: organization.id,
-        name: 'Redação Central',
-      },
-    },
-    update: {},
-    create: {
-      name: 'Redação Central',
-      organizationId: organization.id,
-    },
-  })
+  // 4. Criar Categorias Editoriais (ESSENCIAL para as matérias)
+  const categoriasEditoriais = [
+    { name: 'Política', slug: 'politica' },
+    { name: 'Paraná', slug: 'parana' },
+    { name: 'Brasil', slug: 'brasil' },
+    { name: 'Curitiba', slug: 'curitiba' },
+    { name: 'Bastidores', slug: 'bastidores' },
+  ]
 
-  console.log('✅ Lotação inicial criada.')
+  for (const cat of categoriasEditoriais) {
+    await prisma.category.upsert({
+      where: { slug: cat.slug },
+      update: {},
+      create: {
+        name: cat.name,
+        slug: cat.slug,
+        organizationId: organization.id,
+      },
+    })
+  }
+
+  console.log('✅ Categorias editoriais criadas.')
   console.log('✨ Seed finalizado com sucesso!')
 }
 

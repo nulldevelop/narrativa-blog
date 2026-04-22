@@ -78,20 +78,10 @@ export type Page = Prisma.PageModel
  */
 export type Organization = Prisma.OrganizationModel
 /**
- * Model ApiSyncLog
- * 
- */
-export type ApiSyncLog = Prisma.ApiSyncLogModel
-/**
  * Model Member
  * 
  */
 export type Member = Prisma.MemberModel
-/**
- * Model Lotacao
- * 
- */
-export type Lotacao = Prisma.LotacaoModel
 /**
  * Model Modulo
  * 

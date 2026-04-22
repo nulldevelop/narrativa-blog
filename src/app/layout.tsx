@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
+import { Toaster } from 'sonner'
 import './styles/globals.css'
 
 const playfair = Playfair_Display({
@@ -36,7 +37,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${playfair.variable} ${inter.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toaster position="top-right" richColors />
+      </body>
     </html>
   )
 }

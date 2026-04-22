@@ -29,10 +29,9 @@ export type MemberMinAggregateOutputType = {
   organizationId: string | null
   userId: string | null
   role: $Enums.ROLES | null
-  fiscalCpf: string | null
-  lotacaoId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  lotacaoId: string | null
 }
 
 export type MemberMaxAggregateOutputType = {
@@ -40,10 +39,9 @@ export type MemberMaxAggregateOutputType = {
   organizationId: string | null
   userId: string | null
   role: $Enums.ROLES | null
-  fiscalCpf: string | null
-  lotacaoId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  lotacaoId: string | null
 }
 
 export type MemberCountAggregateOutputType = {
@@ -51,10 +49,9 @@ export type MemberCountAggregateOutputType = {
   organizationId: number
   userId: number
   role: number
-  fiscalCpf: number
-  lotacaoId: number
   createdAt: number
   updatedAt: number
+  lotacaoId: number
   _all: number
 }
 
@@ -64,10 +61,9 @@ export type MemberMinAggregateInputType = {
   organizationId?: true
   userId?: true
   role?: true
-  fiscalCpf?: true
-  lotacaoId?: true
   createdAt?: true
   updatedAt?: true
+  lotacaoId?: true
 }
 
 export type MemberMaxAggregateInputType = {
@@ -75,10 +71,9 @@ export type MemberMaxAggregateInputType = {
   organizationId?: true
   userId?: true
   role?: true
-  fiscalCpf?: true
-  lotacaoId?: true
   createdAt?: true
   updatedAt?: true
+  lotacaoId?: true
 }
 
 export type MemberCountAggregateInputType = {
@@ -86,10 +81,9 @@ export type MemberCountAggregateInputType = {
   organizationId?: true
   userId?: true
   role?: true
-  fiscalCpf?: true
-  lotacaoId?: true
   createdAt?: true
   updatedAt?: true
+  lotacaoId?: true
   _all?: true
 }
 
@@ -170,10 +164,9 @@ export type MemberGroupByOutputType = {
   organizationId: string
   userId: string
   role: $Enums.ROLES
-  fiscalCpf: string | null
-  lotacaoId: string | null
   createdAt: Date
   updatedAt: Date
+  lotacaoId: string | null
   _count: MemberCountAggregateOutputType | null
   _min: MemberMinAggregateOutputType | null
   _max: MemberMaxAggregateOutputType | null
@@ -202,13 +195,11 @@ export type MemberWhereInput = {
   organizationId?: Prisma.StringFilter<"Member"> | string
   userId?: Prisma.StringFilter<"Member"> | string
   role?: Prisma.EnumROLESFilter<"Member"> | $Enums.ROLES
-  fiscalCpf?: Prisma.StringNullableFilter<"Member"> | string | null
-  lotacaoId?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  lotacaoId?: Prisma.StringNullableFilter<"Member"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  lotacao?: Prisma.XOR<Prisma.LotacaoNullableScalarRelationFilter, Prisma.LotacaoWhereInput> | null
   permissions?: Prisma.MemberPermissionListRelationFilter
 }
 
@@ -217,13 +208,11 @@ export type MemberOrderByWithRelationInput = {
   organizationId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  fiscalCpf?: Prisma.SortOrderInput | Prisma.SortOrder
-  lotacaoId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lotacaoId?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
-  lotacao?: Prisma.LotacaoOrderByWithRelationInput
   permissions?: Prisma.MemberPermissionOrderByRelationAggregateInput
   _relevance?: Prisma.MemberOrderByRelevanceInput
 }
@@ -237,13 +226,11 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   organizationId?: Prisma.StringFilter<"Member"> | string
   userId?: Prisma.StringFilter<"Member"> | string
   role?: Prisma.EnumROLESFilter<"Member"> | $Enums.ROLES
-  fiscalCpf?: Prisma.StringNullableFilter<"Member"> | string | null
-  lotacaoId?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  lotacaoId?: Prisma.StringNullableFilter<"Member"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  lotacao?: Prisma.XOR<Prisma.LotacaoNullableScalarRelationFilter, Prisma.LotacaoWhereInput> | null
   permissions?: Prisma.MemberPermissionListRelationFilter
 }, "id" | "userId_organizationId">
 
@@ -252,10 +239,9 @@ export type MemberOrderByWithAggregationInput = {
   organizationId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  fiscalCpf?: Prisma.SortOrderInput | Prisma.SortOrder
-  lotacaoId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lotacaoId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MemberCountOrderByAggregateInput
   _max?: Prisma.MemberMaxOrderByAggregateInput
   _min?: Prisma.MemberMinOrderByAggregateInput
@@ -269,21 +255,19 @@ export type MemberScalarWhereWithAggregatesInput = {
   organizationId?: Prisma.StringWithAggregatesFilter<"Member"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Member"> | string
   role?: Prisma.EnumROLESWithAggregatesFilter<"Member"> | $Enums.ROLES
-  fiscalCpf?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
-  lotacaoId?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Member"> | Date | string
+  lotacaoId?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
 }
 
 export type MemberCreateInput = {
   id?: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
   user: Prisma.UserCreateNestedOneWithoutMembersInput
-  lotacao?: Prisma.LotacaoCreateNestedOneWithoutMembersInput
   permissions?: Prisma.MemberPermissionCreateNestedManyWithoutMemberInput
 }
 
@@ -292,22 +276,20 @@ export type MemberUncheckedCreateInput = {
   organizationId: string
   userId: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  lotacaoId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
   permissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutMembersNestedInput
-  lotacao?: Prisma.LotacaoUpdateOneWithoutMembersNestedInput
   permissions?: Prisma.MemberPermissionUpdateManyWithoutMemberNestedInput
 }
 
@@ -316,10 +298,9 @@ export type MemberUncheckedUpdateInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutMemberNestedInput
 }
 
@@ -328,18 +309,17 @@ export type MemberCreateManyInput = {
   organizationId: string
   userId: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  lotacaoId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
 }
 
 export type MemberUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MemberUncheckedUpdateManyInput = {
@@ -347,10 +327,9 @@ export type MemberUncheckedUpdateManyInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MemberListRelationFilter = {
@@ -379,10 +358,9 @@ export type MemberCountOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  fiscalCpf?: Prisma.SortOrder
-  lotacaoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lotacaoId?: Prisma.SortOrder
 }
 
 export type MemberMaxOrderByAggregateInput = {
@@ -390,10 +368,9 @@ export type MemberMaxOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  fiscalCpf?: Prisma.SortOrder
-  lotacaoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lotacaoId?: Prisma.SortOrder
 }
 
 export type MemberMinOrderByAggregateInput = {
@@ -401,10 +378,9 @@ export type MemberMinOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  fiscalCpf?: Prisma.SortOrder
-  lotacaoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lotacaoId?: Prisma.SortOrder
 }
 
 export type MemberScalarRelationFilter = {
@@ -496,48 +472,6 @@ export type MemberUncheckedUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
 }
 
-export type MemberCreateNestedManyWithoutLotacaoInput = {
-  create?: Prisma.XOR<Prisma.MemberCreateWithoutLotacaoInput, Prisma.MemberUncheckedCreateWithoutLotacaoInput> | Prisma.MemberCreateWithoutLotacaoInput[] | Prisma.MemberUncheckedCreateWithoutLotacaoInput[]
-  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutLotacaoInput | Prisma.MemberCreateOrConnectWithoutLotacaoInput[]
-  createMany?: Prisma.MemberCreateManyLotacaoInputEnvelope
-  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-}
-
-export type MemberUncheckedCreateNestedManyWithoutLotacaoInput = {
-  create?: Prisma.XOR<Prisma.MemberCreateWithoutLotacaoInput, Prisma.MemberUncheckedCreateWithoutLotacaoInput> | Prisma.MemberCreateWithoutLotacaoInput[] | Prisma.MemberUncheckedCreateWithoutLotacaoInput[]
-  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutLotacaoInput | Prisma.MemberCreateOrConnectWithoutLotacaoInput[]
-  createMany?: Prisma.MemberCreateManyLotacaoInputEnvelope
-  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-}
-
-export type MemberUpdateManyWithoutLotacaoNestedInput = {
-  create?: Prisma.XOR<Prisma.MemberCreateWithoutLotacaoInput, Prisma.MemberUncheckedCreateWithoutLotacaoInput> | Prisma.MemberCreateWithoutLotacaoInput[] | Prisma.MemberUncheckedCreateWithoutLotacaoInput[]
-  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutLotacaoInput | Prisma.MemberCreateOrConnectWithoutLotacaoInput[]
-  upsert?: Prisma.MemberUpsertWithWhereUniqueWithoutLotacaoInput | Prisma.MemberUpsertWithWhereUniqueWithoutLotacaoInput[]
-  createMany?: Prisma.MemberCreateManyLotacaoInputEnvelope
-  set?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-  disconnect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-  delete?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-  update?: Prisma.MemberUpdateWithWhereUniqueWithoutLotacaoInput | Prisma.MemberUpdateWithWhereUniqueWithoutLotacaoInput[]
-  updateMany?: Prisma.MemberUpdateManyWithWhereWithoutLotacaoInput | Prisma.MemberUpdateManyWithWhereWithoutLotacaoInput[]
-  deleteMany?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
-}
-
-export type MemberUncheckedUpdateManyWithoutLotacaoNestedInput = {
-  create?: Prisma.XOR<Prisma.MemberCreateWithoutLotacaoInput, Prisma.MemberUncheckedCreateWithoutLotacaoInput> | Prisma.MemberCreateWithoutLotacaoInput[] | Prisma.MemberUncheckedCreateWithoutLotacaoInput[]
-  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutLotacaoInput | Prisma.MemberCreateOrConnectWithoutLotacaoInput[]
-  upsert?: Prisma.MemberUpsertWithWhereUniqueWithoutLotacaoInput | Prisma.MemberUpsertWithWhereUniqueWithoutLotacaoInput[]
-  createMany?: Prisma.MemberCreateManyLotacaoInputEnvelope
-  set?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-  disconnect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-  delete?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
-  update?: Prisma.MemberUpdateWithWhereUniqueWithoutLotacaoInput | Prisma.MemberUpdateWithWhereUniqueWithoutLotacaoInput[]
-  updateMany?: Prisma.MemberUpdateManyWithWhereWithoutLotacaoInput | Prisma.MemberUpdateManyWithWhereWithoutLotacaoInput[]
-  deleteMany?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
-}
-
 export type MemberCreateNestedOneWithoutPermissionsInput = {
   create?: Prisma.XOR<Prisma.MemberCreateWithoutPermissionsInput, Prisma.MemberUncheckedCreateWithoutPermissionsInput>
   connectOrCreate?: Prisma.MemberCreateOrConnectWithoutPermissionsInput
@@ -555,11 +489,10 @@ export type MemberUpdateOneRequiredWithoutPermissionsNestedInput = {
 export type MemberCreateWithoutUserInput = {
   id?: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
-  lotacao?: Prisma.LotacaoCreateNestedOneWithoutMembersInput
   permissions?: Prisma.MemberPermissionCreateNestedManyWithoutMemberInput
 }
 
@@ -567,10 +500,9 @@ export type MemberUncheckedCreateWithoutUserInput = {
   id?: string
   organizationId: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  lotacaoId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
   permissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutMemberInput
 }
 
@@ -608,20 +540,18 @@ export type MemberScalarWhereInput = {
   organizationId?: Prisma.StringFilter<"Member"> | string
   userId?: Prisma.StringFilter<"Member"> | string
   role?: Prisma.EnumROLESFilter<"Member"> | $Enums.ROLES
-  fiscalCpf?: Prisma.StringNullableFilter<"Member"> | string | null
-  lotacaoId?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  lotacaoId?: Prisma.StringNullableFilter<"Member"> | string | null
 }
 
 export type MemberCreateWithoutOrganizationInput = {
   id?: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
   user: Prisma.UserCreateNestedOneWithoutMembersInput
-  lotacao?: Prisma.LotacaoCreateNestedOneWithoutMembersInput
   permissions?: Prisma.MemberPermissionCreateNestedManyWithoutMemberInput
 }
 
@@ -629,10 +559,9 @@ export type MemberUncheckedCreateWithoutOrganizationInput = {
   id?: string
   userId: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  lotacaoId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
   permissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutMemberInput
 }
 
@@ -662,63 +591,14 @@ export type MemberUpdateManyWithWhereWithoutOrganizationInput = {
   data: Prisma.XOR<Prisma.MemberUpdateManyMutationInput, Prisma.MemberUncheckedUpdateManyWithoutOrganizationInput>
 }
 
-export type MemberCreateWithoutLotacaoInput = {
-  id?: string
-  role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
-  user: Prisma.UserCreateNestedOneWithoutMembersInput
-  permissions?: Prisma.MemberPermissionCreateNestedManyWithoutMemberInput
-}
-
-export type MemberUncheckedCreateWithoutLotacaoInput = {
-  id?: string
-  organizationId: string
-  userId: string
-  role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  permissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutMemberInput
-}
-
-export type MemberCreateOrConnectWithoutLotacaoInput = {
-  where: Prisma.MemberWhereUniqueInput
-  create: Prisma.XOR<Prisma.MemberCreateWithoutLotacaoInput, Prisma.MemberUncheckedCreateWithoutLotacaoInput>
-}
-
-export type MemberCreateManyLotacaoInputEnvelope = {
-  data: Prisma.MemberCreateManyLotacaoInput | Prisma.MemberCreateManyLotacaoInput[]
-  skipDuplicates?: boolean
-}
-
-export type MemberUpsertWithWhereUniqueWithoutLotacaoInput = {
-  where: Prisma.MemberWhereUniqueInput
-  update: Prisma.XOR<Prisma.MemberUpdateWithoutLotacaoInput, Prisma.MemberUncheckedUpdateWithoutLotacaoInput>
-  create: Prisma.XOR<Prisma.MemberCreateWithoutLotacaoInput, Prisma.MemberUncheckedCreateWithoutLotacaoInput>
-}
-
-export type MemberUpdateWithWhereUniqueWithoutLotacaoInput = {
-  where: Prisma.MemberWhereUniqueInput
-  data: Prisma.XOR<Prisma.MemberUpdateWithoutLotacaoInput, Prisma.MemberUncheckedUpdateWithoutLotacaoInput>
-}
-
-export type MemberUpdateManyWithWhereWithoutLotacaoInput = {
-  where: Prisma.MemberScalarWhereInput
-  data: Prisma.XOR<Prisma.MemberUpdateManyMutationInput, Prisma.MemberUncheckedUpdateManyWithoutLotacaoInput>
-}
-
 export type MemberCreateWithoutPermissionsInput = {
   id?: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
   user: Prisma.UserCreateNestedOneWithoutMembersInput
-  lotacao?: Prisma.LotacaoCreateNestedOneWithoutMembersInput
 }
 
 export type MemberUncheckedCreateWithoutPermissionsInput = {
@@ -726,10 +606,9 @@ export type MemberUncheckedCreateWithoutPermissionsInput = {
   organizationId: string
   userId: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  lotacaoId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
 }
 
 export type MemberCreateOrConnectWithoutPermissionsInput = {
@@ -751,12 +630,11 @@ export type MemberUpdateToOneWithWhereWithoutPermissionsInput = {
 export type MemberUpdateWithoutPermissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutMembersNestedInput
-  lotacao?: Prisma.LotacaoUpdateOneWithoutMembersNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutPermissionsInput = {
@@ -764,30 +642,27 @@ export type MemberUncheckedUpdateWithoutPermissionsInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MemberCreateManyUserInput = {
   id?: string
   organizationId: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  lotacaoId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
 }
 
 export type MemberUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
-  lotacao?: Prisma.LotacaoUpdateOneWithoutMembersNestedInput
   permissions?: Prisma.MemberPermissionUpdateManyWithoutMemberNestedInput
 }
 
@@ -795,10 +670,9 @@ export type MemberUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutMemberNestedInput
 }
 
@@ -806,30 +680,27 @@ export type MemberUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MemberCreateManyOrganizationInput = {
   id?: string
   userId: string
   role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  lotacaoId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lotacaoId?: string | null
 }
 
 export type MemberUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutMembersNestedInput
-  lotacao?: Prisma.LotacaoUpdateOneWithoutMembersNestedInput
   permissions?: Prisma.MemberPermissionUpdateManyWithoutMemberNestedInput
 }
 
@@ -837,10 +708,9 @@ export type MemberUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutMemberNestedInput
 }
 
@@ -848,52 +718,9 @@ export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lotacaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type MemberCreateManyLotacaoInput = {
-  id?: string
-  organizationId: string
-  userId: string
-  role?: $Enums.ROLES
-  fiscalCpf?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type MemberUpdateWithoutLotacaoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutMembersNestedInput
-  permissions?: Prisma.MemberPermissionUpdateManyWithoutMemberNestedInput
-}
-
-export type MemberUncheckedUpdateWithoutLotacaoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  permissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutMemberNestedInput
-}
-
-export type MemberUncheckedUpdateManyWithoutLotacaoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumROLESFieldUpdateOperationsInput | $Enums.ROLES
-  fiscalCpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -932,13 +759,11 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   organizationId?: boolean
   userId?: boolean
   role?: boolean
-  fiscalCpf?: boolean
-  lotacaoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  lotacaoId?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  lotacao?: boolean | Prisma.Member$lotacaoArgs<ExtArgs>
   permissions?: boolean | Prisma.Member$permissionsArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
@@ -950,17 +775,15 @@ export type MemberSelectScalar = {
   organizationId?: boolean
   userId?: boolean
   role?: boolean
-  fiscalCpf?: boolean
-  lotacaoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  lotacaoId?: boolean
 }
 
-export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "userId" | "role" | "fiscalCpf" | "lotacaoId" | "createdAt" | "updatedAt", ExtArgs["result"]["member"]>
+export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "userId" | "role" | "createdAt" | "updatedAt" | "lotacaoId", ExtArgs["result"]["member"]>
 export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  lotacao?: boolean | Prisma.Member$lotacaoArgs<ExtArgs>
   permissions?: boolean | Prisma.Member$permissionsArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -970,7 +793,6 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
-    lotacao: Prisma.$LotacaoPayload<ExtArgs> | null
     permissions: Prisma.$MemberPermissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -978,10 +800,9 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     organizationId: string
     userId: string
     role: $Enums.ROLES
-    fiscalCpf: string | null
-    lotacaoId: string | null
     createdAt: Date
     updatedAt: Date
+    lotacaoId: string | null
   }, ExtArgs["result"]["member"]>
   composites: {}
 }
@@ -1324,7 +1145,6 @@ export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  lotacao<T extends Prisma.Member$lotacaoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$lotacaoArgs<ExtArgs>>): Prisma.Prisma__LotacaoClient<runtime.Types.Result.GetResult<Prisma.$LotacaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   permissions<T extends Prisma.Member$permissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1359,10 +1179,9 @@ export interface MemberFieldRefs {
   readonly organizationId: Prisma.FieldRef<"Member", 'String'>
   readonly userId: Prisma.FieldRef<"Member", 'String'>
   readonly role: Prisma.FieldRef<"Member", 'ROLES'>
-  readonly fiscalCpf: Prisma.FieldRef<"Member", 'String'>
-  readonly lotacaoId: Prisma.FieldRef<"Member", 'String'>
   readonly createdAt: Prisma.FieldRef<"Member", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Member", 'DateTime'>
+  readonly lotacaoId: Prisma.FieldRef<"Member", 'String'>
 }
     
 
@@ -1708,25 +1527,6 @@ export type MemberDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Members to delete.
    */
   limit?: number
-}
-
-/**
- * Member.lotacao
- */
-export type Member$lotacaoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Lotacao
-   */
-  select?: Prisma.LotacaoSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Lotacao
-   */
-  omit?: Prisma.LotacaoOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LotacaoInclude<ExtArgs> | null
-  where?: Prisma.LotacaoWhereInput
 }
 
 /**

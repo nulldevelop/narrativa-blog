@@ -182,8 +182,8 @@ export type ModuloWhereInput = {
   organizationId?: Prisma.StringFilter<"Modulo"> | string
   createdAt?: Prisma.DateTimeFilter<"Modulo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Modulo"> | Date | string
-  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   permissions?: Prisma.MemberPermissionListRelationFilter
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }
 
 export type ModuloOrderByWithRelationInput = {
@@ -192,8 +192,8 @@ export type ModuloOrderByWithRelationInput = {
   organizationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  organization?: Prisma.OrganizationOrderByWithRelationInput
   permissions?: Prisma.MemberPermissionOrderByRelationAggregateInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
   _relevance?: Prisma.ModuloOrderByRelevanceInput
 }
 
@@ -207,8 +207,8 @@ export type ModuloWhereUniqueInput = Prisma.AtLeast<{
   organizationId?: Prisma.StringFilter<"Modulo"> | string
   createdAt?: Prisma.DateTimeFilter<"Modulo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Modulo"> | Date | string
-  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   permissions?: Prisma.MemberPermissionListRelationFilter
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }, "id" | "organizationId_key">
 
 export type ModuloOrderByWithAggregationInput = {
@@ -238,8 +238,8 @@ export type ModuloCreateInput = {
   key: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  organization: Prisma.OrganizationCreateNestedOneWithoutModulosInput
   permissions?: Prisma.MemberPermissionCreateNestedManyWithoutModuloInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutModulosInput
 }
 
 export type ModuloUncheckedCreateInput = {
@@ -256,8 +256,8 @@ export type ModuloUpdateInput = {
   key?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutModulosNestedInput
   permissions?: Prisma.MemberPermissionUpdateManyWithoutModuloNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutModulosNestedInput
 }
 
 export type ModuloUncheckedUpdateInput = {
@@ -566,8 +566,8 @@ export type ModuloSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   organizationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   permissions?: boolean | Prisma.Modulo$permissionsArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ModuloCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["modulo"]>
 
@@ -583,16 +583,16 @@ export type ModuloSelectScalar = {
 
 export type ModuloOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "organizationId" | "createdAt" | "updatedAt", ExtArgs["result"]["modulo"]>
 export type ModuloInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   permissions?: boolean | Prisma.Modulo$permissionsArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ModuloCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $ModuloPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Modulo"
   objects: {
-    organization: Prisma.$OrganizationPayload<ExtArgs>
     permissions: Prisma.$MemberPermissionPayload<ExtArgs>[]
+    organization: Prisma.$OrganizationPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -940,8 +940,8 @@ readonly fields: ModuloFieldRefs;
  */
 export interface Prisma__ModuloClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   permissions<T extends Prisma.Modulo$permissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Modulo$permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -7,70 +7,40 @@ datasource db {
   provider = "mysql"
 }
 
-enum ROLES {
-  OWNER
-  ADMIN
-  EDITOR
-  AUTHOR
-}
-
-enum STATUSPUBLISH {
-  DRAFT
-  PUBLISHED
-  ARCHIVED
-}
-
-enum STATUS {
-  ACTIVE
-  INACTIVE
-}
-
-enum LogAction {
-  CREATE
-  UPDATE
-  DELETE
-}
-
-// ─── AUTH (Better Auth) ─────────────────────────────────
-
 model User {
   id              String       @id @default(uuid())
   name            String       @db.Text
-  email           String
+  email           String       @unique
   emailVerified   Boolean      @default(false)
   image           String?      @db.Text
   role            ROLES        @default(AUTHOR)
   bio             String?      @db.Text
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
-  sessions        Session[]
+  username        String?      @unique
+  displayUsername String?      @db.Text
   accounts        Account[]
   articles        Article[]
-  username        String?
-  displayUsername String?      @db.Text
-  members         Member[]
   invitations     Invitation[]
+  members         Member[]
+  sessions        Session[]
 
-  @@unique([email])
-  @@unique([username])
   @@map("user")
 }
 
 model Session {
-  id        String   @id @default(uuid())
-  expiresAt DateTime
-  token     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ipAddress String?  @db.Text
-  userAgent String?  @db.Text
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                   String   @id @default(uuid())
+  expiresAt            DateTime
+  token                String   @unique
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  ipAddress            String?  @db.Text
+  userAgent            String?  @db.Text
+  userId               String
+  activeOrganizationId String?  @db.Text
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  activeOrganizationId String? @db.Text
-
-  @@unique([token])
-  @@index([userId(length: 191)])
+  @@index([userId], map: "session_userId_fkey")
   @@map("session")
 }
 
@@ -79,7 +49,6 @@ model Account {
   accountId             String    @db.Text
   providerId            String    @db.Text
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?   @db.Text
   refreshToken          String?   @db.Text
   idToken               String?   @db.Text
@@ -89,8 +58,9 @@ model Account {
   password              String?   @db.Text
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId(length: 191)])
+  @@index([userId], map: "account_userId_fkey")
   @@map("account")
 }
 
@@ -102,61 +72,64 @@ model Verification {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@index([identifier(length: 191)])
   @@map("verification")
 }
 
-// ─── BLOG ───────────────────────────────────────────────
-
 model Article {
-  id          String       @id @default(uuid())
-  title       String       @db.VarChar(300)
-  slug        String       @unique @db.VarChar(300)
-  subtitle    String?      @db.Text
-  content     String       @db.LongText
-  excerpt     String?      @db.Text
-  coverImage  String?      @db.Text
-  readTime    Int?
-  featured    Boolean      @default(false)
-  status      String       @default("draft") @db.VarChar(20)
-  publishedAt DateTime?
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  authorId    String
-  author      User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  categoryId  String?
-  category    Category?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  tags        ArticleTag[]
+  id             String        @id @default(uuid())
+  title          String        @db.VarChar(300)
+  slug           String        @unique @db.VarChar(300)
+  subtitle       String?       @db.Text
+  content        String        @db.LongText
+  excerpt        String?       @db.Text
+  coverImage     String?       @db.Text
+  readTime       Int?
+  featured       Boolean       @default(false)
+  status         String        @default("draft") @db.VarChar(20)
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  authorId       String
+  categoryId     String?
+  organizationId String?
+  author         User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category       Category?     @relation(fields: [categoryId], references: [id])
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  tags           ArticleTag[]
 
-  @@index([authorId])
-  @@index([categoryId])
-  @@index([status, publishedAt])
+  @@index([authorId], map: "article_authorId_fkey")
+  @@index([categoryId], map: "article_categoryId_fkey")
+  @@index([organizationId], map: "article_organizationId_fkey")
   @@map("article")
 }
 
 model Category {
-  id          String   @id @default(uuid())
-  name        String   @db.VarChar(100)
-  slug        String   @unique @db.VarChar(100)
-  description String?  @db.Text
-  color       String?  @db.VarChar(7)
-  sortOrder   Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String        @id @default(uuid())
+  name           String        @db.VarChar(100)
+  slug           String        @unique @db.VarChar(100)
+  description    String?       @db.Text
+  color          String?       @db.VarChar(7)
+  sortOrder      Int           @default(0)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  organizationId String?
+  articles       Article[]
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
-  articles Article[]
-
+  @@index([organizationId], map: "category_organizationId_fkey")
   @@map("category")
 }
 
 model Tag {
-  id        String   @id @default(uuid())
-  name      String   @db.VarChar(100)
-  slug      String   @unique @db.VarChar(100)
-  createdAt DateTime @default(now())
+  id             String        @id @default(uuid())
+  name           String        @db.VarChar(100)
+  slug           String        @unique @db.VarChar(100)
+  createdAt      DateTime      @default(now())
+  organizationId String?
+  articles       ArticleTag[]
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
-  articles ArticleTag[]
-
+  @@index([organizationId], map: "tag_organizationId_fkey")
   @@map("tag")
 }
 
@@ -167,48 +140,55 @@ model ArticleTag {
   tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@id([articleId, tagId])
-  @@index([tagId(length: 191)])
+  @@index([tagId], map: "article_tag_tagId_fkey")
   @@map("article_tag")
 }
 
-// ─── NEWSLETTER ─────────────────────────────────────────
-
 model Subscriber {
-  id             String    @id @default(uuid())
-  email          String    @unique @db.VarChar(255)
-  confirmed      Boolean   @default(false)
-  confirmToken   String?   @unique @db.VarChar(255)
+  id             String        @id @default(uuid())
+  email          String        @db.VarChar(255)
+  confirmed      Boolean       @default(false)
+  confirmToken   String?       @unique @db.VarChar(255)
   unsubscribedAt DateTime?
-  createdAt      DateTime  @default(now())
+  createdAt      DateTime      @default(now())
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
+  @@unique([email, organizationId])
+  @@index([organizationId], map: "subscriber_organizationId_fkey")
   @@map("subscriber")
 }
 
-// ─── SITE ───────────────────────────────────────────────
-
 model SiteConfig {
-  id    String @id @default(uuid())
-  key   String @unique @db.VarChar(100)
-  value String @db.LongText
+  id             String        @id @default(uuid())
+  key            String        @db.VarChar(100)
+  value          String        @db.LongText
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
+  @@unique([key, organizationId])
+  @@index([organizationId], map: "site_config_organizationId_fkey")
   @@map("site_config")
 }
 
 model Page {
-  id        String   @id @default(uuid())
-  title     String   @db.VarChar(300)
-  slug      String   @unique @db.VarChar(300)
-  content   String   @db.LongText
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String        @id @default(uuid())
+  title          String        @db.VarChar(300)
+  slug           String        @unique @db.VarChar(300)
+  content        String        @db.LongText
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
+  @@index([organizationId], map: "page_organizationId_fkey")
   @@map("page")
 }
 
 model Organization {
   id                String             @id @default(uuid())
   name              String             @db.Text
-  slug              String
+  slug              String             @unique
   logo              String?            @db.Text
   email             String             @default("")
   telefone          String?
@@ -216,68 +196,35 @@ model Organization {
   status            String             @default("ACTIVE")
   createdAt         DateTime           @default(now())
   metadata          String?            @db.Text
-  members           Member[]
-  invitations       Invitation[]
+  articles          Article[]
   auditLogs         AuditLog[]
-  modulos           Modulo[]
+  categories        Category[]
+  invitations       Invitation[]
+  members           Member[]
   memberPermissions MemberPermission[]
-  lotacoes          Lotacao[]
-  apiSyncLogs       ApiSyncLog[]
+  modulos           Modulo[]
+  pages             Page[]
+  siteConfigs       SiteConfig[]
+  subscribers       Subscriber[]
+  tags              Tag[]
 
-  // API Integration Config
-  apiUrlContratos  String? @db.Text
-  apiUrlLicitacoes String? @db.Text
-  apiUrlFiscais    String? @db.Text
-  apiUrlAditivos   String? @db.Text
-  autoLinkFiscais  Boolean @default(false)
-
-  // SMTP Config
-  smtpHost    String? @db.Text
-  smtpPort    Int?
-  smtpUser    String? @db.Text
-  smtpPass    String? @db.Text
-  smtpFrom    String? @db.Text
-  notifyEmail String? @db.Text
-
-  // Sync Status
-  lastSyncAt      DateTime?
-  lastSyncStatus  String?   @db.Text
-  lastSyncMessage String?   @db.Text
-
-  @@unique([slug])
   @@map("organization")
-}
-
-model ApiSyncLog {
-  id             String       @id @default(uuid())
-  organizationId String
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  status         String       @db.Text // SUCCESS, ERROR, WARNING
-  message        String       @db.Text
-  details        String?      @db.LongText
-  createdAt      DateTime     @default(now())
-
-  @@index([organizationId, createdAt])
-  @@map("api_sync_log")
 }
 
 model Member {
   id             String             @id @default(uuid())
   organizationId String
-  organization   Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   userId         String
-  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   role           ROLES              @default(AUTHOR)
-  fiscalCpf      String?
-  lotacaoId      String?
-  lotacao        Lotacao?           @relation(fields: [lotacaoId], references: [id], onDelete: SetNull)
   createdAt      DateTime           @default(now())
   updatedAt      DateTime           @updatedAt
+  lotacaoId      String?
+  organization   Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   permissions    MemberPermission[]
 
   @@unique([userId, organizationId])
-  @@index([organizationId(length: 191)])
-  @@index([userId(length: 191)])
+  @@index([organizationId], map: "member_organizationId_fkey")
   @@map("member")
 }
 
@@ -285,10 +232,10 @@ model Modulo {
   id             String             @id @default(uuid())
   key            String
   organizationId String
-  organization   Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   createdAt      DateTime           @default(now())
   updatedAt      DateTime           @updatedAt
   permissions    MemberPermission[]
+  organization   Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@unique([organizationId, key])
   @@map("modulo")
@@ -297,26 +244,27 @@ model Modulo {
 model MemberPermission {
   id             String       @id @default(uuid())
   memberId       String
-  member         Member       @relation(fields: [memberId], references: [id], onDelete: Cascade)
   moduloId       String
-  modulo         Modulo       @relation(fields: [moduloId], references: [id], onDelete: Cascade)
   organizationId String
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   canCreate      Boolean      @default(false)
   canRead        Boolean      @default(true)
   canUpdate      Boolean      @default(false)
   canDelete      Boolean      @default(false)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
+  member         Member       @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  modulo         Modulo       @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@unique([memberId, moduloId])
+  @@index([moduloId], map: "member_permission_moduloId_fkey")
+  @@index([organizationId], map: "member_permission_organizationId_fkey")
   @@map("member_permission")
 }
 
 model Invitation {
   id             String       @id @default(uuid())
   organizationId String
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   email          String       @db.Text
   role           String?      @db.Text
   status         String       @db.Text
@@ -324,9 +272,10 @@ model Invitation {
   createdAt      DateTime     @default(now())
   inviterId      String
   user           User         @relation(fields: [inviterId], references: [id], onDelete: Cascade)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
-  @@index([organizationId(length: 191)])
-  @@index([email(length: 191)])
+  @@index([inviterId], map: "invitation_inviterId_fkey")
+  @@index([organizationId], map: "invitation_organizationId_fkey")
   @@map("invitation")
 }
 
@@ -346,6 +295,19 @@ model AuditLog {
   createdAt      DateTime     @default(now())
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
-  @@index([organizationId, createdAt])
+  @@index([organizationId], map: "audit_log_organizationId_fkey")
   @@map("audit_log")
+}
+
+enum ROLES {
+  OWNER
+  ADMIN
+  EDITOR
+  AUTHOR
+}
+
+enum LogAction {
+  CREATE
+  UPDATE
+  DELETE
 }

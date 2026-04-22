@@ -34,7 +34,7 @@ export default function RegisterPage() {
       setLoading(false);
     } else {
       toast.success("Conta criada com sucesso!");
-      router.push("/");
+      router.push("/login");
     }
   };
 

@@ -31,6 +31,7 @@ export type SubscriberMinAggregateOutputType = {
   confirmToken: string | null
   unsubscribedAt: Date | null
   createdAt: Date | null
+  organizationId: string | null
 }
 
 export type SubscriberMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type SubscriberMaxAggregateOutputType = {
   confirmToken: string | null
   unsubscribedAt: Date | null
   createdAt: Date | null
+  organizationId: string | null
 }
 
 export type SubscriberCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type SubscriberCountAggregateOutputType = {
   confirmToken: number
   unsubscribedAt: number
   createdAt: number
+  organizationId: number
   _all: number
 }
 
@@ -60,6 +63,7 @@ export type SubscriberMinAggregateInputType = {
   confirmToken?: true
   unsubscribedAt?: true
   createdAt?: true
+  organizationId?: true
 }
 
 export type SubscriberMaxAggregateInputType = {
@@ -69,6 +73,7 @@ export type SubscriberMaxAggregateInputType = {
   confirmToken?: true
   unsubscribedAt?: true
   createdAt?: true
+  organizationId?: true
 }
 
 export type SubscriberCountAggregateInputType = {
@@ -78,6 +83,7 @@ export type SubscriberCountAggregateInputType = {
   confirmToken?: true
   unsubscribedAt?: true
   createdAt?: true
+  organizationId?: true
   _all?: true
 }
 
@@ -160,6 +166,7 @@ export type SubscriberGroupByOutputType = {
   confirmToken: string | null
   unsubscribedAt: Date | null
   createdAt: Date
+  organizationId: string | null
   _count: SubscriberCountAggregateOutputType | null
   _min: SubscriberMinAggregateOutputType | null
   _max: SubscriberMaxAggregateOutputType | null
@@ -190,6 +197,8 @@ export type SubscriberWhereInput = {
   confirmToken?: Prisma.StringNullableFilter<"Subscriber"> | string | null
   unsubscribedAt?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Subscriber"> | Date | string
+  organizationId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
 }
 
 export type SubscriberOrderByWithRelationInput = {
@@ -199,20 +208,25 @@ export type SubscriberOrderByWithRelationInput = {
   confirmToken?: Prisma.SortOrderInput | Prisma.SortOrder
   unsubscribedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  organization?: Prisma.OrganizationOrderByWithRelationInput
   _relevance?: Prisma.SubscriberOrderByRelevanceInput
 }
 
 export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  email?: string
   confirmToken?: string
+  email_organizationId?: Prisma.SubscriberEmailOrganizationIdCompoundUniqueInput
   AND?: Prisma.SubscriberWhereInput | Prisma.SubscriberWhereInput[]
   OR?: Prisma.SubscriberWhereInput[]
   NOT?: Prisma.SubscriberWhereInput | Prisma.SubscriberWhereInput[]
+  email?: Prisma.StringFilter<"Subscriber"> | string
   confirmed?: Prisma.BoolFilter<"Subscriber"> | boolean
   unsubscribedAt?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Subscriber"> | Date | string
-}, "id" | "email" | "confirmToken">
+  organizationId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
+}, "id" | "confirmToken" | "email_organizationId">
 
 export type SubscriberOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -221,6 +235,7 @@ export type SubscriberOrderByWithAggregationInput = {
   confirmToken?: Prisma.SortOrderInput | Prisma.SortOrder
   unsubscribedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SubscriberCountOrderByAggregateInput
   _max?: Prisma.SubscriberMaxOrderByAggregateInput
   _min?: Prisma.SubscriberMinOrderByAggregateInput
@@ -236,6 +251,7 @@ export type SubscriberScalarWhereWithAggregatesInput = {
   confirmToken?: Prisma.StringNullableWithAggregatesFilter<"Subscriber"> | string | null
   unsubscribedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscriber"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Subscriber"> | Date | string
+  organizationId?: Prisma.StringNullableWithAggregatesFilter<"Subscriber"> | string | null
 }
 
 export type SubscriberCreateInput = {
@@ -245,6 +261,7 @@ export type SubscriberCreateInput = {
   confirmToken?: string | null
   unsubscribedAt?: Date | string | null
   createdAt?: Date | string
+  organization?: Prisma.OrganizationCreateNestedOneWithoutSubscribersInput
 }
 
 export type SubscriberUncheckedCreateInput = {
@@ -254,6 +271,7 @@ export type SubscriberUncheckedCreateInput = {
   confirmToken?: string | null
   unsubscribedAt?: Date | string | null
   createdAt?: Date | string
+  organizationId?: string | null
 }
 
 export type SubscriberUpdateInput = {
@@ -263,6 +281,7 @@ export type SubscriberUpdateInput = {
   confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneWithoutSubscribersNestedInput
 }
 
 export type SubscriberUncheckedUpdateInput = {
@@ -272,6 +291,7 @@ export type SubscriberUncheckedUpdateInput = {
   confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SubscriberCreateManyInput = {
@@ -281,6 +301,7 @@ export type SubscriberCreateManyInput = {
   confirmToken?: string | null
   unsubscribedAt?: Date | string | null
   createdAt?: Date | string
+  organizationId?: string | null
 }
 
 export type SubscriberUpdateManyMutationInput = {
@@ -299,12 +320,18 @@ export type SubscriberUncheckedUpdateManyInput = {
   confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SubscriberOrderByRelevanceInput = {
   fields: Prisma.SubscriberOrderByRelevanceFieldEnum | Prisma.SubscriberOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
   search: string
+}
+
+export type SubscriberEmailOrganizationIdCompoundUniqueInput = {
+  email: string
+  organizationId: string
 }
 
 export type SubscriberCountOrderByAggregateInput = {
@@ -314,6 +341,7 @@ export type SubscriberCountOrderByAggregateInput = {
   confirmToken?: Prisma.SortOrder
   unsubscribedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
 }
 
 export type SubscriberMaxOrderByAggregateInput = {
@@ -323,6 +351,7 @@ export type SubscriberMaxOrderByAggregateInput = {
   confirmToken?: Prisma.SortOrder
   unsubscribedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
 }
 
 export type SubscriberMinOrderByAggregateInput = {
@@ -332,6 +361,152 @@ export type SubscriberMinOrderByAggregateInput = {
   confirmToken?: Prisma.SortOrder
   unsubscribedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+}
+
+export type SubscriberListRelationFilter = {
+  every?: Prisma.SubscriberWhereInput
+  some?: Prisma.SubscriberWhereInput
+  none?: Prisma.SubscriberWhereInput
+}
+
+export type SubscriberOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type SubscriberCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutOrganizationInput, Prisma.SubscriberUncheckedCreateWithoutOrganizationInput> | Prisma.SubscriberCreateWithoutOrganizationInput[] | Prisma.SubscriberUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutOrganizationInput | Prisma.SubscriberCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.SubscriberCreateManyOrganizationInputEnvelope
+  connect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+}
+
+export type SubscriberUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutOrganizationInput, Prisma.SubscriberUncheckedCreateWithoutOrganizationInput> | Prisma.SubscriberCreateWithoutOrganizationInput[] | Prisma.SubscriberUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutOrganizationInput | Prisma.SubscriberCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.SubscriberCreateManyOrganizationInputEnvelope
+  connect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+}
+
+export type SubscriberUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutOrganizationInput, Prisma.SubscriberUncheckedCreateWithoutOrganizationInput> | Prisma.SubscriberCreateWithoutOrganizationInput[] | Prisma.SubscriberUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutOrganizationInput | Prisma.SubscriberCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.SubscriberUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.SubscriberUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.SubscriberCreateManyOrganizationInputEnvelope
+  set?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  disconnect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  delete?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  connect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  update?: Prisma.SubscriberUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.SubscriberUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.SubscriberUpdateManyWithWhereWithoutOrganizationInput | Prisma.SubscriberUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.SubscriberScalarWhereInput | Prisma.SubscriberScalarWhereInput[]
+}
+
+export type SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutOrganizationInput, Prisma.SubscriberUncheckedCreateWithoutOrganizationInput> | Prisma.SubscriberCreateWithoutOrganizationInput[] | Prisma.SubscriberUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutOrganizationInput | Prisma.SubscriberCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.SubscriberUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.SubscriberUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.SubscriberCreateManyOrganizationInputEnvelope
+  set?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  disconnect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  delete?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  connect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  update?: Prisma.SubscriberUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.SubscriberUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.SubscriberUpdateManyWithWhereWithoutOrganizationInput | Prisma.SubscriberUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.SubscriberScalarWhereInput | Prisma.SubscriberScalarWhereInput[]
+}
+
+export type SubscriberCreateWithoutOrganizationInput = {
+  id?: string
+  email: string
+  confirmed?: boolean
+  confirmToken?: string | null
+  unsubscribedAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type SubscriberUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  email: string
+  confirmed?: boolean
+  confirmToken?: string | null
+  unsubscribedAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type SubscriberCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.SubscriberWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubscriberCreateWithoutOrganizationInput, Prisma.SubscriberUncheckedCreateWithoutOrganizationInput>
+}
+
+export type SubscriberCreateManyOrganizationInputEnvelope = {
+  data: Prisma.SubscriberCreateManyOrganizationInput | Prisma.SubscriberCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type SubscriberUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.SubscriberWhereUniqueInput
+  update: Prisma.XOR<Prisma.SubscriberUpdateWithoutOrganizationInput, Prisma.SubscriberUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.SubscriberCreateWithoutOrganizationInput, Prisma.SubscriberUncheckedCreateWithoutOrganizationInput>
+}
+
+export type SubscriberUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.SubscriberWhereUniqueInput
+  data: Prisma.XOR<Prisma.SubscriberUpdateWithoutOrganizationInput, Prisma.SubscriberUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type SubscriberUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.SubscriberScalarWhereInput
+  data: Prisma.XOR<Prisma.SubscriberUpdateManyMutationInput, Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type SubscriberScalarWhereInput = {
+  AND?: Prisma.SubscriberScalarWhereInput | Prisma.SubscriberScalarWhereInput[]
+  OR?: Prisma.SubscriberScalarWhereInput[]
+  NOT?: Prisma.SubscriberScalarWhereInput | Prisma.SubscriberScalarWhereInput[]
+  id?: Prisma.StringFilter<"Subscriber"> | string
+  email?: Prisma.StringFilter<"Subscriber"> | string
+  confirmed?: Prisma.BoolFilter<"Subscriber"> | boolean
+  confirmToken?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  unsubscribedAt?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"Subscriber"> | Date | string
+  organizationId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+}
+
+export type SubscriberCreateManyOrganizationInput = {
+  id?: string
+  email: string
+  confirmed?: boolean
+  confirmToken?: string | null
+  unsubscribedAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type SubscriberUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  confirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SubscriberUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  confirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SubscriberUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  confirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -343,6 +518,8 @@ export type SubscriberSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   confirmToken?: boolean
   unsubscribedAt?: boolean
   createdAt?: boolean
+  organizationId?: boolean
+  organization?: boolean | Prisma.Subscriber$organizationArgs<ExtArgs>
 }, ExtArgs["result"]["subscriber"]>
 
 
@@ -354,13 +531,19 @@ export type SubscriberSelectScalar = {
   confirmToken?: boolean
   unsubscribedAt?: boolean
   createdAt?: boolean
+  organizationId?: boolean
 }
 
-export type SubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "confirmed" | "confirmToken" | "unsubscribedAt" | "createdAt", ExtArgs["result"]["subscriber"]>
+export type SubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "confirmed" | "confirmToken" | "unsubscribedAt" | "createdAt" | "organizationId", ExtArgs["result"]["subscriber"]>
+export type SubscriberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.Subscriber$organizationArgs<ExtArgs>
+}
 
 export type $SubscriberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Subscriber"
-  objects: {}
+  objects: {
+    organization: Prisma.$OrganizationPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
@@ -368,6 +551,7 @@ export type $SubscriberPayload<ExtArgs extends runtime.Types.Extensions.Internal
     confirmToken: string | null
     unsubscribedAt: Date | null
     createdAt: Date
+    organizationId: string | null
   }, ExtArgs["result"]["subscriber"]>
   composites: {}
 }
@@ -708,6 +892,7 @@ readonly fields: SubscriberFieldRefs;
  */
 export interface Prisma__SubscriberClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  organization<T extends Prisma.Subscriber$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscriber$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -743,6 +928,7 @@ export interface SubscriberFieldRefs {
   readonly confirmToken: Prisma.FieldRef<"Subscriber", 'String'>
   readonly unsubscribedAt: Prisma.FieldRef<"Subscriber", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Subscriber", 'DateTime'>
+  readonly organizationId: Prisma.FieldRef<"Subscriber", 'String'>
 }
     
 
@@ -759,6 +945,10 @@ export type SubscriberFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the Subscriber
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
   /**
    * Filter, which Subscriber to fetch.
    */
@@ -778,6 +968,10 @@ export type SubscriberFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  /**
    * Filter, which Subscriber to fetch.
    */
   where: Prisma.SubscriberWhereUniqueInput
@@ -795,6 +989,10 @@ export type SubscriberFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the Subscriber
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
   /**
    * Filter, which Subscriber to fetch.
    */
@@ -844,6 +1042,10 @@ export type SubscriberFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  /**
    * Filter, which Subscriber to fetch.
    */
   where?: Prisma.SubscriberWhereInput
@@ -891,6 +1093,10 @@ export type SubscriberFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the Subscriber
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
   /**
    * Filter, which Subscribers to fetch.
    */
@@ -940,6 +1146,10 @@ export type SubscriberCreateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  /**
    * The data needed to create a Subscriber.
    */
   data: Prisma.XOR<Prisma.SubscriberCreateInput, Prisma.SubscriberUncheckedCreateInput>
@@ -968,6 +1178,10 @@ export type SubscriberUpdateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Subscriber
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
   /**
    * The data needed to update a Subscriber.
    */
@@ -1009,6 +1223,10 @@ export type SubscriberUpsertArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  /**
    * The filter to search for the Subscriber to update in case it exists.
    */
   where: Prisma.SubscriberWhereUniqueInput
@@ -1035,6 +1253,10 @@ export type SubscriberDeleteArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  /**
    * Filter which Subscriber to delete.
    */
   where: Prisma.SubscriberWhereUniqueInput
@@ -1055,6 +1277,25 @@ export type SubscriberDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * Subscriber.organization
+ */
+export type Subscriber$organizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Organization
+   */
+  select?: Prisma.OrganizationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Organization
+   */
+  omit?: Prisma.OrganizationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationInclude<ExtArgs> | null
+  where?: Prisma.OrganizationWhereInput
+}
+
+/**
  * Subscriber without action
  */
 export type SubscriberDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1066,4 +1307,8 @@ export type SubscriberDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Subscriber
    */
   omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
 }
