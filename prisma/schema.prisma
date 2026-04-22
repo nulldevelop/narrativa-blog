@@ -34,19 +34,18 @@ enum LogAction {
 // ─── AUTH (Better Auth) ─────────────────────────────────
 
 model User {
-  id            String    @id @default(uuid())
-  name          String    @db.Text
-  email         String
-  emailVerified Boolean   @default(false)
-  image         String?   @db.Text
-  role          ROLES     @default(AUTHOR)
-  bio           String?   @db.Text
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  sessions      Session[]
-  accounts      Account[]
-  articles      Article[]
-
+  id              String       @id @default(uuid())
+  name            String       @db.Text
+  email           String
+  emailVerified   Boolean      @default(false)
+  image           String?      @db.Text
+  role            ROLES        @default(AUTHOR)
+  bio             String?      @db.Text
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  sessions        Session[]
+  accounts        Account[]
+  articles        Article[]
   username        String?
   displayUsername String?      @db.Text
   members         Member[]
@@ -110,29 +109,27 @@ model Verification {
 // ─── BLOG ───────────────────────────────────────────────
 
 model Article {
-  id          String    @id @default(uuid())
-  title       String    @db.VarChar(300)
-  slug        String    @unique @db.VarChar(300)
-  subtitle    String?   @db.Text
-  content     String    @db.LongText
-  excerpt     String?   @db.Text
-  coverImage  String?   @db.Text
+  id          String       @id @default(uuid())
+  title       String       @db.VarChar(300)
+  slug        String       @unique @db.VarChar(300)
+  subtitle    String?      @db.Text
+  content     String       @db.LongText
+  excerpt     String?      @db.Text
+  coverImage  String?      @db.Text
   readTime    Int?
-  featured    Boolean   @default(false)
-  status      String    @default("draft") @db.VarChar(20) // draft, published, archived
+  featured    Boolean      @default(false)
+  status      String       @default("draft") @db.VarChar(20)
   publishedAt DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  authorId    String
+  author      User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  categoryId  String?
+  category    Category?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  tags        ArticleTag[]
 
-  authorId   String
-  author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  categoryId String?
-  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-
-  tags ArticleTag[]
-
-  @@index([authorId(length: 191)])
-  @@index([categoryId(length: 191)])
+  @@index([authorId])
+  @@index([categoryId])
   @@index([status, publishedAt])
   @@map("article")
 }
@@ -209,43 +206,43 @@ model Page {
 }
 
 model Organization {
-  id               String       @id @default(uuid())
-  name             String       @db.Text
-  slug             String
-  logo             String?      @db.Text
-  email            String       @default("")
-  telefone         String?
-  cnpj             String?
-  status           String       @default("ACTIVE")
-  createdAt        DateTime     @default(now())
-  metadata         String?      @db.Text
-  members          Member[]
-  invitations      Invitation[]
-  auditLogs        AuditLog[]
-  modulos          Modulo[]
+  id                String             @id @default(uuid())
+  name              String             @db.Text
+  slug              String
+  logo              String?            @db.Text
+  email             String             @default("")
+  telefone          String?
+  cnpj              String?
+  status            String             @default("ACTIVE")
+  createdAt         DateTime           @default(now())
+  metadata          String?            @db.Text
+  members           Member[]
+  invitations       Invitation[]
+  auditLogs         AuditLog[]
+  modulos           Modulo[]
   memberPermissions MemberPermission[]
-  lotacoes         Lotacao[]
-  apiSyncLogs      ApiSyncLog[]
+  lotacoes          Lotacao[]
+  apiSyncLogs       ApiSyncLog[]
 
   // API Integration Config
-  apiUrlContratos  String?      @db.Text
-  apiUrlLicitacoes String?      @db.Text
-  apiUrlFiscais    String?      @db.Text
-  apiUrlAditivos   String?      @db.Text
-  autoLinkFiscais  Boolean      @default(false)
+  apiUrlContratos  String? @db.Text
+  apiUrlLicitacoes String? @db.Text
+  apiUrlFiscais    String? @db.Text
+  apiUrlAditivos   String? @db.Text
+  autoLinkFiscais  Boolean @default(false)
 
   // SMTP Config
-  smtpHost         String?      @db.Text
-  smtpPort         Int?
-  smtpUser         String?      @db.Text
-  smtpPass         String?      @db.Text
-  smtpFrom         String?      @db.Text
-  notifyEmail      String?      @db.Text
+  smtpHost    String? @db.Text
+  smtpPort    Int?
+  smtpUser    String? @db.Text
+  smtpPass    String? @db.Text
+  smtpFrom    String? @db.Text
+  notifyEmail String? @db.Text
 
   // Sync Status
-  lastSyncAt       DateTime?
-  lastSyncStatus   String?      @db.Text
-  lastSyncMessage  String?      @db.Text
+  lastSyncAt      DateTime?
+  lastSyncStatus  String?   @db.Text
+  lastSyncMessage String?   @db.Text
 
   @@unique([slug])
   @@map("organization")
@@ -265,17 +262,17 @@ model ApiSyncLog {
 }
 
 model Member {
-  id             String       @id @default(uuid())
+  id             String             @id @default(uuid())
   organizationId String
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organization   Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   userId         String
-  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role           ROLES        @default(AUTHOR)
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role           ROLES              @default(AUTHOR)
   fiscalCpf      String?
   lotacaoId      String?
-  lotacao        Lotacao?     @relation(fields: [lotacaoId], references: [id], onDelete: SetNull)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  lotacao        Lotacao?           @relation(fields: [lotacaoId], references: [id], onDelete: SetNull)
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
   permissions    MemberPermission[]
 
   @@unique([userId, organizationId])
@@ -284,26 +281,13 @@ model Member {
   @@map("member")
 }
 
-model Lotacao {
-  id             String       @id @default(uuid())
-  name           String
-  organizationId String
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  members        Member[]
-
-  @@unique([organizationId, name])
-  @@map("lotacao")
-}
-
 model Modulo {
-  id             String       @id @default(uuid())
+  id             String             @id @default(uuid())
   key            String
   organizationId String
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  organization   Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
   permissions    MemberPermission[]
 
   @@unique([organizationId, key])

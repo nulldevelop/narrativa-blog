@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
-import { organization, username } from 'better-auth/plugins'
+import { organization } from 'better-auth/plugins'
 import { ROLES } from '@/generated/prisma/enums'
 import { prisma } from './prisma'
 
@@ -13,15 +13,19 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'mysql',
   }),
+  emailAndPassword: {
+    enabled: true,
+    minPasswordLength: 4,
+  },
   user: {
     additionalFields: {
       role: {
         type: 'string',
-        defaultValue: 'author',
+        defaultValue: 'OWNER',
       },
     },
   },
-  plugins: [organization(), username()],
+  plugins: [organization()],
   databaseHooks: {
     user: {
       create: {

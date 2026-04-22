@@ -1,10 +1,39 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-
+import { toast } from "sonner";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const { error } = await authClient.signIn.email({
+      email,
+      password,
+      callbackURL: "/",
+    });
+
+    if (error) {
+      toast.error(error.message || "Erro ao fazer login");
+      setLoading(false);
+    } else {
+      toast.success("Login realizado com sucesso!");
+      router.push("/");
+    }
+  };
+
   return (
     <div className="space-y-8">
       <div>
@@ -16,7 +45,7 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <form className="space-y-5">
+      <form onSubmit={handleLogin} className="space-y-5">
         <div className="space-y-2">
           <Label
             htmlFor="email"
@@ -27,7 +56,10 @@ export default function LoginPage() {
           <Input
             id="email"
             type="email"
+            required
             placeholder="seu@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="rounded-none border-narrativa-cinza-linha px-4 py-5 text-[0.9rem] focus:border-narrativa-preto transition-colors"
           />
         </div>
@@ -50,19 +82,35 @@ export default function LoginPage() {
           <Input
             id="password"
             type="password"
+            required
             placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="rounded-none border-narrativa-cinza-linha px-4 py-5 text-[0.9rem] focus:border-narrativa-preto transition-colors"
           />
         </div>
 
         <Button
           type="submit"
+          disabled={loading}
           className="w-full rounded-none bg-narrativa-preto hover:bg-narrativa-vermelho text-narrativa-branco text-[0.72rem] font-bold tracking-[0.14em] uppercase py-6 transition-colors"
         >
-          Entrar
+          {loading ? "Entrando..." : "Entrar"}
         </Button>
       </form>
 
+      <div className="text-center">
+        <p className="text-[0.8rem] text-narrativa-cinza-texto">
+          Ainda não tem uma conta?{" "}
+          <Link
+            href="/register"
+            className="text-narrativa-vermelho font-bold hover:underline"
+          >
+            Crie uma conta
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
+

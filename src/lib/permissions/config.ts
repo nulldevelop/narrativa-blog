@@ -12,7 +12,7 @@ export const ROLE_PERMISSIONS: Partial<Record<ROLES, Action[]>> = {
 // Rotas protegidas (Middleware)
 export const ROUTE_PERMISSIONS: Record<string, ROLES[]> = {
   '/dashboard-admin': [ROLES.OWNER, ROLES.ADMIN],
-  '/dashboard-editor': [ROLES.OWNER, ROLES.ADMIN, ROLES.EDITOR],
+  '/dashboard-editor': [ROLES.OWNER, ROLES.ADMIN, ROLES.EDITOR, ROLES.AUTHOR],
   '/dashboard-author': [ROLES.OWNER, ROLES.ADMIN, ROLES.EDITOR, ROLES.AUTHOR],
   '/dashboard': [ROLES.OWNER, ROLES.ADMIN, ROLES.EDITOR, ROLES.AUTHOR],
 }

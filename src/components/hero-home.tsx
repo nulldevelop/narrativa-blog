@@ -77,6 +77,7 @@ export function HeroHome() {
                 src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1200&auto=format&fit=crop"
                 alt="Matéria em destaque"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover transition-all duration-1000 group-hover:scale-105"
                 priority
               />
@@ -94,6 +95,7 @@ export function HeroHome() {
                       src={item.image}
                       alt={item.title}
                       fill
+                      sizes="95px"
                       className="object-cover transition-all duration-500"
                     />
                   </div>

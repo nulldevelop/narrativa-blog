@@ -170,10 +170,41 @@ CREATE TABLE `organization` (
     `name` TEXT NOT NULL,
     `slug` VARCHAR(191) NOT NULL,
     `logo` TEXT NULL,
-    `createdAt` DATETIME(3) NOT NULL,
+    `email` VARCHAR(191) NOT NULL DEFAULT '',
+    `telefone` VARCHAR(191) NULL,
+    `cnpj` VARCHAR(191) NULL,
+    `status` VARCHAR(191) NOT NULL DEFAULT 'ACTIVE',
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `metadata` TEXT NULL,
+    `apiUrlContratos` TEXT NULL,
+    `apiUrlLicitacoes` TEXT NULL,
+    `apiUrlFiscais` TEXT NULL,
+    `apiUrlAditivos` TEXT NULL,
+    `autoLinkFiscais` BOOLEAN NOT NULL DEFAULT false,
+    `smtpHost` TEXT NULL,
+    `smtpPort` INTEGER NULL,
+    `smtpUser` TEXT NULL,
+    `smtpPass` TEXT NULL,
+    `smtpFrom` TEXT NULL,
+    `notifyEmail` TEXT NULL,
+    `lastSyncAt` DATETIME(3) NULL,
+    `lastSyncStatus` TEXT NULL,
+    `lastSyncMessage` TEXT NULL,
 
     UNIQUE INDEX `organization_slug_key`(`slug`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `api_sync_log` (
+    `id` VARCHAR(191) NOT NULL,
+    `organizationId` VARCHAR(191) NOT NULL,
+    `status` TEXT NOT NULL,
+    `message` TEXT NOT NULL,
+    `details` LONGTEXT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    INDEX `api_sync_log_organizationId_createdAt_idx`(`organizationId`, `createdAt`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -183,12 +214,55 @@ CREATE TABLE `member` (
     `organizationId` VARCHAR(191) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
     `role` ENUM('OWNER', 'ADMIN', 'EDITOR', 'AUTHOR') NOT NULL DEFAULT 'AUTHOR',
+    `fiscalCpf` VARCHAR(191) NULL,
+    `lotacaoId` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
     INDEX `member_organizationId_idx`(`organizationId`(191)),
     INDEX `member_userId_idx`(`userId`(191)),
     UNIQUE INDEX `member_userId_organizationId_key`(`userId`, `organizationId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `lotacao` (
+    `id` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `organizationId` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `lotacao_organizationId_name_key`(`organizationId`, `name`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `modulo` (
+    `id` VARCHAR(191) NOT NULL,
+    `key` VARCHAR(191) NOT NULL,
+    `organizationId` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `modulo_organizationId_key_key`(`organizationId`, `key`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `member_permission` (
+    `id` VARCHAR(191) NOT NULL,
+    `memberId` VARCHAR(191) NOT NULL,
+    `moduloId` VARCHAR(191) NOT NULL,
+    `organizationId` VARCHAR(191) NOT NULL,
+    `canCreate` BOOLEAN NOT NULL DEFAULT false,
+    `canRead` BOOLEAN NOT NULL DEFAULT true,
+    `canUpdate` BOOLEAN NOT NULL DEFAULT false,
+    `canDelete` BOOLEAN NOT NULL DEFAULT false,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `member_permission_memberId_moduloId_key`(`memberId`, `moduloId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -247,10 +321,31 @@ ALTER TABLE `article_tag` ADD CONSTRAINT `article_tag_articleId_fkey` FOREIGN KE
 ALTER TABLE `article_tag` ADD CONSTRAINT `article_tag_tagId_fkey` FOREIGN KEY (`tagId`) REFERENCES `tag`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `api_sync_log` ADD CONSTRAINT `api_sync_log_organizationId_fkey` FOREIGN KEY (`organizationId`) REFERENCES `organization`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `member` ADD CONSTRAINT `member_organizationId_fkey` FOREIGN KEY (`organizationId`) REFERENCES `organization`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `member` ADD CONSTRAINT `member_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `member` ADD CONSTRAINT `member_lotacaoId_fkey` FOREIGN KEY (`lotacaoId`) REFERENCES `lotacao`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `lotacao` ADD CONSTRAINT `lotacao_organizationId_fkey` FOREIGN KEY (`organizationId`) REFERENCES `organization`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `modulo` ADD CONSTRAINT `modulo_organizationId_fkey` FOREIGN KEY (`organizationId`) REFERENCES `organization`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `member_permission` ADD CONSTRAINT `member_permission_memberId_fkey` FOREIGN KEY (`memberId`) REFERENCES `member`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `member_permission` ADD CONSTRAINT `member_permission_moduloId_fkey` FOREIGN KEY (`moduloId`) REFERENCES `modulo`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `member_permission` ADD CONSTRAINT `member_permission_organizationId_fkey` FOREIGN KEY (`organizationId`) REFERENCES `organization`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `invitation` ADD CONSTRAINT `invitation_organizationId_fkey` FOREIGN KEY (`organizationId`) REFERENCES `organization`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
