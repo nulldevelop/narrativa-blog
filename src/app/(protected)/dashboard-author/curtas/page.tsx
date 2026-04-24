@@ -1,8 +1,8 @@
-import { getAllCurtas } from './_data-access/get-all-curtas'
+import { Plus, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Plus, Trash2 } from 'lucide-react'
 import { removerCurta } from './_actions/remover-curta'
+import { getAllCurtas } from './_data-access/get-all-curtas'
 
 export default async function CurtasPage() {
   const curtas = await getAllCurtas()

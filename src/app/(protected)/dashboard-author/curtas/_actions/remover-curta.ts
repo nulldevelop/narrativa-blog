@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 
-export async function removerCurta(formData: FormData) {
+export async function removerCurta(formData: FormData): Promise<void> {
   try {
     const id = formData.get('id') as string
     await prisma.curta.update({
@@ -14,6 +14,6 @@ export async function removerCurta(formData: FormData) {
     revalidatePath('/')
   } catch (error) {
     console.error('Error removing curta:', error)
-    return { error: 'Erro ao remover curta' }
+    throw new Error('Erro ao remover curta')
   }
 }

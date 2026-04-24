@@ -18,16 +18,16 @@ export default function NovaCurtaPage() {
     e.preventDefault()
     setLoading(true)
 
-    const formData = new FormData(e.currentTarget)
-    const result = await criarCurta(formData)
-
-    if (result?.error) {
-      toast.error(result.error)
-      setLoading(false)
-    } else {
+    try {
+      const formData = new FormData(e.currentTarget)
+      await criarCurta(formData)
       toast.success('Curta criada com sucesso!')
       router.push('/dashboard-author/curtas')
       router.refresh()
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Erro ao criar curta')
+    } finally {
+      setLoading(false)
     }
   }
 

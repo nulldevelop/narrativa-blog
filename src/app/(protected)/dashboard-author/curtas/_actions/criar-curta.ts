@@ -3,13 +3,13 @@
 import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 
-export async function criarCurta(formData: FormData) {
+export async function criarCurta(formData: FormData): Promise<void> {
   try {
     const texto = formData.get('texto') as string
     const source = formData.get('source') as string
 
     if (!texto || texto.trim().length < 5) {
-      return { error: 'Texto deve ter pelo menos 5 caracteres' }
+      throw new Error('Texto deve ter pelo menos 5 caracteres')
     }
 
     await prisma.curta.create({
@@ -19,6 +19,6 @@ export async function criarCurta(formData: FormData) {
     revalidatePath('/')
   } catch (error) {
     console.error('Error creating curta:', error)
-    return { error: 'Erro ao criar curta' }
+    throw new Error('Erro ao criar curta')
   }
 }

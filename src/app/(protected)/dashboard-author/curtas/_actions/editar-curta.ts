@@ -3,14 +3,14 @@
 import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 
-export async function editarCurta(formData: FormData) {
+export async function editarCurta(formData: FormData): Promise<void> {
   try {
     const id = formData.get('id') as string
     const texto = formData.get('texto') as string
     const source = formData.get('source') as string
 
     if (!texto || texto.trim().length < 5) {
-      return { error: 'Texto deve ter pelo menos 5 caracteres' }
+      throw new Error('Texto deve ter pelo menos 5 caracteres')
     }
 
     await prisma.curta.update({
@@ -21,6 +21,6 @@ export async function editarCurta(formData: FormData) {
     revalidatePath('/')
   } catch (error) {
     console.error('Error editing curta:', error)
-    return { error: 'Erro ao editar curta' }
+    throw new Error('Erro ao editar curta')
   }
 }
