@@ -1,25 +1,24 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
 const navLinks = [
-  { href: "/", label: "Início" },
-  { href: "/?category=curitiba#posts", label: "Curitiba" },
-  { href: "/?category=parana#posts", label: "Paraná" },
-  { href: "/?category=brasil#posts", label: "Brasil" },
-  { href: "/colunistas", label: "Colunistas", hidden: true },
-  { href: "/sobre", label: "Sobre" },
-  { href: "/contato", label: "Contato" },
-];
+  { href: '/', label: 'Início' },
+  { href: '/?category=curitiba#posts', label: 'Curitiba' },
+  { href: '/?category=parana#posts', label: 'Paraná' },
+  { href: '/?category=brasil#posts', label: 'Brasil' },
+  { href: '/colunistas', label: 'Colunistas', hidden: true },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/contato', label: 'Contato' },
+]
 
 export function Navbar() {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
-  const btnRef = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
+  const btnRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -29,23 +28,24 @@ export function Navbar() {
         btnRef.current &&
         !btnRef.current.contains(e.target as Node)
       ) {
-        setOpen(false);
+        setOpen(false)
       }
     }
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [])
 
   return (
     <header className="bg-narrativa-preto border-b-[3px] border-narrativa-vermelho sticky top-0 z-100">
-      <div className="flex items-center justify-between px-[clamp(1.5rem,5vw,4rem)] py-[1.2rem] max-w-[1400px] mx-auto">
+      <div className="flex items-center justify-between px-[clamp(1.5rem,5vw,4rem)] py-[1.2rem] max-w-350 mx-auto">
         {/* Logo */}
         <Link href="/" className="flex flex-col gap-[0.2rem] leading-none">
           <span className="font-heading text-[2.2rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
             NARRATIVA<span className="text-narrativa-vermelho">.</span>
           </span>
           <span className="text-[0.7rem] tracking-[0.25em] uppercase text-white/40 font-light">
-            política, poder e versão
+            política, poder e{' '}
+            <span className="text-narrativa-vermelho">versão</span>
           </span>
         </Link>
 
@@ -59,23 +59,23 @@ export function Navbar() {
         >
           {navLinks.map((link) => {
             const isActive =
-              link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href.split("#")[0].split("?")[0]) &&
-                  link.href !== "/";
+              link.href === '/'
+                ? pathname === '/'
+                : pathname.startsWith(link.href.split('#')[0].split('?')[0]) &&
+                  link.href !== '/'
             return (
               <Link
                 key={link.label}
                 href={link.href}
                 className={`
                   text-[0.72rem] tracking-[0.14em] uppercase font-bold transition-colors
-                  ${isActive ? "text-narrativa-vermelho" : "text-narrativa-vermelho hover:text-white"}
-                  ${link.hidden ? "hidden" : "block"}
+                  ${isActive ? 'text-narrativa-vermelho' : 'text-narrativa-vermelho hover:text-white'}
+                  ${link.hidden ? 'hidden' : 'block'}
                 `}
               >
                 {link.label}
               </Link>
-            );
+            )
           })}
         </nav>
 
@@ -84,29 +84,25 @@ export function Navbar() {
           ref={btnRef}
           type="button"
           className="md:hidden flex flex-col gap-[5px] cursor-pointer p-1 bg-transparent border-none"
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
           <span
             className="block w-6 h-0.5 bg-white transition-all duration-300"
             style={
-              open
-                ? { transform: "translateY(7px) rotate(45deg)" }
-                : undefined
+              open ? { transform: 'translateY(7px) rotate(45deg)' } : undefined
             }
           />
           <span
             className="block w-6 h-0.5 bg-white transition-all duration-300"
-            style={
-              open ? { opacity: 0, transform: "scaleX(0)" } : undefined
-            }
+            style={open ? { opacity: 0, transform: 'scaleX(0)' } : undefined}
           />
           <span
             className="block w-6 h-0.5 bg-white transition-all duration-300"
             style={
               open
-                ? { transform: "translateY(-7px) rotate(-45deg)" }
+                ? { transform: 'translateY(-7px) rotate(-45deg)' }
                 : undefined
             }
           />
@@ -123,7 +119,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className={`
                 px-[clamp(1.5rem,5vw,4rem)] py-4 text-[0.72rem] tracking-[0.14em] uppercase font-bold text-narrativa-vermelho hover:text-white border-b border-white/[0.06] transition-colors
-                ${link.hidden ? "hidden" : "block"}
+                ${link.hidden ? 'hidden' : 'block'}
               `}
             >
               {link.label}
@@ -132,5 +128,5 @@ export function Navbar() {
         </nav>
       )}
     </header>
-  );
+  )
 }

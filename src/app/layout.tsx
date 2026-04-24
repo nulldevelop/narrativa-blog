@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, Merriweather } from 'next/font/google'
 import { Toaster } from 'sonner'
 import './styles/globals.css'
 
-const playfair = Playfair_Display({
-  variable: '--font-playfair',
+const heading = Merriweather({
+  variable: '--font-heading',
   subsets: ['latin'],
-  weight: ['400', '600', '700', '900'],
+  weight: ['300', '400', '700', '900'],
   style: ['normal', 'italic'],
   display: 'swap',
 })
@@ -14,6 +14,7 @@ const playfair = Playfair_Display({
 const inter = Inter({
   variable: '--font-body',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
   display: 'swap',
 })
 
@@ -35,7 +36,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       data-scroll-behavior="smooth"
-      className={`${playfair.variable} ${inter.variable}`}
+      className={`${heading.variable} ${inter.variable}`}
     >
       <body>
         {children}

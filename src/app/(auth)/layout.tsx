@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function AuthLayout({
   children,
@@ -9,17 +8,13 @@ export default function AuthLayout({
   return (
     <div className="min-h-screen bg-narrativa-preto flex flex-col items-center justify-center p-6">
       <div className="mb-10">
-        <Link href="/">
-          <div className="flex items-center gap-3">
-             <Image 
-                src="/imgs/logo.png" 
-                alt="Narrativa Logo" 
-                width={180} 
-                height={45} 
-                className="brightness-0 invert"
-                style={{ height: 'auto' }}
-             />
-          </div>
+        <Link href="/" className="flex flex-col gap-[0.2rem] leading-none">
+          <span className="font-heading text-[2.2rem] font-black tracking-[0.08em] text-white uppercase">
+            NARRATIVA<span className="text-narrativa-vermelho">.</span>
+          </span>
+          <span className="text-[0.7rem] tracking-[0.25em] uppercase text-white/40 font-light">
+            política, poder e <span className="text-narrativa-vermelho">versão</span>
+          </span>
         </Link>
       </div>
       

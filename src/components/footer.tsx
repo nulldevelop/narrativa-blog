@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image'
+import Link from 'next/link'
 
 export function Footer() {
   return (
@@ -7,18 +7,21 @@ export function Footer() {
       <div className="max-w-[1200px] mx-auto grid grid-cols-[1.5fr_1fr_1fr] gap-12 pb-10 border-b border-white/10 max-md:grid-cols-2 max-sm:grid-cols-1">
         {/* Logo col */}
         <div>
-          <Link href="/" className="flex flex-col gap-[0.1rem] leading-none mb-6">
+          <Link
+            href="/"
+            className="flex flex-col gap-[0.1rem] leading-none mb-6"
+          >
             <span className="font-heading text-[1.75rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
               NARRATIVA<span className="text-narrativa-vermelho">.</span>
             </span>
             <span className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 font-light">
-              política, poder e versão
+              política, poder e{' '}
+              <span className="text-narrativa-vermelho">versão</span>
             </span>
           </Link>
           <p className="text-[0.85rem] text-white/35 leading-[1.7] mt-4 font-light">
             Política com profundidade.
-            <br />
-            O que está por trás do discurso público.
+            <br />O que está por trás do discurso público.
           </p>
         </div>
 
@@ -29,11 +32,11 @@ export function Footer() {
           </h4>
           <ul className="flex flex-col gap-2">
             {[
-              { href: "/", label: "Início" },
-              { href: "/#posts", label: "Matérias" },
-              { href: "/#bastidores", label: "Bastidores" },
-              { href: "/sobre", label: "Sobre" },
-              { href: "/contato", label: "Contato" },
+              { href: '/', label: 'Início' },
+              { href: '/#posts', label: 'Matérias' },
+              { href: '/#bastidores', label: 'Bastidores' },
+              { href: '/sobre', label: 'Sobre' },
+              { href: '/contato', label: 'Contato' },
             ].map((l) => (
               <li key={l.href}>
                 <Link
@@ -53,18 +56,16 @@ export function Footer() {
             Temas
           </h4>
           <ul className="flex flex-col gap-2">
-            {["Curitiba", "Paraná", "Nacional", "Poder & Discurso"].map(
-              (t) => (
-                <li key={t}>
-                  <Link
-                    href="#"
-                    className="text-[0.85rem] text-white/40 hover:text-white transition-colors"
-                  >
-                    {t}
-                  </Link>
-                </li>
-              )
-            )}
+            {['Curitiba', 'Paraná', 'Nacional', 'Poder & Discurso'].map((t) => (
+              <li key={t}>
+                <Link
+                  href="#"
+                  className="text-[0.85rem] text-white/40 hover:text-white transition-colors"
+                >
+                  {t}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
@@ -72,13 +73,15 @@ export function Footer() {
       {/* Bottom */}
       <div className="max-w-[1200px] mx-auto flex justify-between items-center pt-6 flex-wrap gap-4">
         <p className="text-[0.7rem] tracking-[0.08em] text-white/20">
-          © 2026 <span className="text-narrativa-vermelho">narrativa.blog.br</span> —
+          © 2026{' '}
+          <span className="text-narrativa-vermelho">narrativa.blog.br</span> —
           Todos os direitos reservados.
         </p>
         <p className="text-[0.7rem] tracking-[0.08em] text-white/20">
-          política, poder e <span className="text-narrativa-vermelho">versão</span>
+          política, poder e{' '}
+          <span className="text-narrativa-vermelho">versão</span>
         </p>
       </div>
     </footer>
-  );
+  )
 }
