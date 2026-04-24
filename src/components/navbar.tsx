@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 
 const navLinks = [
   { href: '/', label: 'Início' },
@@ -14,7 +14,7 @@ const navLinks = [
   { href: '/contato', label: 'Contato' },
 ]
 
-export function Navbar() {
+function NavLinks() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [open, setOpen] = useState(false)
@@ -138,5 +138,29 @@ export function Navbar() {
         </nav>
       )}
     </header>
+  )
+}
+
+export function Navbar() {
+  return (
+    <Suspense
+      fallback={
+        <header className="bg-narrativa-preto border-b-[3px] border-narrativa-vermelho sticky top-0 z-100">
+          <div className="flex items-center justify-between px-[clamp(1.5rem,5vw,4rem)] py-[1.2rem] max-w-350 mx-auto">
+            <Link href="/" className="flex flex-col gap-[0.2rem] leading-none">
+              <span className="font-heading text-[2.2rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
+                NARRATIVA<span className="text-narrativa-vermelho">.</span>
+              </span>
+              <span className="text-[0.7rem] tracking-[0.25em] uppercase text-white/40 font-light">
+                política, poder e{' '}
+                <span className="text-narrativa-vermelho">versão</span>
+              </span>
+            </Link>
+          </div>
+        </header>
+      }
+    >
+      <NavLinks />
+    </Suspense>
   )
 }

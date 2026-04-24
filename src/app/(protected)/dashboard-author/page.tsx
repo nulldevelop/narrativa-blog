@@ -6,7 +6,10 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { auth } from '@/lib/auth'
-import { getDashboardStats, getRecentArticles } from './_data-access/get-dashboard-stats'
+import {
+  getDashboardStats,
+  getRecentArticles,
+} from './_data-access/get-dashboard-stats'
 
 export default async function DashboardAuthorPage() {
   const session = await auth.api.getSession({
@@ -34,7 +37,10 @@ export default async function DashboardAuthorPage() {
             Seu fluxo de produção e impacto editorial.
           </p>
         </div>
-        <Button asChild className="rounded-none bg-narrativa-preto text-[0.7rem] font-bold tracking-[0.15em] uppercase h-11 px-6">
+        <Button
+          asChild
+          className="rounded-none bg-narrativa-preto text-[0.7rem] font-bold tracking-[0.15em] uppercase h-11 px-6"
+        >
           <Link href="/dashboard-author/artigo/new">
             <Plus className="w-4 h-4 mr-2" /> Começar Novo Post
           </Link>
