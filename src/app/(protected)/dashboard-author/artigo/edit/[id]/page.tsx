@@ -1,4 +1,5 @@
-import { getArticleById, getCategories } from "../../_data-access";
+import { getArticleById } from "../../_data-access/get-article-by-id";
+import { getCategories } from "../../_data-access/get-categories";
 import { ArticleForm } from "../../_components/ArticleForm";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";

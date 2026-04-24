@@ -81,6 +81,17 @@ export function Footer() {
           política, poder e{' '}
           <span className="text-narrativa-vermelho">versão</span>
         </p>
+        <p className="text-[0.7rem] tracking-[0.08em] text-white/20">
+          Desenvolvido por{' '}
+          <a
+            href="https://nulldev.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-narrativa-vermelho hover:underline"
+          >
+            Null Development
+          </a>
+        </p>
       </div>
     </footer>
   )

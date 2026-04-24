@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { auth } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { getDashboardStats, getRecentArticles } from './_data-access/get-dashboard-stats'
 
 export default async function DashboardAuthorPage() {
   const session = await auth.api.getSession({
@@ -17,23 +17,8 @@ export default async function DashboardAuthorPage() {
     redirect('/login')
   }
 
-  const [myTotalArticles, myPublishedArticles, myDraftArticles] =
-    await Promise.all([
-      prisma.article.count({ where: { authorId: session.user.id } }),
-      prisma.article.count({
-        where: { authorId: session.user.id, status: 'published' },
-      }),
-      prisma.article.count({
-        where: { authorId: session.user.id, status: 'draft' },
-      }),
-    ])
-
-  const myRecentArticles = await prisma.article.findMany({
-    where: { authorId: session.user.id },
-    take: 5,
-    orderBy: { updatedAt: 'desc' },
-    include: { category: true },
-  })
+  const stats = await getDashboardStats()
+  const myRecentArticles = await getRecentArticles()
 
   return (
     <div className="space-y-8">
@@ -63,7 +48,7 @@ export default async function DashboardAuthorPage() {
               Total Produzido
             </p>
             <div className="flex items-center justify-between">
-              <span className="text-3xl font-black">{myTotalArticles}</span>
+              <span className="text-3xl font-black">{stats?.total || 0}</span>
               <BookOpen className="w-5 h-5 text-black/10" />
             </div>
           </CardContent>
@@ -75,7 +60,7 @@ export default async function DashboardAuthorPage() {
             </p>
             <div className="flex items-center justify-between">
               <span className="text-3xl font-black text-green-600">
-                {myPublishedArticles}
+                {stats?.published || 0}
               </span>
               <CheckCircle2 className="w-5 h-5 text-green-600/30" />
             </div>
@@ -88,7 +73,7 @@ export default async function DashboardAuthorPage() {
             </p>
             <div className="flex items-center justify-between">
               <span className="text-3xl font-black text-narrativa-dourado">
-                {myDraftArticles}
+                {stats?.draft || 0}
               </span>
               <Clock className="w-5 h-5 text-narrativa-dourado/30" />
             </div>

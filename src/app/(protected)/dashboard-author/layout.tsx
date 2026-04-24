@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   LogOut,
   PenTool,
+  Zap,
 } from 'lucide-react'
 import { headers } from 'next/headers'
 import Link from 'next/link'
@@ -34,9 +35,8 @@ export default async function DashboardAuthorLayout({
 
   return (
     <div className="min-h-screen bg-[#fcfcfc] flex flex-col">
-      {/* Header Superior */}
       <header className="bg-narrativa-preto border-b-[3px] border-narrativa-vermelho sticky top-0 z-50">
-        <div className="flex items-center justify-between px-8 py-4 max-w-[1600px] mx-auto w-full">
+        <div className="flex items-center justify-between px-8 py-4 max-w-400 mx-auto w-full">
           <Link href="/" className="flex flex-col gap-0.5 leading-none">
             <span className="font-heading text-[1.4rem] font-black tracking-[0.05em] text-narrativa-branco uppercase">
               NARRATIVA<span className="text-narrativa-vermelho">.</span>
@@ -53,7 +53,7 @@ export default async function DashboardAuthorLayout({
               </span>
               <div className="flex items-center gap-2">
                 <span className="text-[0.5rem] text-white/40 font-bold uppercase tracking-widest border border-white/10 px-1.5 py-0.5">
-                   {userMember?.organization?.slug || 'geral'}
+                  {userMember?.organization?.slug || 'geral'}
                 </span>
                 <span className="text-[0.6rem] text-narrativa-vermelho font-black uppercase tracking-widest">
                   AUTOR
@@ -73,7 +73,7 @@ export default async function DashboardAuthorLayout({
         </div>
       </header>
 
-      <div className="flex-1 flex flex-col lg:flex-row max-w-[1600px] mx-auto w-full p-8 gap-8">
+      <div className="flex-1 flex flex-col lg:flex-row max-w-400 mx-auto w-full p-8 gap-8">
         {/* Sidebar Persistente */}
         <aside className="w-full lg:w-64 flex flex-col gap-2 shrink-0">
           <p className="text-[0.6rem] font-black tracking-[0.2em] uppercase text-black/30 mb-2 px-3">
@@ -97,6 +97,12 @@ export default async function DashboardAuthorLayout({
               className="flex items-center gap-3 px-3 py-2.5 text-black/60 hover:bg-black/5 font-bold text-[0.8rem] uppercase tracking-wider transition-all"
             >
               <Clock className="w-4 h-4" /> Rascunhos
+            </Link>
+            <Link
+              href="/dashboard-author/curtas"
+              className="flex items-center gap-3 px-3 py-2.5 text-black/60 hover:bg-black/5 font-bold text-[0.8rem] uppercase tracking-wider transition-all"
+            >
+              <Zap className="w-4 h-4" /> Curtas
             </Link>
           </nav>
 

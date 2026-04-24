@@ -1,4 +1,5 @@
-import { getArticleById, getCategories } from "../../_data-access";
+import { getArticleById } from "../../_data-access/get-article-by-id";
+import { getCategories } from "../../_data-access/get-categories";
 import Link from "next/link";
 import { ArrowLeft, Edit3 } from "lucide-react";
 import { notFound } from "next/navigation";

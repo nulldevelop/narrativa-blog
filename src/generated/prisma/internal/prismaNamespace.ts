@@ -80,11 +80,11 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.7.0
+ * Prisma Client JS version: 7.6.0
  * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.7.0",
+  client: "7.6.0",
   engine: "75cbdc1eb7150937890ad5465d861175c6624711"
 }
 
@@ -395,6 +395,7 @@ export const ModelName = {
   Subscriber: 'Subscriber',
   SiteConfig: 'SiteConfig',
   Page: 'Page',
+  Curta: 'Curta',
   Organization: 'Organization',
   Member: 'Member',
   Modulo: 'Modulo',
@@ -416,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "article" | "category" | "tag" | "articleTag" | "subscriber" | "siteConfig" | "page" | "organization" | "member" | "modulo" | "memberPermission" | "invitation" | "auditLog"
+    modelProps: "user" | "session" | "account" | "verification" | "article" | "category" | "tag" | "articleTag" | "subscriber" | "siteConfig" | "page" | "curta" | "organization" | "member" | "modulo" | "memberPermission" | "invitation" | "auditLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1146,6 +1147,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Curta: {
+      payload: Prisma.$CurtaPayload<ExtArgs>
+      fields: Prisma.CurtaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CurtaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CurtaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload>
+        }
+        findFirst: {
+          args: Prisma.CurtaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CurtaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload>
+        }
+        findMany: {
+          args: Prisma.CurtaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload>[]
+        }
+        create: {
+          args: Prisma.CurtaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload>
+        }
+        createMany: {
+          args: Prisma.CurtaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.CurtaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload>
+        }
+        update: {
+          args: Prisma.CurtaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload>
+        }
+        deleteMany: {
+          args: Prisma.CurtaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CurtaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.CurtaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CurtaPayload>
+        }
+        aggregate: {
+          args: Prisma.CurtaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCurta>
+        }
+        groupBy: {
+          args: Prisma.CurtaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CurtaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CurtaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CurtaCountAggregateOutputType> | number
+        }
+      }
+    }
     Organization: {
       payload: Prisma.$OrganizationPayload<ExtArgs>
       fields: Prisma.OrganizationFieldRefs
@@ -1736,6 +1803,18 @@ export const PageScalarFieldEnum = {
 export type PageScalarFieldEnum = (typeof PageScalarFieldEnum)[keyof typeof PageScalarFieldEnum]
 
 
+export const CurtaScalarFieldEnum = {
+  id: 'id',
+  texto: 'texto',
+  source: 'source',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CurtaScalarFieldEnum = (typeof CurtaScalarFieldEnum)[keyof typeof CurtaScalarFieldEnum]
+
+
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1966,6 +2045,16 @@ export const PageOrderByRelevanceFieldEnum = {
 } as const
 
 export type PageOrderByRelevanceFieldEnum = (typeof PageOrderByRelevanceFieldEnum)[keyof typeof PageOrderByRelevanceFieldEnum]
+
+
+export const CurtaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  texto: 'texto',
+  source: 'source',
+  status: 'status'
+} as const
+
+export type CurtaOrderByRelevanceFieldEnum = (typeof CurtaOrderByRelevanceFieldEnum)[keyof typeof CurtaOrderByRelevanceFieldEnum]
 
 
 export const OrganizationOrderByRelevanceFieldEnum = {
@@ -2201,6 +2290,7 @@ export type GlobalOmitConfig = {
   subscriber?: Prisma.SubscriberOmit
   siteConfig?: Prisma.SiteConfigOmit
   page?: Prisma.PageOmit
+  curta?: Prisma.CurtaOmit
   organization?: Prisma.OrganizationOmit
   member?: Prisma.MemberOmit
   modulo?: Prisma.ModuloOmit

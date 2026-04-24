@@ -97,6 +97,11 @@ export type SiteConfig = Prisma.SiteConfigModel
  */
 export type Page = Prisma.PageModel
 /**
+ * Model Curta
+ * 
+ */
+export type Curta = Prisma.CurtaModel
+/**
  * Model Organization
  * 
  */

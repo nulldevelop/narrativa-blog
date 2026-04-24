@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 const navLinks = [
@@ -16,6 +16,7 @@ const navLinks = [
 
 export function Navbar() {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
   const [open, setOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
@@ -58,11 +59,20 @@ export function Navbar() {
           `}
         >
           {navLinks.map((link) => {
-            const isActive =
-              link.href === '/'
-                ? pathname === '/'
-                : pathname.startsWith(link.href.split('#')[0].split('?')[0]) &&
-                  link.href !== '/'
+            const url = new URL(link.href, 'http://localhost')
+            const linkCategory = url.searchParams.get('category')
+            const currentCategory = searchParams.get('category')
+            const basePath = link.href.split('#')[0].split('?')[0]
+
+            let isActive = false
+            if (link.href === '/') {
+              isActive = pathname === '/' && !currentCategory
+            } else if (linkCategory) {
+              isActive = pathname === '/' && linkCategory === currentCategory
+            } else {
+              isActive = pathname.startsWith(basePath)
+            }
+
             return (
               <Link
                 key={link.label}

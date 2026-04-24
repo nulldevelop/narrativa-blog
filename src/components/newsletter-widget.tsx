@@ -1,30 +1,44 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react'
+import { toast } from 'sonner'
+import { salvarEmail } from '@/app/(public)/_actions/newsletter'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 interface NewsletterWidgetProps {
-  variant?: "sidebar" | "inline";
-  buttonLabel?: string;
+  variant?: 'sidebar' | 'inline'
+  buttonLabel?: string
 }
 
 export function NewsletterWidget({
-  variant = "sidebar",
-  buttonLabel = "Assinar gratuitamente",
+  variant = 'sidebar',
+  buttonLabel = 'Assinar gratuitamente',
 }: NewsletterWidgetProps) {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  const [email, setEmail] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  function handleSubmit() {
-    if (email.includes("@") && email.includes(".")) {
-      setSubmitted(true);
-      setEmail("");
-      setTimeout(() => setSubmitted(false), 4000);
+  const handleSubmit = async () => {
+    if (!email.includes('@') || !email.includes('.')) {
+      toast.error('Email inválido')
+      return
+    }
+
+    setLoading(true)
+    const result = await salvarEmail(email)
+
+    if (result?.error) {
+      toast.error(result.error)
+      setLoading(false)
     } else {
-      setError(true);
-      setTimeout(() => setError(false), 1500);
+      setSubmitted(true)
+      setEmail('')
+      toast.success('Email salvo! Você receberá nossas matérias.')
+      setTimeout(() => {
+        setSubmitted(false)
+        setLoading(false)
+      }, 4000)
     }
   }
 
@@ -40,22 +54,26 @@ export function NewsletterWidget({
         className={`
           w-full rounded-none border-narrativa-cinza-linha px-4 py-3 text-[0.85rem] font-sans mb-2
           focus:border-narrativa-preto
-          ${error ? "border-narrativa-vermelho" : ""}
-          ${variant === "inline" ? "bg-white" : ""}
+          ${variant === 'inline' ? 'bg-white' : ''}
         `}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSubmit()
+          }
+        }}
       />
       <Button
         type="button"
         onClick={handleSubmit}
-        disabled={submitted}
+        disabled={submitted || loading}
         className={`
           w-full rounded-none text-[0.68rem] font-bold tracking-[0.16em] uppercase py-5
-          ${submitted ? "bg-[#2a7a2a]" : "bg-narrativa-preto hover:bg-narrativa-vermelho"}
+          ${submitted ? 'bg-[#2a7a2a]' : 'bg-narrativa-preto hover:bg-narrativa-vermelho'}
           text-narrativa-branco
         `}
       >
-        {submitted ? "✓ Inscrito!" : buttonLabel}
+        {loading ? 'Salvando...' : submitted ? '✓ Inscrito!' : buttonLabel}
       </Button>
     </div>
-  );
+  )
 }

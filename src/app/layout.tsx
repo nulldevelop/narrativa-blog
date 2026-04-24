@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
-import { Inter, Merriweather } from 'next/font/google'
+import { Inter, Literata } from 'next/font/google'
 import { Toaster } from 'sonner'
 import './styles/globals.css'
 
-const heading = Merriweather({
+const heading = Literata({
   variable: '--font-heading',
   subsets: ['latin'],
-  weight: ['300', '400', '700', '900'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
   display: 'swap',
 })
 
-const inter = Inter({
+const body = Inter({
   variable: '--font-body',
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
@@ -36,7 +36,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       data-scroll-behavior="smooth"
-      className={`${heading.variable} ${inter.variable}`}
+      className={`${heading.variable} ${body.variable}`}
     >
       <body>
         {children}

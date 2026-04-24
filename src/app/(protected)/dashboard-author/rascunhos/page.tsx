@@ -1,4 +1,12 @@
-import { Clock, Edit3, Eye, FileText, MoreHorizontal, Plus, Search } from 'lucide-react'
+import {
+  Clock,
+  Edit3,
+  Eye,
+  FileText,
+  MoreHorizontal,
+  Plus,
+  Search,
+} from 'lucide-react'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -14,7 +22,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { getDraftsByAuthor } from './_data-access/get-drafts-by-author'
 
 export default async function AuthorDraftsPage() {
   const session = await auth.api.getSession({
@@ -25,18 +33,7 @@ export default async function AuthorDraftsPage() {
     redirect('/login')
   }
 
-  const articles = await prisma.article.findMany({
-    where: {
-      authorId: session.user.id,
-      status: 'draft',
-    },
-    orderBy: {
-      updatedAt: 'desc',
-    },
-    include: {
-      category: true,
-    },
-  })
+  const articles = await getDraftsByAuthor()
 
   return (
     <div className="space-y-8">
@@ -75,7 +72,7 @@ export default async function AuthorDraftsPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-black/[0.02] border-b border-black/5">
+              <tr className="bg-black/2 border-b border-black/5">
                 <th className="px-6 py-4 text-[0.6rem] font-black tracking-[0.2em] uppercase text-black/40">
                   Título da Peça
                 </th>
@@ -123,16 +120,20 @@ export default async function AuthorDraftsPage() {
                     </td>
                     <td className="px-6 py-5">
                       <span className="flex items-center gap-1.5 text-narrativa-dourado text-[0.65rem] font-black uppercase tracking-widest">
-                        <Clock className="w-3.5 h-3.5" />Rascunho
+                        <Clock className="w-3.5 h-3.5" />
+                        Rascunho
                       </span>
                     </td>
                     <td className="px-6 py-5">
                       <span className="text-[0.75rem] text-black/40 font-medium">
-                        {new Date(article.updatedAt).toLocaleDateString('pt-BR', {
-                          day: '2-digit',
-                          month: 'short',
-                          year: 'numeric',
-                        })}
+                        {new Date(article.updatedAt).toLocaleDateString(
+                          'pt-BR',
+                          {
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric',
+                          },
+                        )}
                       </span>
                     </td>
                     <td className="px-6 py-5 text-right">

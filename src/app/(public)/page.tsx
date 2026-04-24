@@ -5,7 +5,7 @@ import { Pagination } from '@/components/pagination-nav'
 import { SectionTitle } from '@/components/section-title'
 import { SeparatorSection } from '@/components/separator-section'
 import { SidebarHome } from '@/components/sidebar-home'
-import { getHomeData } from './_data-access'
+import { getHomeData } from './_data-access/get-home-data'
 
 export default async function Home({
   searchParams,

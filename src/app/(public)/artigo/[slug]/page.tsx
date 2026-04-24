@@ -7,7 +7,7 @@ import { FadeUp } from '@/components/fade-up'
 import { NewsletterWidget } from '@/components/newsletter-widget'
 import { QuoteBlock } from '@/components/quote-block'
 import { ReadingProgress } from '@/components/reading-progress'
-import { getArticleBySlug } from '../../_data-access'
+import { getArticleBySlug } from '../../_data-access/get-article-by-slug'
 
 export default async function ArtigoPage({
   params,

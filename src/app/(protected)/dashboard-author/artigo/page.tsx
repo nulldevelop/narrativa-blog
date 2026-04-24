@@ -22,8 +22,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
+import { getArticlesByAuthor } from './_data-access/get-articles-by-author'
 import { auth } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
 
 export default async function AuthorArticlesPage() {
   const session = await auth.api.getSession({
@@ -34,17 +34,7 @@ export default async function AuthorArticlesPage() {
     redirect('/login')
   }
 
-  const articles = await prisma.article.findMany({
-    where: {
-      authorId: session.user.id,
-    },
-    orderBy: {
-      updatedAt: 'desc',
-    },
-    include: {
-      category: true,
-    },
-  })
+  const articles = await getArticlesByAuthor()
 
   return (
     <div className="space-y-8">

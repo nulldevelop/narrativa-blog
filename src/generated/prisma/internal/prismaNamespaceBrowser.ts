@@ -62,6 +62,7 @@ export const ModelName = {
   Subscriber: 'Subscriber',
   SiteConfig: 'SiteConfig',
   Page: 'Page',
+  Curta: 'Curta',
   Organization: 'Organization',
   Member: 'Member',
   Modulo: 'Modulo',
@@ -239,6 +240,18 @@ export const PageScalarFieldEnum = {
 } as const
 
 export type PageScalarFieldEnum = (typeof PageScalarFieldEnum)[keyof typeof PageScalarFieldEnum]
+
+
+export const CurtaScalarFieldEnum = {
+  id: 'id',
+  texto: 'texto',
+  source: 'source',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CurtaScalarFieldEnum = (typeof CurtaScalarFieldEnum)[keyof typeof CurtaScalarFieldEnum]
 
 
 export const OrganizationScalarFieldEnum = {
@@ -471,6 +484,16 @@ export const PageOrderByRelevanceFieldEnum = {
 } as const
 
 export type PageOrderByRelevanceFieldEnum = (typeof PageOrderByRelevanceFieldEnum)[keyof typeof PageOrderByRelevanceFieldEnum]
+
+
+export const CurtaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  texto: 'texto',
+  source: 'source',
+  status: 'status'
+} as const
+
+export type CurtaOrderByRelevanceFieldEnum = (typeof CurtaOrderByRelevanceFieldEnum)[keyof typeof CurtaOrderByRelevanceFieldEnum]
 
 
 export const OrganizationOrderByRelevanceFieldEnum = {

@@ -185,6 +185,17 @@ model Page {
   @@map("page")
 }
 
+model Curta {
+  id             String        @id @default(uuid())
+  texto          String        @db.Text
+  source         String?       @db.Text
+  status         String        @default("active") @db.VarChar(20)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@map("curta")
+}
+
 model Organization {
   id                String             @id @default(uuid())
   name              String             @db.Text
