@@ -19,15 +19,18 @@ const articleSchema = z.object({
 })
 
 export async function createArticleAction(data: z.infer<typeof articleSchema>) {
-  console.log("🚀 [SERVER] Iniciando createArticleAction...")
+  console.log('🚀 [SERVER] Iniciando createArticleAction...')
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
     })
 
     if (!session) {
-      console.error("❌ [SERVER] Nenhuma sessão encontrada no getSession.")
-      return { success: false, error: 'Sessão expirada ou não encontrada. Faça login novamente.' }
+      console.error('❌ [SERVER] Nenhuma sessão encontrada no getSession.')
+      return {
+        success: false,
+        error: 'Sessão expirada ou não encontrada. Faça login novamente.',
+      }
     }
 
     const userId = session.user.id
@@ -37,10 +40,10 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
     if (!member) {
       const firstOrg = await prisma.organization.findFirst()
       if (!firstOrg) {
-        return { success: false, error: "Nenhuma organização configurada." }
+        return { success: false, error: 'Nenhuma organização configurada.' }
       }
       member = await prisma.member.create({
-        data: { userId, organizationId: firstOrg.id, role: "AUTHOR" }
+        data: { userId, organizationId: firstOrg.id, role: 'AUTHOR' },
       })
     }
 
@@ -65,11 +68,13 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
           create: validated.tags?.map((tagName) => ({
             tag: {
               connectOrCreate: {
-                where: { slug: slugify(tagName, { lower: true, strict: true }) },
-                create: { 
-                  name: tagName, 
+                where: {
                   slug: slugify(tagName, { lower: true, strict: true }),
-                  organizationId: organizationId
+                },
+                create: {
+                  name: tagName,
+                  slug: slugify(tagName, { lower: true, strict: true }),
+                  organizationId: organizationId,
                 },
               },
             },
@@ -87,6 +92,9 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
     if (error instanceof z.ZodError) {
       return { success: false, error: error.issues[0].message }
     }
-    return { success: false, error: error.message || 'Falha ao salvar no banco.' }
+    return {
+      success: false,
+      error: error.message || 'Falha ao salvar no banco.',
+    }
   }
 }
