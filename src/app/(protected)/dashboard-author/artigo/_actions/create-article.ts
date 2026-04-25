@@ -13,6 +13,7 @@ const articleSchema = z.object({
   content: z.string().min(50, 'O conteúdo deve ser mais longo'),
   categoryId: z.string().min(1, 'Selecione uma categoria'),
   coverImage: z.string().optional(),
+  coverImageCredit: z.string().optional(),
   tags: z.array(z.string()).optional(),
   status: z.enum(['draft', 'published', 'archived']).default('draft'),
 })
@@ -54,6 +55,7 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
         content: validated.content,
         slug: uniqueSlug,
         coverImage: validated.coverImage || null,
+        coverImageCredit: validated.coverImageCredit || null,
         status: validated.status,
         categoryId: validated.categoryId,
         authorId: userId,

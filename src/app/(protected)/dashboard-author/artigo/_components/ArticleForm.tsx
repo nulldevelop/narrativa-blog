@@ -36,6 +36,7 @@ interface ArticleFormProps {
     content: string
     categoryId: string | null
     coverImage: string | null
+    coverImageCredit: string | null
     tags: string[]
     status: string
     images?: string[]
@@ -70,6 +71,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     subtitle: initialData?.subtitle || '',
     categoryId: initialData?.categoryId || '',
     coverImage: initialData?.coverImage || '',
+    coverImageCredit: initialData?.coverImageCredit || '',
   })
 
   const [homePosition, setHomePosition] = useState<string>(
@@ -379,6 +381,22 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                 >
                   <X className="w-4 h-4" />
                 </button>
+              </div>
+            )}
+
+            {formData.coverImage && (
+              <div className="space-y-1 mt-2">
+                <Label className="text-[0.6rem] font-bold uppercase text-black/40">
+                  Créditos da Imagem
+                </Label>
+                <Input
+                  placeholder="Ex: Foto: João Silva / Agência"
+                  value={formData.coverImageCredit}
+                  onChange={(e) =>
+                    setFormData({ ...formData, coverImageCredit: e.target.value })
+                  }
+                  className="rounded-none border-narrativa-cinza-linha h-8 text-[0.7rem]"
+                />
               </div>
             )}
           </div>

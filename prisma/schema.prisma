@@ -83,6 +83,7 @@ model Article {
   content        String        @db.LongText
   excerpt        String?       @db.Text
   coverImage     String?       @db.Text
+  coverImageCredit String?      @db.Text
   readTime       Int?
   featured       Boolean       @default(false)
   status         String        @default("draft") @db.VarChar(20)

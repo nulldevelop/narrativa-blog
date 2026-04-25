@@ -87,6 +87,11 @@ export default async function ArtigoPage({
                 priority
               />
             </div>
+            {article.coverImageCredit && (
+              <p className="text-[0.6rem] text-white/30 uppercase tracking-widest mt-2 text-right italic font-medium">
+                {article.coverImageCredit}
+              </p>
+            )}
           </FadeUp>
         </div>
       </header>
