@@ -5,7 +5,6 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { FadeUp } from '@/components/fade-up'
 import { NewsletterWidget } from '@/components/newsletter-widget'
-import { QuoteBlock } from '@/components/quote-block'
 import { ReadingProgress } from '@/components/reading-progress'
 import { getArticleBySlug } from '../../_data-access/get-article-by-slug'
 
@@ -95,15 +94,16 @@ export default async function ArtigoPage({
       {/* Body */}
       <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
         <div className="py-[clamp(3rem,6vw,5rem)]">
-          <div className="grid grid-cols-[1fr_280px] gap-20 items-start max-md:grid-cols-1">
+          <div className="grid grid-cols-[1fr_280px] gap-20 items-start max-md:grid-cols-1 w-full overflow-hidden">
             {/* Renderizador de Markdown Profissional */}
-            <article className="max-w-[680px]">
+            <article className="max-w-[680px] w-full">
               <div
-                className="prose prose-lg prose-narrativa max-w-none article-drop-cap
+                className="prose prose-lg prose-narrativa w-full max-w-none article-drop-cap break-words
                 prose-headings:font-heading prose-headings:font-black prose-headings:tracking-tight
                 prose-p:text-narrativa-cinza-texto prose-p:leading-[1.85]
                 prose-blockquote:border-narrativa-vermelho prose-blockquote:italic
-                prose-strong:text-narrativa-preto prose-a:text-narrativa-vermelho"
+                prose-strong:text-narrativa-preto prose-a:text-narrativa-vermelho
+                prose-table:w-full prose-img:w-full prose-pre:w-full"
               >
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {article.content}

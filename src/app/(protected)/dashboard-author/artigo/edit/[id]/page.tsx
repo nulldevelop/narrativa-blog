@@ -1,5 +1,6 @@
 import { getArticleById } from "../../_data-access/get-article-by-id";
 import { getCategories } from "../../_data-access/get-categories";
+import { getArticleImages } from "../../_data-access/get-article-images";
 import { ArticleForm } from "../../_components/ArticleForm";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
@@ -12,9 +13,10 @@ export default async function EditArticlePage({
 }) {
   const { id } = await params;
 
-  const [article, categories] = await Promise.all([
+  const [article, categories, images] = await Promise.all([
     getArticleById(id),
     getCategories(),
+    getArticleImages(id),
   ]);
 
   if (!article) {
@@ -31,6 +33,7 @@ export default async function EditArticlePage({
     coverImage: article.coverImage,
     tags: article.tags.map((t) => t.tag.name),
     status: article.status,
+    images: images,
   };
 
   return (

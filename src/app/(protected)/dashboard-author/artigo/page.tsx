@@ -24,6 +24,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { getArticlesByAuthor } from './_data-access/get-articles-by-author'
 import { auth } from '@/lib/auth'
+import { DeleteArticleButton } from './_components/DeleteArticleButton'
 
 export default async function AuthorArticlesPage() {
   const session = await auth.api.getSession({
@@ -186,9 +187,10 @@ export default async function AuthorArticlesPage() {
                             </Link>
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
-                          <DropdownMenuItem className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50">
-                            Arquivar Matéria
-                          </DropdownMenuItem>
+                          <DeleteArticleButton
+                            articleId={article.id}
+                            articleTitle={article.title}
+                          />
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </td>
