@@ -11,6 +11,7 @@ export const fetchByTag = async (tagSlug: string): Promise<ArticleHero | null> =
         status: 'published',
         tags: { some: { tag: { slug: tagSlug } } },
       },
+      orderBy: { publishedAt: 'desc' },
       include: { category: true },
     })) as ArticleHero | null
   } catch (error) {

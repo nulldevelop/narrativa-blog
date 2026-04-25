@@ -161,6 +161,7 @@ export const ArticleScalarFieldEnum = {
   coverImageCredit: 'coverImageCredit',
   readTime: 'readTime',
   featured: 'featured',
+  views: 'views',
   status: 'status',
   publishedAt: 'publishedAt',
   createdAt: 'createdAt',

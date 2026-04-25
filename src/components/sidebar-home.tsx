@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { NewsletterWidget } from '@/components/newsletter-widget'
 import { prisma } from '@/lib/prisma'
+import { fetchByCategory } from '@/app/(public)/_data-access'
 
 interface SidebarHomeProps {
   tags: { id: string; name: string; slug: string }[]
@@ -9,7 +11,7 @@ interface SidebarHomeProps {
 async function getCurtas() {
   try {
     return await prisma.curta.findMany({
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: 'asc' },
       where: { status: 'active' },
       take: 10,
     })
@@ -19,7 +21,11 @@ async function getCurtas() {
 }
 
 export async function SidebarHome({ tags }: SidebarHomeProps) {
-  const curtas = await getCurtas()
+  const [curtas, cotidianoArticle] = await Promise.all([
+    getCurtas(),
+    fetchByCategory('cotidiano'),
+  ])
+
   return (
     <aside className="flex flex-col gap-8" aria-label="Coluna lateral">
       {/* Curtas & Diretas */}
@@ -89,6 +95,28 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
               </Link>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Cotidiano */}
+      {cotidianoArticle && (
+        <div className="mt-4">
+          <p className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho mb-4">
+            Cotidiano
+          </p>
+          <Link href={`/artigo/${cotidianoArticle.slug}`} className="group block">
+            <div className="relative aspect-[4/3] w-full mb-3 overflow-hidden transition-all duration-500">
+              <Image
+                src={cotidianoArticle.coverImage || '/imgs/logo.png'}
+                alt={cotidianoArticle.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <h4 className="text-[1rem] font-bold text-narrativa-preto leading-tight group-hover:text-narrativa-vermelho transition-colors uppercase tracking-tight">
+              {cotidianoArticle.title}
+            </h4>
+          </Link>
         </div>
       )}
     </aside>

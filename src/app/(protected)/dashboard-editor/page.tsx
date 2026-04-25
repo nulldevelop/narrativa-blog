@@ -1,26 +1,24 @@
-import Link from "next/link";
-import { 
-  FileText, 
-  Tags, 
-  Plus, 
-  Search, 
-  Clock, 
-  CheckCircle2, 
-  AlertCircle,
-  ArrowUpRight,
+import {
+  AlertCircle, CheckCircle2,
   ChevronRight,
-  LogOut,
+  Clock,
+  FileText,
+  Globe,
   LayoutDashboard,
-  Globe
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+  LogOut,
+  Plus,
+  Search,
+  Tags
+} from 'lucide-react'
+import { headers } from 'next/headers'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { auth } from '@/lib/auth'
+import { prisma } from '@/lib/prisma'
 
 export default async function DashboardEditorPage() {
   const session = await auth.api.getSession({
@@ -32,17 +30,28 @@ export default async function DashboardEditorPage() {
   }
 
   // Estatísticas Editoriais
-  const [totalArticles, publishedArticles, draftArticles, categoriesCount] = await Promise.all([
+  const [totalArticles, publishedArticles, draftArticles, totalViews] = await Promise.all([
     prisma.article.count(),
     prisma.article.count({ where: { status: 'published' } }),
     prisma.article.count({ where: { status: 'draft' } }),
-    prisma.category.count()
+    prisma.article.aggregate({
+      _sum: {
+        views: true,
+      },
+    }),
   ]);
 
   const recentArticles = await prisma.article.findMany({
     take: 5,
     orderBy: { updatedAt: 'desc' },
     include: { author: true, category: true }
+  });
+
+  const topArticles = await prisma.article.findMany({
+    take: 3,
+    where: { status: 'published' },
+    orderBy: { views: 'desc' },
+    include: { author: true }
   });
 
   return (
@@ -75,7 +84,7 @@ export default async function DashboardEditorPage() {
       </header>
 
       <div className="flex-1 flex flex-col lg:flex-row max-w-[1600px] mx-auto w-full p-8 gap-8">
-        
+
         {/* Sidebar */}
         <aside className="w-full lg:w-64 flex flex-col gap-2 shrink-0">
            <p className="text-[0.6rem] font-black tracking-[0.2em] uppercase text-black/30 mb-2 px-3">Produção</p>
@@ -100,7 +109,7 @@ export default async function DashboardEditorPage() {
 
         {/* Conteúdo Principal */}
         <main className="flex-1 space-y-8">
-          
+
           <div className="flex items-end justify-between border-b border-black/10 pb-6 flex-wrap gap-4">
             <div>
               <h2 className="font-heading text-[2.2rem] font-black text-narrativa-preto tracking-tight leading-none mb-2">
@@ -118,7 +127,7 @@ export default async function DashboardEditorPage() {
             <Card className="rounded-none border-none shadow-sm">
                <CardContent className="p-5">
                   <p className="text-[0.6rem] font-black tracking-widest uppercase text-black/30 mb-1">Total de Peças</p>
-                  <div className="flex items-baseline gap-2">
+                  <div className="flex items-baseline justify-between">
                     <span className="text-2xl font-black">{totalArticles}</span>
                     <FileText className="w-3.5 h-3.5 text-black/20" />
                   </div>
@@ -127,34 +136,57 @@ export default async function DashboardEditorPage() {
             <Card className="rounded-none border-none shadow-sm">
                <CardContent className="p-5">
                   <p className="text-[0.6rem] font-black tracking-widest uppercase text-green-600/60 mb-1">Publicadas</p>
-                  <div className="flex items-baseline gap-2">
+                  <div className="flex items-baseline justify-between">
                     <span className="text-2xl font-black text-green-600">{publishedArticles}</span>
                     <CheckCircle2 className="w-3.5 h-3.5 text-green-600/40" />
+                  </div>
+               </CardContent>
+            </Card>
+            <Card className="rounded-none border-none shadow-sm bg-narrativa-vermelho/5">
+               <CardContent className="p-5">
+                  <p className="text-[0.6rem] font-black tracking-widest uppercase text-narrativa-vermelho/60 mb-1">Total de Acessos</p>
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-2xl font-black text-narrativa-vermelho">{totalViews._sum.views?.toLocaleString('pt-BR') || 0}</span>
+                    <Eye className="w-3.5 h-3.5 text-narrativa-vermelho/40" />
                   </div>
                </CardContent>
             </Card>
             <Card className="rounded-none border-none shadow-sm">
                <CardContent className="p-5">
                   <p className="text-[0.6rem] font-black tracking-widest uppercase text-narrativa-dourado/60 mb-1">Em Rascunho</p>
-                  <div className="flex items-baseline gap-2">
+                  <div className="flex items-baseline justify-between">
                     <span className="text-2xl font-black text-narrativa-dourado">{draftArticles}</span>
                     <Clock className="w-3.5 h-3.5 text-narrativa-dourado/40" />
                   </div>
                </CardContent>
             </Card>
-            <Card className="rounded-none border-none shadow-sm">
-               <CardContent className="p-5">
-                  <p className="text-[0.6rem] font-black tracking-widest uppercase text-blue-600/60 mb-1">Categorias</p>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-black text-blue-600">{categoriesCount}</span>
-                    <Tags className="w-3.5 h-3.5 text-blue-600/40" />
-                  </div>
-               </CardContent>
-            </Card>
           </div>
 
-          {/* Lista de Matérias Recentes */}
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Top Performance */}
+            <div className="lg:col-span-1 space-y-4">
+              <h4 className="text-[0.75rem] font-black tracking-[0.2em] uppercase text-black/40 px-1 flex items-center gap-2">
+                <TrendingUp className="w-3.5 h-3.5 text-narrativa-vermelho" /> Top Performance
+              </h4>
+              <Card className="rounded-none border-none shadow-sm">
+                <CardContent className="p-5 space-y-4">
+                  {topArticles.map((article, i) => (
+                    <div key={article.id} className="flex flex-col gap-1 border-b border-black/5 last:border-0 pb-3 last:pb-0">
+                      <h5 className="text-[0.8rem] font-bold text-narrativa-preto line-clamp-1">{article.title}</h5>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[0.6rem] text-black/30 uppercase font-black">{article.author.name}</span>
+                        <span className="text-[0.65rem] text-narrativa-vermelho font-black flex items-center gap-1">
+                          <Eye className="w-3 h-3" /> {article.views}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Lista de Matérias Recentes */}
+            <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center justify-between px-1">
               <h4 className="text-[0.75rem] font-black tracking-[0.2em] uppercase text-black/40">Últimas Atualizações</h4>
               <div className="relative w-64">

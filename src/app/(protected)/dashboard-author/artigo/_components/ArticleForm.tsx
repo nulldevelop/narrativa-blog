@@ -286,15 +286,6 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
           <div className="space-y-3">
             <Button
               type="button"
-              onClick={handlePreview}
-              variant="outline"
-              className="w-full rounded-none h-10 text-[0.7rem] font-bold uppercase tracking-widest border-narrativa-cinza-linha text-narrativa-preto"
-            >
-              <Eye className="w-4 h-4 mr-2" /> Visualizar
-            </Button>
-
-            <Button
-              type="button"
               disabled={loading}
               onClick={() => handleSubmit('published')}
               className="w-full rounded-none h-12 text-[0.75rem] font-bold uppercase tracking-widest bg-narrativa-vermelho hover:bg-red-700 text-white"
@@ -500,7 +491,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                 .map((t) => (
                   <Badge
                     key={t}
-                    className="rounded-none text-[0.6rem] font-bold uppercase bg-black/5 hover:bg-narrativa-vermelho hover:text-white transition-colors py-1 px-2 flex items-center gap-1"
+                    className="rounded-none text-[0.6rem] font-bold uppercase bg-black/5 text-black/70 hover:bg-narrativa-vermelho hover:text-white transition-colors py-1 px-2 flex items-center gap-1"
                   >
                     {t}
                     <button

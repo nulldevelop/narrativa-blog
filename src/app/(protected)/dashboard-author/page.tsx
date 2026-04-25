@@ -1,4 +1,4 @@
-import { ArrowUpRight, BookOpen, CheckCircle2, Clock, Plus } from 'lucide-react'
+import { ArrowUpRight, BookOpen, CheckCircle2, Clock, Plus, Eye, TrendingUp } from 'lucide-react'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -9,6 +9,7 @@ import { auth } from '@/lib/auth'
 import {
   getDashboardStats,
   getRecentArticles,
+  getTopArticles,
 } from './_data-access/get-dashboard-stats'
 
 export default async function DashboardAuthorPage() {
@@ -22,9 +23,10 @@ export default async function DashboardAuthorPage() {
 
   const stats = await getDashboardStats()
   const myRecentArticles = await getRecentArticles()
+  const topArticles = await getTopArticles()
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       <div className="flex items-end justify-between border-b border-black/10 pb-6 flex-wrap gap-4">
         <div>
           <h2 className="font-heading text-[2.2rem] font-black text-narrativa-preto tracking-tight leading-none mb-2">
@@ -47,7 +49,7 @@ export default async function DashboardAuthorPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="rounded-none border-none shadow-sm">
           <CardContent className="p-6">
             <p className="text-[0.6rem] font-black tracking-widest uppercase text-black/30 mb-2">
@@ -72,6 +74,19 @@ export default async function DashboardAuthorPage() {
             </div>
           </CardContent>
         </Card>
+        <Card className="rounded-none border-none shadow-sm bg-narrativa-vermelho/5">
+          <CardContent className="p-6">
+            <p className="text-[0.6rem] font-black tracking-widest uppercase text-narrativa-vermelho/60 mb-2">
+              Alcance Total
+            </p>
+            <div className="flex items-center justify-between">
+              <span className="text-3xl font-black text-narrativa-vermelho">
+                {stats?.totalViews?.toLocaleString('pt-BR') || 0}
+              </span>
+              <Eye className="w-5 h-5 text-narrativa-vermelho/30" />
+            </div>
+          </CardContent>
+        </Card>
         <Card className="rounded-none border-none shadow-sm">
           <CardContent className="p-6">
             <p className="text-[0.6rem] font-black tracking-widest uppercase text-narrativa-dourado/60 mb-2">
@@ -87,71 +102,93 @@ export default async function DashboardAuthorPage() {
         </Card>
       </div>
 
-      <div className="space-y-6">
-        <h4 className="text-[0.75rem] font-black tracking-[0.2em] uppercase text-black/40">
-          Últimos Textos
-        </h4>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="space-y-6">
+          <div className="flex items-center gap-2 border-b border-black/5 pb-4">
+            <TrendingUp className="w-4 h-4 text-narrativa-vermelho" />
+            <h4 className="text-[0.75rem] font-black tracking-[0.2em] uppercase text-black/40">
+              Melhor Performance
+            </h4>
+          </div>
 
-        <div className="grid gap-4">
-          {myRecentArticles.length > 0 ? (
-            myRecentArticles.map((article) => (
-              <Card
-                key={article.id}
-                className="rounded-none border-none shadow-sm hover:shadow-md transition-all group"
-              >
-                <CardContent className="p-0">
-                  <div className="flex items-center justify-between p-6">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Badge
-                          variant="outline"
-                          className="rounded-none text-[0.6rem] font-bold uppercase tracking-widest border-black/10"
-                        >
-                          {article.category?.name || 'Sem Categoria'}
-                        </Badge>
-                        <span className="text-[0.65rem] text-black/30 font-bold uppercase tracking-wider">
-                          {new Date(article.updatedAt).toLocaleDateString(
-                            'pt-BR',
-                          )}
-                        </span>
-                      </div>
-                      <h5 className="text-[1.1rem] font-black text-narrativa-preto group-hover:text-narrativa-vermelho transition-colors">
+          <div className="space-y-4">
+            {topArticles.length > 0 ? (
+              topArticles.map((article, index) => (
+                <div 
+                  key={article.id} 
+                  className="flex items-center gap-4 group cursor-pointer"
+                >
+                  <span className="text-[1.5rem] font-serif italic text-black/10 group-hover:text-narrativa-vermelho transition-colors w-8">
+                    0{index + 1}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <Link href={`/dashboard-author/artigo/edit/${article.id}`}>
+                      <h5 className="text-[0.95rem] font-bold text-narrativa-preto line-clamp-1 group-hover:text-narrativa-vermelho transition-colors">
                         {article.title}
                       </h5>
-                    </div>
-                    <div className="flex items-center gap-6 ml-8">
-                      <div className="text-right hidden sm:block">
-                        {article.status === 'published' ? (
-                          <span className="text-green-600 text-[0.65rem] font-black uppercase tracking-widest">
-                            Publicado
-                          </span>
-                        ) : (
-                          <span className="text-narrativa-dourado text-[0.65rem] font-black uppercase tracking-widest">
-                            Rascunho
-                          </span>
-                        )}
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="group-hover:bg-narrativa-vermelho group-hover:text-white transition-all"
-                      >
-                        <ArrowUpRight className="w-4 h-4" />
-                      </Button>
+                    </Link>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <span className="text-[0.65rem] text-black/30 font-bold uppercase">
+                        {article.category?.name || 'Geral'}
+                      </span>
+                      <span className="text-black/10">•</span>
+                      <span className="text-[0.65rem] text-narrativa-vermelho font-black flex items-center gap-1">
+                        <Eye className="w-3 h-3" /> {article.views} acessos
+                      </span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            <div className="py-16 text-center border-2 border-dashed border-black/5">
-              <BookOpen className="w-10 h-10 text-black/10 mx-auto mb-4" />
-              <p className="text-[0.9rem] text-black/40 italic font-serif max-w-[300px] mx-auto">
-                Você ainda não iniciou sua jornada na Narrativa. Comece seu
-                primeiro texto hoje.
-              </p>
-            </div>
-          )}
+                </div>
+              ))
+            ) : (
+              <p className="text-[0.8rem] text-black/30 italic">Nenhum dado de performance disponível ainda.</p>
+            )}
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="flex items-center gap-2 border-b border-black/5 pb-4">
+            <Clock className="w-4 h-4 text-black/40" />
+            <h4 className="text-[0.75rem] font-black tracking-[0.2em] uppercase text-black/40">
+              Atividade Recente
+            </h4>
+          </div>
+
+          <div className="space-y-4">
+            {myRecentArticles.length > 0 ? (
+              myRecentArticles.map((article) => (
+                <Link 
+                  href={`/dashboard-author/artigo/edit/${article.id}`} 
+                  key={article.id}
+                  className="block p-4 border border-black/5 hover:border-narrativa-vermelho/20 hover:bg-black/[0.01] transition-all group"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <h5 className="text-[0.9rem] font-black text-narrativa-preto group-hover:text-narrativa-vermelho transition-colors">
+                        {article.title}
+                      </h5>
+                      <div className="flex items-center gap-3">
+                        <span className="text-[0.6rem] text-black/30 font-bold uppercase tracking-widest">
+                          {new Date(article.updatedAt).toLocaleDateString('pt-BR')}
+                        </span>
+                        {article.status === 'published' ? (
+                          <Badge className="bg-green-600/10 text-green-600 border-none rounded-none text-[0.5rem] font-black uppercase tracking-tighter h-4">
+                            Publicado
+                          </Badge>
+                        ) : (
+                          <Badge className="bg-narrativa-dourado/10 text-narrativa-dourado border-none rounded-none text-[0.5rem] font-black uppercase tracking-tighter h-4">
+                            Rascunho
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-black/10 group-hover:text-narrativa-vermelho transition-colors flex-shrink-0" />
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p className="text-[0.8rem] text-black/30 italic">Sem atividades recentes.</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

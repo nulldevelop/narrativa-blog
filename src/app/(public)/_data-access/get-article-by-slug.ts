@@ -6,14 +6,20 @@ import { prisma } from '@/lib/prisma'
  */
 export const getArticleBySlug = async (slug: string) => {
   try {
-    return await prisma.article.findUnique({
+    const article = await prisma.article.update({
       where: { slug },
+      data: {
+        views: {
+          increment: 1,
+        },
+      },
       include: {
         author: true,
         category: true,
         tags: { include: { tag: true } },
       },
     })
+    return article
   } catch (error) {
     console.error('Error getting article by slug:', error)
     return null

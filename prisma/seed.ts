@@ -58,6 +58,7 @@ async function main() {
     { name: 'Brasil', slug: 'brasil' },
     { name: 'Curitiba', slug: 'curitiba' },
     { name: 'Bastidores', slug: 'bastidores' },
+    { name: 'Cotidiano', slug: 'cotidiano' },
   ]
 
   for (const cat of categoriasEditoriais) {

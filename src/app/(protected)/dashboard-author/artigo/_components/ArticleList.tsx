@@ -23,6 +23,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArchiveArticleButton } from './ArchiveArticleButton'
 import { UnarchiveArticleButton } from './UnarchiveArticleButton'
+import { DeleteArticleButton } from './DeleteArticleButton'
 
 interface Article {
   id: string
@@ -156,10 +157,17 @@ export function ArticleList({ articles }: ArticleListProps) {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         {article.status === 'archived' ? (
-                          <UnarchiveArticleButton
-                            articleId={article.id}
-                            articleTitle={article.title}
-                          />
+                          <>
+                            <UnarchiveArticleButton
+                              articleId={article.id}
+                              articleTitle={article.title}
+                            />
+                            <DropdownMenuSeparator />
+                            <DeleteArticleButton
+                              articleId={article.id}
+                              articleTitle={article.title}
+                            />
+                          </>
                         ) : (
                           <ArchiveArticleButton
                             articleId={article.id}

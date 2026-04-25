@@ -9,6 +9,7 @@ const navLinks = [
   { href: '/?category=curitiba#posts', label: 'Curitiba' },
   { href: '/?category=parana#posts', label: 'Paraná' },
   { href: '/?category=brasil#posts', label: 'Brasil' },
+  { href: '/?category=cotidiano#posts', label: 'Cotidiano' },
   { href: '/colunistas', label: 'Colunistas', hidden: true },
   { href: '/sobre', label: 'Sobre' },
   { href: '/contato', label: 'Contato' },

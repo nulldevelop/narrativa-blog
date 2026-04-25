@@ -60,7 +60,7 @@ export function ArticleCard({
                 {title}
               </h3>
             </Link>
-            <p className="text-[0.95rem] text-narrativa-cinza-texto leading-[1.6] font-light line-clamp-3">
+            <p className="text-[0.95rem] text-narrativa-cinza-texto leading-[1.6] font-light line-clamp-3 italic font-serif">
               {subtitle}
             </p>
             <div className="flex items-center gap-4 mt-1 flex-wrap">
@@ -86,7 +86,7 @@ export function ArticleCard({
               {title}
             </h3>
           </Link>
-          <p className="text-[0.9rem] text-narrativa-cinza-texto leading-[1.6] font-light">
+          <p className="text-[0.9rem] text-narrativa-cinza-texto leading-[1.6] font-light italic font-serif">
             {subtitle}
           </p>
           <div className="flex items-center gap-4 mt-2 flex-wrap">

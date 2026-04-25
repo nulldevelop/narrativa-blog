@@ -484,14 +484,6 @@ export type CategoryUpdateOneWithoutArticlesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CategoryUpdateToOneWithWhereWithoutArticlesInput, Prisma.CategoryUpdateWithoutArticlesInput>, Prisma.CategoryUncheckedUpdateWithoutArticlesInput>
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type CategoryCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.CategoryCreateWithoutOrganizationInput, Prisma.CategoryUncheckedCreateWithoutOrganizationInput> | Prisma.CategoryCreateWithoutOrganizationInput[] | Prisma.CategoryUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutOrganizationInput | Prisma.CategoryCreateOrConnectWithoutOrganizationInput[]

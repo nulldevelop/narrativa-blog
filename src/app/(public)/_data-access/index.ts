@@ -5,8 +5,13 @@ import { prisma } from '@/lib/prisma'
  * Busca um artigo pelo slug com autor, categoria e tags.
  */
 export const getArticleBySlug = async (slug: string) => {
-  return await prisma.article.findUnique({
+  return await prisma.article.update({
     where: { slug },
+    data: {
+      views: {
+        increment: 1,
+      },
+    },
     include: {
       author: true,
       category: true,
@@ -26,6 +31,23 @@ export const fetchByTag = async (
       status: 'published',
       tags: { some: { tag: { slug: tagSlug } } },
     },
+    orderBy: { publishedAt: 'desc' },
+    include: { category: true },
+  })) as ArticleHero | null
+}
+
+/**
+ * Busca o último artigo publicado de uma categoria específica.
+ */
+export const fetchByCategory = async (
+  categorySlug: string,
+): Promise<ArticleHero | null> => {
+  return (await prisma.article.findFirst({
+    where: {
+      status: 'published',
+      category: { slug: categorySlug },
+    },
+    orderBy: { publishedAt: 'desc' },
     include: { category: true },
   })) as ArticleHero | null
 }

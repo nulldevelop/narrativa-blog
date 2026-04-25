@@ -59,7 +59,7 @@ export default function HeroHome({ mainArticle, secondaryArticles }: HeroHomePro
 
             {currentMain.subtitle && (
               <FadeUp delay={0.1}>
-                <p className="text-[1rem] text-white/50 max-w-[440px] leading-[1.7] font-light italic">
+                <p className="text-[1rem] text-white/50 max-w-[440px] leading-[1.7] font-light italic font-serif">
                   {currentMain.subtitle}
                 </p>
               </FadeUp>
@@ -112,7 +112,7 @@ export default function HeroHome({ mainArticle, secondaryArticles }: HeroHomePro
                       alt={item.title}
                       fill
                       sizes="100px"
-                      className="object-cover transition-all duration-500 grayscale group-hover:grayscale-0"
+                      className="object-cover transition-all duration-500"
                     />
                   </div>
                   <div className="flex flex-col gap-1">
