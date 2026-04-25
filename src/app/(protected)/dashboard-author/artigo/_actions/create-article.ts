@@ -14,7 +14,7 @@ const articleSchema = z.object({
   categoryId: z.string().min(1, 'Selecione uma categoria'),
   coverImage: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  status: z.enum(['draft', 'published']).default('draft'),
+  status: z.enum(['draft', 'published', 'archived']).default('draft'),
 })
 
 export async function createArticleAction(data: z.infer<typeof articleSchema>) {

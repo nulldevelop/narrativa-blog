@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/select'
 import { createArticleAction } from '../_actions/create-article'
 import { updateArticleAction } from '../_actions/update-article'
+import { deleteImageAction } from '../_actions/delete-image'
 
 const MDEditor = dynamic(
   () => import('@uiw/react-md-editor').then((mod) => mod.default),
@@ -84,6 +85,26 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     }
     setTags((prev) => [...prev, tagName])
     setTagInput('')
+  }
+
+  const handleDeleteImage = async (e: React.MouseEvent, url: string) => {
+    e.stopPropagation()
+    if (!confirm('Tem certeza que deseja excluir esta imagem?')) return
+
+    try {
+      const result = await deleteImageAction(url)
+      if (result.success) {
+        setUploadedImages((prev) => prev.filter((img) => img !== url))
+        if (formData.coverImage === url) {
+          setFormData({ ...formData, coverImage: '' })
+        }
+        toast.success('Imagem excluída!')
+      } else {
+        toast.error(result.error || 'Erro ao excluir imagem')
+      }
+    } catch (error) {
+      toast.error('Erro ao excluir imagem')
+    }
   }
 
   const copyToClipboard = (url: string) => {
@@ -344,13 +365,20 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
             </div>
 
             {formData.coverImage && (
-              <div className="aspect-video w-full mt-3 border border-narrativa-cinza-linha overflow-hidden relative">
+              <div className="aspect-video w-full mt-3 border border-narrativa-cinza-linha overflow-hidden relative group">
                 <Image
                   src={formData.coverImage}
                   alt="Capa"
                   fill
                   className="object-cover"
                 />
+                <button
+                  type="button"
+                  onClick={(e) => handleDeleteImage(e, formData.coverImage)}
+                  className="absolute top-2 right-2 bg-red-600 text-white p-1.5 rounded-none opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-700"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
             )}
           </div>
@@ -388,6 +416,13 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                         Copiar
                       </span>
                     </div>
+                    <button
+                      type="button"
+                      onClick={(e) => handleDeleteImage(e, url)}
+                      className="absolute top-1 right-1 bg-red-600 text-white p-1 rounded-none opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-700"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
                   </button>
                 ))}
               </div>

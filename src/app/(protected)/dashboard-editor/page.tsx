@@ -49,13 +49,14 @@ export default async function DashboardEditorPage() {
     <div className="min-h-screen bg-[#fcfcfc] flex flex-col">
       {/* Header Superior */}
       <header className="bg-narrativa-preto border-b-[3px] border-narrativa-vermelho sticky top-0 z-50">
-        <div className="flex items-center justify-between px-8 py-4 max-w-[1600px] mx-auto w-full">
-          <Link href="/" className="flex flex-col gap-0.5 leading-none">
-            <span className="font-heading text-[1.4rem] font-black tracking-[0.05em] text-narrativa-branco uppercase">
+        <div className="flex items-center justify-between px-8 py-5 max-w-[1600px] mx-auto w-full">
+          <Link href="/" className="flex flex-col gap-[0.2rem] leading-none">
+            <span className="font-heading text-[2.2rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
               NARRATIVA<span className="text-narrativa-vermelho">.</span>
             </span>
-            <span className="text-[0.55rem] tracking-[0.2em] uppercase text-white/40 font-light">
-              Mesa de Edição · Fluxo de Conteúdo
+            <span className="text-[0.7rem] tracking-[0.25em] uppercase text-white/40 font-light">
+              política, poder e{' '}
+              <span className="text-narrativa-vermelho">versão</span>
             </span>
           </Link>
 

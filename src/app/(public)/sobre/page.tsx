@@ -1,39 +1,39 @@
-import { FadeUp } from "@/components/fade-up";
-import { SectionTitle } from "@/components/section-title";
-import { NewsletterWidget } from "@/components/newsletter-widget";
+import { FadeUp } from '@/components/fade-up'
+import { NewsletterWidget } from '@/components/newsletter-widget'
+import { SectionTitle } from '@/components/section-title'
 
 const pilares = [
   {
-    num: "01",
-    title: "Profundidade",
-    text: "Matéria que vai além do fato imediato. Contexto histórico, mapa de atores e consequências possíveis — não apenas o que aconteceu, mas por que aconteceu e o que pode vir.",
+    num: '01',
+    title: 'Profundidade',
+    text: 'Matéria que vai além do fato imediato. Contexto histórico, mapa de atores e consequências possíveis — não apenas o que aconteceu, mas por que aconteceu e o que pode vir.',
   },
   {
-    num: "02",
-    title: "Rigor",
-    text: "Sem espetáculo, sem sensacionalismo. A matéria política séria exige cuidado com as fontes, precisão nas afirmações e honestidade intelectual sobre o que se sabe e o que se especula.",
+    num: '02',
+    title: 'Rigor',
+    text: 'Sem espetáculo, sem sensacionalismo. A matéria política séria exige cuidado com as fontes, precisão nas afirmações e honestidade intelectual sobre o que se sabe e o que se especula.',
   },
   {
-    num: "03",
-    title: "Contraste",
-    text: "O poder opera em camadas. A narrativa pública e a dinâmica real raramente coincidem. Colocar essas camadas em contraste é o método central deste projeto.",
+    num: '03',
+    title: 'Contraste',
+    text: 'O poder opera em camadas. A narrativa pública e a dinâmica real raramente coincidem. Colocar essas camadas em contraste é o método central deste projeto.',
   },
   {
-    num: "04",
-    title: "Independência",
-    text: "Sem vínculo com partidos, candidatos ou governos. A Narrativa não tem agenda partidária — tem compromisso com a matéria honesta e a informação qualificada.",
+    num: '04',
+    title: 'Independência',
+    text: 'Sem vínculo com partidos, candidatos ou governos. A Narrativa não tem agenda partidária — tem compromisso com a matéria honesta e a informação qualificada.',
   },
   {
-    num: "05",
-    title: "Antecipação",
-    text: "A política raramente reage apenas ao agora — ela se antecipa ao que pode vir. Identificar esses movimentos antes que se tornem evidentes é um dos objetivos centrais desta publicação.",
+    num: '05',
+    title: 'Antecipação',
+    text: 'A política raramente reage apenas ao agora — ela se antecipa ao que pode vir. Identificar esses movimentos antes que se tornem evidentes é um dos objetivos centrais desta publicação.',
   },
   {
-    num: "06",
-    title: "Linguagem",
-    text: "Matéria política não precisa ser árida. O texto da Narrativa busca combinar precisão analítica com clareza narrativa — legível, mas sem abrir mão da profundidade.",
+    num: '06',
+    title: 'Linguagem',
+    text: 'Matéria política não precisa ser árida. O texto da Narrativa busca combinar precisão analítica com clareza narrativa — legível, mas sem abrir mão da profundidade.',
   },
-];
+]
 
 export default function SobrePage() {
   return (
@@ -51,7 +51,8 @@ export default function SobrePage() {
             <h1 className="font-heading text-[clamp(2.5rem,6vw,5rem)] font-black text-narrativa-branco tracking-[-0.02em] leading-[1.05]">
               O que não é dito
               <br />
-              também é<span className="text-narrativa-vermelho"> narrativa</span>.
+              também é
+              <span className="text-narrativa-vermelho"> narrativa</span>.
             </h1>
           </FadeUp>
         </div>
@@ -91,8 +92,8 @@ export default function SobrePage() {
               <p className="text-[1.05rem] leading-[1.85] text-narrativa-cinza-texto mb-5">
                 O discurso tem limites. Ele organiza a percepção, mas não
                 elimina a dinâmica real do poder — que segue em movimento, ainda
-                que de forma discreta. Entender esse movimento é o que nos propõe
-                a Narrativa.
+                que de forma discreta. Entender esse movimento é o que nos
+                propõe a Narrativa.
               </p>
             </div>
 
@@ -107,8 +108,8 @@ export default function SobrePage() {
                 </p>
                 <p className="text-[1.1rem] italic leading-[1.7] text-white/70">
                   <strong className="text-narrativa-branco not-italic">
-                    Entender o que está acontecendo passa menos pelo que é dito —
-                    e mais pelo que, cuidadosamente, não é.
+                    Entender o que está acontecendo passa menos pelo que é dito
+                    — e mais pelo que, cuidadosamente, não é.
                   </strong>
                 </p>
               </div>
@@ -117,7 +118,7 @@ export default function SobrePage() {
               <div className="grid grid-cols-2 gap-2 mt-2 max-sm:hidden">
                 <div className="bg-narrativa-preto aspect-square flex items-center justify-center p-8">
                   <p className="text-[1.4rem] italic text-white/70 leading-[1.4]">
-                    O poder como{" "}
+                    O poder como{' '}
                     <strong className="text-narrativa-vermelho not-italic">
                       construção
                     </strong>
@@ -130,7 +131,7 @@ export default function SobrePage() {
                 </div>
                 <div className="bg-narrativa-cinza-claro aspect-[2/1] col-span-2 flex items-end p-6">
                   <p className="text-[0.68rem] tracking-[0.15em] uppercase text-[#aaa]">
-                    narrativa.blog.br · matéria política · paraná · brasil
+                    narrativa.blog · matéria política · paraná · brasil
                   </p>
                 </div>
               </div>
@@ -164,9 +165,7 @@ export default function SobrePage() {
           <div className="mt-16 p-12 bg-narrativa-cinza-claro grid grid-cols-2 gap-12 items-center max-sm:grid-cols-1">
             <div>
               <span className="block w-12 h-[3px] bg-narrativa-vermelho mb-5" />
-              <h2 className="text-[1.8rem] mb-4">
-                Acompanhe a Narrativa
-              </h2>
+              <h2 className="text-[1.8rem] mb-4">Acompanhe a Narrativa</h2>
               <p className="text-[0.95rem] text-narrativa-cinza-texto leading-[1.7]">
                 Receba novas matérias diretamente no seu e-mail. Sem algoritmo,
                 sem agenda — só matéria política séria.
@@ -179,5 +178,5 @@ export default function SobrePage() {
         </div>
       </div>
     </>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { Trash2 } from 'lucide-react'
+import { Archive } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'sonner'
@@ -16,63 +16,63 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
-import { deleteArticleAction } from '../_actions/delete-article'
+import { archiveArticleAction } from '../_actions/archive-article'
 
-interface DeleteArticleButtonProps {
+interface ArchiveArticleButtonProps {
   articleId: string
   articleTitle: string
 }
 
-export function DeleteArticleButton({
+export function ArchiveArticleButton({
   articleId,
   articleTitle,
-}: DeleteArticleButtonProps) {
-  const [isDeleting, setIsDeleting] = useState(false)
+}: ArchiveArticleButtonProps) {
+  const [isArchiving, setIsArchiving] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
 
-  const handleDelete = async () => {
+  const handleArchive = async () => {
     try {
-      setIsDeleting(true)
-      const result = await deleteArticleAction(articleId)
+      setIsArchiving(true)
+      const result = await archiveArticleAction(articleId)
 
       if (result.success) {
-        toast.success('Matéria excluída com sucesso!')
+        toast.success('Matéria arquivada com sucesso!')
         setIsOpen(false)
         router.refresh()
       } else {
-        toast.error(result.error || 'Erro ao excluir a matéria.')
+        toast.error(result.error || 'Erro ao arquivar a matéria.')
       }
     } catch (error) {
       toast.error('Ocorreu um erro inesperado.')
     } finally {
-      setIsDeleting(false)
+      setIsArchiving(false)
     }
   }
 
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuItem
-        variant="destructive"
+        variant="default"
         onSelect={(e) => {
           e.preventDefault()
           setIsOpen(true)
         }}
-        className="cursor-pointer"
-        disabled={isDeleting}
+        className="cursor-pointer text-amber-600 focus:text-amber-600 focus:bg-amber-50"
+        disabled={isArchiving}
       >
-        <Trash2 className="w-4 h-4 mr-3" />
-        {isDeleting ? 'Excluindo...' : 'Excluir Matéria'}
+        <Archive className="w-4 h-4 mr-3" />
+        {isArchiving ? 'Arquivando...' : 'Arquivar Matéria'}
       </DropdownMenuItem>
       <AlertDialogContent className="rounded-none border-black/10">
         <AlertDialogHeader>
           <AlertDialogTitle className="font-heading font-black text-narrativa-preto uppercase tracking-tight">
-            Confirmar Exclusão
+            Confirmar Arquivamento
           </AlertDialogTitle>
           <AlertDialogDescription className="text-black/60 font-medium">
-            Você tem certeza que deseja excluir permanentemente a matéria{' '}
+            Você tem certeza que deseja arquivar a matéria{' '}
             <strong className="text-narrativa-preto">"{articleTitle}"</strong>?
-            Esta ação não pode ser desfeita.
+            Ela deixará de aparecer no site público, mas continuará salva em seu acervo.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -82,11 +82,11 @@ export function DeleteArticleButton({
           <AlertDialogAction
             onClick={(e) => {
               e.preventDefault()
-              handleDelete()
+              handleArchive()
             }}
-            className="rounded-none bg-red-600 hover:bg-red-700 font-bold uppercase text-[0.7rem] tracking-widest"
+            className="rounded-none bg-amber-600 hover:bg-amber-700 font-bold uppercase text-[0.7rem] tracking-widest"
           >
-            {isDeleting ? 'Excluindo...' : 'Sim, Excluir'}
+            {isArchiving ? 'Arquivando...' : 'Sim, Arquivar'}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

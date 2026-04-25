@@ -73,9 +73,8 @@ export function Footer() {
       {/* Bottom */}
       <div className="max-w-[1200px] mx-auto flex justify-between items-center pt-6 flex-wrap gap-4">
         <p className="text-[0.7rem] tracking-[0.08em] text-white/20">
-          © 2026{' '}
-          <span className="text-narrativa-vermelho">narrativa.blog.br</span> —
-          Todos os direitos reservados.
+          © 2026 <span className="text-narrativa-vermelho">narrativa.blog</span>{' '}
+          — Todos os direitos reservados.
         </p>
         <p className="text-[0.7rem] tracking-[0.08em] text-white/20">
           política, poder e{' '}

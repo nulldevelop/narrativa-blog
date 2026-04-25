@@ -5,7 +5,7 @@ import { headers } from 'next/headers'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 
-export async function deleteArticleAction(id: string) {
+export async function archiveArticleAction(id: string) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -28,11 +28,14 @@ export async function deleteArticleAction(id: string) {
     }
 
     if (article.authorId !== userId && !['ADMIN', 'EDITOR'].includes(session.user.role)) {
-      return { success: false, error: 'Você não tem permissão para excluir este artigo.' }
+      return { success: false, error: 'Você não tem permissão para arquivar este artigo.' }
     }
 
-    await prisma.article.delete({
+    await prisma.article.update({
       where: { id },
+      data: {
+        status: 'archived'
+      }
     })
 
     revalidatePath('/')
@@ -41,6 +44,6 @@ export async function deleteArticleAction(id: string) {
 
     return { success: true }
   } catch (error: any) {
-    return { success: false, error: error.message || 'Falha ao excluir o artigo.' }
+    return { success: false, error: error.message || 'Falha ao arquivar o artigo.' }
   }
 }

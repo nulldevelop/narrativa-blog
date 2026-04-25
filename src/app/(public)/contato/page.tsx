@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { FadeUp } from "@/components/fade-up";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import Link from 'next/link'
+import { FadeUp } from '@/components/fade-up'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 
 export default async function ContatoPage() {
   return (
@@ -19,11 +19,12 @@ export default async function ContatoPage() {
           </p>
           <FadeUp>
             <h1 className="font-heading text-[clamp(2.5rem,6vw,5rem)] font-black text-narrativa-branco tracking-[-0.02em] leading-[1.05] mb-6 whitespace-pre-line">
-              Fale com a{"\n"}Narrativa.
+              Fale com o blog{'\n'}Narrativa.
             </h1>
           </FadeUp>
           <p className="text-[clamp(1rem,2vw,1.1rem)] text-white/50 font-light max-w-[600px] leading-[1.65]">
-            Sugestões, pautas ou parcerias — use o formulário abaixo ou envie direto para o nosso e-mail.
+            Sugestões, pautas ou parcerias — use o formulário abaixo ou envie
+            direto para o nosso e-mail.
           </p>
         </div>
       </section>
@@ -35,7 +36,10 @@ export default async function ContatoPage() {
           <FadeUp>
             <form className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <Label htmlFor="nome" className="text-[0.7rem] uppercase tracking-[0.1em] font-bold text-narrativa-preto">
+                <Label
+                  htmlFor="nome"
+                  className="text-[0.7rem] uppercase tracking-[0.1em] font-bold text-narrativa-preto"
+                >
                   Nome
                 </Label>
                 <Input
@@ -47,7 +51,10 @@ export default async function ContatoPage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="email" className="text-[0.7rem] uppercase tracking-[0.1em] font-bold text-narrativa-preto">
+                <Label
+                  htmlFor="email"
+                  className="text-[0.7rem] uppercase tracking-[0.1em] font-bold text-narrativa-preto"
+                >
                   E-mail
                 </Label>
                 <Input
@@ -59,7 +66,10 @@ export default async function ContatoPage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="assunto" className="text-[0.7rem] uppercase tracking-[0.1em] font-bold text-narrativa-preto">
+                <Label
+                  htmlFor="assunto"
+                  className="text-[0.7rem] uppercase tracking-[0.1em] font-bold text-narrativa-preto"
+                >
                   Assunto
                 </Label>
                 <Input
@@ -71,7 +81,10 @@ export default async function ContatoPage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="mensagem" className="text-[0.7rem] uppercase tracking-[0.1em] font-bold text-narrativa-preto">
+                <Label
+                  htmlFor="mensagem"
+                  className="text-[0.7rem] uppercase tracking-[0.1em] font-bold text-narrativa-preto"
+                >
                   Mensagem
                 </Label>
                 <Textarea
@@ -100,10 +113,11 @@ export default async function ContatoPage() {
                   E-mail de Contato
                 </p>
                 <h3 className="font-bold text-[1.2rem] text-narrativa-preto mb-1">
-                  contato@narrativa.blog.br
+                  contato@narrativa.blog
                 </h3>
                 <p className="text-[0.95rem] text-narrativa-cinza-texto font-light leading-[1.6]">
-                  Para sugestões, pautas, correções, parcerias comerciais ou qualquer outro assunto relacionado à Narrativa.
+                  Para sugestões, pautas, correções, parcerias comerciais ou
+                  qualquer outro assunto relacionado à Narrativa.
                 </p>
               </div>
 
@@ -116,7 +130,9 @@ export default async function ContatoPage() {
                   Conheça a Narrativa
                 </h3>
                 <p className="text-[0.9rem] text-narrativa-cinza-texto font-light leading-[1.6]">
-                  Um blog de matéria política com foco no que está por trás do discurso público — o que é dito, o que é evitado e o que se constrói em silêncio.
+                  Um blog de matéria política com foco no que está por trás do
+                  discurso público — o que é dito, o que é evitado e o que se
+                  constrói em silêncio.
                 </p>
                 <Link
                   href="/sobre"
@@ -130,5 +146,5 @@ export default async function ContatoPage() {
         </div>
       </div>
     </>
-  );
+  )
 }
