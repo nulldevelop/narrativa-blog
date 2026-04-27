@@ -22,7 +22,7 @@ export interface HeroHomeProps {
   secondaryArticles: ArticleHero[];
 }
 
-export default function HeroHome({ mainArticle, secondaryArticles }: HeroHomeProps) {
+export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHomeProps) {
   // Fallbacks para quando não houver nada marcado como destaque
   const defaultMain = {
     slug: "entre-o-discurso-e-o-movimento-silencioso",

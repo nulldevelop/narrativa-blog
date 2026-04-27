@@ -45,7 +45,9 @@ export async function generateMetadata({
       description: article.subtitle || undefined,
       images: article.coverImage ? [article.coverImage] : [],
       type: 'article',
-      publishedTime: article.publishedAt?.toISOString(),
+      publishedTime: article.publishedAt
+        ? new Date(article.publishedAt).toISOString()
+        : undefined,
       authors: [article.author.name],
     },
   }

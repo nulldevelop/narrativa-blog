@@ -18,11 +18,12 @@ export default async function Home({
 
   const {
     mainFeaturedArticle,
-    secondaryHero,
-    generalFeatured,
-    articles,
-    totalPages,
-    allTags
+    secondaryHero = [],
+    generalFeatured = [],
+    articles = [],
+    bastidoresArticles = [],
+    totalPages = 0,
+    allTags = []
   } = await getHomeData(currentPage, postsPerPage, category, tag)
 
   return (
@@ -109,7 +110,28 @@ export default async function Home({
               )}
             </section>
 
-            <SeparatorSection text="Bastidores do poder" />
+            {currentPage === 1 && !category && !tag && bastidoresArticles.length > 0 && (
+              <>
+                <SeparatorSection text="Bastidores do poder" />
+                <ol className="flex flex-col">
+                  {bastidoresArticles.map((article, i) => (
+                    <ArticleCard
+                      key={article.slug}
+                      title={article.title}
+                      subtitle={article.subtitle || ''}
+                      date={new Date(
+                        article.publishedAt || article.createdAt,
+                      ).toLocaleDateString('pt-BR')}
+                      readTime="5 min"
+                      slug={article.slug}
+                      imageUrl={article.coverImage || undefined}
+                      delay={i * 0.08}
+                      tags={article.tags}
+                    />
+                  ))}
+                </ol>
+              </>
+            )}
           </div>
 
           <SidebarHome tags={allTags} />

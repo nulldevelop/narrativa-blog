@@ -5,6 +5,7 @@ import slugify from 'slugify'
 import { z } from 'zod'
 import { checkPermission } from '@/lib/permissions/check-permission'
 import { prisma } from '@/lib/prisma'
+import { handleArticleCascade, HOME_POSITIONS_CASCADE } from '@/lib/cascade-positions'
 
 const articleSchema = z.object({
   title: z.string().min(5, 'Título muito curto').max(200),
@@ -39,6 +40,10 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
     const baseSlug = slugify(validated.title, { lower: true, strict: true })
     const uniqueSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 7)}`
 
+    // Identify if there's a home position tag
+    const homePositionTag = validated.tags?.find(t => HOME_POSITIONS_CASCADE.includes(t)) || null;
+    const otherTags = validated.tags?.filter(t => !HOME_POSITIONS_CASCADE.includes(t)) || [];
+
     const article = await prisma.article.create({
       data: {
         title: validated.title,
@@ -53,7 +58,7 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
         organizationId: organizationId,
         publishedAt: validated.status === 'published' ? new Date() : null,
         tags: {
-          create: validated.tags?.map((tagName) => ({
+          create: otherTags.map((tagName) => ({
             tag: {
               connectOrCreate: {
                 where: {
@@ -70,6 +75,11 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
         },
       },
     })
+
+    // If there's a home position, handle the cascade
+    if (homePositionTag && validated.status === 'published') {
+        await handleArticleCascade(article.id, homePositionTag, organizationId);
+    }
 
     revalidatePath('/')
     revalidatePath('/dashboard-author')

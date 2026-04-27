@@ -5,6 +5,7 @@ import slugify from 'slugify'
 import { z } from 'zod'
 import { checkPermission } from '@/lib/permissions/check-permission'
 import { prisma } from '@/lib/prisma'
+import { handleArticleCascade, HOME_POSITIONS_CASCADE } from '@/lib/cascade-positions'
 
 const articleSchema = z.object({
   title: z.string().min(5, 'Título muito curto').max(200),
@@ -33,7 +34,11 @@ export async function updateArticleAction(
     // 2. Busca o artigo e valida propriedade
     const existingArticle = await prisma.article.findUnique({
       where: { id },
-      select: { authorId: true, title: true, slug: true, organizationId: true },
+      include: {
+        tags: {
+          include: { tag: true }
+        }
+      }
     })
 
     if (!existingArticle)
@@ -50,14 +55,18 @@ export async function updateArticleAction(
       }
     }
 
-    const organizationId = existingArticle.organizationId
+    const organizationId = existingArticle.organizationId || ''
     let newSlug = existingArticle.slug
     if (validated.title !== existingArticle.title) {
       const baseSlug = slugify(validated.title, { lower: true, strict: true })
       newSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 7)}`
     }
 
-    // Limpa tags antigas e atualiza artigo
+    // Identify if there's a home position tag
+    const homePositionTag = validated.tags?.find(t => HOME_POSITIONS_CASCADE.includes(t)) || null;
+    const otherTags = validated.tags?.filter(t => !HOME_POSITIONS_CASCADE.includes(t)) || [];
+
+    // Limpa tags antigas (incluindo as de cascade, para que possamos re-gerar o cascade se necessário)
     await prisma.articleTag.deleteMany({ where: { articleId: id } })
 
     const article = await prisma.article.update({
@@ -73,7 +82,7 @@ export async function updateArticleAction(
         categoryId: validated.categoryId,
         publishedAt: validated.status === 'published' ? new Date() : undefined,
         tags: {
-          create: validated.tags?.map((tagName) => ({
+          create: otherTags.map((tagName) => ({
             tag: {
               connectOrCreate: {
                 where: {
@@ -90,6 +99,32 @@ export async function updateArticleAction(
         },
       },
     })
+
+    // If there's a home position, handle the cascade
+    // Only if it's published. If it's draft, we might want to remove it from cascade if it was there.
+    if (validated.status === 'published') {
+        // Find current home position of this article to see if it changed
+        const currentHomePos = existingArticle.tags.find(t => HOME_POSITIONS_CASCADE.includes(t.tag.slug))?.tag.slug || null;
+        
+        if (homePositionTag !== currentHomePos) {
+            await handleArticleCascade(article.id, homePositionTag, organizationId);
+        } else if (homePositionTag) {
+            // Se a posição não mudou mas continua sendo uma posição de home, 
+            // precisamos garantir que ela ainda está lá porque deletamos todas acima
+            const tag = await prisma.tag.findUnique({ where: { slug: homePositionTag } });
+            if (tag) {
+                await prisma.articleTag.create({
+                    data: {
+                        articleId: article.id,
+                        tagId: tag.id
+                    }
+                });
+            }
+        }
+    } else {
+        // If it's not published, it should not be in the cascade
+        await handleArticleCascade(article.id, null, organizationId);
+    }
 
     revalidatePath('/')
     revalidatePath('/dashboard-author')

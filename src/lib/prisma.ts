@@ -4,35 +4,22 @@ import { PrismaClient } from '../generated/prisma/client'
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
-  adapter: PrismaMariaDb | undefined
-}
-
-function createAdapter() {
-  return new PrismaMariaDb({
-    host: process.env.DATABASE_HOST,
-    port: Number.parseInt(process.env.DATABASE_PORT || '3306', 10),
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
-    connectionLimit: process.env.DATABASE_CONNECTION_LIMIT
-      ? Number.parseInt(process.env.DATABASE_CONNECTION_LIMIT, 10)
-      : 5,
-    connectTimeout: process.env.DATABASE_CONNECT_TIMEOUT
-      ? Number.parseInt(process.env.DATABASE_CONNECT_TIMEOUT, 10)
-      : 10000,
-  })
 }
 
 function createPrismaClient() {
-  const adapter = globalForPrisma.adapter ?? createAdapter()
-  if (!globalForPrisma.adapter) {
-    globalForPrisma.adapter = adapter
-  }
+  const adapter = new PrismaMariaDb({
+  host: process.env.DATABASE_HOST,
+  port: Number(process.env.DATABASE_PORT),
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
+  connectionLimit: 1,
+  connectTimeout: 20000,
+})
   return new PrismaClient({ adapter })
 }
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient()
 
-if (process.env.NODE_ENV !== 'production') {
-  globalForPrisma.prisma = prisma
-}
+// salva em AMBOS os ambientes para evitar múltiplas instâncias
+globalForPrisma.prisma = prisma

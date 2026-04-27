@@ -110,14 +110,6 @@ export function ArticleCard({
             <span className="before:content-['·_'] flex-shrink-0">
               {readTime}
             </span>
-            {displayTags.map((tagName) => (
-              <span
-                key={tagName}
-                className="before:content-['·_'] flex-shrink-0"
-              >
-                {tagName}
-              </span>
-            ))}
           </div>
         </div>
         <Link
