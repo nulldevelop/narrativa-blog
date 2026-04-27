@@ -1,8 +1,8 @@
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import { fetchByCategory } from '@/app/(public)/_data-access'
 import { NewsletterWidget } from '@/components/newsletter-widget'
 import { prisma } from '@/lib/prisma'
-import { fetchByCategory } from '@/app/(public)/_data-access'
 
 interface SidebarHomeProps {
   tags: { id: string; name: string; slug: string }[]
@@ -89,6 +89,7 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
             { name: 'Paraná', slug: 'parana' },
             { name: 'Brasil', slug: 'brasil' },
             { name: 'Cotidiano', slug: 'cotidiano' },
+            { name: 'Bastidores', slug: 'bastidores' },
           ].map((tag) => (
             <Link
               key={tag.slug}
@@ -107,7 +108,10 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
           <p className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho mb-4">
             Cotidiano
           </p>
-          <Link href={`/artigo/${cotidianoArticle.slug}`} className="group block">
+          <Link
+            href={`/artigo/${cotidianoArticle.slug}`}
+            className="group block"
+          >
             <div className="relative aspect-[4/3] w-full mb-3 overflow-hidden transition-all duration-500">
               <Image
                 src={cotidianoArticle.coverImage || '/imgs/logo.png'}

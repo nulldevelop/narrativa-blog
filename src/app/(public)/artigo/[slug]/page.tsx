@@ -19,6 +19,19 @@ export default async function ArtigoPage({
 
   if (!article) return notFound()
 
+  const systemTags = [
+    'home-principal',
+    'home-destaque-1',
+    'home-destaque-2',
+    'home-destaque-3',
+    'home-geral-1',
+    'home-geral-2',
+  ]
+
+  const displayTags = (article.tags || []).filter(
+    (t) => !systemTags.includes(t.tag.slug),
+  )
+
   return (
     <>
       <ReadingProgress />
@@ -52,7 +65,7 @@ export default async function ArtigoPage({
             )}
 
             <FadeUp delay={0.2}>
-              <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-8 flex-wrap">
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-narrativa-vermelho flex items-center justify-center text-[0.85rem] font-bold text-narrativa-branco shrink-0 uppercase">
                     {article.author.name.charAt(0)}
@@ -68,6 +81,19 @@ export default async function ArtigoPage({
                     </span>
                   </div>
                 </div>
+
+                {displayTags.length > 0 && (
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {displayTags.map((tag) => (
+                      <span
+                        key={tag.tagId}
+                        className="text-[0.6rem] tracking-[0.08em] uppercase px-3 py-1.5 rounded-full bg-white/10 text-white/70 border border-white/10"
+                      >
+                        {tag.tag.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </FadeUp>
           </div>

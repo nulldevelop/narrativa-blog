@@ -56,13 +56,19 @@ export function Footer() {
             Temas
           </h4>
           <ul className="flex flex-col gap-2">
-            {['Curitiba', 'Paraná', 'Nacional', 'Poder & Discurso'].map((t) => (
-              <li key={t}>
+            {[
+              { name: 'Curitiba', slug: 'curitiba' },
+              { name: 'Paraná', slug: 'parana' },
+              { name: 'Brasil', slug: 'brasil' },
+              { name: 'Cotidiano', slug: 'cotidiano' },
+              { name: 'Bastidores', slug: 'bastidores' },
+            ].map((t) => (
+              <li key={t.slug}>
                 <Link
-                  href="#"
+                  href={`/?tag=${t.slug}`}
                   className="text-[0.85rem] text-white/40 hover:text-white transition-colors"
                 >
-                  {t}
+                  {t.name}
                 </Link>
               </li>
             ))}

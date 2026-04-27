@@ -1,4 +1,12 @@
-import { ArrowUpRight, BookOpen, CheckCircle2, Clock, Plus, Eye, TrendingUp } from 'lucide-react'
+import {
+  ArrowUpRight,
+  BookOpen,
+  CheckCircle2,
+  Clock,
+  Eye,
+  Plus,
+  TrendingUp,
+} from 'lucide-react'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -116,15 +124,17 @@ export default async function DashboardAuthorPage() {
             <div className="space-y-4">
               {topArticles.length > 0 ? (
                 topArticles.map((article, index) => (
-                  <div 
-                    key={article.id} 
+                  <div
+                    key={article.id}
                     className="flex items-center gap-4 group cursor-pointer mb-4 last:mb-0"
                   >
                     <span className="text-[1.5rem] font-serif italic text-black/10 group-hover:text-narrativa-vermelho transition-colors w-8">
                       0{index + 1}
                     </span>
                     <div className="flex-1 min-w-0">
-                      <Link href={`/dashboard-author/artigo/edit/${article.id}`}>
+                      <Link
+                        href={`/dashboard-author/artigo/edit/${article.id}`}
+                      >
                         <h5 className="text-[0.95rem] font-bold text-narrativa-preto line-clamp-1 group-hover:text-narrativa-vermelho transition-colors">
                           {article.title}
                         </h5>
@@ -142,7 +152,9 @@ export default async function DashboardAuthorPage() {
                   </div>
                 ))
               ) : (
-                <p className="text-[0.8rem] text-black/30 italic">Nenhum dado de performance disponível ainda.</p>
+                <p className="text-[0.8rem] text-black/30 italic">
+                  Nenhum dado de performance disponível ainda.
+                </p>
               )}
             </div>
           </ScrollArea>
@@ -160,8 +172,8 @@ export default async function DashboardAuthorPage() {
             <div className="space-y-4">
               {myRecentArticles.length > 0 ? (
                 myRecentArticles.map((article) => (
-                  <Link 
-                    href={`/dashboard-author/artigo/edit/${article.id}`} 
+                  <Link
+                    href={`/dashboard-author/artigo/edit/${article.id}`}
                     key={article.id}
                     className="block p-4 border border-black/5 hover:border-narrativa-vermelho/20 hover:bg-black/[0.01] transition-all group"
                   >
@@ -172,7 +184,9 @@ export default async function DashboardAuthorPage() {
                         </h5>
                         <div className="flex items-center gap-3">
                           <span className="text-[0.6rem] text-black/30 font-bold uppercase tracking-widest">
-                            {new Date(article.updatedAt).toLocaleDateString('pt-BR')}
+                            {new Date(article.updatedAt).toLocaleDateString(
+                              'pt-BR',
+                            )}
                           </span>
                           {article.status === 'published' ? (
                             <Badge className="bg-green-600/10 text-green-600 border-none rounded-none text-[0.5rem] font-black uppercase tracking-tighter h-4">
@@ -190,10 +204,13 @@ export default async function DashboardAuthorPage() {
                   </Link>
                 ))
               ) : (
-                <p className="text-[0.8rem] text-black/30 italic">Sem atividades recentes.</p>
+                <p className="text-[0.8rem] text-black/30 italic">
+                  Sem atividades recentes.
+                </p>
               )}
             </div>
           </ScrollArea>
+        </div>
       </div>
     </div>
   )

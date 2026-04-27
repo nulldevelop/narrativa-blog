@@ -1,11 +1,73 @@
 'use server'
 
-import { auth } from '@/lib/auth'
-import { headers } from 'next/headers'
 import fs from 'fs/promises'
+import { headers } from 'next/headers'
 import path from 'path'
+import { auth } from '@/lib/auth'
 
-export async function deleteImageAction(imageUrl: string) {
+async function findAndDeleteFile(
+  basePath: string,
+  articleId: string,
+  fileName: string,
+) {
+  const tempIdPattern = /^novo-\d+-[a-z0-9]+$/
+
+  const directPath = path.join(basePath, articleId, 'imagens', fileName)
+  try {
+    await fs.access(directPath)
+    await fs.unlink(directPath)
+    return { success: true }
+  } catch {
+    // Não achou no caminho direto
+  }
+
+  if (!tempIdPattern.test(articleId)) {
+    try {
+      const storageBase = path.join(basePath, articleId)
+
+      try {
+        await fs.access(storageBase)
+      } catch {
+        return { success: true }
+      }
+
+      try {
+        const tempFolders = await fs.readdir(storageBase)
+
+        for (const folder of tempFolders) {
+          if (tempIdPattern.test(folder)) {
+            const tempPath = path.join(storageBase, folder, 'imagens', fileName)
+            try {
+              await fs.access(tempPath)
+              await fs.unlink(tempPath)
+
+              try {
+                await fs.rm(path.join(storageBase, folder, 'imagens'))
+              } catch {}
+              try {
+                await fs.rm(path.join(storageBase, folder))
+              } catch {}
+
+              return { success: true }
+            } catch {
+              // Continua procurando
+            }
+          }
+        }
+      } catch {
+        // Erro ao ler pasta
+      }
+    } catch {
+      // Pasta base não existe
+    }
+  }
+
+  return { success: true, error: undefined }
+}
+
+export async function deleteImageAction(
+  imageUrl: string,
+): Promise<{ success: boolean; error?: string }> {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -15,11 +77,8 @@ export async function deleteImageAction(imageUrl: string) {
       return { success: false, error: 'Sessão expirada ou não encontrada.' }
     }
 
-    // A URL tem o formato: /api/media/materia/[articleId]/imagens/[fileName]
     const parts = imageUrl.split('/')
-    // parts[0] = '', parts[1] = 'api', parts[2] = 'media', parts[3] = 'materia', 
-    // parts[4] = articleId, parts[5] = 'imagens', parts[6] = fileName
-    
+
     if (parts.length < 7 || parts[3] !== 'materia') {
       return { success: false, error: 'URL de imagem inválida.' }
     }
@@ -27,28 +86,14 @@ export async function deleteImageAction(imageUrl: string) {
     const articleId = parts[4]
     const fileName = parts[6]
 
-    const filePath = path.join(
-      process.cwd(),
-      'storage',
-      'materia',
-      articleId,
-      'imagens',
-      fileName
-    )
+    const basePath = path.join(process.cwd(), 'storage', 'materia')
 
-    // Verificar se o arquivo existe
-    try {
-      await fs.access(filePath)
-    } catch (e) {
-      return { success: false, error: 'Arquivo não encontrado no servidor.' }
-    }
-
-    // Excluir o arquivo
-    await fs.unlink(filePath)
-
-    return { success: true }
+    return await findAndDeleteFile(basePath, articleId, fileName)
   } catch (error: any) {
     console.error('Erro ao excluir imagem:', error)
-    return { success: false, error: error.message || 'Falha ao excluir a imagem.' }
+    return {
+      success: false,
+      error: error.message || 'Falha ao excluir a imagem.',
+    }
   }
 }

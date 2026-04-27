@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { FadeUp } from '@/components/fade-up'
-import { Badge } from '@/components/ui/badge'
 
 interface ArticleCardProps {
   tag?: string
@@ -58,7 +57,7 @@ export function ArticleCard({
   if (variant === 'large') {
     return (
       <FadeUp delay={delay}>
-        <div className="group flex flex-col gap-5 pb-8 border-b border-narrativa-cinza-linha h-full">
+        <div className="group flex flex-col gap-5 pb-8 border-b border-narrativa-cinza-linha h-full min-w-0">
           <Link
             href={`/artigo/${slug}`}
             className="aspect-video overflow-hidden bg-narrativa-cinza-claro relative group/img"
@@ -69,7 +68,7 @@ export function ArticleCard({
             />
             <div className="absolute inset-0 bg-narrativa-vermelho/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </Link>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 min-w-0">
             <Link href={`/artigo/${slug}`}>
               <h3 className="text-[clamp(1.4rem,3vw,1.75rem)] font-black leading-[1.1] transition-colors group-hover:text-narrativa-vermelho tracking-tight">
                 {title}
@@ -78,25 +77,13 @@ export function ArticleCard({
             <p className="text-[0.95rem] text-narrativa-cinza-texto leading-[1.6] font-light line-clamp-3 italic font-serif">
               {subtitle}
             </p>
-            <div className="flex items-center gap-4 mt-1 flex-wrap">
-              <span className="text-[0.65rem] tracking-[0.1em] uppercase text-[#999]">
+            <div className="flex items-center flex-wrap gap-x-2 gap-y-1 mt-1 text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb]">
+              <span className="text-[#999] tracking-[0.1em] flex-shrink-0">
                 {date}
               </span>
-              <span className="text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb] before:content-['·_']">
+              <span className="before:content-['·_'] flex-shrink-0">
                 {readTime}
               </span>
-              {displayTags.length > 0 && (
-                <div className="flex gap-2 items-center before:content-['·_'] before:text-[#bbb] before:text-[0.65rem]">
-                  {displayTags.map((tagName) => (
-                    <span
-                      key={tagName}
-                      className="text-[0.65rem] tracking-[0.08em] uppercase text-narrativa-vermelho font-bold"
-                    >
-                      [{tagName}]
-                    </span>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -106,8 +93,8 @@ export function ArticleCard({
 
   return (
     <FadeUp delay={delay}>
-      <li className="grid grid-cols-[1fr_160px] gap-8 py-8 border-b border-narrativa-cinza-linha items-center group first:pt-0 max-sm:grid-cols-1 max-sm:gap-6">
-        <div className="flex flex-col gap-2.5">
+      <li className="grid grid-cols-[1fr_160px] gap-8 py-8 border-b border-narrativa-cinza-linha items-center group first:pt-0 max-sm:grid-cols-1 max-sm:gap-6 min-w-0">
+        <div className="flex flex-col gap-2.5 min-w-0">
           <Link href={`/artigo/${slug}`}>
             <h3 className="text-[clamp(1.15rem,2.5vw,1.45rem)] font-bold leading-[1.2] transition-colors group-hover:text-narrativa-vermelho tracking-tight">
               {title}
@@ -116,25 +103,21 @@ export function ArticleCard({
           <p className="text-[0.9rem] text-narrativa-cinza-texto leading-[1.6] font-light italic font-serif">
             {subtitle}
           </p>
-          <div className="flex items-center gap-4 mt-2 flex-wrap">
-            <span className="text-[0.65rem] tracking-[0.1em] uppercase text-[#999]">
+          <div className="flex items-center flex-wrap gap-x-2 gap-y-1 mt-2 text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb]">
+            <span className="text-[#999] tracking-[0.1em] flex-shrink-0">
               {date}
             </span>
-            <span className="text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb] before:content-['·_']">
+            <span className="before:content-['·_'] flex-shrink-0">
               {readTime}
             </span>
-            {displayTags.length > 0 && (
-              <div className="flex gap-2 items-center before:content-['·_'] before:text-[#bbb] before:text-[0.65rem]">
-                {displayTags.map((tagName) => (
-                  <span
-                    key={tagName}
-                    className="text-[0.65rem] tracking-[0.08em] uppercase text-narrativa-vermelho font-bold"
-                  >
-                    [{tagName}]
-                  </span>
-                ))}
-              </div>
-            )}
+            {displayTags.map((tagName) => (
+              <span
+                key={tagName}
+                className="before:content-['·_'] flex-shrink-0"
+              >
+                {tagName}
+              </span>
+            ))}
           </div>
         </div>
         <Link

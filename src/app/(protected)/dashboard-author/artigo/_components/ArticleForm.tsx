@@ -19,8 +19,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { createArticleAction } from '../_actions/create-article'
-import { updateArticleAction } from '../_actions/update-article'
 import { deleteImageAction } from '../_actions/delete-image'
+import { updateArticleAction } from '../_actions/update-article'
 
 const MDEditor = dynamic(
   () => import('@uiw/react-md-editor').then((mod) => mod.default),
@@ -384,7 +384,10 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                   placeholder="Ex: Foto: João Silva / Agência"
                   value={formData.coverImageCredit}
                   onChange={(e) =>
-                    setFormData({ ...formData, coverImageCredit: e.target.value })
+                    setFormData({
+                      ...formData,
+                      coverImageCredit: e.target.value,
+                    })
                   }
                   className="rounded-none border-narrativa-cinza-linha h-8 text-[0.7rem]"
                 />
