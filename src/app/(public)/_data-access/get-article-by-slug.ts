@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 
 /**
@@ -6,18 +7,27 @@ import { prisma } from '@/lib/prisma'
  * e permitir cache (ISR/SSG).
  */
 export const getArticleBySlug = async (slug: string) => {
-  try {
-    const article = await prisma.article.findUnique({
-      where: { slug },
-      include: {
-        author: true,
-        category: true,
-        tags: { include: { tag: true } },
-      },
-    })
-    return article
-  } catch (error) {
-    console.error('Error getting article by slug:', error)
-    return null
-  }
+  return unstable_cache(
+    async () => {
+      try {
+        const article = await prisma.article.findUnique({
+          where: { slug },
+          include: {
+            author: true,
+            category: true,
+            tags: { include: { tag: true } },
+          },
+        })
+        return article
+      } catch (error) {
+        console.error('Error getting article by slug:', error)
+        return null
+      }
+    },
+    ['get-article-by-slug', slug],
+    {
+      revalidate: 3600, // 1 hora
+      tags: ['articles'],
+    }
+  )()
 }

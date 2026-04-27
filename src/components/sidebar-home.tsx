@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import Image from 'next/image'
 import Link from 'next/link'
 import { fetchByCategory } from '@/app/(public)/_data-access'
@@ -8,23 +9,30 @@ interface SidebarHomeProps {
   tags: { id: string; name: string; slug: string }[]
 }
 
-async function getCurtas() {
-  try {
-    return await prisma.curta.findMany({
-      orderBy: { createdAt: 'asc' },
-      where: { status: 'active' },
-      take: 10,
-    })
-  } catch {
-    return []
+const getCurtas = unstable_cache(
+  async () => {
+    try {
+      return await prisma.curta.findMany({
+        orderBy: { createdAt: 'asc' },
+        where: { status: 'active' },
+        take: 10,
+      })
+    } catch {
+      return []
+    }
+  },
+  ['curtas-active'],
+  {
+    revalidate: 3600, // 1 hora
+    tags: ['curtas'],
   }
-}
+)
 
 export async function SidebarHome({ tags }: SidebarHomeProps) {
-  const [curtas, cotidianoArticle] = await Promise.all([
-    getCurtas(),
-    fetchByCategory('cotidiano'),
-  ])
+  // Chamamos de forma sequencial ou garantimos que ambos usem o cache global
+  const curtas = await getCurtas()
+  const cotidianoArticle = await fetchByCategory('cotidiano')
+
 
   return (
     <aside className="flex flex-col gap-8" aria-label="Coluna lateral">

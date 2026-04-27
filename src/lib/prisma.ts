@@ -2,38 +2,37 @@ import 'dotenv/config'
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 import { PrismaClient } from '../generated/prisma/client'
 
-const globalForPrisma = globalThis as unknown as { 
-  prisma?: PrismaClient;
-  adapter?: PrismaMariaDb;
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined
+  adapter: PrismaMariaDb | undefined
 }
 
-const createAdapter = () => {
+function createAdapter() {
   return new PrismaMariaDb({
     host: process.env.DATABASE_HOST,
+    port: Number.parseInt(process.env.DATABASE_PORT || '3306', 10),
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
-    connectionLimit: 5, // Reduzido drasticamente para garantir aceitação pelo servidor MySQL
-    idleTimeout: 10, // Fecha conexões paradas em 10 segundos
-    connectTimeout: 5, // Timeout de conexão inicial de 5 segundos
+    connectionLimit: process.env.DATABASE_CONNECTION_LIMIT
+      ? Number.parseInt(process.env.DATABASE_CONNECTION_LIMIT, 10)
+      : 5,
+    connectTimeout: process.env.DATABASE_CONNECT_TIMEOUT
+      ? Number.parseInt(process.env.DATABASE_CONNECT_TIMEOUT, 10)
+      : 10000,
   })
 }
 
-// Em Next.js, módulos podem ser limpos. Usar globalThis garante uma instância única real.
-if (!globalForPrisma.adapter) {
-  globalForPrisma.adapter = createAdapter()
+function createPrismaClient() {
+  const adapter = globalForPrisma.adapter ?? createAdapter()
+  if (!globalForPrisma.adapter) {
+    globalForPrisma.adapter = adapter
+  }
+  return new PrismaClient({ adapter })
 }
 
-export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient({
-    adapter: globalForPrisma.adapter,
-    log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
-  })
+export const prisma = globalForPrisma.prisma ?? createPrismaClient()
 
 if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = prisma
 }
-// Manter no global em produção também ajuda em certos ambientes de deploy
-globalForPrisma.prisma = prisma
-

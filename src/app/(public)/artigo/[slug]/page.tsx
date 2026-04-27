@@ -10,17 +10,21 @@ import { ReadingProgress } from '@/components/reading-progress'
 import { prisma } from '@/lib/prisma'
 import { getArticleBySlug } from '../../_data-access/get-article-by-slug'
 
+// Desativado generateStaticParams para evitar sobrecarga no banco de dados durante o build.
+// Os artigos serão gerados sob demanda no primeiro acesso (SSR/ISR on-demand).
+/*
 export async function generateStaticParams() {
   const articles = await prisma.article.findMany({
     where: { status: 'published' },
     select: { slug: true },
-    take: 100, // Pre-renderiza os 100 mais recentes
+    take: 100,
   })
 
   return articles.map((article) => ({
     slug: article.slug,
   }))
 }
+*/
 
 export async function generateMetadata({
   params,
