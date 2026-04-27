@@ -1,20 +1,18 @@
-import fs from 'fs/promises'
-import { NextResponse } from 'next/server'
-import path from 'path'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 
 export async function GET(
-  req: Request,
+  _req: Request,
   { params }: { params: Promise<{ path: string[] }> },
 ) {
   const { path: filePathArray } = await params
 
   // 1. Define o diretório base absoluto e resolve o caminho solicitado
-  const rootStoragePath = path.join(process.cwd(), 'storage')
-  const requestedPath = path.resolve(
-    path.join(rootStoragePath, ...filePathArray),
-  )
+  const rootStoragePath = path.resolve(process.cwd(), 'storage')
+  const requestedPath = path.resolve(rootStoragePath, ...filePathArray)
 
   // 2. Validação de Segurança: Garante que o caminho resolvido permanece dentro do storage
+  // O uso de path.resolve garante que '..' sejam resolvidos antes da comparação
   if (!requestedPath.startsWith(rootStoragePath)) {
     return new Response('Acesso negado', { status: 403 })
   }
@@ -37,7 +35,7 @@ export async function GET(
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     })
-  } catch (e) {
+  } catch (_e) {
     return new Response('Arquivo não encontrado', { status: 404 })
   }
 }

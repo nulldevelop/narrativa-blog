@@ -32,7 +32,9 @@ export const auth = betterAuth({
         after: async (user) => {
           const authUser = user as unknown as BetterAuthUser
           try {
-            const organization = await prisma.organization.findFirst()
+            const organization = await prisma.organization.findUnique({
+              where: { slug: 'narrativa' },
+            })
             if (organization) {
               const rawRole = authUser.role
               const finalRole =

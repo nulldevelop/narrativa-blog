@@ -25,22 +25,17 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
       return { success: false, error: permission.error || 'Não autorizado' }
     }
 
-    const userId = permission.userId!
-    const validated = articleSchema.parse(data)
+    const userId = permission.userId
+    const organizationId = permission.organizationId
 
-    // Busca organização vinculada ao membro
-    const member = await prisma.member.findFirst({
-      where: { userId },
-    })
-
-    if (!member) {
+    if (!organizationId) {
       return {
         success: false,
         error: 'Membro não vinculado a uma organização.',
       }
     }
 
-    const organizationId = member.organizationId
+    const validated = articleSchema.parse(data)
     const baseSlug = slugify(validated.title, { lower: true, strict: true })
     const uniqueSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 7)}`
 

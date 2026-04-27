@@ -21,6 +21,14 @@ export async function POST(req: Request) {
     const file = formData.get('file') as File
     const articleId = (formData.get('articleId') as string) || 'temp'
 
+    // Validação do articleId para evitar Path Traversal
+    if (!/^[a-zA-Z0-9-]+$/.test(articleId)) {
+      return NextResponse.json(
+        { error: 'ID de artigo inválido' },
+        { status: 400 },
+      )
+    }
+
     if (!file) {
       return NextResponse.json(
         { error: 'Nenhum arquivo enviado' },
@@ -49,13 +57,13 @@ export async function POST(req: Request) {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    const storagePath = path.join(
-      process.cwd(),
-      'storage',
-      'materia',
-      articleId,
-      'imagens',
-    )
+    const rootMateriaPath = path.resolve(process.cwd(), 'storage', 'materia')
+    const storagePath = path.resolve(rootMateriaPath, articleId, 'imagens')
+
+    // Validação extra: Garante que o caminho final está dentro de storage/materia
+    if (!storagePath.startsWith(rootMateriaPath)) {
+      return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
+    }
 
     await fs.mkdir(storagePath, { recursive: true })
 

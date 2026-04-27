@@ -1,4 +1,4 @@
-import { ROLES } from './enum'
+import { ROLES } from '@/generated/prisma/enums'
 import type { Action } from './types'
 
 // Permissões por role
@@ -6,7 +6,7 @@ export const ROLE_PERMISSIONS: Partial<Record<ROLES, Action[]>> = {
   [ROLES.OWNER]: ['create', 'read', 'update', 'delete'],
   [ROLES.ADMIN]: ['create', 'read', 'update', 'delete'],
   [ROLES.EDITOR]: ['create', 'read', 'update'],
-  [ROLES.AUTHOR]: ['read', 'create', 'update'],
+  [ROLES.AUTHOR]: ['read', 'create', 'update', 'delete'],
 }
 
 // Rotas protegidas (Middleware)

@@ -1,7 +1,7 @@
 import { headers } from 'next/headers'
+import { ROLES } from '@/generated/prisma/enums'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { ROLES } from './enum'
 import type { Action, PermissionResult } from './types'
 
 // Permissões padrão por módulo para facilitar o controle
@@ -60,12 +60,19 @@ export async function checkPermission(
 
   const userRole = (session.user.role?.toUpperCase() as ROLES) ?? ROLES.AUTHOR
 
+  const member = await prisma.member.findFirst({
+    where: { userId: session.user.id },
+    select: { organizationId: true },
+  })
+
+  const organizationId = member?.organizationId || ''
+
   // 1️⃣ OWNER e ADMIN — bypass total (Podem tudo em qualquer lugar)
   if (userRole === ROLES.OWNER || userRole === ROLES.ADMIN) {
     return {
       allowed: true,
       userId: session.user.id,
-      organizationId: '', // Mantemos por compatibilidade com types
+      organizationId,
       role: userRole,
       userName: session.user.name,
       userEmail: session.user.email,
@@ -80,7 +87,7 @@ export async function checkPermission(
       return {
         allowed: true,
         userId: session.user.id,
-        organizationId: '',
+        organizationId,
         role: userRole,
         userName: session.user.name,
         userEmail: session.user.email,

@@ -1,4 +1,4 @@
-import type { ROLES } from './enum'
+import type { ROLES } from '@/generated/prisma/enums'
 
 export type Action = 'create' | 'read' | 'update' | 'delete'
 

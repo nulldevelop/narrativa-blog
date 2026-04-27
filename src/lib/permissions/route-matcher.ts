@@ -1,5 +1,5 @@
+import type { ROLES } from '@/generated/prisma/enums'
 import { ROUTE_PERMISSIONS } from './config'
-import type { ROLES } from './enum'
 
 function findMatchedRoute(pathname: string): string | undefined {
   return Object.keys(ROUTE_PERMISSIONS).find(
