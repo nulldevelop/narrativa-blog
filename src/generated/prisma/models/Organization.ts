@@ -223,7 +223,6 @@ export type OrganizationWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   metadata?: Prisma.StringNullableFilter<"Organization"> | string | null
   articles?: Prisma.ArticleListRelationFilter
-  auditLogs?: Prisma.AuditLogListRelationFilter
   categories?: Prisma.CategoryListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
   members?: Prisma.MemberListRelationFilter
@@ -247,7 +246,6 @@ export type OrganizationOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   articles?: Prisma.ArticleOrderByRelationAggregateInput
-  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   categories?: Prisma.CategoryOrderByRelationAggregateInput
   invitations?: Prisma.InvitationOrderByRelationAggregateInput
   members?: Prisma.MemberOrderByRelationAggregateInput
@@ -275,7 +273,6 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   metadata?: Prisma.StringNullableFilter<"Organization"> | string | null
   articles?: Prisma.ArticleListRelationFilter
-  auditLogs?: Prisma.AuditLogListRelationFilter
   categories?: Prisma.CategoryListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
   members?: Prisma.MemberListRelationFilter
@@ -331,7 +328,6 @@ export type OrganizationCreateInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
@@ -355,7 +351,6 @@ export type OrganizationUncheckedCreateInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -379,7 +374,6 @@ export type OrganizationUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
@@ -403,7 +397,6 @@ export type OrganizationUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -661,20 +654,6 @@ export type OrganizationUpdateOneRequiredWithoutInvitationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutInvitationsInput, Prisma.OrganizationUpdateWithoutInvitationsInput>, Prisma.OrganizationUncheckedUpdateWithoutInvitationsInput>
 }
 
-export type OrganizationCreateNestedOneWithoutAuditLogsInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditLogsInput, Prisma.OrganizationUncheckedCreateWithoutAuditLogsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAuditLogsInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneRequiredWithoutAuditLogsNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditLogsInput, Prisma.OrganizationUncheckedCreateWithoutAuditLogsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAuditLogsInput
-  upsert?: Prisma.OrganizationUpsertWithoutAuditLogsInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.OrganizationUpdateWithoutAuditLogsInput>, Prisma.OrganizationUncheckedUpdateWithoutAuditLogsInput>
-}
-
 export type OrganizationCreateWithoutArticlesInput = {
   id?: string
   name: string
@@ -686,7 +665,6 @@ export type OrganizationCreateWithoutArticlesInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
@@ -709,7 +687,6 @@ export type OrganizationUncheckedCreateWithoutArticlesInput = {
   status?: string
   createdAt?: Date | string
   metadata?: string | null
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -748,7 +725,6 @@ export type OrganizationUpdateWithoutArticlesInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
@@ -771,7 +747,6 @@ export type OrganizationUncheckedUpdateWithoutArticlesInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -795,7 +770,6 @@ export type OrganizationCreateWithoutCategoriesInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
@@ -818,7 +792,6 @@ export type OrganizationUncheckedCreateWithoutCategoriesInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -857,7 +830,6 @@ export type OrganizationUpdateWithoutCategoriesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
@@ -880,7 +852,6 @@ export type OrganizationUncheckedUpdateWithoutCategoriesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -903,7 +874,6 @@ export type OrganizationCreateWithoutTagsInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
@@ -926,7 +896,6 @@ export type OrganizationUncheckedCreateWithoutTagsInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -965,7 +934,6 @@ export type OrganizationUpdateWithoutTagsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
@@ -988,7 +956,6 @@ export type OrganizationUncheckedUpdateWithoutTagsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1011,7 +978,6 @@ export type OrganizationCreateWithoutSubscribersInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
@@ -1034,7 +1000,6 @@ export type OrganizationUncheckedCreateWithoutSubscribersInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1073,7 +1038,6 @@ export type OrganizationUpdateWithoutSubscribersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
@@ -1096,7 +1060,6 @@ export type OrganizationUncheckedUpdateWithoutSubscribersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1119,7 +1082,6 @@ export type OrganizationCreateWithoutSiteConfigsInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
@@ -1142,7 +1104,6 @@ export type OrganizationUncheckedCreateWithoutSiteConfigsInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1181,7 +1142,6 @@ export type OrganizationUpdateWithoutSiteConfigsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
@@ -1204,7 +1164,6 @@ export type OrganizationUncheckedUpdateWithoutSiteConfigsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1227,7 +1186,6 @@ export type OrganizationCreateWithoutPagesInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
@@ -1250,7 +1208,6 @@ export type OrganizationUncheckedCreateWithoutPagesInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1289,7 +1246,6 @@ export type OrganizationUpdateWithoutPagesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
@@ -1312,7 +1268,6 @@ export type OrganizationUncheckedUpdateWithoutPagesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1335,7 +1290,6 @@ export type OrganizationCreateWithoutMembersInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
@@ -1358,7 +1312,6 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1397,7 +1350,6 @@ export type OrganizationUpdateWithoutMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
@@ -1420,7 +1372,6 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1443,7 +1394,6 @@ export type OrganizationCreateWithoutModulosInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
@@ -1466,7 +1416,6 @@ export type OrganizationUncheckedCreateWithoutModulosInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1505,7 +1454,6 @@ export type OrganizationUpdateWithoutModulosInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
@@ -1528,7 +1476,6 @@ export type OrganizationUncheckedUpdateWithoutModulosInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1551,7 +1498,6 @@ export type OrganizationCreateWithoutMemberPermissionsInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
@@ -1574,7 +1520,6 @@ export type OrganizationUncheckedCreateWithoutMemberPermissionsInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1613,7 +1558,6 @@ export type OrganizationUpdateWithoutMemberPermissionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
@@ -1636,7 +1580,6 @@ export type OrganizationUncheckedUpdateWithoutMemberPermissionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1659,7 +1602,6 @@ export type OrganizationCreateWithoutInvitationsInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
@@ -1682,7 +1624,6 @@ export type OrganizationUncheckedCreateWithoutInvitationsInput = {
   createdAt?: Date | string
   metadata?: string | null
   articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1721,7 +1662,6 @@ export type OrganizationUpdateWithoutInvitationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
@@ -1744,116 +1684,7 @@ export type OrganizationUncheckedUpdateWithoutInvitationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
-  pages?: Prisma.PageUncheckedUpdateManyWithoutOrganizationNestedInput
-  siteConfigs?: Prisma.SiteConfigUncheckedUpdateManyWithoutOrganizationNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutOrganizationNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutAuditLogsInput = {
-  id?: string
-  name: string
-  slug: string
-  logo?: string | null
-  email?: string
-  telefone?: string | null
-  cnpj?: string | null
-  status?: string
-  createdAt?: Date | string
-  metadata?: string | null
-  articles?: Prisma.ArticleCreateNestedManyWithoutOrganizationInput
-  categories?: Prisma.CategoryCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  memberPermissions?: Prisma.MemberPermissionCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloCreateNestedManyWithoutOrganizationInput
-  pages?: Prisma.PageCreateNestedManyWithoutOrganizationInput
-  siteConfigs?: Prisma.SiteConfigCreateNestedManyWithoutOrganizationInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutOrganizationInput
-  tags?: Prisma.TagCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutAuditLogsInput = {
-  id?: string
-  name: string
-  slug: string
-  logo?: string | null
-  email?: string
-  telefone?: string | null
-  cnpj?: string | null
-  status?: string
-  createdAt?: Date | string
-  metadata?: string | null
-  articles?: Prisma.ArticleUncheckedCreateNestedManyWithoutOrganizationInput
-  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutOrganizationInput
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  memberPermissions?: Prisma.MemberPermissionUncheckedCreateNestedManyWithoutOrganizationInput
-  modulos?: Prisma.ModuloUncheckedCreateNestedManyWithoutOrganizationInput
-  pages?: Prisma.PageUncheckedCreateNestedManyWithoutOrganizationInput
-  siteConfigs?: Prisma.SiteConfigUncheckedCreateNestedManyWithoutOrganizationInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutOrganizationInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutAuditLogsInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditLogsInput, Prisma.OrganizationUncheckedCreateWithoutAuditLogsInput>
-}
-
-export type OrganizationUpsertWithoutAuditLogsInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAuditLogsInput, Prisma.OrganizationUncheckedUpdateWithoutAuditLogsInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditLogsInput, Prisma.OrganizationUncheckedCreateWithoutAuditLogsInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutAuditLogsInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAuditLogsInput, Prisma.OrganizationUncheckedUpdateWithoutAuditLogsInput>
-}
-
-export type OrganizationUpdateWithoutAuditLogsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  articles?: Prisma.ArticleUpdateManyWithoutOrganizationNestedInput
-  categories?: Prisma.CategoryUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  memberPermissions?: Prisma.MemberPermissionUpdateManyWithoutOrganizationNestedInput
-  modulos?: Prisma.ModuloUpdateManyWithoutOrganizationNestedInput
-  pages?: Prisma.PageUpdateManyWithoutOrganizationNestedInput
-  siteConfigs?: Prisma.SiteConfigUpdateManyWithoutOrganizationNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutOrganizationNestedInput
-  tags?: Prisma.TagUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutAuditLogsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  metadata?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  articles?: Prisma.ArticleUncheckedUpdateManyWithoutOrganizationNestedInput
-  categories?: Prisma.CategoryUncheckedUpdateManyWithoutOrganizationNestedInput
-  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutOrganizationNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   memberPermissions?: Prisma.MemberPermissionUncheckedUpdateManyWithoutOrganizationNestedInput
   modulos?: Prisma.ModuloUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1870,7 +1701,6 @@ export type OrganizationUncheckedUpdateWithoutAuditLogsInput = {
 
 export type OrganizationCountOutputType = {
   articles: number
-  auditLogs: number
   categories: number
   invitations: number
   members: number
@@ -1884,7 +1714,6 @@ export type OrganizationCountOutputType = {
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   articles?: boolean | OrganizationCountOutputTypeCountArticlesArgs
-  auditLogs?: boolean | OrganizationCountOutputTypeCountAuditLogsArgs
   categories?: boolean | OrganizationCountOutputTypeCountCategoriesArgs
   invitations?: boolean | OrganizationCountOutputTypeCountInvitationsArgs
   members?: boolean | OrganizationCountOutputTypeCountMembersArgs
@@ -1911,13 +1740,6 @@ export type OrganizationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
  */
 export type OrganizationCountOutputTypeCountArticlesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ArticleWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AuditLogWhereInput
 }
 
 /**
@@ -1996,7 +1818,6 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   createdAt?: boolean
   metadata?: boolean
   articles?: boolean | Prisma.Organization$articlesArgs<ExtArgs>
-  auditLogs?: boolean | Prisma.Organization$auditLogsArgs<ExtArgs>
   categories?: boolean | Prisma.Organization$categoriesArgs<ExtArgs>
   invitations?: boolean | Prisma.Organization$invitationsArgs<ExtArgs>
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
@@ -2027,7 +1848,6 @@ export type OrganizationSelectScalar = {
 export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "logo" | "email" | "telefone" | "cnpj" | "status" | "createdAt" | "metadata", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   articles?: boolean | Prisma.Organization$articlesArgs<ExtArgs>
-  auditLogs?: boolean | Prisma.Organization$auditLogsArgs<ExtArgs>
   categories?: boolean | Prisma.Organization$categoriesArgs<ExtArgs>
   invitations?: boolean | Prisma.Organization$invitationsArgs<ExtArgs>
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
@@ -2044,7 +1864,6 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "Organization"
   objects: {
     articles: Prisma.$ArticlePayload<ExtArgs>[]
-    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     categories: Prisma.$CategoryPayload<ExtArgs>[]
     invitations: Prisma.$InvitationPayload<ExtArgs>[]
     members: Prisma.$MemberPayload<ExtArgs>[]
@@ -2407,7 +2226,6 @@ readonly fields: OrganizationFieldRefs;
 export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   articles<T extends Prisma.Organization$articlesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$articlesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ArticlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  auditLogs<T extends Prisma.Organization$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   categories<T extends Prisma.Organization$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invitations<T extends Prisma.Organization$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   members<T extends Prisma.Organization$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2825,30 +2643,6 @@ export type Organization$articlesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.ArticleScalarFieldEnum | Prisma.ArticleScalarFieldEnum[]
-}
-
-/**
- * Organization.auditLogs
- */
-export type Organization$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AuditLog
-   */
-  select?: Prisma.AuditLogSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AuditLog
-   */
-  omit?: Prisma.AuditLogOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AuditLogInclude<ExtArgs> | null
-  where?: Prisma.AuditLogWhereInput
-  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
-  cursor?: Prisma.AuditLogWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
 }
 
 /**

@@ -67,8 +67,7 @@ export const ModelName = {
   Member: 'Member',
   Modulo: 'Modulo',
   MemberPermission: 'MemberPermission',
-  Invitation: 'Invitation',
-  AuditLog: 'AuditLog'
+  Invitation: 'Invitation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -326,25 +325,6 @@ export const InvitationScalarFieldEnum = {
 export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]
 
 
-export const AuditLogScalarFieldEnum = {
-  id: 'id',
-  action: 'action',
-  entity: 'entity',
-  entityId: 'entityId',
-  entityName: 'entityName',
-  userId: 'userId',
-  userName: 'userName',
-  userEmail: 'userEmail',
-  organizationId: 'organizationId',
-  description: 'description',
-  before: 'before',
-  after: 'after',
-  createdAt: 'createdAt'
-} as const
-
-export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
-
-
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -553,21 +533,4 @@ export const InvitationOrderByRelevanceFieldEnum = {
 } as const
 
 export type InvitationOrderByRelevanceFieldEnum = (typeof InvitationOrderByRelevanceFieldEnum)[keyof typeof InvitationOrderByRelevanceFieldEnum]
-
-
-export const AuditLogOrderByRelevanceFieldEnum = {
-  id: 'id',
-  entity: 'entity',
-  entityId: 'entityId',
-  entityName: 'entityName',
-  userId: 'userId',
-  userName: 'userName',
-  userEmail: 'userEmail',
-  organizationId: 'organizationId',
-  description: 'description',
-  before: 'before',
-  after: 'after'
-} as const
-
-export type AuditLogOrderByRelevanceFieldEnum = (typeof AuditLogOrderByRelevanceFieldEnum)[keyof typeof AuditLogOrderByRelevanceFieldEnum]
 

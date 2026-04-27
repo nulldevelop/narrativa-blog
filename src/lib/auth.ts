@@ -71,8 +71,8 @@ export const auth = betterAuth({
     updateAge: 60 * 60 * 24,
   },
   rateLimit: {
-    window: 10,
-    max: 100,
+    window: 30,
+    max: 10,
     pages: {
       signIn: true,
       signUp: true,

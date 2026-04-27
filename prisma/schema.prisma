@@ -25,6 +25,7 @@ model User {
   members         Member[]
   sessions        Session[]
 
+  @@index([role])
   @@map("user")
 }
 
@@ -76,32 +77,35 @@ model Verification {
 }
 
 model Article {
-  id             String        @id @default(uuid())
-  title          String        @db.VarChar(300)
-  slug           String        @unique @db.VarChar(300)
-  subtitle       String?       @db.Text
-  content        String        @db.LongText
-  excerpt        String?       @db.Text
-  coverImage     String?       @db.Text
-  coverImageCredit String?      @db.Text
-  readTime       Int?
-  featured       Boolean       @default(false)
-  views          Int           @default(0)
-  status         String        @default("draft") @db.VarChar(20)
-  publishedAt    DateTime?
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  authorId       String
-  categoryId     String?
-  organizationId String?
-  author         User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  category       Category?     @relation(fields: [categoryId], references: [id])
-  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  tags           ArticleTag[]
+  id               String        @id @default(uuid())
+  title            String        @db.VarChar(300)
+  slug             String        @unique @db.VarChar(300)
+  subtitle         String?       @db.Text
+  content          String        @db.LongText
+  excerpt          String?       @db.Text
+  coverImage       String?       @db.Text
+  coverImageCredit String?       @db.Text
+  readTime         Int?
+  featured         Boolean       @default(false)
+  views            Int           @default(0)
+  status           String        @default("draft") @db.VarChar(20)
+  publishedAt      DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  authorId         String
+  categoryId       String?
+  organizationId   String?
+  author           User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category         Category?     @relation(fields: [categoryId], references: [id])
+  organization     Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  tags             ArticleTag[]
 
   @@index([authorId], map: "article_authorId_fkey")
   @@index([categoryId], map: "article_categoryId_fkey")
   @@index([organizationId], map: "article_organizationId_fkey")
+  @@index([status, publishedAt])
+  @@index([featured, status, publishedAt])
+  @@index([categoryId, status, publishedAt])
   @@map("article")
 }
 
@@ -188,13 +192,14 @@ model Page {
 }
 
 model Curta {
-  id             String        @id @default(uuid())
-  texto          String        @db.Text
-  source         String?       @db.Text
-  status         String        @default("active") @db.VarChar(20)
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  id        String   @id @default(uuid())
+  texto     String   @db.Text
+  source    String?  @db.Text
+  status    String   @default("active") @db.VarChar(20)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  @@index([status, createdAt])
   @@map("curta")
 }
 
@@ -210,7 +215,6 @@ model Organization {
   createdAt         DateTime           @default(now())
   metadata          String?            @db.Text
   articles          Article[]
-  auditLogs         AuditLog[]
   categories        Category[]
   invitations       Invitation[]
   members           Member[]
@@ -292,25 +296,6 @@ model Invitation {
   @@map("invitation")
 }
 
-model AuditLog {
-  id             String       @id @default(uuid())
-  action         LogAction
-  entity         String       @db.Text
-  entityId       String?      @db.Text
-  entityName     String?      @db.Text
-  userId         String       @db.Text
-  userName       String       @db.Text
-  userEmail      String       @db.Text
-  organizationId String
-  description    String?      @db.Text
-  before         String?      @db.LongText
-  after          String?      @db.LongText
-  createdAt      DateTime     @default(now())
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-
-  @@index([organizationId], map: "audit_log_organizationId_fkey")
-  @@map("audit_log")
-}
 
 enum ROLES {
   OWNER

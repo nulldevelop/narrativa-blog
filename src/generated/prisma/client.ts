@@ -126,8 +126,3 @@ export type MemberPermission = Prisma.MemberPermissionModel
  * 
  */
 export type Invitation = Prisma.InvitationModel
-/**
- * Model AuditLog
- * 
- */
-export type AuditLog = Prisma.AuditLogModel
