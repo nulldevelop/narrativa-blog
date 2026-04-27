@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -6,7 +7,45 @@ import remarkGfm from 'remark-gfm'
 import { FadeUp } from '@/components/fade-up'
 import { NewsletterWidget } from '@/components/newsletter-widget'
 import { ReadingProgress } from '@/components/reading-progress'
+import { prisma } from '@/lib/prisma'
 import { getArticleBySlug } from '../../_data-access/get-article-by-slug'
+
+export async function generateStaticParams() {
+  const articles = await prisma.article.findMany({
+    where: { status: 'published' },
+    select: { slug: true },
+    take: 100, // Pre-renderiza os 100 mais recentes
+  })
+
+  return articles.map((article) => ({
+    slug: article.slug,
+  }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const article = await getArticleBySlug(slug)
+
+  if (!article) return { title: 'Artigo não encontrado | Narrativa' }
+
+  return {
+    title: `${article.title} | Narrativa`,
+    description:
+      article.subtitle || article.excerpt || 'Leia mais na Narrativa.',
+    openGraph: {
+      title: article.title,
+      description: article.subtitle || undefined,
+      images: article.coverImage ? [article.coverImage] : [],
+      type: 'article',
+      publishedTime: article.publishedAt?.toISOString(),
+      authors: [article.author.name],
+    },
+  }
+}
 
 export default async function ArtigoPage({
   params,
@@ -14,7 +53,6 @@ export default async function ArtigoPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-
   const article = await getArticleBySlug(slug)
 
   if (!article) return notFound()
@@ -126,7 +164,7 @@ export default async function ArtigoPage({
       <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
         <div className="py-[clamp(3rem,6vw,5rem)]">
           <div className="grid grid-cols-[1fr_280px] gap-20 items-start max-md:grid-cols-1 w-full overflow-hidden">
-            {/* Renderizador de Markdown Profissional */}
+            {/* Renderizador de Markdown */}
             <article className="max-w-[680px] w-full">
               <div
                 className="prose prose-lg prose-narrativa w-full max-w-none article-drop-cap break-words
@@ -142,7 +180,7 @@ export default async function ArtigoPage({
               </div>
             </article>
 
-            {/* Sidebar Relacionados */}
+            {/* Sidebar */}
             <aside
               className="sticky top-[100px] flex flex-col gap-8 max-md:static"
               aria-label="Conteúdo relacionado"

@@ -1,18 +1,14 @@
-import type { ArticleHero } from '@/components/hero-home'
 import { prisma } from '@/lib/prisma'
 
 /**
  * Busca um artigo pelo slug com autor, categoria e tags.
+ * Corrigido: Removido o incremento de views automático para evitar side-effects
+ * e permitir cache (ISR/SSG).
  */
 export const getArticleBySlug = async (slug: string) => {
   try {
-    const article = await prisma.article.update({
+    const article = await prisma.article.findUnique({
       where: { slug },
-      data: {
-        views: {
-          increment: 1,
-        },
-      },
       include: {
         author: true,
         category: true,

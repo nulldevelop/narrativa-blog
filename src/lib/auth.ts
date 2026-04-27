@@ -15,7 +15,7 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
-    minPasswordLength: 4,
+    minPasswordLength: 8, // Aumentado para reforçar segurança mínima
   },
   user: {
     additionalFields: {
@@ -31,11 +31,8 @@ export const auth = betterAuth({
       create: {
         after: async (user) => {
           const authUser = user as unknown as BetterAuthUser
-
-          // Após criar o usuário, buscamos a organização e o vinculamos
           try {
             const organization = await prisma.organization.findFirst()
-
             if (organization) {
               const rawRole = authUser.role
               const finalRole =
@@ -59,13 +56,9 @@ export const auth = betterAuth({
                   role: finalRole,
                 },
               })
-            } else {
-              console.warn(
-                'Nenhuma organização encontrada para vincular o novo usuário.',
-              )
             }
           } catch (error) {
-            console.error('Erro ao criar membro após cadastro:', error)
+            console.error('Erro ao vincular membro:', error)
           }
         },
       },

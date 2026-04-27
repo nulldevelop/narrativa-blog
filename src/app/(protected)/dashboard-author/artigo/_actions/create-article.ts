@@ -1,10 +1,9 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { headers } from 'next/headers'
 import slugify from 'slugify'
 import { z } from 'zod'
-import { auth } from '@/lib/auth'
+import { checkPermission } from '@/lib/permissions/check-permission'
 import { prisma } from '@/lib/prisma'
 
 const articleSchema = z.object({
@@ -19,32 +18,26 @@ const articleSchema = z.object({
 })
 
 export async function createArticleAction(data: z.infer<typeof articleSchema>) {
-  console.log('🚀 [SERVER] Iniciando createArticleAction...')
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    })
-
-    if (!session) {
-      console.error('❌ [SERVER] Nenhuma sessão encontrada no getSession.')
-      return {
-        success: false,
-        error: 'Sessão expirada ou não encontrada. Faça login novamente.',
-      }
+    // 1. Verificação de Permissão Robusta via RBAC
+    const permission = await checkPermission('create', 'articles')
+    if (!permission.allowed) {
+      return { success: false, error: permission.error || 'Não autorizado' }
     }
 
-    const userId = session.user.id
+    const userId = permission.userId!
     const validated = articleSchema.parse(data)
-    let member = await prisma.member.findFirst({ where: { userId } })
+
+    // Busca organização vinculada ao membro
+    const member = await prisma.member.findFirst({
+      where: { userId },
+    })
 
     if (!member) {
-      const firstOrg = await prisma.organization.findFirst()
-      if (!firstOrg) {
-        return { success: false, error: 'Nenhuma organização configurada.' }
+      return {
+        success: false,
+        error: 'Membro não vinculado a uma organização.',
       }
-      member = await prisma.member.create({
-        data: { userId, organizationId: firstOrg.id, role: 'AUTHOR' },
-      })
     }
 
     const organizationId = member.organizationId
@@ -92,9 +85,10 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
     if (error instanceof z.ZodError) {
       return { success: false, error: error.issues[0].message }
     }
+    console.error('Erro ao criar artigo:', error)
     return {
       success: false,
-      error: error.message || 'Falha ao salvar no banco.',
+      error: 'Falha interna ao processar a requisição.',
     }
   }
 }

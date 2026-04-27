@@ -1,41 +1,38 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { headers } from 'next/headers'
-import { auth } from '@/lib/auth'
+import { checkPermission } from '@/lib/permissions/check-permission'
 import { prisma } from '@/lib/prisma'
 
 export async function archiveArticleAction(id: string) {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    })
-
-    if (!session) {
-      return { success: false, error: 'Sessão expirada ou não encontrada.' }
+    // 1. Verificação de Permissão via RBAC
+    const permission = await checkPermission('update', 'articles')
+    if (!permission.allowed) {
+      return { success: false, error: permission.error || 'Não autorizado' }
     }
 
-    const userId = session.user.id
-
-    // Verificar se o artigo pertence ao autor ou se o usuário é ADMIN/EDITOR
+    // 2. Busca o artigo e valida propriedade
     const article = await prisma.article.findUnique({
       where: { id },
-      select: { authorId: true }
+      select: { authorId: true },
     })
 
-    if (!article) {
-      return { success: false, error: 'Artigo não encontrado.' }
-    }
+    if (!article) return { success: false, error: 'Artigo não encontrado.' }
 
-    if (article.authorId !== userId && !['ADMIN', 'EDITOR'].includes(session.user.role)) {
-      return { success: false, error: 'Você não tem permissão para arquivar este artigo.' }
+    if (
+      permission.role === 'AUTHOR' &&
+      article.authorId !== permission.userId
+    ) {
+      return {
+        success: false,
+        error: 'Você não tem permissão para arquivar este artigo.',
+      }
     }
 
     await prisma.article.update({
       where: { id },
-      data: {
-        status: 'archived'
-      }
+      data: { status: 'archived' },
     })
 
     revalidatePath('/')
@@ -44,6 +41,7 @@ export async function archiveArticleAction(id: string) {
 
     return { success: true }
   } catch (error: any) {
-    return { success: false, error: error.message || 'Falha ao arquivar o artigo.' }
+    console.error('Erro ao arquivar artigo:', error)
+    return { success: false, error: 'Falha ao arquivar o artigo.' }
   }
 }

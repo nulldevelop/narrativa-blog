@@ -1,10 +1,9 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { headers } from 'next/headers'
 import slugify from 'slugify'
 import { z } from 'zod'
-import { auth } from '@/lib/auth'
+import { checkPermission } from '@/lib/permissions/check-permission'
 import { prisma } from '@/lib/prisma'
 
 const articleSchema = z.object({
@@ -18,23 +17,38 @@ const articleSchema = z.object({
   status: z.enum(['draft', 'published', 'archived']).default('draft'),
 })
 
-export async function updateArticleAction(id: string, data: z.infer<typeof articleSchema>) {
+export async function updateArticleAction(
+  id: string,
+  data: z.infer<typeof articleSchema>,
+) {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    })
-
-    if (!session) {
-      return { success: false, error: 'Sessão expirada. Faça login novamente.' }
+    // 1. Verificação de Permissão via RBAC
+    const permission = await checkPermission('update', 'articles')
+    if (!permission.allowed) {
+      return { success: false, error: permission.error || 'Não autorizado' }
     }
 
     const validated = articleSchema.parse(data)
+
+    // 2. Busca o artigo e valida propriedade
     const existingArticle = await prisma.article.findUnique({
       where: { id },
-      select: { authorId: true, title: true, slug: true, organizationId: true }
+      select: { authorId: true, title: true, slug: true, organizationId: true },
     })
 
-    if (!existingArticle) return { success: false, error: "Artigo não encontrado." }
+    if (!existingArticle)
+      return { success: false, error: 'Artigo não encontrado.' }
+
+    // Garante que autores só editam seus próprios artigos (Bypass para OWNER/ADMIN/EDITOR já está no checkPermission)
+    if (
+      permission.role === 'AUTHOR' &&
+      existingArticle.authorId !== permission.userId
+    ) {
+      return {
+        success: false,
+        error: 'Você não tem permissão para editar este artigo.',
+      }
+    }
 
     const organizationId = existingArticle.organizationId
     let newSlug = existingArticle.slug
@@ -43,6 +57,7 @@ export async function updateArticleAction(id: string, data: z.infer<typeof artic
       newSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 7)}`
     }
 
+    // Limpa tags antigas e atualiza artigo
     await prisma.articleTag.deleteMany({ where: { articleId: id } })
 
     const article = await prisma.article.update({
@@ -56,16 +71,18 @@ export async function updateArticleAction(id: string, data: z.infer<typeof artic
         coverImageCredit: validated.coverImageCredit || null,
         status: validated.status,
         categoryId: validated.categoryId,
-        publishedAt: validated.status === 'published' && !existingArticle.slug.includes('published') ? new Date() : undefined,
+        publishedAt: validated.status === 'published' ? new Date() : undefined,
         tags: {
           create: validated.tags?.map((tagName) => ({
             tag: {
               connectOrCreate: {
-                where: { slug: slugify(tagName, { lower: true, strict: true }) },
-                create: { 
-                  name: tagName, 
+                where: {
                   slug: slugify(tagName, { lower: true, strict: true }),
-                  organizationId: organizationId
+                },
+                create: {
+                  name: tagName,
+                  slug: slugify(tagName, { lower: true, strict: true }),
+                  organizationId: organizationId,
                 },
               },
             },
@@ -84,6 +101,10 @@ export async function updateArticleAction(id: string, data: z.infer<typeof artic
     if (error instanceof z.ZodError) {
       return { success: false, error: error.issues[0].message }
     }
-    return { success: false, error: error.message || 'Falha ao atualizar no banco.' }
+    console.error('Erro ao atualizar artigo:', error)
+    return {
+      success: false,
+      error: 'Falha interna ao processar a atualização.',
+    }
   }
 }

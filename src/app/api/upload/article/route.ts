@@ -4,6 +4,8 @@ import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+
 export async function POST(req: Request) {
   // 1. Verificar Autenticação
   const session = await auth.api.getSession({
@@ -26,19 +28,27 @@ export async function POST(req: Request) {
       )
     }
 
-    // 2. Validar se é realmente uma imagem
-    if (!file.type.startsWith('image/')) {
+    // 2. Validação de Tamanho (DoS Prevention)
+    if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
-        { error: 'O arquivo enviado não é uma imagem' },
+        { error: 'O arquivo excede o limite de 5MB' },
         { status: 400 },
       )
     }
 
-    // 3. Preparar diretório de destino
+    // 3. Validação de Tipo de Arquivo
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+    if (!allowedTypes.includes(file.type)) {
+      return NextResponse.json(
+        { error: 'Tipo de arquivo não suportado. Use JPG, PNG, WebP ou GIF.' },
+        { status: 400 },
+      )
+    }
+
+    // 4. Preparar diretório de destino
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    // Caminho: storage/materia/[id]/imagens
     const storagePath = path.join(
       process.cwd(),
       'storage',
@@ -47,17 +57,16 @@ export async function POST(req: Request) {
       'imagens',
     )
 
-    // Cria as pastas se não existirem
     await fs.mkdir(storagePath, { recursive: true })
 
-    // Nome único para evitar conflitos
-    const fileName = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`
+    // Nome sanitizado e único
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
+    const fileName = `${Date.now()}-${sanitizedName}`
     const filePath = path.join(storagePath, fileName)
 
-    // 4. Salvar no Disco
+    // 5. Salvar no Disco
     await fs.writeFile(filePath, buffer)
 
-    // Retorna a URL que será servida pela nossa API de mídia
     const url = `/api/media/materia/${articleId}/imagens/${fileName}`
 
     return NextResponse.json({ url })

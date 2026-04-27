@@ -1,10 +1,10 @@
 import type { ArticleHero } from '@/components/hero-home'
 import { prisma } from '@/lib/prisma'
-import { fetchByTag } from './fetch-by-tag'
 import { getAllTags } from './get-all-tags'
 
 /**
- * Busca os dados para a home: artigos em destaque (via tags) e listagem geral paginada.
+ * Busca os dados para a home: artigos em destaque e listagem geral em poucas queries.
+ * Corrigido problema N+1 ao buscar tags de destaque individualmente.
  */
 export const getHomeData = async (
   currentPage: number,
@@ -13,63 +13,79 @@ export const getHomeData = async (
   tag?: string,
 ) => {
   try {
-    const [mainFeaturedArticle, d1, d2, d3, dGeral1, dGeral2, allTags] =
-      await Promise.all([
-      fetchByTag('home-principal'),
-      fetchByTag('home-destaque-1'),
-      fetchByTag('home-destaque-2'),
-      fetchByTag('home-destaque-3'),
-      fetchByTag('home-geral-1'),
-      fetchByTag('home-geral-2'),
+    const systemTags = [
+      'home-principal',
+      'home-destaque-1',
+      'home-destaque-2',
+      'home-destaque-3',
+      'home-geral-1',
+      'home-geral-2',
+    ]
+
+    // 1. Busca artigos de destaque e tags permitidas em paralelo
+    const [featuredArticlesRaw, allTags] = await Promise.all([
+      prisma.article.findMany({
+        where: {
+          status: 'published',
+          tags: { some: { tag: { slug: { in: systemTags } } } },
+        },
+        include: {
+          category: true,
+          tags: { include: { tag: true } },
+        },
+        orderBy: { publishedAt: 'desc' },
+      }),
       getAllTags(),
     ])
 
-  const secondaryHero = [d1, d2, d3].filter(Boolean) as ArticleHero[]
-  const generalFeatured = [dGeral1, dGeral2].filter(Boolean) as ArticleHero[]
+    // 2. Mapeamento em memória para evitar múltiplas queries
+    const findByTag = (slug: string) =>
+      featuredArticlesRaw.find((a) =>
+        a.tags.some((t) => t.tag.slug === slug),
+      ) as unknown as ArticleHero | undefined
 
-  const featuredIds = new Set(
-    [
-      mainFeaturedArticle?.id,
-      ...secondaryHero.map((a) => a.id),
-      ...generalFeatured.map((a) => a.id),
-    ].filter((id): id is string => !!id),
-  )
+    const mainFeaturedArticle = findByTag('home-principal') || null
+    const secondaryHero = [
+      findByTag('home-destaque-1'),
+      findByTag('home-destaque-2'),
+      findByTag('home-destaque-3'),
+    ].filter(Boolean) as ArticleHero[]
 
-  const isFiltering = !!(category || tag)
+    const generalFeatured = [
+      findByTag('home-geral-1'),
+      findByTag('home-geral-2'),
+    ].filter(Boolean) as ArticleHero[]
 
-  const whereClause = {
-    status: 'published',
-    ...(!isFiltering ? { id: { notIn: Array.from(featuredIds) } } : {}),
-    ...(category ? { category: { slug: category } } : {}),
-    ...(tag ? { tags: { some: { tag: { slug: tag } } } } : {}),
-  }
+    const featuredIds = new Set(featuredArticlesRaw.map((a) => a.id))
+    const isFiltering = !!(category || tag)
 
-  const [articles, totalArticles] = await Promise.all([
-    prisma.article.findMany({
-      where: whereClause,
-      take: postsPerPage,
-      skip: (currentPage - 1) * postsPerPage,
-      orderBy: { publishedAt: 'desc' },
-      include: { 
-        category: true,
-        tags: {
-          include: {
-            tag: true
-          }
-        }
-      },
-    }),
-    prisma.article.count({ where: whereClause }),
-  ])
+    const whereClause = {
+      status: 'published',
+      ...(!isFiltering ? { id: { notIn: Array.from(featuredIds) } } : {}),
+      ...(category ? { category: { slug: category } } : {}),
+      ...(tag ? { tags: { some: { tag: { slug: tag } } } } : {}),
+    }
 
-  const totalPages = Math.ceil(totalArticles / postsPerPage)
+    const [articles, totalArticles] = await Promise.all([
+      prisma.article.findMany({
+        where: whereClause,
+        take: postsPerPage,
+        skip: (currentPage - 1) * postsPerPage,
+        orderBy: { publishedAt: 'desc' },
+        include: {
+          category: true,
+          tags: { include: { tag: true } },
+        },
+      }),
+      prisma.article.count({ where: whereClause }),
+    ])
 
-  return {
+    return {
       mainFeaturedArticle,
       secondaryHero,
       generalFeatured,
       articles,
-      totalPages,
+      totalPages: Math.ceil(totalArticles / postsPerPage),
       allTags,
     }
   } catch (error) {
