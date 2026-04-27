@@ -15,7 +15,7 @@ export async function criarCurta(formData: FormData): Promise<void> {
     await prisma.curta.create({
       data: { texto, source: source || '' },
     })
-    revalidatePath('/curtas')
+    revalidatePath('/dashboard-author/curtas')
     revalidatePath('/')
   } catch (error) {
     console.error('Error creating curta:', error)

@@ -50,7 +50,14 @@ export const getHomeData = async (
       take: postsPerPage,
       skip: (currentPage - 1) * postsPerPage,
       orderBy: { publishedAt: 'desc' },
-      include: { category: true },
+      include: { 
+        category: true,
+        tags: {
+          include: {
+            tag: true
+          }
+        }
+      },
     }),
     prisma.article.count({ where: whereClause }),
   ])

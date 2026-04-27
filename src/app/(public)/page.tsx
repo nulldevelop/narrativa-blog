@@ -73,6 +73,7 @@ export default async function Home({
                       imageUrl={article.coverImage || undefined}
                       variant="large"
                       delay={i * 0.1}
+                      tags={article.tags}
                     />
                   ))}
                 </div>
@@ -92,6 +93,7 @@ export default async function Home({
                     slug={article.slug}
                     imageUrl={article.coverImage || undefined}
                     delay={i * 0.08}
+                    tags={article.tags}
                   />
                 ))}
               </ol>

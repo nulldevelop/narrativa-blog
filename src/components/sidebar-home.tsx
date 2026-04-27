@@ -78,25 +78,28 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
         </p>
       </div>
 
-      {/* Tags dinâmicas */}
-      {tags.length > 0 && (
-        <div>
-          <p className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho mb-3">
-            Temas
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {tags.map((tag) => (
-              <Link
-                key={tag.id}
-                href={`/?tag=${tag.slug}`}
-                className="inline-block border border-narrativa-cinza-linha px-3 py-1.5 text-[0.65rem] tracking-[0.1em] uppercase text-narrativa-cinza-texto hover:border-narrativa-preto hover:bg-narrativa-preto hover:text-narrativa-branco transition-all"
-              >
-                {tag.name}
-              </Link>
-            ))}
-          </div>
+      {/* Tags fixas (Temas) */}
+      <div>
+        <p className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho mb-3">
+          Temas
+        </p>
+        <div className="flex flex-wrap gap-1.5">
+          {[
+            { name: 'Curitiba', slug: 'curitiba' },
+            { name: 'Paraná', slug: 'parana' },
+            { name: 'Brasil', slug: 'brasil' },
+            { name: 'Cotidiano', slug: 'cotidiano' },
+          ].map((tag) => (
+            <Link
+              key={tag.slug}
+              href={`/?tag=${tag.slug}`}
+              className="inline-block border border-narrativa-cinza-linha px-3 py-1.5 text-[0.65rem] tracking-[0.1em] uppercase text-narrativa-cinza-texto hover:border-narrativa-preto hover:bg-narrativa-preto hover:text-narrativa-branco transition-all"
+            >
+              {tag.name}
+            </Link>
+          ))}
         </div>
-      )}
+      </div>
 
       {/* Cotidiano */}
       {cotidianoArticle && (

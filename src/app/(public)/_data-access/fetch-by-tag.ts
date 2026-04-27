@@ -12,7 +12,14 @@ export const fetchByTag = async (tagSlug: string): Promise<ArticleHero | null> =
         tags: { some: { tag: { slug: tagSlug } } },
       },
       orderBy: { publishedAt: 'desc' },
-      include: { category: true },
+      include: { 
+        category: true,
+        tags: {
+          include: {
+            tag: true
+          }
+        }
+      },
     })) as ArticleHero | null
   } catch (error) {
     console.error('Error fetching by tag:', error)

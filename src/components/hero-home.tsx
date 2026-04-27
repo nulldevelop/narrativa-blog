@@ -11,6 +11,7 @@ export interface ArticleHero {
   title: string;
   subtitle: string | null;
   category: { name: string } | null;
+  tags: { tag: { name: string; slug: string } }[];
   createdAt: Date;
   publishedAt: Date | null;
   coverImage: string | null;

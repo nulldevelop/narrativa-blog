@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge'
 
 interface ArticleCardProps {
   tag?: string
+  tags?: { tag: { name: string; slug: string } }[]
   title: string
   subtitle: string
   date: string
@@ -18,6 +19,7 @@ interface ArticleCardProps {
 
 export function ArticleCard({
   tag,
+  tags = [],
   title,
   subtitle,
   date,
@@ -39,6 +41,19 @@ export function ArticleCard({
 
   const finalImageUrl =
     imageUrl || fallbackImages[(imageIndex - 1) % fallbackImages.length]
+
+  const systemTags = [
+    'home-principal',
+    'home-destaque-1',
+    'home-destaque-2',
+    'home-destaque-3',
+    'home-geral-1',
+    'home-geral-2',
+  ]
+
+  const displayTags = tags
+    .filter((t) => !systemTags.includes(t.tag.slug))
+    .map((t) => t.tag.name)
 
   if (variant === 'large') {
     return (
@@ -70,6 +85,18 @@ export function ArticleCard({
               <span className="text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb] before:content-['·_']">
                 {readTime}
               </span>
+              {displayTags.length > 0 && (
+                <div className="flex gap-2 items-center before:content-['·_'] before:text-[#bbb] before:text-[0.65rem]">
+                  {displayTags.map((tagName) => (
+                    <span
+                      key={tagName}
+                      className="text-[0.65rem] tracking-[0.08em] uppercase text-narrativa-vermelho font-bold"
+                    >
+                      [{tagName}]
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -96,6 +123,18 @@ export function ArticleCard({
             <span className="text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb] before:content-['·_']">
               {readTime}
             </span>
+            {displayTags.length > 0 && (
+              <div className="flex gap-2 items-center before:content-['·_'] before:text-[#bbb] before:text-[0.65rem]">
+                {displayTags.map((tagName) => (
+                  <span
+                    key={tagName}
+                    className="text-[0.65rem] tracking-[0.08em] uppercase text-narrativa-vermelho font-bold"
+                  >
+                    [{tagName}]
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         </div>
         <Link

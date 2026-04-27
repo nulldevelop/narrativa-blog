@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { auth } from '@/lib/auth'
 import {
   getDashboardStats,
@@ -111,38 +112,40 @@ export default async function DashboardAuthorPage() {
             </h4>
           </div>
 
-          <div className="space-y-4">
-            {topArticles.length > 0 ? (
-              topArticles.map((article, index) => (
-                <div 
-                  key={article.id} 
-                  className="flex items-center gap-4 group cursor-pointer"
-                >
-                  <span className="text-[1.5rem] font-serif italic text-black/10 group-hover:text-narrativa-vermelho transition-colors w-8">
-                    0{index + 1}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <Link href={`/dashboard-author/artigo/edit/${article.id}`}>
-                      <h5 className="text-[0.95rem] font-bold text-narrativa-preto line-clamp-1 group-hover:text-narrativa-vermelho transition-colors">
-                        {article.title}
-                      </h5>
-                    </Link>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <span className="text-[0.65rem] text-black/30 font-bold uppercase">
-                        {article.category?.name || 'Geral'}
-                      </span>
-                      <span className="text-black/10">•</span>
-                      <span className="text-[0.65rem] text-narrativa-vermelho font-black flex items-center gap-1">
-                        <Eye className="w-3 h-3" /> {article.views} acessos
-                      </span>
+          <ScrollArea className="h-[300px] pr-4">
+            <div className="space-y-4">
+              {topArticles.length > 0 ? (
+                topArticles.map((article, index) => (
+                  <div 
+                    key={article.id} 
+                    className="flex items-center gap-4 group cursor-pointer mb-4 last:mb-0"
+                  >
+                    <span className="text-[1.5rem] font-serif italic text-black/10 group-hover:text-narrativa-vermelho transition-colors w-8">
+                      0{index + 1}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <Link href={`/dashboard-author/artigo/edit/${article.id}`}>
+                        <h5 className="text-[0.95rem] font-bold text-narrativa-preto line-clamp-1 group-hover:text-narrativa-vermelho transition-colors">
+                          {article.title}
+                        </h5>
+                      </Link>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <span className="text-[0.65rem] text-black/30 font-bold uppercase">
+                          {article.category?.name || 'Geral'}
+                        </span>
+                        <span className="text-black/10">•</span>
+                        <span className="text-[0.65rem] text-narrativa-vermelho font-black flex items-center gap-1">
+                          <Eye className="w-3 h-3" /> {article.views} acessos
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <p className="text-[0.8rem] text-black/30 italic">Nenhum dado de performance disponível ainda.</p>
-            )}
-          </div>
+                ))
+              ) : (
+                <p className="text-[0.8rem] text-black/30 italic">Nenhum dado de performance disponível ainda.</p>
+              )}
+            </div>
+          </ScrollArea>
         </div>
 
         <div className="space-y-6">
@@ -153,43 +156,44 @@ export default async function DashboardAuthorPage() {
             </h4>
           </div>
 
-          <div className="space-y-4">
-            {myRecentArticles.length > 0 ? (
-              myRecentArticles.map((article) => (
-                <Link 
-                  href={`/dashboard-author/artigo/edit/${article.id}`} 
-                  key={article.id}
-                  className="block p-4 border border-black/5 hover:border-narrativa-vermelho/20 hover:bg-black/[0.01] transition-all group"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-1">
-                      <h5 className="text-[0.9rem] font-black text-narrativa-preto group-hover:text-narrativa-vermelho transition-colors">
-                        {article.title}
-                      </h5>
-                      <div className="flex items-center gap-3">
-                        <span className="text-[0.6rem] text-black/30 font-bold uppercase tracking-widest">
-                          {new Date(article.updatedAt).toLocaleDateString('pt-BR')}
-                        </span>
-                        {article.status === 'published' ? (
-                          <Badge className="bg-green-600/10 text-green-600 border-none rounded-none text-[0.5rem] font-black uppercase tracking-tighter h-4">
-                            Publicado
-                          </Badge>
-                        ) : (
-                          <Badge className="bg-narrativa-dourado/10 text-narrativa-dourado border-none rounded-none text-[0.5rem] font-black uppercase tracking-tighter h-4">
-                            Rascunho
-                          </Badge>
-                        )}
+          <ScrollArea className="h-[300px] pr-4">
+            <div className="space-y-4">
+              {myRecentArticles.length > 0 ? (
+                myRecentArticles.map((article) => (
+                  <Link 
+                    href={`/dashboard-author/artigo/edit/${article.id}`} 
+                    key={article.id}
+                    className="block p-4 border border-black/5 hover:border-narrativa-vermelho/20 hover:bg-black/[0.01] transition-all group"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-1">
+                        <h5 className="text-[0.9rem] font-black text-narrativa-preto group-hover:text-narrativa-vermelho transition-colors">
+                          {article.title}
+                        </h5>
+                        <div className="flex items-center gap-3">
+                          <span className="text-[0.6rem] text-black/30 font-bold uppercase tracking-widest">
+                            {new Date(article.updatedAt).toLocaleDateString('pt-BR')}
+                          </span>
+                          {article.status === 'published' ? (
+                            <Badge className="bg-green-600/10 text-green-600 border-none rounded-none text-[0.5rem] font-black uppercase tracking-tighter h-4">
+                              Publicado
+                            </Badge>
+                          ) : (
+                            <Badge className="bg-narrativa-dourado/10 text-narrativa-dourado border-none rounded-none text-[0.5rem] font-black uppercase tracking-tighter h-4">
+                              Rascunho
+                            </Badge>
+                          )}
+                        </div>
                       </div>
+                      <ArrowUpRight className="w-4 h-4 text-black/10 group-hover:text-narrativa-vermelho transition-colors flex-shrink-0" />
                     </div>
-                    <ArrowUpRight className="w-4 h-4 text-black/10 group-hover:text-narrativa-vermelho transition-colors flex-shrink-0" />
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <p className="text-[0.8rem] text-black/30 italic">Sem atividades recentes.</p>
-            )}
-          </div>
-        </div>
+                  </Link>
+                ))
+              ) : (
+                <p className="text-[0.8rem] text-black/30 italic">Sem atividades recentes.</p>
+              )}
+            </div>
+          </ScrollArea>
       </div>
     </div>
   )
