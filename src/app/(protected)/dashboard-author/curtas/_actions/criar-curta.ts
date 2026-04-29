@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 
 export async function criarCurta(formData: FormData): Promise<void> {
@@ -15,8 +15,10 @@ export async function criarCurta(formData: FormData): Promise<void> {
     await prisma.curta.create({
       data: { texto, source: source || '' },
     })
+
     revalidatePath('/dashboard-author/curtas')
     revalidatePath('/')
+
   } catch (error) {
     console.error('Error creating curta:', error)
     throw new Error('Erro ao criar curta')

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeUp } from "@/components/fade-up";
+import { ShareButtons } from "@/components/share-buttons";
 
 export interface ArticleHero {
   id: string;
@@ -77,9 +78,17 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
                     <ArrowRight className="w-3.5 h-3.5 ml-2" />
                   </Link>
                 </Button>
-                <span className="text-[0.85rem] tracking-[0.1em] text-white/25 uppercase font-medium">
-                  {currentMain.date}
-                </span>
+                <div className="flex items-center gap-4 mt-1">
+                  <span className="text-[0.85rem] tracking-[0.1em] text-white/25 uppercase font-medium">
+                    {currentMain.date}
+                  </span>
+                  <div className="w-1 h-1 rounded-full bg-white/20" />
+                  <ShareButtons 
+                    title={currentMain.title} 
+                    slug={currentMain.slug} 
+                    theme="dark"
+                  />
+                </div>
               </div>
             </FadeUp>
           </div>
@@ -116,10 +125,15 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
                       className="object-cover transition-all duration-500"
                     />
                   </div>
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5">
                     <h4 className="text-[0.9rem] font-bold text-white/90 leading-[1.3] group-hover:text-narrativa-vermelho transition-colors line-clamp-2 uppercase tracking-tight">
                       {item.title}
                     </h4>
+                    {item.subtitle && (
+                      <p className="text-[0.75rem] text-white/40 leading-[1.4] line-clamp-3 font-serif italic min-h-[3.2em]">
+                        {item.subtitle}
+                      </p>
+                    )}
                   </div>
                 </Link>
               </FadeUp>

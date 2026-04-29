@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { FadeUp } from '@/components/fade-up'
+import { ShareButtons } from '@/components/share-buttons'
 
 interface ArticleCardProps {
   tag?: string
@@ -77,13 +78,16 @@ export function ArticleCard({
             <p className="text-[0.95rem] text-narrativa-cinza-texto leading-[1.6] font-light line-clamp-3 italic font-serif">
               {subtitle}
             </p>
-            <div className="flex items-center flex-wrap gap-x-2 gap-y-1 mt-1 text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb]">
-              <span className="text-[#999] tracking-[0.1em] flex-shrink-0">
-                {date}
-              </span>
-              <span className="before:content-['·_'] flex-shrink-0">
-                {readTime}
-              </span>
+            <div className="flex items-center justify-between flex-wrap gap-2 mt-1 w-full">
+              <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb]">
+                <span className="text-[#999] tracking-[0.1em] flex-shrink-0">
+                  {date}
+                </span>
+                <span className="before:content-['·_'] flex-shrink-0">
+                  {readTime}
+                </span>
+              </div>
+              <ShareButtons title={title} slug={slug} />
             </div>
           </div>
         </div>
@@ -103,13 +107,16 @@ export function ArticleCard({
           <p className="text-[0.9rem] text-narrativa-cinza-texto leading-[1.6] font-light italic font-serif">
             {subtitle}
           </p>
-          <div className="flex items-center flex-wrap gap-x-2 gap-y-1 mt-2 text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb]">
-            <span className="text-[#999] tracking-[0.1em] flex-shrink-0">
-              {date}
-            </span>
-            <span className="before:content-['·_'] flex-shrink-0">
-              {readTime}
-            </span>
+          <div className="flex items-center justify-between flex-wrap gap-2 mt-2 w-full">
+            <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-[0.65rem] tracking-[0.08em] uppercase text-[#bbb]">
+              <span className="text-[#999] tracking-[0.1em] flex-shrink-0">
+                {date}
+              </span>
+              <span className="before:content-['·_'] flex-shrink-0">
+                {readTime}
+              </span>
+            </div>
+            <ShareButtons title={title} slug={slug} />
           </div>
         </div>
         <Link

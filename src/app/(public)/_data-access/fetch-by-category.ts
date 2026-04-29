@@ -31,3 +31,36 @@ export const fetchByCategory = async (
     }
   )()
 }
+
+/**
+ * Busca todos os artigos publicados de uma categoria específica.
+ */
+export const fetchAllByCategory = async (
+  categorySlug: string,
+): Promise<ArticleHero[]> => {
+  return unstable_cache(
+    async () => {
+      try {
+        return (await prisma.article.findMany({
+          where: {
+            status: 'published',
+            category: { slug: categorySlug },
+          },
+          orderBy: { publishedAt: 'desc' },
+          include: { 
+            category: true,
+            tags: { include: { tag: true } }
+          },
+        })) as unknown as ArticleHero[]
+      } catch (error) {
+        console.error('Error fetching all by category:', error)
+        return []
+      }
+    },
+    ['fetch-all-by-category', categorySlug],
+    {
+      revalidate: 3600, // 1 hora
+      tags: ['articles', 'categories'],
+    }
+  )()
+}

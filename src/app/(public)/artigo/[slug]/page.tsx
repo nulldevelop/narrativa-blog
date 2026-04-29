@@ -7,6 +7,8 @@ import remarkGfm from 'remark-gfm'
 import { FadeUp } from '@/components/fade-up'
 import { NewsletterWidget } from '@/components/newsletter-widget'
 import { ReadingProgress } from '@/components/reading-progress'
+import { ShareButtons } from '@/components/share-buttons'
+import { ViewTracker } from '@/components/view-tracker'
 import { prisma } from '@/lib/prisma'
 import { getArticleBySlug } from '../../_data-access/get-article-by-slug'
 
@@ -78,6 +80,7 @@ export default async function ArtigoPage({
 
   return (
     <>
+      <ViewTracker slug={slug} />
       <ReadingProgress />
 
       {/* Hero / Cabeçalho Escuro */}
@@ -110,34 +113,24 @@ export default async function ArtigoPage({
 
             <FadeUp delay={0.2}>
               <div className="mt-8 pt-6 border-t border-white/10 flex flex-col gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-narrativa-vermelho flex items-center justify-center text-[0.85rem] font-bold text-narrativa-branco shrink-0 uppercase">
-                    {article.author.name.charAt(0)}
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-[0.78rem] font-bold text-narrativa-branco tracking-[0.04em]">
-                      {article.author.name}
-                    </span>
-                    <span className="text-[0.65rem] text-white/35 tracking-[0.08em] uppercase">
-                      {new Date(
-                        article.publishedAt || article.createdAt,
-                      ).toLocaleDateString('pt-BR')}
-                    </span>
-                  </div>
-                </div>
-
-                {displayTags.length > 0 && (
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {displayTags.map((tag) => (
-                      <span
-                        key={tag.tagId}
-                        className="text-[0.6rem] tracking-[0.08em] uppercase px-3 py-1.5 rounded-full bg-white/10 text-white/70 border border-white/10"
-                      >
-                        {tag.tag.name}
+                <div className="flex items-center justify-between gap-4 flex-wrap w-full">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-narrativa-vermelho flex items-center justify-center text-[0.85rem] font-bold text-narrativa-branco shrink-0 uppercase">
+                      {article.author.name.charAt(0)}
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-[0.78rem] font-bold text-narrativa-branco tracking-[0.04em]">
+                        {article.author.name}
                       </span>
-                    ))}
+                      <span className="text-[0.65rem] text-white/35 tracking-[0.08em] uppercase">
+                        {new Date(
+                          article.publishedAt || article.createdAt,
+                        ).toLocaleDateString('pt-BR')}
+                      </span>
+                    </div>
                   </div>
-                )}
+                  <ShareButtons title={article.title} slug={slug} theme="dark" />
+                </div>
               </div>
             </FadeUp>
           </div>
@@ -184,6 +177,24 @@ export default async function ArtigoPage({
                   {article.content}
                 </ReactMarkdown>
               </div>
+
+              {/* Tags no final da matéria */}
+              {displayTags.length > 0 && (
+                <div className="mt-12 pt-8 border-t border-narrativa-cinza-linha flex items-center gap-3 flex-wrap">
+                  <span className="text-[0.65rem] font-bold tracking-[0.12em] uppercase text-narrativa-cinza-texto mr-2">
+                    Tags:
+                  </span>
+                  {displayTags.map((tag) => (
+                    <Link
+                      key={tag.tagId}
+                      href={`/?tag=${tag.tag.slug}`}
+                      className="text-[0.6rem] tracking-[0.08em] uppercase px-3 py-1.5 bg-narrativa-cinza-claro text-narrativa-cinza-texto hover:bg-narrativa-preto hover:text-narrativa-branco transition-all border border-narrativa-cinza-linha"
+                    >
+                      {tag.tag.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </article>
 
             {/* Sidebar */}
@@ -191,6 +202,12 @@ export default async function ArtigoPage({
               className="sticky top-[100px] flex flex-col gap-8 max-md:static"
               aria-label="Conteúdo relacionado"
             >
+              <div className="pb-6 border-b border-narrativa-cinza-linha">
+                <p className="text-[0.63rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-4 flex items-center gap-2 after:content-[''] after:flex-1 after:h-px after:bg-narrativa-cinza-linha">
+                  Compartilhe
+                </p>
+                <ShareButtons title={article.title} slug={slug} className="[&_svg]:w-5 [&_svg]:h-5" />
+              </div>
               <div className="pb-6 border-b border-narrativa-cinza-linha">
                 <p className="text-[0.63rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-4 flex items-center gap-2 after:content-[''] after:flex-1 after:h-px after:bg-narrativa-cinza-linha">
                   Newsletter

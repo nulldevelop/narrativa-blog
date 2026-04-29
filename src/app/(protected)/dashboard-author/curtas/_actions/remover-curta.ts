@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 
 export async function removerCurta(formData: FormData): Promise<void> {
@@ -10,6 +10,7 @@ export async function removerCurta(formData: FormData): Promise<void> {
       where: { id },
       data: { status: 'deleted' },
     })
+    
     revalidatePath('/dashboard-author/curtas')
     revalidatePath('/')
   } catch (error) {

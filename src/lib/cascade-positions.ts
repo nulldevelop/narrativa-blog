@@ -1,4 +1,3 @@
-import slugify from 'slugify'
 import { prisma } from '@/lib/prisma'
 
 export const HOME_POSITIONS_CASCADE = [
