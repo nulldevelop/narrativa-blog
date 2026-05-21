@@ -14,6 +14,7 @@ import {
   IconBrandFacebook,
   IconBrandX,
   IconBrandLinkedin,
+  IconBrandInstagram,
   IconLink
 } from "@tabler/icons-react"
 
@@ -95,6 +96,16 @@ export function ShareButtons({
         aria-label="Compartilhar no LinkedIn"
       >
         <IconBrandLinkedin size={18} stroke={1.5} />
+      </a>
+      <a
+        href={`https://www.instagram.com/`}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={stopProp}
+        className={`${baseTextColor} hover:text-[#E1306C] transition-colors`}
+        aria-label="Ir para o Instagram"
+      >
+        <IconBrandInstagram size={18} stroke={1.5} />
       </a>
       <button
         onClick={copyLink}

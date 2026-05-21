@@ -94,7 +94,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-narrativa-vermelho hover:underline"
           >
-            Null Development
+            Null Development • Ariarch Dev
           </a>
         </p>
       </div>
