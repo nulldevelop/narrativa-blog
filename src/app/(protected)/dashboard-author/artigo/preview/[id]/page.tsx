@@ -5,8 +5,6 @@ import { ArrowLeft, Edit3 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import Image from "next/image";
 
 export default async function ArticlePreviewPage({
@@ -77,11 +75,10 @@ export default async function ArticlePreviewPage({
       <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)] py-24 text-left">
         <div className="grid grid-cols-[1fr_300px] gap-24 items-start max-md:grid-cols-1">
           <article className="max-w-[720px]">
-            <div className="prose prose-xl prose-narrativa max-w-none article-drop-cap">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {article.content}
-              </ReactMarkdown>
-            </div>
+            <div 
+              className="prose prose-xl prose-narrativa max-w-none article-drop-cap"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            />
           </article>
 
           {/* Sidebar de Preview (Simulada) */}

@@ -22,9 +22,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  if (sessionToken && isAuthPage) {
-    return NextResponse.redirect(new URL('/dashboard-author', request.url))
-  }
+  // Removido o redirecionamento automático de isAuthPage para dashboard
+  // para evitar loops de redirecionamento quando a sessão é inválida no banco
+  // mas o cookie ainda existe no navegador.
 
   return NextResponse.next()
 }

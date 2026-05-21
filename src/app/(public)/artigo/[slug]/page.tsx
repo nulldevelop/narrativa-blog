@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { FadeUp } from '@/components/fade-up'
 import { NewsletterWidget } from '@/components/newsletter-widget'
 import { ReadingProgress } from '@/components/reading-progress'
@@ -163,7 +161,7 @@ export default async function ArtigoPage({
       <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
         <div className="py-[clamp(3rem,6vw,5rem)]">
           <div className="grid grid-cols-[1fr_280px] gap-20 items-start max-md:grid-cols-1 w-full overflow-hidden">
-            {/* Renderizador de Markdown */}
+            {/* Renderizador de Conteúdo (HTML) */}
             <article className="max-w-[680px] w-full">
               <div
                 className="prose prose-lg prose-narrativa w-full max-w-none article-drop-cap break-words
@@ -172,11 +170,8 @@ export default async function ArtigoPage({
                 prose-blockquote:border-narrativa-vermelho prose-blockquote:italic
                 prose-strong:text-narrativa-preto prose-a:text-narrativa-vermelho
                 prose-table:w-full prose-img:w-full prose-pre:w-full"
-              >
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {article.content}
-                </ReactMarkdown>
-              </div>
+                dangerouslySetInnerHTML={{ __html: article.content }}
+              />
 
               {/* Tags no final da matéria */}
               {displayTags.length > 0 && (

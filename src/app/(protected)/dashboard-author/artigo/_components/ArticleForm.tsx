@@ -22,10 +22,7 @@ import { createArticleAction } from '../_actions/create-article'
 import { deleteImageAction } from '../_actions/delete-image'
 import { updateArticleAction } from '../_actions/update-article'
 
-const MDEditor = dynamic(
-  () => import('@uiw/react-md-editor').then((mod) => mod.default),
-  { ssr: false },
-)
+import { TiptapEditor, type TiptapEditorRef } from '@/components/tiptap-editor'
 
 interface ArticleFormProps {
   categories: { id: string; name: string }[]
@@ -57,7 +54,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
-  const [content, setContent] = useState<string | undefined>(
+  const [content, setContent] = useState<string>(
     initialData?.content || '',
   )
   const [tagInput, setTagInput] = useState('')
@@ -66,6 +63,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     initialData?.images || [],
   )
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const editorRef = useRef<TiptapEditorRef>(null)
 
   const [formData, setFormData] = useState({
     title: initialData?.title || '',
@@ -110,10 +108,9 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     }
   }
 
-  const copyToClipboard = (url: string) => {
-    const markdownImage = `![Descrição da imagem](${url})`
-    navigator.clipboard.writeText(markdownImage)
-    toast.success('Código Markdown copiado! Cole no texto.')
+  const handleInsertImage = (url: string) => {
+    editorRef.current?.insertImage(url)
+    toast.success('Imagem inserida no texto!')
   }
 
   // Gera ID único para pasta da matéria
@@ -172,8 +169,8 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     saveFirst = true,
   ) => {
     if (!formData.title) return toast.error('O título é obrigatório.')
-    if (!content || content.length < 50)
-      return toast.error('O conteúdo deve ter pelomeno 50 caracteres.')
+    if (!content || content.length < 20)
+      return toast.error('O conteúdo é muito curto.')
     if (!formData.categoryId) return toast.error('Selecione uma categoria.')
 
     if (!saveFirst && initialData?.id) {
@@ -225,8 +222,8 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
 
   const handlePreview = () => {
     if (!formData.title) return toast.error('O título é obrigatório.')
-    if (!content || content.length < 50)
-      return toast.error('O conteúdo deve ter pelo menos 50 caracteres.')
+    if (!content || content.length < 20)
+      return toast.error('O conteúdo é muito curto.')
     if (!formData.categoryId) return toast.error('Selecione uma categoria.')
 
     router.push('/dashboard-author/artigo/preview/new')
@@ -268,11 +265,10 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
             Conteúdo
           </Label>
           <div data-color-mode="light" className="prose-narrativa max-w-none">
-            <MDEditor
-              value={content}
-              onChange={(val) => setContent(val || '')}
-              height={450}
-              className="!rounded-none border-narrativa-cinza-linha bg-white"
+            <TiptapEditor
+              ref={editorRef}
+              content={content}
+              onChange={(val) => setContent(val)}
             />
           </div>
         </div>
@@ -403,20 +399,19 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
               </Label>
               <div className="grid grid-cols-3 gap-2">
                 {uploadedImages.map((url) => (
-                  <button
+                  <div
                     key={url}
-                    type="button"
                     className="relative aspect-video border border-narrativa-cinza-linha overflow-hidden group cursor-pointer"
-                    onClick={() => {
-                      console.log('clicou na imagem', url)
-                      copyToClipboard(url)
-                    }}
+                    onClick={() => handleInsertImage(url)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault()
-                        copyToClipboard(url)
+                        handleInsertImage(url)
                       }
                     }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label="Inserir imagem no texto"
                   >
                     <Image
                       src={url}
@@ -426,17 +421,20 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <span className="text-white text-[0.5rem] font-bold uppercase">
-                        Copiar
+                        Inserir
                       </span>
                     </div>
                     <button
                       type="button"
-                      onClick={(e) => handleDeleteImage(e, url)}
-                      className="absolute top-1 right-1 bg-red-600 text-white p-1 rounded-none opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-700"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleDeleteImage(e, url)
+                      }}
+                      className="absolute top-1 right-1 bg-red-600 text-white p-1 rounded-none opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-700 z-10"
                     >
                       <X className="w-3 h-3" />
                     </button>
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
