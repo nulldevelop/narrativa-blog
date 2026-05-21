@@ -60,14 +60,14 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
             </FadeUp>
 
             {currentMain.subtitle && (
-              <FadeUp delay={0.1}>
+              <FadeUp delay={0.05}>
                 <p className="text-[1rem] text-white/50 max-w-[440px] leading-[1.7] font-light italic font-serif">
                   {currentMain.subtitle}
                 </p>
               </FadeUp>
             )}
 
-            <FadeUp delay={0.2}>
+            <FadeUp delay={0.1}>
               <div className="mt-[1.5rem] flex flex-col gap-3">
                 <Button
                   asChild
@@ -94,7 +94,7 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
           </div>
 
           {/* Coluna 2: Imagem Central */}
-          <FadeUp delay={0.3} className="w-full max-h-[350px] overflow-hidden align-self-stretch">
+          <FadeUp delay={0.15} className="w-full max-h-[350px] overflow-hidden align-self-stretch">
             <Link 
               href={`/artigo/${currentMain.slug}`}
               className="relative block w-full h-[350px] overflow-hidden group rounded-[4px]"
@@ -114,7 +114,7 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
           {/* Coluna 3: Destaques Secundários (1, 2, 3) */}
           <div className="flex flex-col justify-between align-self-stretch lg:pl-4 gap-6">
             {secondaryArticles.length > 0 ? secondaryArticles.map((item, i) => (
-              <FadeUp key={item.slug} delay={0.4 + (i * 0.1)} className="flex-1 flex items-center">
+              <FadeUp key={item.slug} delay={0.2 + (i * 0.05)} className="flex-1 flex items-center">
                 <Link href={`/artigo/${item.slug}`} className="flex items-center gap-[1.2rem] group w-full">
                   <div className="relative w-[100px] h-[100px] flex-shrink-0 overflow-hidden rounded-[2px] bg-white/5 border border-white/10">
                     <Image 

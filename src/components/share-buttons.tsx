@@ -35,12 +35,13 @@ export function ShareButtons({
     setUrl(`${window.location.origin}/artigo/${slug}`)
   }, [slug])
 
-  const encodedUrl = encodeURIComponent(url)
+  const encodedUrl = url ? encodeURIComponent(url) : ""
   const encodedTitle = encodeURIComponent(title)
 
   const copyLink = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
+    if (!url) return
     navigator.clipboard.writeText(url)
     toast.success("Link copiado para a área de transferência!")
   }
@@ -50,48 +51,46 @@ export function ShareButtons({
     e.stopPropagation()
   }
 
-  if (!url) return null
-
   const baseTextColor = theme === "dark" ? "text-white/40" : "text-narrativa-cinza-texto"
   const hoverCopyColor = theme === "dark" ? "hover:text-white" : "hover:text-narrativa-preto"
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={`flex items-center gap-3 ${className} ${!url ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}>
       <a
-        href={`https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`}
+        href={url ? `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}` : "#"}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={stopProp}
+        onClick={url ? stopProp : (e) => e.preventDefault()}
         className={`${baseTextColor} hover:text-[#25D366] transition-colors`}
         aria-label="Compartilhar no WhatsApp"
       >
         <IconBrandWhatsapp size={18} stroke={1.5} />
       </a>
       <a
-        href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+        href={url ? `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}` : "#"}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={stopProp}
+        onClick={url ? stopProp : (e) => e.preventDefault()}
         className={`${baseTextColor} hover:text-[#1877F2] transition-colors`}
         aria-label="Compartilhar no Facebook"
       >
         <IconBrandFacebook size={18} stroke={1.5} />
       </a>
       <a
-        href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
+        href={url ? `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}` : "#"}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={stopProp}
+        onClick={url ? stopProp : (e) => e.preventDefault()}
         className={`${baseTextColor} hover:text-[#1DA1F2] transition-colors`}
         aria-label="Compartilhar no X (Twitter)"
       >
         <IconBrandX size={18} stroke={1.5} />
       </a>
       <a
-        href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`}
+        href={url ? `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}` : "#"}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={stopProp}
+        onClick={url ? stopProp : (e) => e.preventDefault()}
         className={`${baseTextColor} hover:text-[#0A66C2] transition-colors`}
         aria-label="Compartilhar no LinkedIn"
       >

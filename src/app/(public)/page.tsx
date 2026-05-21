@@ -73,7 +73,7 @@ export default async function Home({
                       slug={article.slug}
                       imageUrl={article.coverImage || undefined}
                       variant="large"
-                      delay={i * 0.1}
+                      delay={i * 0.05}
                       tags={article.tags}
                     />
                   ))}
@@ -93,7 +93,7 @@ export default async function Home({
                     readTime="5 min"
                     slug={article.slug}
                     imageUrl={article.coverImage || undefined}
-                    delay={i * 0.08}
+                    delay={i * 0.04}
                     tags={article.tags}
                   />
                 ))}
@@ -125,7 +125,7 @@ export default async function Home({
                       readTime="5 min"
                       slug={article.slug}
                       imageUrl={article.coverImage || undefined}
-                      delay={i * 0.08}
+                      delay={i * 0.04}
                       tags={article.tags}
                     />
                   ))}
