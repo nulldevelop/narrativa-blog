@@ -22,7 +22,7 @@ import { createArticleAction } from '../_actions/create-article'
 import { deleteImageAction } from '../_actions/delete-image'
 import { updateArticleAction } from '../_actions/update-article'
 
-import { TiptapEditor, type TiptapEditorRef } from '@/components/tiptap-editor'
+import { MyEditor, type SunEditorRef } from '@/components/sun-editor'
 
 interface ArticleFormProps {
   categories: { id: string; name: string }[]
@@ -63,7 +63,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     initialData?.images || [],
   )
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const editorRef = useRef<TiptapEditorRef>(null)
+  const editorRef = useRef<SunEditorRef>(null)
 
   const [formData, setFormData] = useState({
     title: initialData?.title || '',
@@ -265,7 +265,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
             Conteúdo
           </Label>
           <div data-color-mode="light" className="prose-narrativa max-w-none">
-            <TiptapEditor
+            <MyEditor
               ref={editorRef}
               content={content}
               onChange={(val) => setContent(val)}

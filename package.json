@@ -63,6 +63,8 @@
     "shadcn": "^4.1.2",
     "slugify": "^1.6.9",
     "sonner": "^2.0.7",
+    "suneditor": "^2.44.10",
+    "suneditor-react": "^3.6.1",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.2",
     "tiptap-extension-resize-image": "^1.4.0",

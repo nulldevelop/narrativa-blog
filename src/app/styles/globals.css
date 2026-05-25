@@ -335,6 +335,27 @@
   clear: both;
 }
 
+/* Ajustes para SunEditor no Frontend */
+.prose-narrativa.sun-editor-editable,
+.prose-narrativa .sun-editor-editable {
+  font-size: 1.125rem !important; /* Mesma do prose-lg */
+  line-height: 1.85 !important;
+  font-family: var(--font-body), system-ui, sans-serif !important;
+  color: #3a3a3a !important;
+}
+
+.prose-narrativa.sun-editor-editable p,
+.prose-narrativa .sun-editor-editable p {
+  font-size: 1.125rem !important;
+  line-height: 1.85 !important;
+  margin-bottom: 1.5em !important;
+}
+
+.prose-narrativa.sun-editor-editable span,
+.prose-narrativa .sun-editor-editable span {
+  font-size: inherit !important;
+}
+
 .prose-narrativa hr {
   margin: 3rem 0;
   border: 0;

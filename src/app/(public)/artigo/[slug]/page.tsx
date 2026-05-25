@@ -10,6 +10,8 @@ import { ViewTracker } from '@/components/view-tracker'
 import { prisma } from '@/lib/prisma'
 import { getArticleBySlug } from '../../_data-access/get-article-by-slug'
 
+import 'suneditor/dist/css/suneditor.min.css'
+
 // Desativado generateStaticParams para evitar sobrecarga no banco de dados durante o build.
 // Os artigos serão gerados sob demanda no primeiro acesso (SSR/ISR on-demand).
 /*
@@ -169,7 +171,9 @@ export default async function ArtigoPage({
                 prose-p:text-narrativa-cinza-texto prose-p:leading-[1.85]
                 prose-blockquote:border-narrativa-vermelho prose-blockquote:italic
                 prose-strong:text-narrativa-preto prose-a:text-narrativa-vermelho
-                prose-table:w-full prose-img:w-full prose-pre:w-full"
+                prose-table:w-full prose-img:w-full prose-pre:w-full
+                sun-editor-editable"
+                style={{ backgroundColor: 'transparent', padding: 0 }}
                 dangerouslySetInnerHTML={{ __html: article.content }}
               />
 

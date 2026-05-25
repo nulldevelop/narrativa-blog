@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
+import 'suneditor/dist/css/suneditor.min.css'
+
 export default async function ArticlePreviewPage({
   params,
 }: {
@@ -76,7 +78,8 @@ export default async function ArticlePreviewPage({
         <div className="grid grid-cols-[1fr_300px] gap-24 items-start max-md:grid-cols-1">
           <article className="max-w-[720px]">
             <div 
-              className="prose prose-xl prose-narrativa max-w-none article-drop-cap"
+              className="prose prose-xl prose-narrativa max-w-none article-drop-cap sun-editor-editable"
+              style={{ backgroundColor: 'transparent', padding: 0 }}
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
           </article>
