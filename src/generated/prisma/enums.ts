@@ -17,12 +17,3 @@ export const ROLES = {
 } as const
 
 export type ROLES = (typeof ROLES)[keyof typeof ROLES]
-
-
-export const LogAction = {
-  CREATE: 'CREATE',
-  UPDATE: 'UPDATE',
-  DELETE: 'DELETE'
-} as const
-
-export type LogAction = (typeof LogAction)[keyof typeof LogAction]

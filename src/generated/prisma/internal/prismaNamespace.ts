@@ -1652,17 +1652,18 @@ export const ArticleScalarFieldEnum = {
   content: 'content',
   excerpt: 'excerpt',
   coverImage: 'coverImage',
-  coverImageCredit: 'coverImageCredit',
   readTime: 'readTime',
   featured: 'featured',
-  views: 'views',
   status: 'status',
   publishedAt: 'publishedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   authorId: 'authorId',
   categoryId: 'categoryId',
-  organizationId: 'organizationId'
+  organizationId: 'organizationId',
+  coverImageCredit: 'coverImageCredit',
+  views: 'views',
+  gallery: 'gallery'
 } as const
 
 export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
@@ -1893,11 +1894,12 @@ export const ArticleOrderByRelevanceFieldEnum = {
   content: 'content',
   excerpt: 'excerpt',
   coverImage: 'coverImage',
-  coverImageCredit: 'coverImageCredit',
   status: 'status',
   authorId: 'authorId',
   categoryId: 'categoryId',
-  organizationId: 'organizationId'
+  organizationId: 'organizationId',
+  coverImageCredit: 'coverImageCredit',
+  gallery: 'gallery'
 } as const
 
 export type ArticleOrderByRelevanceFieldEnum = (typeof ArticleOrderByRelevanceFieldEnum)[keyof typeof ArticleOrderByRelevanceFieldEnum]

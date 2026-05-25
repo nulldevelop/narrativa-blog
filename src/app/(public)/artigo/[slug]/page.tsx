@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { ArticleGallery } from '@/components/article-gallery'
 import { FadeUp } from '@/components/fade-up'
 import { NewsletterWidget } from '@/components/newsletter-widget'
 import { ReadingProgress } from '@/components/reading-progress'
 import { ShareButtons } from '@/components/share-buttons'
 import { ViewTracker } from '@/components/view-tracker'
-import { prisma } from '@/lib/prisma'
 import { getArticleBySlug } from '../../_data-access/get-article-by-slug'
 
 import 'suneditor/dist/css/suneditor.min.css'
@@ -129,7 +129,11 @@ export default async function ArtigoPage({
                       </span>
                     </div>
                   </div>
-                  <ShareButtons title={article.title} slug={slug} theme="dark" />
+                  <ShareButtons
+                    title={article.title}
+                    slug={slug}
+                    theme="dark"
+                  />
                 </div>
               </div>
             </FadeUp>
@@ -177,6 +181,11 @@ export default async function ArtigoPage({
                 dangerouslySetInnerHTML={{ __html: article.content }}
               />
 
+              {/* Galeria de Fotos */}
+              {article.gallery && (
+                <ArticleGallery images={JSON.parse(article.gallery)} />
+              )}
+
               {/* Tags no final da matéria */}
               {displayTags.length > 0 && (
                 <div className="mt-12 pt-8 border-t border-narrativa-cinza-linha flex items-center gap-3 flex-wrap">
@@ -205,7 +214,11 @@ export default async function ArtigoPage({
                 <p className="text-[0.63rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-4 flex items-center gap-2 after:content-[''] after:flex-1 after:h-px after:bg-narrativa-cinza-linha">
                   Compartilhe
                 </p>
-                <ShareButtons title={article.title} slug={slug} className="[&_svg]:w-5 [&_svg]:h-5" />
+                <ShareButtons
+                  title={article.title}
+                  slug={slug}
+                  className="[&_svg]:w-5 [&_svg]:h-5"
+                />
               </div>
               <div className="pb-6 border-b border-narrativa-cinza-linha">
                 <p className="text-[0.63rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-4 flex items-center gap-2 after:content-[''] after:flex-1 after:h-px after:bg-narrativa-cinza-linha">

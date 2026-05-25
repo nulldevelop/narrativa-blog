@@ -1,12 +1,12 @@
 /** biome-ignore-all lint/suspicious/noImplicitAnyLet: <explanation> */
 'use client'
 
-import { Eye, Plus, Save, Send, Tag, X } from 'lucide-react'
-import dynamic from 'next/dynamic'
+import { Plus, Save, Send, Tag, X } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { toast } from 'sonner'
+import { MyEditor, type SunEditorRef } from '@/components/sun-editor'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -22,8 +22,6 @@ import { createArticleAction } from '../_actions/create-article'
 import { deleteImageAction } from '../_actions/delete-image'
 import { updateArticleAction } from '../_actions/update-article'
 
-import { MyEditor, type SunEditorRef } from '@/components/sun-editor'
-
 interface ArticleFormProps {
   categories: { id: string; name: string }[]
   initialData?: {
@@ -37,7 +35,13 @@ interface ArticleFormProps {
     tags: string[]
     status: string
     images?: string[]
+    gallery?: string | null
   }
+}
+
+interface GalleryImage {
+  url: string
+  credit?: string
 }
 
 const HOME_POSITIONS = [
@@ -54,13 +58,14 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
-  const [content, setContent] = useState<string>(
-    initialData?.content || '',
-  )
+  const [content, setContent] = useState<string>(initialData?.content || '')
   const [tagInput, setTagInput] = useState('')
   const [tags, setTags] = useState<string[]>(initialData?.tags || [])
   const [uploadedImages, setUploadedImages] = useState<string[]>(
     initialData?.images || [],
+  )
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>(
+    initialData?.gallery ? JSON.parse(initialData.gallery) : [],
   )
   const fileInputRef = useRef<HTMLInputElement>(null)
   const editorRef = useRef<SunEditorRef>(null)
@@ -96,6 +101,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
       const result = await deleteImageAction(url)
       if (result.success) {
         setUploadedImages((prev) => prev.filter((img) => img !== url))
+        setGalleryImages((prev) => prev.filter((img) => img.url !== url))
         if (formData.coverImage === url) {
           setFormData({ ...formData, coverImage: '' })
         }
@@ -111,6 +117,21 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
   const handleInsertImage = (url: string) => {
     editorRef.current?.insertImage(url)
     toast.success('Imagem inserida no texto!')
+  }
+
+  const toggleGalleryImage = (e: React.MouseEvent, url: string) => {
+    e.stopPropagation()
+    setGalleryImages((prev) =>
+      prev.some((img) => img.url === url)
+        ? prev.filter((img) => img.url !== url)
+        : [...prev, { url, credit: '' }],
+    )
+  }
+
+  const updateImageCredit = (url: string, credit: string) => {
+    setGalleryImages((prev) =>
+      prev.map((img) => (img.url === url ? { ...img, credit } : img)),
+    )
   }
 
   // Gera ID único para pasta da matéria
@@ -146,6 +167,9 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
 
         if (result.url) {
           setUploadedImages((prev: string[]) => [...prev, result.url])
+          // Adiciona automaticamente à galeria
+          setGalleryImages((prev) => [...prev, { url: result.url, credit: '' }])
+          
           if (i === 0 && !formData.coverImage) {
             setFormData({ ...formData, coverImage: result.url })
           }
@@ -196,6 +220,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
         content: content || '',
         tags: finalTags,
         status,
+        gallery: JSON.stringify(galleryImages),
       }
       let result
       if (initialData?.id) {
@@ -393,49 +418,88 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
           </div>
 
           {uploadedImages.length > 0 && (
-            <div className="space-y-2 border-t border-black/5 pt-4">
+            <div className="space-y-4 border-t border-black/5 pt-4">
               <Label className="text-[0.65rem] font-black uppercase tracking-widest text-black/50">
-                Imagens Enviadas
+                Imagens Enviadas & Galeria
               </Label>
-              <div className="grid grid-cols-3 gap-2">
-                {uploadedImages.map((url) => (
-                  <div
-                    key={url}
-                    className="relative aspect-video border border-narrativa-cinza-linha overflow-hidden group cursor-pointer"
-                    onClick={() => handleInsertImage(url)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault()
-                        handleInsertImage(url)
-                      }
-                    }}
-                    tabIndex={0}
-                    role="button"
-                    aria-label="Inserir imagem no texto"
-                  >
-                    <Image
-                      src={url}
-                      alt="Imagem enviada"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="text-white text-[0.5rem] font-bold uppercase">
-                        Inserir
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleDeleteImage(e, url)
-                      }}
-                      className="absolute top-1 right-1 bg-red-600 text-white p-1 rounded-none opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-700 z-10"
+              <div className="flex flex-col gap-4">
+                {uploadedImages.map((url) => {
+                  const galleryItem = galleryImages.find((img) => img.url === url)
+                  const isInGallery = !!galleryItem
+                  return (
+                    <div
+                      key={url}
+                      className="border border-narrativa-cinza-linha p-3 space-y-3"
                     >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
-                ))}
+                      <div className="flex gap-4 items-start">
+                        <div
+                          className="relative w-24 aspect-video border border-narrativa-cinza-linha overflow-hidden group cursor-pointer shrink-0"
+                          onClick={() => handleInsertImage(url)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault()
+                              handleInsertImage(url)
+                            }
+                          }}
+                          tabIndex={0}
+                          role="button"
+                          aria-label="Inserir imagem no texto"
+                        >
+                          <Image
+                            src={url}
+                            alt="Imagem enviada"
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span className="text-white text-[0.4rem] font-bold uppercase">
+                              Inserir
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex-1 space-y-2">
+                          <div className="flex items-center justify-between">
+                            <button
+                              type="button"
+                              onClick={(e) => toggleGalleryImage(e, url)}
+                              className={`text-[0.6rem] font-bold uppercase px-2 py-1 transition-colors ${
+                                isInGallery
+                                  ? 'bg-narrativa-vermelho text-white'
+                                  : 'bg-narrativa-cinza-claro text-narrativa-cinza-texto hover:bg-narrativa-preto hover:text-white'
+                              }`}
+                            >
+                              {isInGallery ? 'Na Galeria' : 'Add na Galeria'}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={(e) => handleDeleteImage(e, url)}
+                              className="text-red-500 hover:text-red-700 transition-colors"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          </div>
+
+                          {isInGallery && (
+                            <div className="space-y-1">
+                              <Label className="text-[0.55rem] font-bold uppercase text-black/40">
+                                Crédito (Galeria)
+                              </Label>
+                              <Input
+                                placeholder="Foto: Nome do Autor"
+                                value={galleryItem.credit || ''}
+                                onChange={(e) =>
+                                  updateImageCredit(url, e.target.value)
+                                }
+                                className="rounded-none border-narrativa-cinza-linha h-7 text-[0.65rem]"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           )}

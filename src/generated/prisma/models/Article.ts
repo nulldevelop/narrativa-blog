@@ -44,10 +44,8 @@ export type ArticleMinAggregateOutputType = {
   content: string | null
   excerpt: string | null
   coverImage: string | null
-  coverImageCredit: string | null
   readTime: number | null
   featured: boolean | null
-  views: number | null
   status: string | null
   publishedAt: Date | null
   createdAt: Date | null
@@ -55,6 +53,9 @@ export type ArticleMinAggregateOutputType = {
   authorId: string | null
   categoryId: string | null
   organizationId: string | null
+  coverImageCredit: string | null
+  views: number | null
+  gallery: string | null
 }
 
 export type ArticleMaxAggregateOutputType = {
@@ -65,10 +66,8 @@ export type ArticleMaxAggregateOutputType = {
   content: string | null
   excerpt: string | null
   coverImage: string | null
-  coverImageCredit: string | null
   readTime: number | null
   featured: boolean | null
-  views: number | null
   status: string | null
   publishedAt: Date | null
   createdAt: Date | null
@@ -76,6 +75,9 @@ export type ArticleMaxAggregateOutputType = {
   authorId: string | null
   categoryId: string | null
   organizationId: string | null
+  coverImageCredit: string | null
+  views: number | null
+  gallery: string | null
 }
 
 export type ArticleCountAggregateOutputType = {
@@ -86,10 +88,8 @@ export type ArticleCountAggregateOutputType = {
   content: number
   excerpt: number
   coverImage: number
-  coverImageCredit: number
   readTime: number
   featured: number
-  views: number
   status: number
   publishedAt: number
   createdAt: number
@@ -97,6 +97,9 @@ export type ArticleCountAggregateOutputType = {
   authorId: number
   categoryId: number
   organizationId: number
+  coverImageCredit: number
+  views: number
+  gallery: number
   _all: number
 }
 
@@ -119,10 +122,8 @@ export type ArticleMinAggregateInputType = {
   content?: true
   excerpt?: true
   coverImage?: true
-  coverImageCredit?: true
   readTime?: true
   featured?: true
-  views?: true
   status?: true
   publishedAt?: true
   createdAt?: true
@@ -130,6 +131,9 @@ export type ArticleMinAggregateInputType = {
   authorId?: true
   categoryId?: true
   organizationId?: true
+  coverImageCredit?: true
+  views?: true
+  gallery?: true
 }
 
 export type ArticleMaxAggregateInputType = {
@@ -140,10 +144,8 @@ export type ArticleMaxAggregateInputType = {
   content?: true
   excerpt?: true
   coverImage?: true
-  coverImageCredit?: true
   readTime?: true
   featured?: true
-  views?: true
   status?: true
   publishedAt?: true
   createdAt?: true
@@ -151,6 +153,9 @@ export type ArticleMaxAggregateInputType = {
   authorId?: true
   categoryId?: true
   organizationId?: true
+  coverImageCredit?: true
+  views?: true
+  gallery?: true
 }
 
 export type ArticleCountAggregateInputType = {
@@ -161,10 +166,8 @@ export type ArticleCountAggregateInputType = {
   content?: true
   excerpt?: true
   coverImage?: true
-  coverImageCredit?: true
   readTime?: true
   featured?: true
-  views?: true
   status?: true
   publishedAt?: true
   createdAt?: true
@@ -172,6 +175,9 @@ export type ArticleCountAggregateInputType = {
   authorId?: true
   categoryId?: true
   organizationId?: true
+  coverImageCredit?: true
+  views?: true
+  gallery?: true
   _all?: true
 }
 
@@ -269,10 +275,8 @@ export type ArticleGroupByOutputType = {
   content: string
   excerpt: string | null
   coverImage: string | null
-  coverImageCredit: string | null
   readTime: number | null
   featured: boolean
-  views: number
   status: string
   publishedAt: Date | null
   createdAt: Date
@@ -280,6 +284,9 @@ export type ArticleGroupByOutputType = {
   authorId: string
   categoryId: string | null
   organizationId: string | null
+  coverImageCredit: string | null
+  views: number
+  gallery: string | null
   _count: ArticleCountAggregateOutputType | null
   _avg: ArticleAvgAggregateOutputType | null
   _sum: ArticleSumAggregateOutputType | null
@@ -313,10 +320,8 @@ export type ArticleWhereInput = {
   content?: Prisma.StringFilter<"Article"> | string
   excerpt?: Prisma.StringNullableFilter<"Article"> | string | null
   coverImage?: Prisma.StringNullableFilter<"Article"> | string | null
-  coverImageCredit?: Prisma.StringNullableFilter<"Article"> | string | null
   readTime?: Prisma.IntNullableFilter<"Article"> | number | null
   featured?: Prisma.BoolFilter<"Article"> | boolean
-  views?: Prisma.IntFilter<"Article"> | number
   status?: Prisma.StringFilter<"Article"> | string
   publishedAt?: Prisma.DateTimeNullableFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
@@ -324,6 +329,9 @@ export type ArticleWhereInput = {
   authorId?: Prisma.StringFilter<"Article"> | string
   categoryId?: Prisma.StringNullableFilter<"Article"> | string | null
   organizationId?: Prisma.StringNullableFilter<"Article"> | string | null
+  coverImageCredit?: Prisma.StringNullableFilter<"Article"> | string | null
+  views?: Prisma.IntFilter<"Article"> | number
+  gallery?: Prisma.StringNullableFilter<"Article"> | string | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   category?: Prisma.XOR<Prisma.CategoryNullableScalarRelationFilter, Prisma.CategoryWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
@@ -338,10 +346,8 @@ export type ArticleOrderByWithRelationInput = {
   content?: Prisma.SortOrder
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
   coverImage?: Prisma.SortOrderInput | Prisma.SortOrder
-  coverImageCredit?: Prisma.SortOrderInput | Prisma.SortOrder
   readTime?: Prisma.SortOrderInput | Prisma.SortOrder
   featured?: Prisma.SortOrder
-  views?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -349,6 +355,9 @@ export type ArticleOrderByWithRelationInput = {
   authorId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrderInput | Prisma.SortOrder
   organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  coverImageCredit?: Prisma.SortOrderInput | Prisma.SortOrder
+  views?: Prisma.SortOrder
+  gallery?: Prisma.SortOrderInput | Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
   category?: Prisma.CategoryOrderByWithRelationInput
   organization?: Prisma.OrganizationOrderByWithRelationInput
@@ -367,10 +376,8 @@ export type ArticleWhereUniqueInput = Prisma.AtLeast<{
   content?: Prisma.StringFilter<"Article"> | string
   excerpt?: Prisma.StringNullableFilter<"Article"> | string | null
   coverImage?: Prisma.StringNullableFilter<"Article"> | string | null
-  coverImageCredit?: Prisma.StringNullableFilter<"Article"> | string | null
   readTime?: Prisma.IntNullableFilter<"Article"> | number | null
   featured?: Prisma.BoolFilter<"Article"> | boolean
-  views?: Prisma.IntFilter<"Article"> | number
   status?: Prisma.StringFilter<"Article"> | string
   publishedAt?: Prisma.DateTimeNullableFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
@@ -378,6 +385,9 @@ export type ArticleWhereUniqueInput = Prisma.AtLeast<{
   authorId?: Prisma.StringFilter<"Article"> | string
   categoryId?: Prisma.StringNullableFilter<"Article"> | string | null
   organizationId?: Prisma.StringNullableFilter<"Article"> | string | null
+  coverImageCredit?: Prisma.StringNullableFilter<"Article"> | string | null
+  views?: Prisma.IntFilter<"Article"> | number
+  gallery?: Prisma.StringNullableFilter<"Article"> | string | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   category?: Prisma.XOR<Prisma.CategoryNullableScalarRelationFilter, Prisma.CategoryWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
@@ -392,10 +402,8 @@ export type ArticleOrderByWithAggregationInput = {
   content?: Prisma.SortOrder
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
   coverImage?: Prisma.SortOrderInput | Prisma.SortOrder
-  coverImageCredit?: Prisma.SortOrderInput | Prisma.SortOrder
   readTime?: Prisma.SortOrderInput | Prisma.SortOrder
   featured?: Prisma.SortOrder
-  views?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -403,6 +411,9 @@ export type ArticleOrderByWithAggregationInput = {
   authorId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrderInput | Prisma.SortOrder
   organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  coverImageCredit?: Prisma.SortOrderInput | Prisma.SortOrder
+  views?: Prisma.SortOrder
+  gallery?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ArticleCountOrderByAggregateInput
   _avg?: Prisma.ArticleAvgOrderByAggregateInput
   _max?: Prisma.ArticleMaxOrderByAggregateInput
@@ -421,10 +432,8 @@ export type ArticleScalarWhereWithAggregatesInput = {
   content?: Prisma.StringWithAggregatesFilter<"Article"> | string
   excerpt?: Prisma.StringNullableWithAggregatesFilter<"Article"> | string | null
   coverImage?: Prisma.StringNullableWithAggregatesFilter<"Article"> | string | null
-  coverImageCredit?: Prisma.StringNullableWithAggregatesFilter<"Article"> | string | null
   readTime?: Prisma.IntNullableWithAggregatesFilter<"Article"> | number | null
   featured?: Prisma.BoolWithAggregatesFilter<"Article"> | boolean
-  views?: Prisma.IntWithAggregatesFilter<"Article"> | number
   status?: Prisma.StringWithAggregatesFilter<"Article"> | string
   publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
@@ -432,6 +441,9 @@ export type ArticleScalarWhereWithAggregatesInput = {
   authorId?: Prisma.StringWithAggregatesFilter<"Article"> | string
   categoryId?: Prisma.StringNullableWithAggregatesFilter<"Article"> | string | null
   organizationId?: Prisma.StringNullableWithAggregatesFilter<"Article"> | string | null
+  coverImageCredit?: Prisma.StringNullableWithAggregatesFilter<"Article"> | string | null
+  views?: Prisma.IntWithAggregatesFilter<"Article"> | number
+  gallery?: Prisma.StringNullableWithAggregatesFilter<"Article"> | string | null
 }
 
 export type ArticleCreateInput = {
@@ -442,14 +454,15 @@ export type ArticleCreateInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   author: Prisma.UserCreateNestedOneWithoutArticlesInput
   category?: Prisma.CategoryCreateNestedOneWithoutArticlesInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutArticlesInput
@@ -464,10 +477,8 @@ export type ArticleUncheckedCreateInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -475,6 +486,9 @@ export type ArticleUncheckedCreateInput = {
   authorId: string
   categoryId?: string | null
   organizationId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   tags?: Prisma.ArticleTagUncheckedCreateNestedManyWithoutArticleInput
 }
 
@@ -486,14 +500,15 @@ export type ArticleUpdateInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   author?: Prisma.UserUpdateOneRequiredWithoutArticlesNestedInput
   category?: Prisma.CategoryUpdateOneWithoutArticlesNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutArticlesNestedInput
@@ -508,10 +523,8 @@ export type ArticleUncheckedUpdateInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -519,6 +532,9 @@ export type ArticleUncheckedUpdateInput = {
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tags?: Prisma.ArticleTagUncheckedUpdateManyWithoutArticleNestedInput
 }
 
@@ -530,10 +546,8 @@ export type ArticleCreateManyInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -541,6 +555,9 @@ export type ArticleCreateManyInput = {
   authorId: string
   categoryId?: string | null
   organizationId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
 }
 
 export type ArticleUpdateManyMutationInput = {
@@ -551,14 +568,15 @@ export type ArticleUpdateManyMutationInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ArticleUncheckedUpdateManyInput = {
@@ -569,10 +587,8 @@ export type ArticleUncheckedUpdateManyInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -580,6 +596,9 @@ export type ArticleUncheckedUpdateManyInput = {
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ArticleListRelationFilter = {
@@ -606,10 +625,8 @@ export type ArticleCountOrderByAggregateInput = {
   content?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
   coverImage?: Prisma.SortOrder
-  coverImageCredit?: Prisma.SortOrder
   readTime?: Prisma.SortOrder
   featured?: Prisma.SortOrder
-  views?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -617,6 +634,9 @@ export type ArticleCountOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  coverImageCredit?: Prisma.SortOrder
+  views?: Prisma.SortOrder
+  gallery?: Prisma.SortOrder
 }
 
 export type ArticleAvgOrderByAggregateInput = {
@@ -632,10 +652,8 @@ export type ArticleMaxOrderByAggregateInput = {
   content?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
   coverImage?: Prisma.SortOrder
-  coverImageCredit?: Prisma.SortOrder
   readTime?: Prisma.SortOrder
   featured?: Prisma.SortOrder
-  views?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -643,6 +661,9 @@ export type ArticleMaxOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  coverImageCredit?: Prisma.SortOrder
+  views?: Prisma.SortOrder
+  gallery?: Prisma.SortOrder
 }
 
 export type ArticleMinOrderByAggregateInput = {
@@ -653,10 +674,8 @@ export type ArticleMinOrderByAggregateInput = {
   content?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
   coverImage?: Prisma.SortOrder
-  coverImageCredit?: Prisma.SortOrder
   readTime?: Prisma.SortOrder
   featured?: Prisma.SortOrder
-  views?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -664,6 +683,9 @@ export type ArticleMinOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  coverImageCredit?: Prisma.SortOrder
+  views?: Prisma.SortOrder
+  gallery?: Prisma.SortOrder
 }
 
 export type ArticleSumOrderByAggregateInput = {
@@ -840,14 +862,15 @@ export type ArticleCreateWithoutAuthorInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   category?: Prisma.CategoryCreateNestedOneWithoutArticlesInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutArticlesInput
   tags?: Prisma.ArticleTagCreateNestedManyWithoutArticleInput
@@ -861,16 +884,17 @@ export type ArticleUncheckedCreateWithoutAuthorInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   categoryId?: string | null
   organizationId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   tags?: Prisma.ArticleTagUncheckedCreateNestedManyWithoutArticleInput
 }
 
@@ -911,10 +935,8 @@ export type ArticleScalarWhereInput = {
   content?: Prisma.StringFilter<"Article"> | string
   excerpt?: Prisma.StringNullableFilter<"Article"> | string | null
   coverImage?: Prisma.StringNullableFilter<"Article"> | string | null
-  coverImageCredit?: Prisma.StringNullableFilter<"Article"> | string | null
   readTime?: Prisma.IntNullableFilter<"Article"> | number | null
   featured?: Prisma.BoolFilter<"Article"> | boolean
-  views?: Prisma.IntFilter<"Article"> | number
   status?: Prisma.StringFilter<"Article"> | string
   publishedAt?: Prisma.DateTimeNullableFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
@@ -922,6 +944,9 @@ export type ArticleScalarWhereInput = {
   authorId?: Prisma.StringFilter<"Article"> | string
   categoryId?: Prisma.StringNullableFilter<"Article"> | string | null
   organizationId?: Prisma.StringNullableFilter<"Article"> | string | null
+  coverImageCredit?: Prisma.StringNullableFilter<"Article"> | string | null
+  views?: Prisma.IntFilter<"Article"> | number
+  gallery?: Prisma.StringNullableFilter<"Article"> | string | null
 }
 
 export type ArticleCreateWithoutCategoryInput = {
@@ -932,14 +957,15 @@ export type ArticleCreateWithoutCategoryInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   author: Prisma.UserCreateNestedOneWithoutArticlesInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutArticlesInput
   tags?: Prisma.ArticleTagCreateNestedManyWithoutArticleInput
@@ -953,16 +979,17 @@ export type ArticleUncheckedCreateWithoutCategoryInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authorId: string
   organizationId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   tags?: Prisma.ArticleTagUncheckedCreateNestedManyWithoutArticleInput
 }
 
@@ -1000,14 +1027,15 @@ export type ArticleCreateWithoutTagsInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   author: Prisma.UserCreateNestedOneWithoutArticlesInput
   category?: Prisma.CategoryCreateNestedOneWithoutArticlesInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutArticlesInput
@@ -1021,10 +1049,8 @@ export type ArticleUncheckedCreateWithoutTagsInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -1032,6 +1058,9 @@ export type ArticleUncheckedCreateWithoutTagsInput = {
   authorId: string
   categoryId?: string | null
   organizationId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
 }
 
 export type ArticleCreateOrConnectWithoutTagsInput = {
@@ -1058,14 +1087,15 @@ export type ArticleUpdateWithoutTagsInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   author?: Prisma.UserUpdateOneRequiredWithoutArticlesNestedInput
   category?: Prisma.CategoryUpdateOneWithoutArticlesNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutArticlesNestedInput
@@ -1079,10 +1109,8 @@ export type ArticleUncheckedUpdateWithoutTagsInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1090,6 +1118,9 @@ export type ArticleUncheckedUpdateWithoutTagsInput = {
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ArticleCreateWithoutOrganizationInput = {
@@ -1100,14 +1131,15 @@ export type ArticleCreateWithoutOrganizationInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   author: Prisma.UserCreateNestedOneWithoutArticlesInput
   category?: Prisma.CategoryCreateNestedOneWithoutArticlesInput
   tags?: Prisma.ArticleTagCreateNestedManyWithoutArticleInput
@@ -1121,16 +1153,17 @@ export type ArticleUncheckedCreateWithoutOrganizationInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authorId: string
   categoryId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
   tags?: Prisma.ArticleTagUncheckedCreateNestedManyWithoutArticleInput
 }
 
@@ -1168,16 +1201,17 @@ export type ArticleCreateManyAuthorInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   categoryId?: string | null
   organizationId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
 }
 
 export type ArticleUpdateWithoutAuthorInput = {
@@ -1188,14 +1222,15 @@ export type ArticleUpdateWithoutAuthorInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.CategoryUpdateOneWithoutArticlesNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutArticlesNestedInput
   tags?: Prisma.ArticleTagUpdateManyWithoutArticleNestedInput
@@ -1209,16 +1244,17 @@ export type ArticleUncheckedUpdateWithoutAuthorInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tags?: Prisma.ArticleTagUncheckedUpdateManyWithoutArticleNestedInput
 }
 
@@ -1230,16 +1266,17 @@ export type ArticleUncheckedUpdateManyWithoutAuthorInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ArticleCreateManyCategoryInput = {
@@ -1250,16 +1287,17 @@ export type ArticleCreateManyCategoryInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authorId: string
   organizationId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
 }
 
 export type ArticleUpdateWithoutCategoryInput = {
@@ -1270,14 +1308,15 @@ export type ArticleUpdateWithoutCategoryInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   author?: Prisma.UserUpdateOneRequiredWithoutArticlesNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutArticlesNestedInput
   tags?: Prisma.ArticleTagUpdateManyWithoutArticleNestedInput
@@ -1291,16 +1330,17 @@ export type ArticleUncheckedUpdateWithoutCategoryInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tags?: Prisma.ArticleTagUncheckedUpdateManyWithoutArticleNestedInput
 }
 
@@ -1312,16 +1352,17 @@ export type ArticleUncheckedUpdateManyWithoutCategoryInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ArticleCreateManyOrganizationInput = {
@@ -1332,16 +1373,17 @@ export type ArticleCreateManyOrganizationInput = {
   content: string
   excerpt?: string | null
   coverImage?: string | null
-  coverImageCredit?: string | null
   readTime?: number | null
   featured?: boolean
-  views?: number
   status?: string
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authorId: string
   categoryId?: string | null
+  coverImageCredit?: string | null
+  views?: number
+  gallery?: string | null
 }
 
 export type ArticleUpdateWithoutOrganizationInput = {
@@ -1352,14 +1394,15 @@ export type ArticleUpdateWithoutOrganizationInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   author?: Prisma.UserUpdateOneRequiredWithoutArticlesNestedInput
   category?: Prisma.CategoryUpdateOneWithoutArticlesNestedInput
   tags?: Prisma.ArticleTagUpdateManyWithoutArticleNestedInput
@@ -1373,16 +1416,17 @@ export type ArticleUncheckedUpdateWithoutOrganizationInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tags?: Prisma.ArticleTagUncheckedUpdateManyWithoutArticleNestedInput
 }
 
@@ -1394,16 +1438,17 @@ export type ArticleUncheckedUpdateManyWithoutOrganizationInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  views?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageCredit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.IntFieldUpdateOperationsInput | number
+  gallery?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1445,10 +1490,8 @@ export type ArticleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   content?: boolean
   excerpt?: boolean
   coverImage?: boolean
-  coverImageCredit?: boolean
   readTime?: boolean
   featured?: boolean
-  views?: boolean
   status?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -1456,6 +1499,9 @@ export type ArticleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   authorId?: boolean
   categoryId?: boolean
   organizationId?: boolean
+  coverImageCredit?: boolean
+  views?: boolean
+  gallery?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   category?: boolean | Prisma.Article$categoryArgs<ExtArgs>
   organization?: boolean | Prisma.Article$organizationArgs<ExtArgs>
@@ -1473,10 +1519,8 @@ export type ArticleSelectScalar = {
   content?: boolean
   excerpt?: boolean
   coverImage?: boolean
-  coverImageCredit?: boolean
   readTime?: boolean
   featured?: boolean
-  views?: boolean
   status?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -1484,9 +1528,12 @@ export type ArticleSelectScalar = {
   authorId?: boolean
   categoryId?: boolean
   organizationId?: boolean
+  coverImageCredit?: boolean
+  views?: boolean
+  gallery?: boolean
 }
 
-export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "subtitle" | "content" | "excerpt" | "coverImage" | "coverImageCredit" | "readTime" | "featured" | "views" | "status" | "publishedAt" | "createdAt" | "updatedAt" | "authorId" | "categoryId" | "organizationId", ExtArgs["result"]["article"]>
+export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "subtitle" | "content" | "excerpt" | "coverImage" | "readTime" | "featured" | "status" | "publishedAt" | "createdAt" | "updatedAt" | "authorId" | "categoryId" | "organizationId" | "coverImageCredit" | "views" | "gallery", ExtArgs["result"]["article"]>
 export type ArticleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   category?: boolean | Prisma.Article$categoryArgs<ExtArgs>
@@ -1511,10 +1558,8 @@ export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     content: string
     excerpt: string | null
     coverImage: string | null
-    coverImageCredit: string | null
     readTime: number | null
     featured: boolean
-    views: number
     status: string
     publishedAt: Date | null
     createdAt: Date
@@ -1522,6 +1567,9 @@ export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     authorId: string
     categoryId: string | null
     organizationId: string | null
+    coverImageCredit: string | null
+    views: number
+    gallery: string | null
   }, ExtArgs["result"]["article"]>
   composites: {}
 }
@@ -1902,10 +1950,8 @@ export interface ArticleFieldRefs {
   readonly content: Prisma.FieldRef<"Article", 'String'>
   readonly excerpt: Prisma.FieldRef<"Article", 'String'>
   readonly coverImage: Prisma.FieldRef<"Article", 'String'>
-  readonly coverImageCredit: Prisma.FieldRef<"Article", 'String'>
   readonly readTime: Prisma.FieldRef<"Article", 'Int'>
   readonly featured: Prisma.FieldRef<"Article", 'Boolean'>
-  readonly views: Prisma.FieldRef<"Article", 'Int'>
   readonly status: Prisma.FieldRef<"Article", 'String'>
   readonly publishedAt: Prisma.FieldRef<"Article", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Article", 'DateTime'>
@@ -1913,6 +1959,9 @@ export interface ArticleFieldRefs {
   readonly authorId: Prisma.FieldRef<"Article", 'String'>
   readonly categoryId: Prisma.FieldRef<"Article", 'String'>
   readonly organizationId: Prisma.FieldRef<"Article", 'String'>
+  readonly coverImageCredit: Prisma.FieldRef<"Article", 'String'>
+  readonly views: Prisma.FieldRef<"Article", 'Int'>
+  readonly gallery: Prisma.FieldRef<"Article", 'String'>
 }
     
 

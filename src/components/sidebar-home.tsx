@@ -126,6 +126,7 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
             { name: 'Paraná', slug: 'parana' },
             { name: 'Brasil', slug: 'brasil' },
             { name: 'Cotidiano', slug: 'cotidiano' },
+            { name: 'Cultura', slug: 'cultura' },
             { name: 'Bastidores', slug: 'bastidores' },
           ].map((tag) => (
             <Link

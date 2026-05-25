@@ -10,6 +10,7 @@ const navLinks = [
   { href: '/?category=parana#posts', label: 'Paraná' },
   { href: '/?category=brasil#posts', label: 'Brasil' },
   { href: '/?category=cotidiano#posts', label: 'Cotidiano' },
+  { href: '/?category=cultura#posts', label: 'Cultura' },
   { href: '/colunistas', label: 'Colunistas', hidden: true },
   { href: '/sobre', label: 'Sobre' },
   { href: '/contato', label: 'Contato' },

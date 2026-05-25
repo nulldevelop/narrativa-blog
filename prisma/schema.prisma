@@ -84,10 +84,8 @@ model Article {
   content          String        @db.LongText
   excerpt          String?       @db.Text
   coverImage       String?       @db.Text
-  coverImageCredit String?       @db.Text
   readTime         Int?
   featured         Boolean       @default(false)
-  views            Int           @default(0)
   status           String        @default("draft") @db.VarChar(20)
   publishedAt      DateTime?
   createdAt        DateTime      @default(now())
@@ -95,13 +93,15 @@ model Article {
   authorId         String
   categoryId       String?
   organizationId   String?
+  coverImageCredit String?       @db.Text
+  views            Int           @default(0)
+  gallery          String?       @db.LongText
   author           User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
   category         Category?     @relation(fields: [categoryId], references: [id])
   organization     Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   tags             ArticleTag[]
 
   @@index([authorId], map: "article_authorId_fkey")
-  @@index([categoryId], map: "article_categoryId_fkey")
   @@index([organizationId], map: "article_organizationId_fkey")
   @@index([status, publishedAt])
   @@index([featured, status, publishedAt])
@@ -296,16 +296,9 @@ model Invitation {
   @@map("invitation")
 }
 
-
 enum ROLES {
   OWNER
   ADMIN
   EDITOR
   AUTHOR
-}
-
-enum LogAction {
-  CREATE
-  UPDATE
-  DELETE
 }

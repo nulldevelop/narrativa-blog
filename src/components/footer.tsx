@@ -61,6 +61,7 @@ export function Footer() {
               { name: 'Paraná', slug: 'parana' },
               { name: 'Brasil', slug: 'brasil' },
               { name: 'Cotidiano', slug: 'cotidiano' },
+              { name: 'Cultura', slug: 'cultura' },
               { name: 'Bastidores', slug: 'bastidores' },
             ].map((t) => (
               <li key={t.slug}>

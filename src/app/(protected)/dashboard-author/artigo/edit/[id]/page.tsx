@@ -35,6 +35,7 @@ export default async function EditArticlePage({
     tags: article.tags.map((t) => t.tag.name),
     status: article.status,
     images: images,
+    gallery: article.gallery,
   };
 
   return (
