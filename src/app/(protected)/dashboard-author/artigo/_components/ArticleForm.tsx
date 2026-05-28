@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noImplicitAnyLet: <explanation> */
+/** biome-ignore-all lint/suspicious/noImplicitAnyLet: dev */
 'use client'
 
 import { Plus, Save, Send, Tag, X } from 'lucide-react'
@@ -70,6 +70,12 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const editorRef = useRef<SunEditorRef>(null)
 
+  // Gera um UUID permanente para novas matérias, evitando path temporário 'novo-*'
+  const [articleFolderId] = useState(() => {
+    if (initialData?.id) return initialData.id
+    return crypto.randomUUID()
+  })
+
   const [formData, setFormData] = useState({
     title: initialData?.title || '',
     subtitle: initialData?.subtitle || '',
@@ -109,7 +115,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
       } else {
         toast.error(result.error || 'Erro ao excluir imagem')
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Erro ao excluir imagem')
     }
   }
@@ -134,20 +140,13 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     )
   }
 
-  // Gera ID único para pasta da matéria
-  const getArticleFolderId = () => {
-    if (initialData?.id) return initialData.id
-    // Gera um ID único baseado no timestamp para novas matérias
-    return `novo-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-  }
-
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
     if (!files || files.length === 0) return
 
     setUploading(true)
     let uploaded = 0
-    const articleId = getArticleFolderId()
+    const articleId = articleFolderId
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
@@ -169,7 +168,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
           setUploadedImages((prev: string[]) => [...prev, result.url])
           // Adiciona automaticamente à galeria
           setGalleryImages((prev) => [...prev, { url: result.url, credit: '' }])
-          
+
           if (i === 0 && !formData.coverImage) {
             setFormData({ ...formData, coverImage: result.url })
           }
@@ -226,7 +225,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
       if (initialData?.id) {
         result = await updateArticleAction(initialData.id, payload)
       } else {
-        result = await createArticleAction(payload)
+        result = await createArticleAction(payload, articleFolderId)
       }
 
       if (result.success) {
@@ -243,15 +242,6 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     } finally {
       setLoading(false)
     }
-  }
-
-  const handlePreview = () => {
-    if (!formData.title) return toast.error('O título é obrigatório.')
-    if (!content || content.length < 20)
-      return toast.error('O conteúdo é muito curto.')
-    if (!formData.categoryId) return toast.error('Selecione uma categoria.')
-
-    router.push('/dashboard-author/artigo/preview/new')
   }
 
   return (
@@ -424,7 +414,9 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
               </Label>
               <div className="flex flex-col gap-4">
                 {uploadedImages.map((url) => {
-                  const galleryItem = galleryImages.find((img) => img.url === url)
+                  const galleryItem = galleryImages.find(
+                    (img) => img.url === url,
+                  )
                   const isInGallery = !!galleryItem
                   return (
                     <div
@@ -432,17 +424,10 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                       className="border border-narrativa-cinza-linha p-3 space-y-3"
                     >
                       <div className="flex gap-4 items-start">
-                        <div
+                        <button
+                          type="button"
                           className="relative w-24 aspect-video border border-narrativa-cinza-linha overflow-hidden group cursor-pointer shrink-0"
                           onClick={() => handleInsertImage(url)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              e.preventDefault()
-                              handleInsertImage(url)
-                            }
-                          }}
-                          tabIndex={0}
-                          role="button"
                           aria-label="Inserir imagem no texto"
                         >
                           <Image
@@ -456,7 +441,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                               Inserir
                             </span>
                           </div>
-                        </div>
+                        </button>
 
                         <div className="flex-1 space-y-2">
                           <div className="flex items-center justify-between">
@@ -560,14 +545,15 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                     className="rounded-none text-[0.6rem] font-bold uppercase bg-black/5 text-black/70 hover:bg-narrativa-vermelho hover:text-white transition-colors py-1 px-2 flex items-center gap-1"
                   >
                     {t}
-                    <button
-                      type="button"
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() =>
                         setTags((prev) => prev.filter((tag) => tag !== t))
                       }
                     >
                       <X className="w-3 h-3" />
-                    </button>
+                    </Button>
                   </Badge>
                 ))}
             </div>

@@ -19,7 +19,10 @@ const articleSchema = z.object({
   status: z.enum(['draft', 'published', 'archived']).default('draft'),
 })
 
-export async function createArticleAction(data: z.infer<typeof articleSchema>) {
+export async function createArticleAction(
+  data: z.infer<typeof articleSchema>,
+  articleId?: string,
+) {
   try {
     // 1. Verificação de Permissão Robusta via RBAC
     const permission = await checkPermission('create', 'articles')
@@ -47,6 +50,7 @@ export async function createArticleAction(data: z.infer<typeof articleSchema>) {
 
     const article = await prisma.article.create({
       data: {
+        ...(articleId ? { id: articleId } : {}),
         title: validated.title,
         subtitle: validated.subtitle || null,
         content: validated.content,

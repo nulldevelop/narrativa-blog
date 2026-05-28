@@ -178,6 +178,7 @@ export default async function ArtigoPage({
                 prose-table:w-full prose-img:w-full prose-pre:w-full
                 sun-editor-editable"
                 style={{ backgroundColor: 'transparent', padding: 0 }}
+                /* biome-ignore lint/security/noDangerouslySetInnerHtml: Content is authored by authenticated authors via rich text editor */
                 dangerouslySetInnerHTML={{ __html: article.content }}
               />
 
