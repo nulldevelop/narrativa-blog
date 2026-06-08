@@ -15,7 +15,7 @@ const ROLE_MODULE_PERMISSIONS: Partial<
   ],
   [ROLES.AUTHOR]: [
     { moduleKey: 'articles', actions: ['read', 'create', 'update'] },
-    { moduleKey: 'categories', actions: ['read'] },
+    { moduleKey: 'categories', actions: ['read', 'create', 'update', 'delete'] },
   ],
 }
 
