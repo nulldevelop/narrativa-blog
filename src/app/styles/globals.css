@@ -116,8 +116,7 @@
   img {
     display: block;
     max-width: 100%;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    image-rendering: auto;
   }
   p,
   span,

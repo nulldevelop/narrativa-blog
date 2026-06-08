@@ -22,7 +22,7 @@ export default function LoginPage() {
     const { error } = await authClient.signIn.email({
       email,
       password,
-      callbackURL: "/",
+      callbackURL: "/dashboard-author",
     });
 
     if (error) {
@@ -30,7 +30,7 @@ export default function LoginPage() {
       setLoading(false);
     } else {
       toast.success("Login realizado com sucesso!");
-      router.push("/");
+      router.push("/dashboard-author");
     }
   };
 

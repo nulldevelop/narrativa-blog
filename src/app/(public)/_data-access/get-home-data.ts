@@ -13,6 +13,7 @@ interface HomeData {
   generalFeatured: ArticleHero[]
   articles: any[]
   bastidoresArticles: any[]
+  culturaArticles: any[]
   totalPages: number
   allTags: any[]
 }
@@ -80,11 +81,26 @@ export const getHomeData = async (
         },
       })
 
+      // Busca artigos da categoria 'cultura'
+      const culturaArticles = await prisma.article.findMany({
+        where: {
+          status: 'published',
+          category: { slug: 'cultura' },
+        },
+        take: 3, // Limitando a 3 para a seção da home
+        orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+        include: {
+          category: true,
+          tags: { include: { tag: true } },
+        },
+      })
+
       const displayedIds = [
         mainFeaturedArticle?.id,
         ...secondaryHero.map((a) => a.id),
         ...generalFeatured.map((a) => a.id),
         ...bastidoresArticles.map((a) => a.id),
+        ...culturaArticles.map((a) => a.id),
       ].filter(Boolean) as string[]
 
       const isFiltering = !!(category || tag)
@@ -116,6 +132,7 @@ export const getHomeData = async (
         generalFeatured,
         articles,
         bastidoresArticles,
+        culturaArticles,
         totalPages: Math.ceil(totalArticles / postsPerPage),
         allTags,
       }
@@ -133,6 +150,7 @@ export const getHomeData = async (
         generalFeatured: [],
         articles: [],
         bastidoresArticles: [],
+        culturaArticles: [],
         totalPages: 0,
         allTags: [],
       }
