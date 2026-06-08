@@ -166,8 +166,8 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
 
         if (result.url) {
           setUploadedImages((prev: string[]) => [...prev, result.url])
-          // Adiciona automaticamente à galeria
-          setGalleryImages((prev) => [...prev, { url: result.url, credit: '' }])
+          // A galeria fica oculta por padrão: as imagens só entram nela
+          // quando o autor clicar em "Add na Galeria" (fotos extras além da capa).
 
           if (i === 0 && !formData.coverImage) {
             setFormData({ ...formData, coverImage: result.url })

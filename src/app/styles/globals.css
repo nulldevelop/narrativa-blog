@@ -265,33 +265,54 @@
 .prose-narrativa blockquote {
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: 1.5rem;
-  line-height: 1.5;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.55;
   border-left: 4px solid #b11226;
-  padding: 1.5rem 2rem;
-  margin: 1.5rem 0 1rem 0;
+  padding: 1.5rem 2.25rem 1.75rem;
+  margin: 2.5rem 0;
   color: #1a1a1a;
   background-color: #f9f8f6;
-  position: relative;
 }
 
-.prose-narrativa blockquote::before {
-  content: "\201C";
-  font-family: var(--font-heading);
-  font-size: 4rem;
-  color: #b11226;
-  position: absolute;
-  top: -0.5rem;
-  left: 0.5rem;
-  opacity: 0.2;
+.prose-narrativa blockquote > * {
+  margin: 0;
 }
 
+.prose-narrativa blockquote > * + * {
+  margin-top: 0.75rem;
+}
+
+/* aspas envolvendo o texto: " texto " — abertura antes e fechamento depois */
 .prose-narrativa blockquote p:first-of-type::before {
-  content: none;
+  content: "\201C";
+  color: #b11226;
+  font-weight: 700;
+  margin-right: 0.08em;
 }
 
 .prose-narrativa blockquote p:last-of-type::after {
-  content: none;
+  content: "\201D";
+  color: #b11226;
+  font-weight: 700;
+  margin-left: 0.08em;
+}
+
+/* autoria da citação: <cite>Nome</cite> — travessão automático, estilo destacado */
+.prose-narrativa blockquote cite {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-sans, sans-serif);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b11226;
+}
+
+.prose-narrativa blockquote cite::before {
+  content: "— ";
 }
 
 .prose-narrativa img {

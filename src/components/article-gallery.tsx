@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -13,31 +13,66 @@ interface ArticleGalleryProps {
   images: GalleryImage[]
 }
 
+const MAX_VISIBLE = 8
+
 export function ArticleGallery({ images }: ArticleGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const total = images?.length ?? 0
+  const isOpen = selectedIndex !== null
+
+  const closeLightbox = useCallback(() => {
+    setSelectedIndex(null)
+    document.body.style.overflow = 'auto'
+  }, [])
+
+  const goNext = useCallback(() => {
+    setSelectedIndex((prev) => (prev === null ? prev : (prev + 1) % total))
+  }, [total])
+
+  const goPrev = useCallback(() => {
+    setSelectedIndex((prev) =>
+      prev === null ? prev : (prev - 1 + total) % total,
+    )
+  }, [total])
+
+  // Navegação pelo teclado: ← → trocam de foto, Esc fecha
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') goNext()
+      else if (e.key === 'ArrowLeft') goPrev()
+      else if (e.key === 'Escape') closeLightbox()
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, goNext, goPrev, closeLightbox])
 
   if (!images || images.length === 0) return null
+
+  const hasOverflow = images.length > MAX_VISIBLE
+  // Quando há mais fotos que o limite, mostramos 7 e reservamos a 8ª célula
+  // para o botão "+N". Caso contrário, mostramos todas as imagens visíveis.
+  const visibleImages = hasOverflow
+    ? images.slice(0, MAX_VISIBLE - 1)
+    : images.slice(0, MAX_VISIBLE)
+  const remainingCount = images.length - (MAX_VISIBLE - 1)
+  const overflowImage = images[MAX_VISIBLE - 1]
 
   const openLightbox = (index: number) => {
     setSelectedIndex(index)
     document.body.style.overflow = 'hidden'
   }
 
-  const closeLightbox = () => {
-    setSelectedIndex(null)
-    document.body.style.overflow = 'auto'
-  }
-
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation()
-    if (selectedIndex === null) return
-    setSelectedIndex((selectedIndex + 1) % images.length)
+    goNext()
   }
 
   const prevImage = (e: React.MouseEvent) => {
     e.stopPropagation()
-    if (selectedIndex === null) return
-    setSelectedIndex((selectedIndex - 1 + images.length) % images.length)
+    goPrev()
   }
 
   return (
@@ -47,9 +82,9 @@ export function ArticleGallery({ images }: ArticleGalleryProps) {
       </h3>
       
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {images.map((img, index) => (
+        {visibleImages.map((img, index) => (
           <div key={img.url} className="space-y-2">
-            <div 
+            <div
               className="relative aspect-square cursor-pointer overflow-hidden border border-narrativa-cinza-linha hover:opacity-90 transition-opacity"
               onClick={() => openLightbox(index)}
             >
@@ -68,6 +103,30 @@ export function ArticleGallery({ images }: ArticleGalleryProps) {
             )}
           </div>
         ))}
+
+        {hasOverflow && (
+          <div className="space-y-2">
+            <button
+              type="button"
+              onClick={() => openLightbox(MAX_VISIBLE - 1)}
+              className="group relative aspect-square w-full cursor-pointer overflow-hidden border border-narrativa-cinza-linha"
+            >
+              <Image
+                src={overflowImage.url}
+                alt={`Mais ${remainingCount} fotos da galeria`}
+                fill
+                className="object-cover scale-105 blur-sm transition-transform duration-300 group-hover:scale-110"
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+              />
+              <span className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 text-white transition-colors group-hover:bg-black/60">
+                <span className="text-2xl font-black leading-none">+{remainingCount}</span>
+                <span className="mt-1 text-[0.55rem] font-medium uppercase tracking-[0.2em] text-white/80">
+                  fotos
+                </span>
+              </span>
+            </button>
+          </div>
+        )}
       </div>
 
       {selectedIndex !== null && (

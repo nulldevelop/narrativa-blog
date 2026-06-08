@@ -131,29 +131,29 @@ export default async function Home({
                     />
                   ))}
                 </ol>
-              </>
-            )}
 
-            {currentPage === 1 && !category && !tag && culturaArticles.length > 0 && (
-              <>
-                <SeparatorSection text="Cultura" />
-                <ol className="flex flex-col">
-                  {culturaArticles.map((article, i) => (
-                    <ArticleCard
-                      key={article.slug}
-                      title={article.title}
-                      subtitle={article.subtitle || ''}
-                      date={new Date(
-                        article.publishedAt || article.createdAt,
-                      ).toLocaleDateString('pt-BR')}
-                      readTime="5 min"
-                      slug={article.slug}
-                      imageUrl={article.coverImage || undefined}
-                      delay={i * 0.04}
-                      tags={article.tags}
-                    />
-                  ))}
-                </ol>
+                {culturaArticles.length > 0 && (
+                  <>
+                    <SeparatorSection text="Cultura" />
+                    <ol className="flex flex-col">
+                      {culturaArticles.map((article, i) => (
+                        <ArticleCard
+                          key={article.slug}
+                          title={article.title}
+                          subtitle={article.subtitle || ''}
+                          date={new Date(
+                            article.publishedAt || article.createdAt,
+                          ).toLocaleDateString('pt-BR')}
+                          readTime="5 min"
+                          slug={article.slug}
+                          imageUrl={article.coverImage || undefined}
+                          delay={i * 0.04}
+                          tags={article.tags}
+                        />
+                      ))}
+                    </ol>
+                  </>
+                )}
               </>
             )}
           </div>

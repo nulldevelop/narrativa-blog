@@ -55,6 +55,8 @@ export const MyEditor = forwardRef<SunEditorRef, Props>(
             width: '100%',
             height: 'auto',
             minHeight: '500px',
+            // Header do dashboard é sticky (~90px). A barra gruda logo abaixo dele.
+            stickyToolbar: '90px',
           }}
         />
         <style jsx global>{`

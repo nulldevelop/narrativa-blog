@@ -64,11 +64,7 @@ export function ArticleCard({
             className="aspect-video overflow-hidden relative group/img bg-narrativa-cinza-claro"
           >
             <div
-              className="absolute inset-0 bg-cover bg-center scale-125 blur-2xl"
-              style={{ backgroundImage: `url(${finalImageUrl})` }}
-            />
-            <div
-              className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-700 group-hover:scale-105"
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 group-hover:scale-105"
               style={{ backgroundImage: `url(${finalImageUrl})` }}
             />
             <div className="absolute inset-0 bg-narrativa-vermelho/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -130,11 +126,7 @@ export function ArticleCard({
           aria-hidden
         >
           <div
-            className="absolute inset-0 bg-cover bg-center scale-125 blur-2xl"
-            style={{ backgroundImage: `url(${finalImageUrl})` }}
-          />
-          <div
-            className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-700 group-hover:scale-105"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 group-hover:scale-105"
             style={{ backgroundImage: `url(${finalImageUrl})` }}
           />
           <div className="absolute inset-0 bg-narrativa-vermelho/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
