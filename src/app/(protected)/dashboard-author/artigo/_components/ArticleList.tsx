@@ -26,7 +26,7 @@ import { ArchiveArticleButton } from './ArchiveArticleButton'
 import { UnarchiveArticleButton } from './UnarchiveArticleButton'
 import { DeleteArticleButton } from './DeleteArticleButton'
 
-interface Article {
+export interface Article {
   id: string
   title: string
   slug: string
@@ -38,11 +38,21 @@ interface Article {
 
 interface ArticleListProps {
   articles: Article[]
+  searchQuery?: string
 }
 
-export function ArticleList({ articles }: ArticleListProps) {
-  const activeArticles = articles.filter((a) => a.status !== 'archived')
-  const archivedArticles = articles.filter((a) => a.status === 'archived')
+export function ArticleList({ articles, searchQuery = '' }: ArticleListProps) {
+  const query = searchQuery.trim().toLowerCase()
+  const filtered = query
+    ? articles.filter(
+        (a) =>
+          a.title.toLowerCase().includes(query) ||
+          (a.subtitle?.toLowerCase().includes(query) ?? false) ||
+          (a.category?.name.toLowerCase().includes(query) ?? false),
+      )
+    : articles
+  const activeArticles = filtered.filter((a) => a.status !== 'archived')
+  const archivedArticles = filtered.filter((a) => a.status === 'archived')
 
   const renderTable = (items: Article[], emptyMessage: string) => (
     <div className="bg-white border border-black/5 shadow-sm overflow-hidden">
