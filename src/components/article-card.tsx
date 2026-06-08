@@ -61,10 +61,14 @@ export function ArticleCard({
         <div className="group flex flex-col gap-5 pb-8 border-b border-narrativa-cinza-linha h-full min-w-0">
           <Link
             href={`/artigo/${slug}`}
-            className="aspect-video overflow-hidden bg-narrativa-cinza-claro relative group/img"
+            className="aspect-video overflow-hidden relative group/img"
           >
             <div
-              className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
+              className="absolute inset-0 bg-cover bg-center scale-110 blur-md opacity-70"
+              style={{ backgroundImage: `url(${finalImageUrl})` }}
+            />
+            <div
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-700 group-hover:scale-110"
               style={{ backgroundImage: `url(${finalImageUrl})` }}
             />
             <div className="absolute inset-0 bg-narrativa-vermelho/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -121,12 +125,16 @@ export function ArticleCard({
         </div>
         <Link
           href={`/artigo/${slug}`}
-          className="aspect-square overflow-hidden bg-narrativa-cinza-claro relative group/img max-sm:order-first max-sm:aspect-video"
+          className="aspect-square overflow-hidden relative group/img max-sm:order-first max-sm:aspect-video"
           tabIndex={-1}
           aria-hidden
         >
           <div
-            className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
+            className="absolute inset-0 bg-cover bg-center scale-110 blur-md opacity-70"
+            style={{ backgroundImage: `url(${finalImageUrl})` }}
+          />
+          <div
+            className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-700 group-hover:scale-110"
             style={{ backgroundImage: `url(${finalImageUrl})` }}
           />
           <div className="absolute inset-0 bg-narrativa-vermelho/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

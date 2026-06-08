@@ -95,16 +95,25 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
 
           {/* Coluna 2: Imagem Central */}
           <FadeUp delay={0.15} className="w-full max-h-[350px] overflow-hidden align-self-stretch">
-            <Link 
+            <Link
               href={`/artigo/${currentMain.slug}`}
               className="relative block w-full h-[350px] overflow-hidden group rounded-[4px]"
             >
               <Image
                 src={currentMain.image}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover scale-110 blur-md opacity-60"
+                aria-hidden
+                priority
+              />
+              <Image
+                src={currentMain.image}
                 alt={currentMain.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover transition-all duration-1000 group-hover:scale-105"
+                className="object-contain transition-all duration-1000 group-hover:scale-105"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
@@ -116,13 +125,21 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
             {secondaryArticles.length > 0 ? secondaryArticles.map((item, i) => (
               <FadeUp key={item.slug} delay={0.2 + (i * 0.05)} className="flex-1 flex items-center">
                 <Link href={`/artigo/${item.slug}`} className="flex items-center gap-[1.2rem] group w-full">
-                  <div className="relative w-[100px] h-[100px] flex-shrink-0 overflow-hidden rounded-[2px] bg-white/5 border border-white/10">
-                    <Image 
+                  <div className="relative w-[100px] h-[100px] flex-shrink-0 overflow-hidden rounded-[2px] border border-white/10">
+                    <Image
+                      src={item.coverImage || "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop"}
+                      alt=""
+                      fill
+                      sizes="100px"
+                      className="object-cover scale-110 blur-sm opacity-70"
+                      aria-hidden
+                    />
+                    <Image
                       src={item.coverImage || "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop"}
                       alt={item.title}
                       fill
                       sizes="100px"
-                      className="object-cover transition-all duration-500"
+                      className="object-contain transition-all duration-500"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">

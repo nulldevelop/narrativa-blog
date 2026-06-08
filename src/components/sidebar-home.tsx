@@ -32,6 +32,7 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
   // Chamamos de forma sequencial ou garantimos que ambos usem o cache global
   const curtas = await getCurtas()
   const cotidianoArticles = await fetchAllByCategory('cotidiano')
+  const culturaArticles = await fetchAllByCategory('cultura')
 
   // Agrupar curtas por data
   const groupedCurtas = curtas.reduce((acc, curta) => {
@@ -146,8 +147,8 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
           <p className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho -mb-2">
             Cotidiano
           </p>
-          
-          {cotidianoArticles.map((article) => (
+
+          {cotidianoArticles.slice(0, 5).map((article) => (
             <Link
               key={article.id}
               href={`/artigo/${article.slug}`}
@@ -166,6 +167,49 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
               </h4>
             </Link>
           ))}
+
+          <Link
+            href="/?category=cotidiano#posts"
+            className="self-start border border-narrativa-preto px-4 py-2 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-narrativa-preto hover:bg-narrativa-preto hover:text-narrativa-branco transition-all"
+          >
+            Ler Mais +
+          </Link>
+        </div>
+      )}
+
+      {/* Cultura */}
+      {culturaArticles.length > 0 && (
+        <div className="mt-4 flex flex-col gap-6">
+          <p className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-narrativa-vermelho -mb-2">
+            Cultura
+          </p>
+
+          {culturaArticles.slice(0, 5).map((article) => (
+            <Link
+              key={article.id}
+              href={`/artigo/${article.slug}`}
+              className="group block border-b border-narrativa-cinza-linha pb-6 last:border-0"
+            >
+              <div className="relative aspect-[16/9] w-full mb-3 overflow-hidden transition-all duration-500">
+                <Image
+                  src={article.coverImage || '/imgs/logo.png'}
+                  alt={article.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <h4 className="text-[1rem] font-bold text-narrativa-preto leading-tight group-hover:text-narrativa-vermelho transition-colors uppercase tracking-tight">
+                {article.title}
+              </h4>
+            </Link>
+          ))}
+
+          <Link
+            href="/?category=cultura#posts"
+            className="self-start border border-narrativa-preto px-4 py-2 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-narrativa-preto hover:bg-narrativa-preto hover:text-narrativa-branco transition-all"
+          >
+            Ler Mais +
+          </Link>
         </div>
       )}
     </aside>
