@@ -1,11 +1,11 @@
 import { Edit3 } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArticleGallery } from '@/components/article-gallery'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { getArticleById } from '../../_data-access/get-article-by-id'
-
 import 'suneditor/dist/css/suneditor.min.css'
 
 export default async function ArticlePreviewPage({
@@ -73,10 +73,13 @@ export default async function ArticlePreviewPage({
 
           <div className="relative w-full aspect-[4/3] lg:aspect-[16/11] overflow-hidden rounded-[4px] bg-narrativa-cinza-claro shadow-2xl">
             {article.coverImage ? (
-              <img
+              <Image
                 src={article.coverImage}
                 alt="Capa"
                 className="w-full h-full object-cover"
+                width={800}
+                height={600}
+                priority
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-slate-400 italic font-serif">
@@ -94,6 +97,7 @@ export default async function ArticlePreviewPage({
             <div
               className="prose prose-xl prose-narrativa max-w-none article-drop-cap sun-editor-editable"
               style={{ backgroundColor: 'transparent', padding: 0 }}
+              /* biome-ignore lint/security/noDangerouslySetInnerHtml: Content is authored by authenticated authors via rich text editor */
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
 
