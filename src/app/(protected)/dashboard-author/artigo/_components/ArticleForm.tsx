@@ -193,8 +193,12 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
     status: 'draft' | 'published',
     saveFirst = true,
   ) => {
+    // Lê o HTML direto do editor (inclui imagens na posição correta, formato de saída),
+    // em vez de depender apenas do estado sincronizado via onChange.
+    const editorContent = editorRef.current?.getContent() || content
+
     if (!formData.title) return toast.error('O título é obrigatório.')
-    if (!content || content.length < 20)
+    if (!editorContent || editorContent.length < 20)
       return toast.error('O conteúdo é muito curto.')
     if (!formData.categoryId) return toast.error('Selecione uma categoria.')
 
@@ -218,7 +222,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
         : tagsWithoutHomePosition
       const payload = {
         ...formData,
-        content: content || '',
+        content: editorContent || '',
         tags: finalTags,
         status,
         gallery: JSON.stringify(galleryImages),

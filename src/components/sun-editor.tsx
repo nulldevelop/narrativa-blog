@@ -5,6 +5,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 
 export interface SunEditorRef {
   insertImage: (url: string) => void
+  getContent: () => string
 }
 
 interface Props {
@@ -26,6 +27,19 @@ export const MyEditor = forwardRef<SunEditorRef, Props>(
     useEffect(() => { articleIdRef.current = articleId }, [articleId])
     useEffect(() => { onImageUploadedRef.current = onImageUploaded }, [onImageUploaded])
 
+    // Helper compartilhado: usa html.get() (HTML de saída v3) com fallback para innerHTML.
+    const readContent = (): string => {
+      const editor = instanceRef.current
+      if (!editor) return ''
+      try {
+        const html = editor.$.html.get()
+        if (typeof html === 'string') return html
+      } catch {
+        // cai no fallback abaixo
+      }
+      return editor.$.frameContext?.get('wysiwyg')?.innerHTML ?? ''
+    }
+
     useImperativeHandle(ref, () => ({
       insertImage: (url: string) => {
         const editor = instanceRef.current
@@ -46,14 +60,10 @@ export const MyEditor = forwardRef<SunEditorRef, Props>(
         } catch {
           editor.$.html.insert(`<figure><img src="${url}" alt=""></figure>`)
         }
-
-        // Garante que o estado React sincronize com o HTML do editor após a inserção,
-        // mesmo que o onChange interno não dispare por algum motivo.
-        setTimeout(() => {
-          const wysiwyg = editor.$.frameContext?.get('wysiwyg')
-          if (wysiwyg) onChangeRef.current(wysiwyg.innerHTML)
-        }, 150)
       },
+      // Lê o HTML de SAÍDA do editor (processado), não o innerHTML bruto de edição.
+      // É o que deve ser salvo/renderizado na matéria.
+      getContent: () => readContent(),
     }))
 
     useEffect(() => {
@@ -94,11 +104,13 @@ export const MyEditor = forwardRef<SunEditorRef, Props>(
             createFileInput: true,
             createUrlInput: true,
           },
-          // v3: onChange recebe { $, frameContext, data } onde data é o HTML
+          // v3: onChange recebe { $, frameContext, data } onde data é o HTML.
+          // Dispara após inserir imagem (via history) — mantém o estado atualizado.
           onChange({ data }: { data: string }) {
             onChangeRef.current(data ?? '')
           },
-          // Notifica quando imagem é carregada (upload ou URL)
+          // Apenas notifica a sidebar das imagens carregadas. NÃO chamamos html.get()
+          // aqui: isso roda no meio da inserção e trava a interação do editor.
           onImageLoad({ infoList }: { infoList: any[] }) {
             infoList.forEach((info) => {
               if (info.src) onImageUploadedRef.current?.(info.src)
