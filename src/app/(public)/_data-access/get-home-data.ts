@@ -9,7 +9,7 @@ import { getAllTags } from './get-all-tags'
  */
 interface HomeData {
   mainFeaturedArticle: ArticleHero | null
-  secondaryHero: ArticleHero[]
+  secondaryHero: (ArticleHero | null)[]
   generalFeatured: ArticleHero[]
   articles: any[]
   bastidoresArticles: any[]
@@ -57,10 +57,10 @@ export const getHomeData = async (
 
       const mainFeaturedArticle = findByTag('home-principal') || null
       const secondaryHero = [
-        findByTag('home-destaque-1'),
-        findByTag('home-destaque-2'),
-        findByTag('home-destaque-3'),
-      ].filter(Boolean) as ArticleHero[]
+        findByTag('home-destaque-1') ?? null,
+        findByTag('home-destaque-2') ?? null,
+        findByTag('home-destaque-3') ?? null,
+      ] as (ArticleHero | null)[]
 
       const generalFeatured = [
         findByTag('home-geral-1'),
@@ -97,7 +97,7 @@ export const getHomeData = async (
 
       const displayedIds = [
         mainFeaturedArticle?.id,
-        ...secondaryHero.map((a) => a.id),
+        ...secondaryHero.filter(Boolean).map((a) => a!.id),
         ...generalFeatured.map((a) => a.id),
         ...bastidoresArticles.map((a) => a.id),
         ...culturaArticles.map((a) => a.id),

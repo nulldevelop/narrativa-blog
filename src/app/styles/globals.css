@@ -118,6 +118,12 @@
     max-width: 100%;
     image-rendering: auto;
   }
+
+  /* Dentro do SunEditor, imagens precisam ser inline para float funcionar */
+  .se-wrapper-inner img,
+  .sun-editor .se-wrapper img {
+    display: inline-block;
+  }
   p,
   span,
   li,
@@ -269,7 +275,7 @@
   font-size: 1.4rem;
   line-height: 1.55;
   border-left: 4px solid #b11226;
-  padding: 1.5rem 2.25rem 1.75rem;
+  padding: 1.5rem 2.25rem 0.75rem;
   margin: 2.5rem 0;
   color: #1a1a1a;
   background-color: #f9f8f6;
@@ -318,10 +324,24 @@
 .prose-narrativa img {
   border-radius: 2px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin: 2.5rem 0;
+  margin: 1.25rem 0;
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Caption / figcaption após foto inline */
+.prose-narrativa figure {
+  margin: 1.25rem 0;
+}
+
+.prose-narrativa figcaption {
+  font-size: 0.72rem;
+  color: #777;
+  text-align: center;
+  margin-top: 0.35rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
 }
 
 .prose-narrativa img.align-left,
@@ -353,6 +373,51 @@
   content: "";
   display: table;
   clear: both;
+}
+
+/* Imagens inseridas pelo SunEditor v3 no artigo publicado */
+.prose-narrativa .se-component {
+  display: block;
+  margin: 1.25rem 0;
+}
+
+.prose-narrativa .__se__float-left {
+  float: left !important;
+  margin: 0.25rem 1.25rem 0.75rem 0 !important;
+  max-width: 45% !important;
+}
+
+.prose-narrativa .__se__float-right {
+  float: right !important;
+  margin: 0.25rem 0 0.75rem 1.25rem !important;
+  max-width: 45% !important;
+}
+
+.prose-narrativa .__se__float-none {
+  float: none !important;
+  margin: 1.25rem 0 !important;
+  display: block !important;
+  max-width: 100% !important;
+}
+
+.prose-narrativa .se-component figure {
+  margin: 0 !important;
+}
+
+.prose-narrativa .se-component figure img {
+  display: block;
+  width: 100%;
+  margin: 0 !important;
+  border-radius: 2px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.prose-narrativa .se-component figcaption {
+  font-size: 0.72rem;
+  color: #777;
+  text-align: center;
+  margin-top: 0.35rem;
+  font-style: italic;
 }
 
 /* Ajustes para SunEditor no Frontend */

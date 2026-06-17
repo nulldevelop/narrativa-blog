@@ -76,7 +76,7 @@ export function ArticleGallery({ images }: ArticleGalleryProps) {
   }
 
   return (
-    <div className="mt-12">
+    <div className="mt-6">
       <h3 className="text-[0.65rem] font-black tracking-[0.2em] uppercase text-narrativa-vermelho mb-6 flex items-center gap-2 after:content-[''] after:flex-1 after:h-px after:bg-narrativa-cinza-linha">
         Galeria de Fotos
       </h3>
@@ -164,6 +164,7 @@ export function ArticleGallery({ images }: ArticleGalleryProps) {
                 src={images[selectedIndex].url}
                 alt={`Foto da galeria ${selectedIndex + 1}`}
                 fill
+                sizes="100vw"
                 className="object-contain"
                 priority
               />

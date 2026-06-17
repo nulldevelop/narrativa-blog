@@ -18,8 +18,11 @@ export async function POST(req: Request) {
 
   try {
     const formData = await req.formData()
-    const file = formData.get('file') as File
-    const articleId = (formData.get('articleId') as string) || 'temp'
+    // SunEditor v3 envia o arquivo como 'file-0'; sidebar envia como 'file'
+    const file = (formData.get('file-0') ?? formData.get('file')) as File
+    // articleId via header (v3) ou form field (sidebar)
+    const reqHeaders = await headers()
+    const articleId = (reqHeaders.get('x-article-id') || (formData.get('articleId') as string) || 'temp')
 
     // Validação do articleId para evitar Path Traversal
     if (!/^[a-zA-Z0-9-]+$/.test(articleId)) {
@@ -77,7 +80,11 @@ export async function POST(req: Request) {
 
     const url = `/api/media/materia/${articleId}/imagens/${fileName}`
 
-    return NextResponse.json({ url })
+    // Retorna em ambos os formatos: { url } para sidebar, { result } para SunEditor v3
+    return NextResponse.json({
+      url,
+      result: [{ url, name: fileName, size: file.size }],
+    })
   } catch (error) {
     console.error('Erro no upload:', error)
     return NextResponse.json(

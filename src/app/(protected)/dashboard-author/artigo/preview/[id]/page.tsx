@@ -6,7 +6,7 @@ import { ArticleGallery } from '@/components/article-gallery'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { getArticleById } from '../../_data-access/get-article-by-id'
-import 'suneditor/dist/css/suneditor.min.css'
+import 'suneditor/src/assets/suneditor-contents.css'
 
 export default async function ArticlePreviewPage({
   params,

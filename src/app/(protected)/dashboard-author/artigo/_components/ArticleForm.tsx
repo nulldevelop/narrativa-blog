@@ -33,6 +33,7 @@ interface ArticleFormProps {
     coverImage: string | null
     coverImageCredit: string | null
     tags: string[]
+    homePosition?: string
     status: string
     images?: string[]
     gallery?: string | null
@@ -85,8 +86,9 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
   })
 
   const [homePosition, setHomePosition] = useState<string>(
+    initialData?.homePosition ||
     initialData?.tags.find((t) => HOME_POSITIONS.some((p) => p.value === t)) ||
-      '',
+    ''
   )
 
   const handleAddTag = () => {
@@ -122,7 +124,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
 
   const handleInsertImage = (url: string) => {
     editorRef.current?.insertImage(url)
-    toast.success('Imagem inserida no texto!')
+    toast.success('Imagem inserida!')
   }
 
   const toggleGalleryImage = (e: React.MouseEvent, url: string) => {
@@ -284,6 +286,10 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
               ref={editorRef}
               content={content}
               onChange={(val) => setContent(val)}
+              articleId={articleFolderId}
+              onImageUploaded={(url) =>
+                setUploadedImages((prev) => prev.includes(url) ? prev : [...prev, url])
+              }
             />
           </div>
         </div>
@@ -375,6 +381,7 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                   src={formData.coverImage}
                   alt="Capa"
                   fill
+                  sizes="(max-width: 768px) 100vw, 340px"
                   className="object-cover"
                 />
                 <button
@@ -434,12 +441,11 @@ export function ArticleForm({ categories, initialData }: ArticleFormProps) {
                             src={url}
                             alt="Imagem enviada"
                             fill
+                            sizes="96px"
                             className="object-cover"
                           />
                           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span className="text-white text-[0.4rem] font-bold uppercase">
-                              Inserir
-                            </span>
+                            <span className="text-white text-[0.4rem] font-bold uppercase">Inserir</span>
                           </div>
                         </button>
 

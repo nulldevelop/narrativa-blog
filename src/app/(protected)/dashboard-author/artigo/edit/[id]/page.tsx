@@ -23,6 +23,13 @@ export default async function EditArticlePage({
     return notFound();
   }
 
+  const HOME_POSITIONS_SLUGS = [
+    'home-principal','home-destaque-1','home-destaque-2','home-destaque-3',
+    'home-geral-1','home-geral-2','home-listagem',
+  ]
+
+  const homePositionTag = article.tags.find(t => HOME_POSITIONS_SLUGS.includes(t.tag.slug))
+
   // Preparar dados para o formulário
   const initialData = {
     id: article.id,
@@ -32,7 +39,10 @@ export default async function EditArticlePage({
     categoryId: article.categoryId,
     coverImage: article.coverImage,
     coverImageCredit: article.coverImageCredit,
-    tags: article.tags.map((t) => t.tag.name),
+    tags: article.tags
+      .filter(t => !HOME_POSITIONS_SLUGS.includes(t.tag.slug))
+      .map((t) => t.tag.name),
+    homePosition: homePositionTag?.tag.slug || '',
     status: article.status,
     images: images,
     gallery: article.gallery,

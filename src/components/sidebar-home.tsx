@@ -62,7 +62,7 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
         </h3>
         <div className="w-10 h-[2px] bg-[#e63030] mb-6" />
 
-        <div className="max-height-sidebar-scroll overflow-y-auto pr-1 flex flex-col gap-6 max-h-[550px] custom-scrollbar">
+        <div className="overflow-y-auto pr-2 flex flex-col gap-6 max-h-[550px] custom-scrollbar">
           {sortedDates.length > 0 ? (
             sortedDates.map((date) => (
               <div key={date} className="flex flex-col gap-3">

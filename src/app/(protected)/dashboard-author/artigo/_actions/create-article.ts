@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import slugify from 'slugify'
 import { z } from 'zod'
 import { checkPermission } from '@/lib/permissions/check-permission'
@@ -90,6 +90,8 @@ export async function createArticleAction(
     revalidatePath('/')
     revalidatePath('/dashboard-author')
     revalidatePath('/dashboard-author/artigo')
+    revalidateTag('articles')
+    revalidateTag('tags')
 
     return { success: true, slug: article.slug, id: article.id }
   } catch (error: any) {

@@ -20,7 +20,7 @@ export interface ArticleHero {
 
 export interface HeroHomeProps {
   mainArticle: ArticleHero | null;
-  secondaryArticles: ArticleHero[];
+  secondaryArticles: (ArticleHero | null)[];
 }
 
 export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHomeProps) {
@@ -112,35 +112,39 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
 
           {/* Coluna 3: Destaques Secundários (1, 2, 3) */}
           <div className="flex flex-col justify-between align-self-stretch lg:pl-4 gap-6">
-            {secondaryArticles.length > 0 ? secondaryArticles.map((item, i) => (
-              <FadeUp key={item.slug} delay={0.2 + (i * 0.05)} className="flex-1 flex items-center">
-                <Link href={`/artigo/${item.slug}`} className="flex items-center gap-[1.2rem] group w-full">
-                  <div className="relative w-[100px] h-[100px] flex-shrink-0 overflow-hidden rounded-[2px] border border-white/10 bg-white/5">
-                    <Image
-                      src={item.coverImage || "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop"}
-                      alt={item.title}
-                      fill
-                      sizes="100px"
-                      className="object-cover transition-all duration-500"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <h4 className="text-[0.9rem] font-bold text-white/90 leading-[1.3] group-hover:text-narrativa-vermelho transition-colors line-clamp-2 uppercase tracking-tight">
-                      {item.title}
-                    </h4>
-                    {item.subtitle && (
-                      <p className="text-[0.75rem] text-white/40 leading-[1.4] line-clamp-3 font-serif italic min-h-[3.2em]">
-                        {item.subtitle}
-                      </p>
-                    )}
-                  </div>
-                </Link>
-              </FadeUp>
-            )) : (
-              <div className="flex flex-col justify-center h-full border border-white/5 p-6 bg-white/[0.02]">
-                <p className="text-[0.7rem] text-white/20 uppercase tracking-widest font-black italic">Aguardando pauta...</p>
-              </div>
-            )}
+            {[0, 1, 2].map((i) => {
+              const item = secondaryArticles[i] ?? null
+              if (!item) return (
+                <div key={i} className="flex-1 flex items-center border border-white/5 p-4 bg-white/[0.02]">
+                  <p className="text-[0.65rem] text-white/15 uppercase tracking-widest font-black italic">Destaque {i + 1} — aguardando pauta</p>
+                </div>
+              )
+              return (
+                <FadeUp key={item.slug} delay={0.2 + (i * 0.05)} className="flex-1 flex items-center">
+                  <Link href={`/artigo/${item.slug}`} className="flex items-center gap-[1.2rem] group w-full">
+                    <div className="relative w-[100px] h-[100px] flex-shrink-0 overflow-hidden rounded-[2px] border border-white/10 bg-white/5">
+                      <Image
+                        src={item.coverImage || "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop"}
+                        alt={item.title}
+                        fill
+                        sizes="100px"
+                        className="object-cover transition-all duration-500"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <h4 className="text-[0.9rem] font-bold text-white/90 leading-[1.3] group-hover:text-narrativa-vermelho transition-colors line-clamp-2 uppercase tracking-tight">
+                        {item.title}
+                      </h4>
+                      {item.subtitle && (
+                        <p className="text-[0.75rem] text-white/40 leading-[1.4] line-clamp-3 font-serif italic min-h-[3.2em]">
+                          {item.subtitle}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                </FadeUp>
+              )
+            })}
           </div>
 
         </div>

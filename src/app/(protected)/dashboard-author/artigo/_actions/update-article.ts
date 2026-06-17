@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import slugify from 'slugify'
 import { z } from 'zod'
 import { checkPermission } from '@/lib/permissions/check-permission'
@@ -82,7 +82,7 @@ export async function updateArticleAction(
         gallery: validated.gallery || null,
         status: validated.status,
         categoryId: validated.categoryId,
-        publishedAt: validated.status === 'published' ? new Date() : undefined,
+        publishedAt: validated.status === 'published' && !existingArticle.publishedAt ? new Date() : undefined,
         tags: {
           create: otherTags.map((tagName) => ({
             tag: {
@@ -132,6 +132,8 @@ export async function updateArticleAction(
     revalidatePath('/dashboard-author')
     revalidatePath('/dashboard-author/artigo')
     revalidatePath(`/artigo/${article.slug}`)
+    revalidateTag('articles')
+    revalidateTag('tags')
 
     return { success: true, slug: article.slug, id: article.id }
   } catch (error: any) {

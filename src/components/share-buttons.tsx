@@ -96,16 +96,20 @@ export function ShareButtons({
       >
         <IconBrandLinkedin size={18} stroke={1.5} />
       </a>
-      <a
-        href={`https://www.instagram.com/`}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={stopProp}
+      <button
+        onClick={(e) => {
+          stopProp(e)
+          if (url) {
+            navigator.clipboard.writeText(`${title} — ${url}`)
+            toast.success('Texto copiado! Cole no Instagram Stories ou bio.')
+          }
+        }}
         className={`${baseTextColor} hover:text-[#E1306C] transition-colors`}
-        aria-label="Ir para o Instagram"
+        aria-label="Copiar para compartilhar no Instagram"
+        title="Copiar link para o Instagram"
       >
         <IconBrandInstagram size={18} stroke={1.5} />
-      </a>
+      </button>
       <button
         onClick={copyLink}
         className={`${baseTextColor} ${hoverCopyColor} transition-colors`}

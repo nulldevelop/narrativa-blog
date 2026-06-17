@@ -168,11 +168,8 @@ importers:
         specifier: ^2.0.7
         version: 2.0.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       suneditor:
-        specifier: ^2.44.10
-        version: 2.44.10
-      suneditor-react:
-        specifier: ^3.6.1
-        version: 3.6.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(suneditor@2.44.10)
+        specifier: ^3.1.4
+        version: 3.1.4
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.5.0
@@ -4131,16 +4128,9 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  suneditor-react@3.6.1:
-    resolution: {integrity: sha512-12f9KLnEB6pAdyHJINTzRBg3UOWVZZ+jVYSEtwdBTDYQW4amUZr0xOnpikbBAlxb9rcTYV5RHAsad3gnNhLsuA==}
-    peerDependencies:
-      react: '>= 16.8.0'
-      react-dom: '>= 16.8.0'
-      suneditor: ^2.44.10
-
-  suneditor@2.44.10:
-    resolution: {integrity: sha512-aPoIIW/Ntvp5LIz9pVOVdsA3jibMWoQmUMqnhZGYbN8RMANfWXCaD6Z/WAj3UJebwrQEtVeyOuE1J+LeNEJKeA==}
-    deprecated: This package is deprecated
+  suneditor@3.1.4:
+    resolution: {integrity: sha512-gHI1+Qz+P/qkAlgCpKB5sj+Wis2ZKnNWXdvVmq5cDHe2ACNYCR5A7qCacbqG0L77HnLe3cgBnmc73+Mbq9SBxw==}
+    engines: {node: '>=14.0.0'}
 
   tagged-tag@1.0.0:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
@@ -8626,13 +8616,7 @@ snapshots:
     optionalDependencies:
       '@babel/core': 7.29.0
 
-  suneditor-react@3.6.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(suneditor@2.44.10):
-    dependencies:
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
-      suneditor: 2.44.10
-
-  suneditor@2.44.10: {}
+  suneditor@3.1.4: {}
 
   tagged-tag@1.0.0: {}
 

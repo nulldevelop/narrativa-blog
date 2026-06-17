@@ -10,7 +10,7 @@ import { ShareButtons } from '@/components/share-buttons'
 import { ViewTracker } from '@/components/view-tracker'
 import { getArticleBySlug } from '../../_data-access/get-article-by-slug'
 
-import 'suneditor/dist/css/suneditor.min.css'
+import 'suneditor/src/assets/suneditor-contents.css'
 
 // Desativado generateStaticParams para evitar sobrecarga no banco de dados durante o build.
 // Os artigos serão gerados sob demanda no primeiro acesso (SSR/ISR on-demand).
@@ -85,7 +85,7 @@ export default async function ArtigoPage({
 
       {/* Hero / Cabeçalho Escuro */}
       <header className="bg-narrativa-preto px-[clamp(1.5rem,5vw,4rem)] py-[3rem] lg:py-[4rem]">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[3rem] items-center">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-[3rem] items-center">
           {/* Coluna Esquerda: Conteúdo */}
           <div className="flex flex-col">
             <div className="flex items-center gap-4 mb-6">
@@ -141,7 +141,7 @@ export default async function ArtigoPage({
 
           {/* Coluna Direita: Imagem de Capa */}
           <FadeUp delay={0.3} className="w-full">
-            <div className="relative w-full h-[250px] lg:h-[380px] overflow-hidden rounded-[8px] bg-narrativa-cinza-claro">
+            <div className="relative w-full aspect-[16/9] lg:aspect-[3/2] overflow-hidden rounded-[8px] bg-narrativa-cinza-claro">
               <Image
                 src={
                   article.coverImage ||
