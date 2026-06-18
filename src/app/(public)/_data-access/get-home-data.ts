@@ -36,15 +36,24 @@ export const getHomeData = async (
         'home-listagem',
       ]
 
+      const articleSelect = {
+        id: true,
+        slug: true,
+        title: true,
+        subtitle: true,
+        createdAt: true,
+        publishedAt: true,
+        coverImage: true,
+        category: { select: { name: true, slug: true } },
+        tags: { select: { tag: { select: { name: true, slug: true } } } },
+      } as const
+
       const featuredArticlesRaw = await prisma.article.findMany({
         where: {
           status: 'published',
           tags: { some: { tag: { slug: { in: systemTags } } } },
         },
-        include: {
-          category: true,
-          tags: { include: { tag: true } },
-        },
+        select: articleSelect,
         orderBy: { publishedAt: 'desc' },
       })
 
@@ -73,12 +82,9 @@ export const getHomeData = async (
           status: 'published',
           category: { slug: 'bastidores' },
         },
-        take: 3, // Limitando a 3 para a seção da home
+        take: 3,
         orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
-        include: {
-          category: true,
-          tags: { include: { tag: true } },
-        },
+        select: articleSelect,
       })
 
       // Busca artigos da categoria 'cultura'
@@ -87,12 +93,9 @@ export const getHomeData = async (
           status: 'published',
           category: { slug: 'cultura' },
         },
-        take: 3, // Limitando a 3 para a seção da home
+        take: 3,
         orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
-        include: {
-          category: true,
-          tags: { include: { tag: true } },
-        },
+        select: articleSelect,
       })
 
       const displayedIds = [
@@ -118,10 +121,7 @@ export const getHomeData = async (
         take: postsPerPage,
         skip: (currentPage - 1) * postsPerPage,
         orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
-        include: {
-          category: true,
-          tags: { include: { tag: true } },
-        },
+        select: articleSelect,
       })
 
       const totalArticles = await prisma.article.count({ where: whereClause })

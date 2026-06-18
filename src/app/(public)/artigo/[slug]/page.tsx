@@ -98,14 +98,14 @@ export default async function ArtigoPage({
             </div>
 
             <FadeUp>
-              <h1 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-black text-narrativa-branco leading-[1.08] mb-6 tracking-[-0.02em]">
+              <h1 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-black text-narrativa-branco leading-[1.08] mb-6 tracking-[-0.02em] text-justify">
                 {article.title}
               </h1>
             </FadeUp>
 
             {article.subtitle && (
               <FadeUp delay={0.1}>
-                <p className="text-[clamp(1rem,1.5vw,1.15rem)] text-white/50 leading-[1.6] font-light max-w-[600px] border-l-2 border-narrativa-vermelho pl-5 italic font-serif">
+                <p className="text-[clamp(1rem,1.5vw,1.15rem)] text-white/50 leading-[1.6] font-light max-w-[600px] border-l-2 border-narrativa-vermelho pl-5 italic font-serif text-justify">
                   {article.subtitle}
                 </p>
               </FadeUp>

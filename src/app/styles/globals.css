@@ -277,7 +277,7 @@
   border-left: 4px solid #b11226;
   padding: 1.5rem 2.25rem 0.75rem;
   margin: 2.5rem 0;
-  color: #1a1a1a;
+  color: #0b0b0b;
   background-color: #f9f8f6;
 }
 
@@ -421,6 +421,13 @@
 }
 
 /* Ajustes para SunEditor no Frontend */
+.prose-narrativa.sun-editor-editable blockquote,
+.prose-narrativa .sun-editor-editable blockquote {
+  border-color: #b11226 !important;
+  color: #0b0b0b !important;
+  background-color: #f9f8f6 !important;
+}
+
 .prose-narrativa.sun-editor-editable,
 .prose-narrativa .sun-editor-editable {
   font-size: 1.125rem !important; /* Mesma do prose-lg */
