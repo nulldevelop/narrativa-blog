@@ -48,6 +48,7 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
                 {currentMain.title}
               </h1>
             </FadeUp>
+          </div>
 
           {/* Destaque Principal */}
           <FadeUp className="w-full h-full">
