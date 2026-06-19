@@ -54,9 +54,9 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
   })
 
   return (
-    <aside className="flex flex-col gap-8" aria-label="Coluna lateral">
+    <aside className="flex flex-col gap-8 min-w-0" aria-label="Coluna lateral">
       {/* Curtas & Diretas */}
-      <div className="bg-[#0b0b0b] p-6 shadow-xl">
+      <div className="bg-[#0b0b0b] p-6 shadow-xl w-full overflow-hidden">
         <h3 className="text-[0.85rem] font-bold tracking-[0.2em] uppercase text-white mb-2">
           CURTAS & DIRETAS
         </h3>
@@ -77,7 +77,7 @@ export async function SidebarHome({ tags }: SidebarHomeProps) {
                     key={curta.id}
                     className="bg-white/5 p-[12px_14px] border-l-[3px] border-[#e63030] border-b border-white/[0.08] last:mb-0"
                   >
-                    <p className="italic text-[0.92rem] text-white/90 leading-[1.5] font-serif">
+                    <p className="italic text-[0.92rem] text-white/90 leading-[1.5] font-serif break-words">
                       <span className="text-[#e63030] mr-2 not-italic">◆</span>
                       {curta.texto}
                     </p>
