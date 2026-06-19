@@ -35,17 +35,25 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
 
   return (
     <section
-      className="bg-narrativa-preto relative overflow-hidden hero-grid-lines min-h-[400px] flex items-center px-[3rem] lg:px-[4rem] py-[3rem]"
+      className="bg-narrativa-preto relative overflow-hidden hero-grid-lines min-h-[400px] flex items-center px-[clamp(1.25rem,4vw,4rem)] py-[clamp(2rem,4vw,3rem)]"
       aria-label="Artigo em destaque"
     >
       <div className="max-w-[1440px] mx-auto relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.8fr_1fr] gap-[2.5rem] items-stretch w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr_1.2fr] gap-[clamp(1.5rem,3vw,2.5rem)] items-stretch w-full">
+
+          {/* Coluna 1: Texto Principal */}
+          <div className="flex flex-col justify-center text-left lg:pr-[2rem] align-self-stretch">
+            <FadeUp>
+              <h1 className="font-heading text-[clamp(1.6rem,4.5vw,2.2rem)] font-black text-narrativa-branco leading-[1.1] mb-5 tracking-[-0.02em] uppercase text-left">
+                {currentMain.title}
+              </h1>
+            </FadeUp>
 
           {/* Destaque Principal */}
           <FadeUp className="w-full h-full">
             <Link
               href={`/artigo/${currentMain.slug}`}
-              className="relative block w-full h-full min-h-[500px] overflow-hidden rounded-[2px] group"
+              className="relative block w-full h-[clamp(200px,45vw,350px)] overflow-hidden group rounded-[4px] bg-white/5"
             >
               <Image
                 src={currentMain.image}
@@ -64,9 +72,9 @@ export default function HeroHome({ mainArticle, secondaryArticles = [] }: HeroHo
             </Link>
           </FadeUp>
 
-          {/* Destaques Secundários */}
-          <div className="flex flex-col justify-between gap-4">
-            {[0, 1].map((i) => {
+          {/* Coluna 3: Destaques Secundários (1, 2, 3) */}
+          <div className="flex flex-col justify-between align-self-stretch lg:pl-4 gap-[clamp(0.75rem,2vw,1.5rem)]">
+            {[0, 1, 2].map((i) => {
               const item = secondaryArticles[i] ?? null
               if (!item) return (
                 <div key={i} className="flex-1 flex items-center border border-white/5 p-4 bg-white/[0.02]">
