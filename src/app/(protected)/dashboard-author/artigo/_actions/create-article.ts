@@ -90,8 +90,8 @@ export async function createArticleAction(
     revalidatePath('/')
     revalidatePath('/dashboard-author')
     revalidatePath('/dashboard-author/artigo')
-    revalidateTag('articles')
-    revalidateTag('tags')
+    revalidateTag('articles', { expire: 0 })
+    revalidateTag('tags', { expire: 0 })
 
     return { success: true, slug: article.slug, id: article.id }
   } catch (error: any) {
