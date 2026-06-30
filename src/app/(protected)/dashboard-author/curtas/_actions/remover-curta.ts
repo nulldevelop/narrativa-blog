@@ -11,8 +11,8 @@ export async function removerCurta(formData: FormData): Promise<void> {
       data: { status: 'deleted' },
     })
     
+    revalidateTag('curtas', {})
     revalidatePath('/dashboard-author/curtas')
-    revalidatePath('/')
   } catch (error) {
     console.error('Error removing curta:', error)
     throw new Error('Erro ao remover curta')

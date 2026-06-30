@@ -78,7 +78,7 @@ export default function ColunistasPage() {
       {/* Perfil do Colunista */}
       <section className="bg-narrativa-preto py-[clamp(4rem,8vw,6rem)] px-[clamp(1.5rem,5vw,4rem)] relative overflow-hidden hero-grid-lines">
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="grid grid-cols-[1fr_2fr] gap-12 items-center max-md:grid-cols-1 max-md:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-12 items-center">
             <FadeUp>
               <div className="aspect-[4/5] bg-narrativa-cinza-claro relative overflow-hidden border border-white/10">
                 {/* Placeholder para foto grande */}
@@ -118,7 +118,7 @@ export default function ColunistasPage() {
       <div className="max-w-300 mx-auto px-[clamp(1.5rem,5vw,4rem)] py-[clamp(3rem,6vw,5rem)]">
         <SectionTitle title="Notícias do colunista" />
 
-        <div className="grid grid-cols-2 gap-x-16 gap-y-4 max-md:grid-cols-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-16 gap-y-4">
           {noticiasColunista.map((article, i) => (
             <ArticleCard key={article.slug} {...article} delay={i * 0.05} />
           ))}

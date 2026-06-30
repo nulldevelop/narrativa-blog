@@ -31,7 +31,7 @@ export default async function ContatoPage() {
 
       {/* SECTION 2 — Content */}
       <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)] py-[clamp(3rem,6vw,5rem)]">
-        <div className="grid grid-cols-2 gap-16 max-md:grid-cols-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
           {/* LEFT COLUMN — Contact form */}
           <FadeUp>
             <form className="flex flex-col gap-6">

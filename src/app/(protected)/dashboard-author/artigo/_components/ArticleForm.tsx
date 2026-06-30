@@ -49,7 +49,6 @@ const HOME_POSITIONS = [
   { value: 'home-principal', label: 'Principal (Home)' },
   { value: 'home-destaque-1', label: 'Destaque 1' },
   { value: 'home-destaque-2', label: 'Destaque 2' },
-  { value: 'home-destaque-3', label: 'Destaque 3' },
   { value: 'home-geral-1', label: 'Geral 1' },
   { value: 'home-geral-2', label: 'Geral 2' },
   { value: 'home-listagem', label: 'Listagem' },

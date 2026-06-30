@@ -62,7 +62,7 @@ export default function SobrePage() {
       <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
         <div className="py-[clamp(3rem,6vw,5rem)]">
           {/* Grid principal */}
-          <div className="grid grid-cols-2 gap-20 items-start max-md:grid-cols-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
             {/* Texto */}
             <div>
               <p className="text-[1.25rem] leading-[1.65] text-narrativa-preto font-light mb-5">
@@ -99,7 +99,7 @@ export default function SobrePage() {
 
             {/* Manifesto + decorative */}
             <div>
-              <div className="bg-narrativa-preto p-12 text-narrativa-branco">
+              <div className="bg-narrativa-preto p-6 sm:p-10 md:p-12 text-narrativa-branco">
                 <p className="text-[1.1rem] italic leading-[1.7] text-white/70 mb-5">
                   &ldquo;A versão oficial é de normalidade. O discurso público
                   insiste em estabilidade. Mas como quase sempre na política, o
@@ -162,7 +162,7 @@ export default function SobrePage() {
           </div>
 
           {/* Newsletter CTA */}
-          <div className="mt-16 p-12 bg-narrativa-cinza-claro grid grid-cols-2 gap-12 items-center max-sm:grid-cols-1">
+          <div className="mt-16 p-6 sm:p-10 md:p-12 bg-narrativa-cinza-claro grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
               <span className="block w-12 h-[3px] bg-narrativa-vermelho mb-5" />
               <h2 className="text-[1.8rem] mb-4">Acompanhe a Narrativa</h2>

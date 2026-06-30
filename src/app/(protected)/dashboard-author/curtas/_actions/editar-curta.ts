@@ -18,8 +18,8 @@ export async function editarCurta(formData: FormData): Promise<void> {
       data: { texto, source },
     })
 
+    revalidateTag('curtas', {})
     revalidatePath('/dashboard-author/curtas')
-    revalidatePath('/')
   } catch (error) {
     console.error('Error editing curta:', error)
     throw new Error('Erro ao editar curta')

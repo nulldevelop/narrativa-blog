@@ -24,7 +24,7 @@ export default async function EditArticlePage({
   }
 
   const HOME_POSITIONS_SLUGS = [
-    'home-principal','home-destaque-1','home-destaque-2','home-destaque-3',
+    'home-principal','home-destaque-1','home-destaque-2',
     'home-geral-1','home-geral-2','home-listagem',
   ]
 

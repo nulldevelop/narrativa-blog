@@ -69,7 +69,6 @@ export default async function ArtigoPage({
     'home-principal',
     'home-destaque-1',
     'home-destaque-2',
-    'home-destaque-3',
     'home-geral-1',
     'home-geral-2',
   ]
@@ -84,7 +83,7 @@ export default async function ArtigoPage({
       <ReadingProgress />
 
       {/* Hero / Cabeçalho Escuro */}
-      <header className="bg-narrativa-preto px-[clamp(1.5rem,5vw,4rem)] py-[3rem] lg:py-[4rem]">
+      <header className="bg-narrativa-preto px-[clamp(1rem,5vw,4rem)] py-[1.75rem] lg:py-[4rem]">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-[3rem] items-center">
           {/* Coluna Esquerda: Conteúdo */}
           <div className="flex flex-col">
@@ -98,21 +97,21 @@ export default async function ArtigoPage({
             </div>
 
             <FadeUp>
-              <h1 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-black text-narrativa-branco leading-[1.08] mb-6 tracking-[-0.02em] text-justify">
+              <h1 className="font-heading text-[clamp(1.5rem,4vw,3.2rem)] font-black text-narrativa-branco leading-[1.1] mb-4 tracking-[-0.02em] text-left">
                 {article.title}
               </h1>
             </FadeUp>
 
             {article.subtitle && (
               <FadeUp delay={0.1}>
-                <p className="text-[clamp(1rem,1.5vw,1.15rem)] text-white/50 leading-[1.6] font-light max-w-[600px] border-l-2 border-narrativa-vermelho pl-5 italic font-serif text-justify">
+                <p className="text-[clamp(0.875rem,1.5vw,1.15rem)] text-white/50 leading-[1.6] font-light max-w-[600px] border-l-2 border-narrativa-vermelho pl-5 italic font-serif text-left">
                   {article.subtitle}
                 </p>
               </FadeUp>
             )}
 
             <FadeUp delay={0.2}>
-              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col gap-4">
+              <div className="mt-5 pt-4 border-t border-white/10 flex flex-col gap-4">
                 <div className="flex items-center justify-between gap-4 flex-wrap w-full">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-narrativa-vermelho flex items-center justify-center text-[0.85rem] font-bold text-narrativa-branco shrink-0 uppercase">
@@ -164,9 +163,9 @@ export default async function ArtigoPage({
       </header>
 
       {/* Body */}
-      <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-        <div className="py-[clamp(3rem,6vw,5rem)]">
-          <div className="grid grid-cols-[1fr_280px] gap-20 items-start max-md:grid-cols-1 w-full overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-[clamp(1rem,5vw,4rem)]">
+        <div className="py-[clamp(1.5rem,6vw,5rem)]">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8 lg:gap-16 items-start w-full overflow-hidden">
             {/* Renderizador de Conteúdo (HTML) */}
             <article className="max-w-[680px] w-full">
               <div
@@ -208,7 +207,7 @@ export default async function ArtigoPage({
 
             {/* Sidebar */}
             <aside
-              className="sticky top-[100px] flex flex-col gap-8 max-md:static"
+              className="sticky top-[100px] flex flex-col gap-8 max-lg:static"
               aria-label="Conteúdo relacionado"
             >
               <div className="pb-6 border-b border-narrativa-cinza-linha">

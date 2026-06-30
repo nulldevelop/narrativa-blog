@@ -15,7 +15,6 @@ export const getAllTags = unstable_cache(
               'home-principal',
               'home-destaque-1',
               'home-destaque-2',
-              'home-destaque-3',
               'home-geral-1',
               'home-geral-2',
             ],

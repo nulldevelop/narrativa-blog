@@ -37,8 +37,8 @@ export default async function Home({
         />
       )}
 
-      <div className="max-w-300 mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-        <div className="grid grid-cols-[1fr_340px] gap-16 py-[clamp(3rem,6vw,5rem)] max-md:grid-cols-1 max-md:gap-12">
+      <div className="max-w-300 md:max-w-340 mx-auto px-[clamp(1rem,1vw,2rem)]">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 lg:gap-16 py-[clamp(1rem,6vw,3rem)]">
           <div className="flex flex-col">
             <section
               id="posts"
@@ -61,7 +61,7 @@ export default async function Home({
 
               {/* Seção Geral 1 e 2 (As duas notícias maiores abaixo do Hero) - Ocultas se houver filtro */}
               {currentPage === 1 && !category && !tag && generalFeatured.length > 0 && (
-                <div className="grid grid-cols-2 gap-10 mb-12 max-sm:grid-cols-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 mb-12">
                   {generalFeatured.map((article, i) => (
                     <ArticleCard
                       key={article.slug}

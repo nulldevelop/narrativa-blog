@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 export function Footer() {
   return (
-    <footer className="bg-narrativa-preto text-white/50 px-[clamp(1.5rem,5vw,4rem)] pt-12 pb-8 mt-20 border-t-[3px] border-narrativa-vermelho">
-      <div className="max-w-[1200px] mx-auto grid grid-cols-[1.5fr_1fr_1fr] gap-12 pb-10 border-b border-white/10 max-md:grid-cols-2 max-sm:grid-cols-1">
+    <footer className="bg-narrativa-preto text-white/50 px-[clamp(1rem,5vw,4rem)] pt-8 pb-6 mt-12 border-t-[3px] border-narrativa-vermelho">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] gap-8 lg:gap-12 pb-10 border-b border-white/10">
         {/* Logo col */}
         <div>
           <Link

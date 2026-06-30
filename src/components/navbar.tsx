@@ -40,13 +40,13 @@ function NavLinks() {
 
   return (
     <header className="bg-narrativa-preto border-b-[3px] border-narrativa-vermelho sticky top-0 z-100">
-      <div className="flex items-center justify-between px-[clamp(1.5rem,5vw,4rem)] py-[1.2rem] max-w-350 mx-auto">
+      <div className="flex items-center justify-between px-[clamp(1rem,5vw,4rem)] py-[0.85rem] max-w-350 mx-auto">
         {/* Logo */}
         <Link href="/" className="flex flex-col gap-[0.2rem] leading-none">
-          <span className="font-heading text-[2.2rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
+          <span className="font-heading text-[1.5rem] sm:text-[2.2rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
             NARRATIVA<span className="text-narrativa-vermelho">.</span>
           </span>
-          <span className="text-[0.7rem] tracking-[0.25em] uppercase text-white/40 font-light">
+          <span className="text-[0.6rem] sm:text-[0.7rem] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white/40 font-light">
             política, poder e{' '}
             <span className="text-narrativa-vermelho">versão</span>
           </span>
@@ -56,8 +56,8 @@ function NavLinks() {
         <nav
           ref={navRef}
           className={`
-            flex items-center gap-8
-            max-md:hidden
+            flex items-center gap-5 xl:gap-8
+            max-lg:hidden
           `}
         >
           {navLinks.map((link) => {
@@ -95,7 +95,7 @@ function NavLinks() {
         <button
           ref={btnRef}
           type="button"
-          className="md:hidden flex flex-col gap-[5px] cursor-pointer p-1 bg-transparent border-none"
+          className="lg:hidden flex flex-col gap-[5px] cursor-pointer p-1 bg-transparent border-none"
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
@@ -123,14 +123,14 @@ function NavLinks() {
 
       {/* Mobile Nav */}
       {open && (
-        <nav className="md:hidden flex flex-col border-t border-white/[0.08] bg-[#0f0f0f] z-200">
+        <nav className="lg:hidden flex flex-col border-t border-white/[0.08] bg-[#0f0f0f] z-200">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
               className={`
-                px-[clamp(1.5rem,5vw,4rem)] py-4 text-[0.72rem] tracking-[0.14em] uppercase font-bold text-narrativa-vermelho hover:text-white border-b border-white/[0.06] transition-colors
+                px-[clamp(1rem,5vw,4rem)] py-3 text-[0.72rem] tracking-[0.14em] uppercase font-bold text-narrativa-vermelho hover:text-white border-b border-white/[0.06] transition-colors
                 ${link.hidden ? 'hidden' : 'block'}
               `}
             >
@@ -148,12 +148,12 @@ export function Navbar() {
     <Suspense
       fallback={
         <header className="bg-narrativa-preto border-b-[3px] border-narrativa-vermelho sticky top-0 z-100">
-          <div className="flex items-center justify-between px-[clamp(1.5rem,5vw,4rem)] py-[1.2rem] max-w-350 mx-auto">
+          <div className="flex items-center justify-between px-[clamp(1rem,5vw,4rem)] py-[0.85rem] max-w-350 mx-auto">
             <Link href="/" className="flex flex-col gap-[0.2rem] leading-none">
-              <span className="font-heading text-[2.2rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
+              <span className="font-heading text-[1.5rem] sm:text-[2.2rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
                 NARRATIVA<span className="text-narrativa-vermelho">.</span>
               </span>
-              <span className="text-[0.7rem] tracking-[0.25em] uppercase text-white/40 font-light">
+              <span className="text-[0.6rem] sm:text-[0.7rem] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white/40 font-light">
                 política, poder e{' '}
                 <span className="text-narrativa-vermelho">versão</span>
               </span>

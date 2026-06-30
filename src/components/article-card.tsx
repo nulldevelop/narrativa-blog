@@ -46,7 +46,6 @@ export function ArticleCard({
     'home-principal',
     'home-destaque-1',
     'home-destaque-2',
-    'home-destaque-3',
     'home-geral-1',
     'home-geral-2',
   ]
@@ -58,7 +57,7 @@ export function ArticleCard({
   if (variant === 'large') {
     return (
       <FadeUp delay={delay}>
-        <div className="group flex flex-col gap-5 pb-8 border-b border-narrativa-cinza-linha h-full min-w-0">
+        <div className="group flex flex-col gap-4 pb-6 border-b border-narrativa-cinza-linha h-full min-w-0">
           <Link
             href={`/artigo/${slug}`}
             className="aspect-video overflow-hidden relative group/img bg-narrativa-cinza-claro"
@@ -71,11 +70,11 @@ export function ArticleCard({
           </Link>
           <div className="flex flex-col gap-3 min-w-0">
             <Link href={`/artigo/${slug}`}>
-              <h3 className="text-[clamp(1.4rem,3vw,1.75rem)] font-black leading-[1.1] transition-colors group-hover:text-narrativa-vermelho tracking-tight">
+              <h3 className="text-[clamp(0.9rem,2vw,1.35rem)] font-black leading-[1.15] transition-colors group-hover:text-narrativa-vermelho tracking-tight">
                 {title}
               </h3>
             </Link>
-            <p className="text-[0.95rem] text-narrativa-cinza-texto leading-[1.6] font-light line-clamp-3 italic font-serif">
+            <p className="text-[0.82rem] lg:text-[0.88rem] text-narrativa-cinza-texto leading-[1.6] font-light line-clamp-3 italic font-serif">
               {subtitle}
             </p>
             <div className="flex items-center justify-between flex-wrap gap-2 mt-1 w-full">
@@ -97,10 +96,10 @@ export function ArticleCard({
 
   return (
     <FadeUp delay={delay}>
-      <li className="grid grid-cols-[1fr_160px] gap-8 py-8 border-b border-narrativa-cinza-linha items-center group first:pt-0 max-sm:grid-cols-1 max-sm:gap-6 min-w-0">
+      <li className="grid grid-cols-[1fr_120px] sm:grid-cols-[1fr_160px] gap-4 sm:gap-6 md:gap-8 py-5 sm:py-7 border-b border-narrativa-cinza-linha items-center group first:pt-0 min-w-0 max-[400px]:grid-cols-1">
         <div className="flex flex-col gap-2.5 min-w-0">
           <Link href={`/artigo/${slug}`}>
-            <h3 className="text-[clamp(1.15rem,2.5vw,1.45rem)] font-bold leading-[1.2] transition-colors group-hover:text-narrativa-vermelho tracking-tight">
+            <h3 className="text-[clamp(0.95rem,2.5vw,1.45rem)] font-bold leading-[1.2] transition-colors group-hover:text-narrativa-vermelho tracking-tight">
               {title}
             </h3>
           </Link>
@@ -121,7 +120,7 @@ export function ArticleCard({
         </div>
         <Link
           href={`/artigo/${slug}`}
-          className="aspect-square overflow-hidden relative group/img max-sm:order-first max-sm:aspect-video bg-narrativa-cinza-claro"
+          className="aspect-square overflow-hidden relative group/img bg-narrativa-cinza-claro max-[400px]:order-first max-[400px]:aspect-video"
           tabIndex={-1}
           aria-hidden
         >

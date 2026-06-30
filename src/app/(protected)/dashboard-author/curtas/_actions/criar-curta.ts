@@ -16,8 +16,8 @@ export async function criarCurta(formData: FormData): Promise<void> {
       data: { texto, source: source || '' },
     })
 
+    revalidateTag('curtas', {})
     revalidatePath('/dashboard-author/curtas')
-    revalidatePath('/')
 
   } catch (error) {
     console.error('Error creating curta:', error)

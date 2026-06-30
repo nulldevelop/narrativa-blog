@@ -30,7 +30,6 @@ export const getHomeData = async (
         'home-principal',
         'home-destaque-1',
         'home-destaque-2',
-        'home-destaque-3',
         'home-geral-1',
         'home-geral-2',
         'home-listagem',
@@ -68,7 +67,6 @@ export const getHomeData = async (
       const secondaryHero = [
         findByTag('home-destaque-1') ?? null,
         findByTag('home-destaque-2') ?? null,
-        findByTag('home-destaque-3') ?? null,
       ] as (ArticleHero | null)[]
 
       const generalFeatured = [
