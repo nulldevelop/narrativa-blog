@@ -95,7 +95,16 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-narrativa-vermelho hover:underline"
           >
-            Null Development • Ariane Archanjo
+            Null Development
+          </a>{' '}
+          •{' '}
+          <a
+            href="https://github.com/arianearchanjo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-narrativa-vermelho hover:underline"
+          >
+            Ariane Archanjo
           </a>
         </p>
       </div>
